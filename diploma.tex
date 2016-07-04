@@ -1,0 +1,415 @@
+\documentclass[12pt,a4paper,openany]{book}
+
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage{type1ec}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{graphicx,epsfig}
+\usepackage[slovene]{babel}
+\usepackage{cite}
+\usepackage{enumitem}
+%\usepackage[nolist,nohyperlinks]{acronym}
+\usepackage[acronym,toc]{glossaries}
+\usepackage{todonotes}
+
+\usepackage[pdftex,colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black,pagebackref]{hyperref}
+\usepackage{tikz}
+
+%Velikost strani - dvostransko
+\oddsidemargin 1.4cm
+\evensidemargin 0.35cm
+\textwidth 14cm
+\topmargin 0.26cm
+\headheight 0.6cm
+\headsep 1.5cm
+\textheight 20cm
+
+%Nastavitev glave in repa strani
+\pagestyle{fancy}
+\fancyhead{}
+\renewcommand{\chaptermark}[1]{\markboth{\textsf{Poglavje \thechapter:\ #1}}{}}
+\renewcommand{\sectionmark}[1]{\markright{\textsf{\thesection\  #1}}{}}
+\fancyhead[RE]{\leftmark}
+\fancyhead[LO]{\rightmark}
+\fancyhead[LE,RO]{\thepage}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.0pt}
+\renewcommand{\footrulewidth}{0.0pt}
+
+\newcommand{\gnuplot}{\textbf{gnuplot}}
+\newcommand{\pgfname}{\textsc{pgf}}
+\newcommand{\tikzname}{Ti\emph{k}Z}
+
+\makeglossaries
+
+\input{cc}
+
+%********************************************
+
+\begin{document}
+
+% stran 1 med uvodnimi listi
+\thispagestyle{empty} 
+
+\begin{center}
+{\large 
+UNIVERZA V LJUBLJANI\\
+FAKULTETA ZA RAČUNALNIŠTVO IN INFORMATIKO\\
+}
+
+\vspace{3cm}
+{\LARGE Andraž Vrhovec}\\
+
+\vspace{2cm}
+\textsc{\textbf{\LARGE 
+Varnost podatkov v oblaku
+}}
+
+\vspace{2cm}
+{ DIPLOMSKO DELO}\\
+{ NA INTERDISCIPLINARNEM UNIVERZITETNEM ŠTUDIJU
+}
+
+
+\vspace{2cm} 
+{\Large Mentor: prof. dr. Aleksandar Jurišić}
+
+\vfill
+{\Large Ljubljana, 2016}
+\end{center}
+
+\newpage
+
+\ \thispagestyle{empty}
+
+\newpage
+
+%********************************************
+
+% stran 2 med uvodnimi listi
+\thispagestyle{empty}
+
+\vspace*{5cm}
+{\small \noindent
+To diplomsko delo je ponujeno pod licenco \textit{Creative Commons Priznanje avtorstva-Deljenje pod enakimi pogoji 2.5 Slovenija}
+ali (po želji) novejšo različico.
+To pomeni, da se tako besedilo, slike, grafi in druge sestavine dela kot tudi rezultati diplomskega dela lahko prosto distribuirajo,
+reproducirajo, uporabljajo, dajejo v najem, priobčujejo javnosti in predelujejo, pod pogojem, da se jasno in vidno navede avtorja in naslov tega
+dela in da se v primeru spremembe, preoblikovanja ali uporabe tega dela v svojem delu, lahko distribuira predelava le pod
+licenco, ki je enaka tej.
+Podrobnosti licence so dostopne na spletni strani \url{http://creativecommons.si/} ali na Inštitutu za
+intelektualno lastnino, Streliška 1, 1000 Ljubljana.
+
+\begin{center}% 0.66 / 0.89 = 0.741573033707865
+  \CcImageCc{0.741573033707865}\hspace*{1ex}\CcGroupBySa{1}{1ex}
+\end{center}
+}
+
+\vspace*{1.5cm}
+{\small \noindent
+Izvorna koda diplomskega dela, njenih rezultatov in v ta namen razvite programske opreme je ponujena pod GNU General Public License,
+različica 3 ali (po želji) novejšo različico. To pomeni, da se lahko prosto uporablja, distribuira in/ali predeluje pod njenimi pogoji.
+Podrobnosti licence so dostopne na spletni strani \url{http://www.gnu.org/licenses/}.
+}
+
+\begin{center} 
+\ \\ \vfill
+{\em
+Besedilo je oblikovano z urejevalnikom besedil \LaTeX.
+}
+\end{center}
+
+\newpage
+
+\ \thispagestyle{empty}
+
+\newpage
+
+%********************************************
+
+% stran 3 med uvodnimi listi
+\thispagestyle{empty}
+
+Namesto te strani {\bf vstavite} original izdane teme diplomskega dela s podpisom mentorja in dekana ter \v zigom fakultete, ki ga diplomant
+dvigne v študent\-skem referatu,  preden odda izdelek v vezavo!
+
+\newpage
+
+%********************************************
+
+% stran 4 med uvodnimi listi je prazna 
+\ \thispagestyle{empty}
+
+\newpage
+
+%********************************************
+
+% stran 5 med uvodnimi listi
+
+\thispagestyle{empty}
+
+\vspace{1cm}
+\begin{center} 
+{\Large \textbf{IZJAVA O AVTORSTVU}}
+\end{center}
+
+\begin{center} 
+{\Large diplomskega dela}
+\end{center}
+
+\vspace{1cm}
+Spodaj podpisani/-a \hspace{0.5cm} Andraž Vrhovec,
+
+\vspace{0.5cm}
+z vpisno številko \hspace{0.5cm} 63080117,
+
+\vspace{1cm}
+sem avtor/-ica diplomskega dela z naslovom:
+   
+\vspace{0.5cm}
+Varnost v oblaku
+\vspace{1.5cm}
+S svojim podpisom zagotavljam, da:
+\begin{itemize}
+	\item sem diplomsko delo izdelal/-a samostojno pod mentorstvom 
+	
+	prof. [doc.] dr. Aleksandar Jurišić
+	
+	\item	so elektronska oblika diplomskega dela, naslov (slov., angl.), povzetek (slov., angl.) ter ključne besede (slov., 			angl.) identični s tiskano obliko diplomskega dela
+	\item soglašam z javno objavo elektronske oblike diplomskega dela v zbirki ''Dela FRI''.
+\end{itemize}
+
+\vspace{1cm}
+V Ljubljani, dne \today \hspace{1cm} Podpis avtorja/-ice:
+
+\newpage 
+
+%********************************************
+
+% stran 6 med uvodnimi listi je prazna pri dvostranskem tiskanju
+\ \thispagestyle{empty}
+
+\newpage
+
+%********************************************
+
+% stran 7 med uvodnimi listi
+
+\chapter*{Zahvala}
+
+\thispagestyle{empty}
+
+Mogoče :D
+
+
+\newpage
+
+%********************************************
+
+% stran 8 med uvodnimi listi je prazna pri dvostranskem tiskanju
+\ \thispagestyle{empty}
+
+\newpage
+
+%********************************************
+
+% stran 9 med uvodnimi listi
+\thispagestyle{empty}
+
+$\;$ 
+
+\vspace{5cm}
+\hfill {\Large \em Morebitno posvetilo}
+\thispagestyle{empty}
+
+\newpage
+
+%********************************************
+
+% stran 10 med uvodnimi listi je prazna pri dvostranskem tiskanju
+
+\ \thispagestyle{empty}
+
+\newpage
+
+%********************************************
+
+\renewcommand\thepage{} 
+\tableofcontents
+\renewcommand\thepage{\arabic{page}}
+
+\thispagestyle{empty}
+
+
+%********************************************
+
+\chapter*{Seznam uporabljenih kratic in simbolov}
+\thispagestyle{empty}
+
+\printglossaries
+
+%\cleardoublepage
+
+\clearpage{\pagestyle{empty}\cleardoublepage}
+
+%********************************************
+%zacno se glavni listi, ki so numerirani z arabskimi stevilkami
+
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+\chapter*{Povzetek}
+
+\addcontentsline{toc}{chapter}{Povzetek}
+
+\todo[inline]{Napisi povzetek}
+
+\vspace{1.3cm}
+\noindent
+{\large \bf Ključne besede:}
+
+\vspace{0.5cm}
+\noindent
+diploma, oblak, varnost, kriptografija
+
+
+\chapter*{Abstract}
+
+\addcontentsline{toc}{chapter}{Abstract}
+
+Povzetek naj bo napisan v angleškem jeziku.
+
+\vspace{1.3cm}
+\noindent
+{\large \bf Key words:}
+
+\vspace{0.5cm}
+\noindent
+Ključne besede v angleškem jeziku.
+
+
+%********************************************
+
+\chapter{Uvod}
+
+V zadnjih letih smo priča bliskovitemu porastu popularnosti t.i. računalništva v oblaku. Gartner je v začetku leta 2015 uvrstil računalništvo v oblaku med 10 strateško najpomembnejših tehnoloških trendov, ki bodo krojili prihodnost. Oblak nam omogoča udobno, cenovno ugodno delo, kadarkoli in kjerkoli, tudi zunaj pisarne, saj je vse kar potrebujemo internetni dostop in računalnik ali telefon. Računalništvo v oblaku je posledica razvoja več različnih tehnologij, ki so skupaj omogočile cenovno učinkovite rešitve, ki so hkrati preproste za uporabo. Končni uporabniki uporabljajo oblak, ker je preprosto za uporabo, omogoča dostop do podatkov kjerkoli in kadarkoli. Na drugi strani vedno več podjetji v žeji, da znižajo stroške poslovanja in povečajo sposobnost prilagajanja zahtevam trga, seli svoje poslovanje v oblak. Posledica tega premika je selitev podatkov iz fizičnih nosilcev, ki so bili tradicionalno v lasti iste osebe kot podatki, v oblak. To pomeni da varnost hrambe svojih podatkov zaupamo tretjim osebam, kar niti ni nujno tako slabo, kot se sliši. Za veliko ljudi in manjših podjetji je skrb za varnost podatkov velik zalogaj, ki zahteva ustrezno tehnično izobrazbo, strojno opremo in prostor. Kadar hranimo podatke v oblaku, nič od tega ni potrebno, saj nam vse to zagotavlja ponudnik storitev v oblaku v zameno za mesečno naročnino. V nadaljevanju tega dela, bomo najprej pregledali kaj je oblak, kakšne oblike oblaka poznamo. Ko bomo opremljeni z osnovnim poznavanjem oblaka, si bomo pogledali še formalno definicijo varnosti nato pa bomo preučili kako vpeljava in vsesplošna uporaba oblaka vpliva na varnost naših podatkov. 
+
+\section{Kaj je oblak?}
+Priljubljen internetni rek gre nekako takole: “There is no cloud, just someone else's computer”. Preprosto rečeno je to delno res, saj oblak ni nič drugega kot skupek velikega števila računalnikov, ki niso v lasti uporabnika storitve v oblaku, morda niso niti v lasti ponudnika storitve, ampak jih ta najema pri tretjem ponudniku. Pojem oblak je le krovni izraz za nove načine ponudbe in uporabe storitev, zato ga moramo podrobneje razdelati in razložiti.
+
+NIST opredeli oblak kot: “Računalništvo v oblaku je model, ki omogoča vseprisoten preprost dostop na zahtevo do skupnega računalniških virov (omrežja, strežniki, pomnilniški mediji, aplikacije in storitve), ki so lahko hitro pridobljeni ali sproščeni z minimalnim trudom in popolnoma samodejno, brez posredovanja ponudnika storitve. Model oblaka sestavlja pet ključnih lastnosti, trije nivoji storitve in štirje tipi oblakov.”
+
+\begin{description}[style=nextline]
+   \item[Storitev na zahtevo] Stranka lahko pridobi nove vire v oblaku po potrebi, lahko tudi popolnoma samodejno brez človeškega posredovanja.
+   
+   \item[Širok dostop preko omrežja] Zmogljivosti oblaka so na voljo preko omrežja in do njih lahko dostopamo preko standardnih mehanizmov, kar omogoča dostops praktično katerekoli naprave ki se je zmožna povezati v omrežje (telefoni, tablice, računalniki, …).
+   
+   \item[Uporaba skupnih virov] Ponudnikovi fizični viri so zdrženi v bazen virov iz katerega stranke dobijo virtualizirane vire. Virtualizirani vir lahko prosto prehaja med fizičnimi gostitelji, zato težko govorimo o točni lokaciji vira.
+   
+   \item[Bliskovita prožnost] Uporabnik lahko preprosto poveča ali zmanjša zmogljivosti virov, ki jih potrebuje glede na potrebe. Uporabnik ima pogosto občutek da so mu na voljo neomejene zmogljivosti.
+   
+   \item[Merjenje porabe in obračun glede na porabo virov]  Oblačni sistemi samodejno nadzirajo in optimizirajo porabo virov s pomočjo metrik (poraba prostora, pasovne širine, procesorskega časa …). Poraba virov se nadzira, kontrolira in poroča, kar omogoča transparentnost za ponudnika in uporabnika.
+\end{description}
+
+\newacronym{SaaS}{SaaS}{Software as a Service}
+\newacronym{PaaS}{PaaS}{Platform as a Service}
+\newacronym{IaaS}{IaaS}{Infrastructure as a Service}
+\newacronym{API}{API}{Application programming interface}
+
+\begin{description}[style=nextline]
+	\item[\gls{SaaS}] Ponudnik storitev uporabniku omogoča uporabo njegove aplikacije, ki teče v oblaku. Aplikacija je dosegljiva iz različnih naprav, preko recimo spletnega brskalnika ali aplikacijskega vmesnika (\gls{API}). Uporabnik nima nadzora nad infrastrukturo na kateri teče aplikacija (omrežje, strežniki …), kot tudi ne nad samo aplikacijo (z izjemo konfiguracije aplikacije).
+	
+	\item[\gls{PaaS}]: Ponudnik storitev uporabniku ponuja platformo, na katero lahko uporabnik namesti lastne ali kupljene aplikacije, ki so prilagojene za delovanje v oblaku. Tudi tu uporabnik nima nadzora nad infrastrukturo na kateri teče aplikacije, ima pa popolni nadzor nad aplikacijo.
+	
+	\item[\gls{IaaS}]: Ponudnik uporabniku omogoča postavitev osnovnih gradnikov računalniškega sistema (procesiranje, hramba podatkov, omrežje …) iz katerih lahko uporabnik sestavi kar želi. Uporabnik sicer nima nadzora nad spodaj ležečo fizično infrastrukturo, vendar ima ves nadzor nad virtualiziranimi viri ki jih pridobi.
+\end{description}
+
+\begin{description}[style=nextline]
+	\item[Zasebni oblak] Vsa infrastruktura je namenjena uporabi znotraj ene organizacije, ki je sestavljena iz več delov. Upravljanje, vzdrževanje in lastništvo je lahko v domeni iste organizacije, tretje osebe ali kombinacije obojega. Lokacija sistema je lahko v prostorih organizacije ali pa izven.
+
+	\item[Skupni oblak] Infrastruktura je namenjena uporabi s strani skupnosti organizacij, ki imajo skupne zahteve ali skupni cilj. Upravljanje, vzdrževanje in lastništvo je lahko v domeni ene ali večih organizacij znotraj skupnosti, tretje osebe ali kombinacije obojega. Lokacija sistema je lahko v prostorih ene od organizacij ali pa izven.
+
+	\item[Javni oblak] Infrastruktura je namenjena uporabi s strani vseh. Ponudnik je lahko zasebno podjetje, izobraževalna ustanova ali vladna agencija. Infrastruktura se ponavadi nahaja na lokaciji ponudnika.
+	Hibridni oblak: Hibridni oblak je kombinacija dveh ali več tipov oblakov iz prvih treh točk (zasebni, javni, skupni). Oblaka sta sicer fizično ločena, vendar skupni standardi in tehnologije omogočajo preprosto prehajanje aplikacij in podatkov iz enega na drugega.
+\end{description}
+
+\section{Kaj je varnost?}
+Varnost je širok pojem, ki ga v kontekstu računalništva lahko razdelimo na tri dele. To so: računalniška varnost (computer security), informacijska varnost (information security) in varovanje podatkov (information assurance).
+
+\newglossaryentry{neizpodbitnost}
+{
+  name=Non-repudiation,
+  description={\todo[inline]define this},
+  plural=Linuces
+}
+
+\begin{description}
+
+	\item[Računalniška varnost] se ukvarja z varovanjem računalniških sistemov, od strojne opreme preko programske opreme do podatkov, ki se procesirajo na tej strojni opremi. Naloga računalniške varnosti je zagotoviti integriteto, dostopnost in zaupnost vseh sestavnih delov računalniškega sistema.
+
+\item[Informacijska varnost] se ukvarja z varovanjem podatkov, ki se obdelujejo in shranjujejo v informacijskih sistemih. Njena naloga je zasčititi podatke pred nepooblaščenim dostopom, uporabo, spreminjanjem in uničenjem z ciljem zagotavlanja intgritete, dostopnosti in zaupnosti podatkov.
+
+\item[Varovanje podatkov] se ukvarja z varovanjem podatkov in upravljanjem tveganj povezanih z uporabo, prenosom in procesiranjem podatkov z ciljem zagotavljanja integritete, dostopnosti, zaupnosti in neizpodbitnostjo podatkov.
+\end{description}
+
+Iz teh opisov lahko razberemo kljucne lastnosti varnega računalniškega sistema. V literaturi se te ključne tri lastnosti imenujemo CIA triad, kjer je CIA angleška kratica za ključne 3 lastnosti:
+
+%\newglossaryentry{zaupnost}
+%{
+%  name=zaupnost,
+%  description={Confidentiality},
+%}
+%
+%\newglossaryentry{celovitost}
+%{
+%  name=celovitost,
+%  description={Integrity},
+%}
+%
+%\newglossaryentry{razpolozljivost}
+%{
+%  name=razpolozljivost,
+%  description={Availability},
+%}
+%
+%\begin{description}
+%\item[\Gls{zaupnost}] pomeni zasebnost podatkov. Ukrepi, ki zagotavljajo zaupnost podatkov so usmerjeni k preprečevanju dostopa nepooblaščenih oseb. Pogosti mehanizmi, ki se uporabljajo za zagotavljanje zaupnosti podatkov so zaščita z uporabniškim imenom in geslom, dvostopenjska overitev (two-factor auth), biometrična overitev in enkripcija podatkov.
+%
+%\item[\Gls{celovitost}] pomeni ohranjanje točnosti in pravilnosti podatkov. Ukrepi, ki zagotavljajo celovitost podatkov, preprečujejo nepooblaščenim osebam spreminjanje podatkov med prenosom ali v mirovanju. Omogočajo sledenje spremembam podatkov skozi zgodovino (revzijska sled), obnovitev podatkov iz varnostne kopije v primeru da pride do nepooblaščene spremembe. Mehanizmi, ki zagotavljajo celovitost podatkov so nadzor dostopa in zgoščevalne funkcije in digitalni podpisi.
+%
+%\item[\Gls{razpoložljivost}] pomeni da so podatki vedno na voljo pooblaščenim osebam. Glavni vzrok nerazpoložljivosti so programske in strojne napake ter napadi zavrnitve storitve (denial of service). Razpoložljivost podatkov se zagotavlja z rednim vzdrževanjem strojne in programske opreme in s posebnimi ukrepi za preprečevanje napadov zavrnitve storitve.
+%
+%\end{description}
+
+\newpage
+
+%********************************************
+
+\addcontentsline{toc}{chapter}{Seznam slik}
+\addtocontents{toc}{\protect\vspace{-2ex}}
+\listoffigures
+
+\newpage
+
+\addcontentsline{toc}{chapter}{Seznam tabel}
+\listoftables
+
+%\listofalgorithms
+
+
+%********************************************
+
+\newpage
+
+\bibliographystyle{slplainurl}
+\addcontentsline{toc}{chapter}{Literatura}
+\label{stran_literatura}
+\bibliography{diploma} 
+
+
+\end{document}
+
+
+
+
