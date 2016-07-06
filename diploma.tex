@@ -8,10 +8,14 @@
 \usepackage{graphicx,epsfig}
 \usepackage[slovene]{babel}
 \usepackage{cite}
+\usepackage{mathrsfs}
 \usepackage{enumitem}
 %\usepackage[nolist,nohyperlinks]{acronym}
-\usepackage[acronym,toc]{glossaries}
+\usepackage[acronym,toc,xindy]{glossaries}
 \usepackage{todonotes}
+\usepackage{mdframed}
+\usepackage{mathtools}
+\renewcommand{\baselinestretch}{1.3} 
 
 \usepackage[pdftex,colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black,pagebackref]{hyperref}
 \usepackage{tikz}
@@ -40,6 +44,8 @@
 \newcommand{\gnuplot}{\textbf{gnuplot}}
 \newcommand{\pgfname}{\textsc{pgf}}
 \newcommand{\tikzname}{Ti\emph{k}Z}
+
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
 
 \makeglossaries
 
@@ -339,9 +345,8 @@ Varnost je širok pojem, ki ga v kontekstu računalništva lahko razdelimo na tr
 
 \newglossaryentry{neizpodbitnost}
 {
-  name=Non-repudiation,
-  description={\todo[inline]define this},
-  plural=Linuces
+  name=preprečevanje tajenja,
+  description={non-repudiation},
 }
 
 \begin{description}
@@ -355,32 +360,149 @@ Varnost je širok pojem, ki ga v kontekstu računalništva lahko razdelimo na tr
 
 Iz teh opisov lahko razberemo kljucne lastnosti varnega računalniškega sistema. V literaturi se te ključne tri lastnosti imenujemo CIA triad, kjer je CIA angleška kratica za ključne 3 lastnosti:
 
-%\newglossaryentry{zaupnost}
-%{
-%  name=zaupnost,
-%  description={Confidentiality},
-%}
-%
-%\newglossaryentry{celovitost}
-%{
-%  name=celovitost,
-%  description={Integrity},
-%}
-%
-%\newglossaryentry{razpolozljivost}
-%{
-%  name=razpolozljivost,
-%  description={Availability},
-%}
-%
-%\begin{description}
-%\item[\Gls{zaupnost}] pomeni zasebnost podatkov. Ukrepi, ki zagotavljajo zaupnost podatkov so usmerjeni k preprečevanju dostopa nepooblaščenih oseb. Pogosti mehanizmi, ki se uporabljajo za zagotavljanje zaupnosti podatkov so zaščita z uporabniškim imenom in geslom, dvostopenjska overitev (two-factor auth), biometrična overitev in enkripcija podatkov.
-%
-%\item[\Gls{celovitost}] pomeni ohranjanje točnosti in pravilnosti podatkov. Ukrepi, ki zagotavljajo celovitost podatkov, preprečujejo nepooblaščenim osebam spreminjanje podatkov med prenosom ali v mirovanju. Omogočajo sledenje spremembam podatkov skozi zgodovino (revzijska sled), obnovitev podatkov iz varnostne kopije v primeru da pride do nepooblaščene spremembe. Mehanizmi, ki zagotavljajo celovitost podatkov so nadzor dostopa in zgoščevalne funkcije in digitalni podpisi.
-%
-%\item[\Gls{razpoložljivost}] pomeni da so podatki vedno na voljo pooblaščenim osebam. Glavni vzrok nerazpoložljivosti so programske in strojne napake ter napadi zavrnitve storitve (denial of service). Razpoložljivost podatkov se zagotavlja z rednim vzdrževanjem strojne in programske opreme in s posebnimi ukrepi za preprečevanje napadov zavrnitve storitve.
-%
-%\end{description}
+\newglossaryentry{zaupnost}
+{
+  name=zaupnost,
+  description={Confidentiality},
+}
+
+\newglossaryentry{celovitost}
+{
+  name=celovitost,
+  description={Integrity},
+}
+
+\newglossaryentry{razpolozljivost}
+{
+  name=razpoložljivost,
+  description={Availability},
+}
+
+\begin{description}
+\item[\Gls{zaupnost}] pomeni zasebnost podatkov. Ukrepi, ki zagotavljajo zaupnost podatkov so usmerjeni k preprečevanju dostopa nepooblaščenih oseb. Pogosti mehanizmi, ki se uporabljajo za zagotavljanje zaupnosti podatkov so zaščita z uporabniškim imenom in geslom, dvostopenjska overitev (two-factor auth), biometrična overitev in enkripcija podatkov.
+
+\item[\Gls{celovitost}] pomeni ohranjanje točnosti in pravilnosti podatkov. Ukrepi, ki zagotavljajo celovitost podatkov, preprečujejo nepooblaščenim osebam spreminjanje podatkov med prenosom ali v mirovanju. Omogočajo sledenje spremembam podatkov skozi zgodovino (revzijska sled), obnovitev podatkov iz varnostne kopije v primeru da pride do nepooblaščene spremembe. Mehanizmi, ki zagotavljajo celovitost podatkov so nadzor dostopa in zgoščevalne funkcije in digitalni podpisi.
+
+\item[\Gls{razpolozljivost}] pomeni da so podatki vedno na voljo pooblaščenim osebam. Glavni vzrok nerazpoložljivosti so programske in strojne napake ter napadi zavrnitve storitve (denial of service). Razpoložljivost podatkov se zagotavlja z rednim vzdrževanjem strojne in programske opreme in s posebnimi ukrepi za preprečevanje napadov zavrnitve storitve.
+
+\end{description}
+
+Poleg treh ključnih lastnosti, ki jih najdemo zgoraj je Meier identificiral še tri lastnosti, to so:
+
+\newglossaryentry{overjanje}
+{
+  name=overjanje,
+  description={Authentication},
+}
+
+\newglossaryentry{avtorizacija}
+{
+  name=avtorizacija,
+  description={Authorization},
+}
+
+\newglossaryentry{neizpodbitnost}
+{
+  name=neizpodbitnost,
+  description={Non-repudioation},
+}
+
+\begin{description}
+
+\item[\Gls{overjanje}] identificira vir podatka oz. izvor operacije, ki je lahko človek ali računalnik in se prepričamo da je res tisti za katerega se izdaja.
+
+\item[\Gls{avtorizacija}] nadzira dostop do virov glede na pravila sistema in dodeljene pravice. Avtorizacijski mehanizmi uporabnikom preprečujejo da bi presegli svoja pooblastila.
+
+\item[\Gls{neizpodbitnost}] onemogoča uporabniku da izpodbija oz. zanika neko dejanje ali veljavnost pogodbe.
+
+\end{description}
+
+Vse zgoraj naštete lastnosti so splošne lastnosti varnosti in se kot take seveda tičejo tudi računalništva v oblaku. Pri uporabi storitev v oblaku bi morali najbolj izpostaviti vprašanje varnosti podatkov, saj le te zaupamo v hrambo ponudniku storitve.
+
+\chapter{Varnostna tveganja v oblaku}
+
+Zaradi vse večje popularnosti storitev v oblaku in posledično ogromne količine podatkov, s katerimi razpolagajo ponudniki storitev v oblaku, so ti vedno pogosteje tarča napadov kriminalnih združb. Za sisteme, ki tečejo “v oblaku”, je značilno da navzven delujejo kot en strežnik, v resnici pa tečejo na velikem številu strežnikov, ki so med seboj povezani. To pomeni da morebitni vdor v samo en strežnik napadalcu omogoča dostop tudi na druge strežnike, ki tečejo znotraj istega sistema. Če si sistem predstavljamo kot trdnjavo, to pomeni da je večina zaščitnih mehanizmov skoncentrirana na obrobju, na obzidju trdnjave. Če uspemo to obzidje predreti na samo enem delčku, se potem lahko več ali manj prosto sprehajamo znotraj trdnjave. Pred pojavom storitev v oblaku je bilo znotraj enega obzidja le nekaj strežnikov, zato je bilo obzidje malo in ga je bilo lažje vzdrževati. Sistem, na katerem teče storitev v oblaku pa je lahko sestavljen iz več tisoč strežnikov, kar pomeni da velikost obzidja močno poveča in veliko obzidje je težko vzdrževati, zato se kaj hitro v njem pojavijo razpoke.
+
+Druga stvar, ki dela sisteme v oblaku zanimive za napadalce je koncentracija podatkov. V primeru do vdora v klasični strežnik, napadalec dobi dostop do veliko manjše količine podatkov kot ob vdoru v oblačni sistem. Razlog je preprost, saj na en sam strežnik fizično ni mogoče shraniti toliko podatkov, kot na sistem, ki je sestavljen iz tičoče strežnikov. 
+
+Ranljivost računalniškega sistema je lastnost, zaradi katere je ogroženo njegovo delovanje in varnost podatkov, ki jih vsebuje. Storitve, ki delujejo v oblaku tako podedujejo vse ranljivosti, ki jih imajo klasični računalniški sistemi, zaradi posebnih lastnosti oblaka, pa obstaja se nekaj groženj, specifičnih za storitve v oblaku:
+
+\begin{description}[style=nextline]
+
+\item[Nedovoljen dostop do upraviteljskega in programskega vmesnika] Narava storitev v oblaku zahteva da so upraviteljski vmesniki dostopni preko Interneta siroki množici uporabnikov, kar posledično pomeni da so ti vmesniki izpostavljeni napadom preko Interneta.
+
+\item[Ranljivosti internetnega protokola] Ena ključnih lastnosti oblaka je tudi široka dostopnost preko standardiziranih protokolov kot je Internetni protokol, zato je potrebno ko govorimo o varnosti v oblaku upoštevati tudi vse ranljivosti Internetnega protokola, kot so recimo napadi vrinjenega napadalca (Man in the middle attack).
+
+\item[Ranljivosti obnovitve podatkov] Zaradi uporabe skupnih virov, ki je ena ključnih lastnosti oblaka, se lahko en fizični nosilec podatkov, ki je prej pripadal enemu uporabniku kasneje dodeli drugemu uporabniku. Če pred tem ne poskrbimo za varen izbris podatkov, lahko drugi uporabnik obnovi izbrisane podatke z nosilca in tako pride do razkritja podatkov.
+
+\item[Izogibanje merjenju in plačilu] Storitve v oblaku se običajno plačujejo po porabi. Prav tako, da pričnemo uporabljati storitev praviloma potrebujemo vnesti samo nekaj osnovnih podatkov in številko kreditne kartice. Napadalec nam lahko predloži ukradene podatke ali manipulira podatke o porabi, tako da se izogne plačilu.
+
+\end{description}
+
+\subsection{Novi izzivi na področju varnosti v oblaku}
+
+
+\newglossaryentry{cistopis}
+{
+  name=čistopis,
+  description={plaintext},
+}
+
+
+\newglossaryentry{tajnopis}
+{
+  name=tajnopis,
+  description={ciphertext},
+}
+
+\newglossaryentry{sifrirnikljuc}
+{
+  name=šifrirni ključ,
+  description={encryption key},
+}
+
+
+\chapter{Zaščita podatkov s pomočjo kriptografije}
+
+Kriptografija omgoča doseganje informacijske varnosti s pomočjo matematičnih postopkov. Verjetno najbolj poznan tak postopek je šifriranje, ki zagotavlja zaupnost podatkov, pogled tega v področje kriptografije spadajo tudi digitalni podpisi, avtentikacijske kode MAC in zgoščevalne funkcije, ki nam pomagajo pri ohranjanju celovitosti in overjanju identitete podatkov.
+
+Šifriranje je način, kako skriti vsebino sporočila (\gls{cistopis}a) pred nepooblaščenimi očmi. To se doseže z uporabo algoritma, ki mu kot vhodni podatek damo \gls{cistopis} in \gls{sifrirnikljuc}, on pa nam vrne \gls{tajnopis}. \Gls{tajnopis} vsebuje enake informacije kot \gls{cistopis}, vendar ima to lastnost, da ga je mogoče prebrati le v primeru, da posedujete ključ za dešifriranje. V kolikor takega ključa ne posedujete, je iz \gls{tajnopis}a praktično nemogoče razbrati vsebino originalnega sporočila.\footnote{Težanost je odvisna od moči kriptografske sheme in parvilnosti implementacije}
+
+To pomeni, da lahko tajnopis javno objavimo, varovati je potrebno samo ključ, s katerim se le ta odšifrira. Ta lastnost nam omogoča, da varno poslujemo s svojo banko, pošiljamo e-pošto, ki jo lahko prebere samo prejemnik navkljub temu, da Internet ni varen komunikacijski kanal in na njemu mrgoli zlobnežev, ki želijo priti do naših zaupnih podatkov.
+
+\
+
+Da nam bo lažje, najprej definirajmo kaj je kriptografska shema ali kriptosistem.
+
+\begin{mdframed}[frametitle={Kriptografska shema}]
+Kriptografska shema je peterka  $(\mathcal{P}, \mathcal{C}, \mathcal{K},  \mathcal{E}, \mathcal{D})$, kjer veljajo naslednje lastnosti:
+	\begin{enumerate}
+		\item $\mathcal{P}$ je končna množica možnih čistopisov
+		\item $\mathcal{C}$ je končna množica možnih tajnopisov
+		\item $\mathcal{K}$ je končna množica možnih ključev
+		\item Ta vsak $K \in \mathcal{K}$ obstaja šifrirni postopek $e_K \in \mathcal{E}$ in pripadajoč dešifrirni postopek $d_K \in \mathcal{D}$. Za funkciji $e_K: \mathcal{P} \rightarrow \mathcal{C}$ in $d_K: \mathcal{C} \rightarrow \mathcal{P}$ velja $d_k(e_k(x)) = x$ za vsak $x \in \mathcal{P}$.
+	\end{enumerate}
+\end{mdframed}
+
+Zgornjo matematično definicijo se da povzeti z naslednjimi besedami. Kriptografsko shemo sestavlja pet sestavin. Čistopisi, tajnopisi, ključi, šifrirni in dešifrirni postopek. Pomembno je, da ob danem ključu in šifrirnem postopu, obstaja dešifrirni postopek, ki nam vsak tajnopis, ki je bil šifriran z izbranim šifrirnim postopkom nedvoumno pretvori nazaj v čistopis.
+
+Skozi zgodovino človeštva se je že zelo zgodaj pojavila želja po skrivanju sporočil in s tem so se razvile tudi prve metode šifriranja, vendar nobena od njih ni prestala preiskusa časa.
+
+Šifrirne algoritme delimo na dve skupini:
+\begin{enumerate}
+
+	\item Simetrične oz. klasične šifre
+	\item Asimetrične šifre oz. kriptografija javnih ključev
+
+\end{enumerate}
+
+Simetrične šifre so najstarejša in najbolj razširjena vrsta šifriranja, kamor spadajo tudi vse zgodovinske šifre, ki se ne uporabljajo več. Poglavitna lastnost simetričnih šifer je da se za šifriranje in dešifriranje uporablja enak ključ. Take šifre so lahko zelo preproste in hitre, vendar se pojavi problem distribucije ključev. Tajnopise lahko prenašamo po nezavarovanih kanalih, kar pa ne velja za ključe. V kolikor želimo komunicirati 
+
+\subsection{Šifriranje}
+
+\subsection{Simetrične šifre}
+
+\subsection{Asimetrične šifre}
 
 \newpage
 
