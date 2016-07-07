@@ -1,5 +1,11 @@
 os: linux
 language: r
 script:
-  - pdflatex -interaction=nonstopmode diploma.tex
-
+- pdflatex -interaction=nonstopmode diploma.tex
+deploy:
+  provider: releases
+  api_key:
+    secure: wweHmHRrlKeYszXXvK8sRC+/GT7zQIwmoGO26koVBpI//Z6vPHBalcKrFXD1stgeyOPODpB0gFfhM/ArUspknlu2/B1zrLznRiSe9nrTNGTetQK/vIzSDGt5AVTvQ3sXoShyEG5qdowCl2xS8+MHHRbIdZAF75/zoLqvAVwc4hlW8ueXt85nW2aDN8StBxwrTOtXSngLNBh/H3C4uq3TH7JIwNmpvLHGww0LoiXbhsrwUEuBweu8BcdgoWpc0wwzuSuIJ6mfL/avTTnW37YjYpM5NefD0hZ2s0ypUfwRV4fjsu2oZVDM9XXRrlnf9FgVHCTH5ySGiqyCmS6ofrTPIs3cEQoq25PXX4FoF1FT9ALUc/yiyPzEzFIQQISzn4QYC13yKfpyZ8klKEpLr98Ep6bMdgThmJo2SRMil3gAL9+62/NMNPX6wT8SCvmtOLbfAfmFPp1ge+hdWYQmLfogbONZtar/L7a5YJyfgzIRimW1P+eSrzv0YMGFvC/072A8wVEzAimfCQKU5A8c6ittS9wZdeM6Ifq5Om9VFZeKCujMAjrq9NyiQtXxdTmZWjaPQL85yV7zRd5iSktU2YQt4MNDbDxqrUJ3c8jjTDlvVsGWES5bjam0meXu/V07LUavoG3nJ8KZnRcRs93JLlUMHzZ3GSwiT6vOWpHNfhtxgGg=
+  file: diploma.pdf
+  on:
+    repo: overlordtm/diploma
