@@ -1,5 +1,6 @@
 os: linux
 language: r
+sudo: required
 script:
 - pdflatex -interaction=nonstopmode diploma.tex
 deploy:
