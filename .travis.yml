@@ -1,0 +1,5 @@
+os: linux
+language: r
+script:
+  - pdflatex -interaction=nonstopmode diploma.tex
+

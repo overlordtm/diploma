@@ -488,6 +488,8 @@ Zgornjo matematično definicijo se da povzeti z naslednjimi besedami. Kriptograf
 
 Skozi zgodovino človeštva se je že zelo zgodaj pojavila želja po skrivanju sporočil in s tem so se razvile tudi prve metode šifriranja, vendar nobena od njih ni prestala preiskusa časa.
 
+\
+
 Šifrirne algoritme delimo na dve skupini:
 \begin{enumerate}
 
@@ -496,13 +498,39 @@ Skozi zgodovino človeštva se je že zelo zgodaj pojavila želja po skrivanju s
 
 \end{enumerate}
 
-Simetrične šifre so najstarejša in najbolj razširjena vrsta šifriranja, kamor spadajo tudi vse zgodovinske šifre, ki se ne uporabljajo več. Poglavitna lastnost simetričnih šifer je da se za šifriranje in dešifriranje uporablja enak ključ. Take šifre so lahko zelo preproste in hitre, vendar se pojavi problem distribucije ključev. Tajnopise lahko prenašamo po nezavarovanih kanalih, kar pa ne velja za ključe. V kolikor želimo komunicirati z več
+Simetrične šifre so najstarejša in najbolj razširjena vrsta šifriranja, kamor spadajo tudi vse zgodovinske šifre, ki se ne uporabljajo več. Poglavitna lastnost simetričnih šifer je, da se za šifriranje in dešifriranje uporablja enak ključ. Take šifre so lahko zelo preproste in hitre, vendar se pojavi problem distribucije ključev. Tajnopise lahko prenašamo po nezavarovanih kanalih, kar pa ne velja za ključe.
 
-\subsection{Šifriranje}
+Ta problem lahko rešijo asimetrične šifre, ki uporabljajo en ključ za šifriranje, drug ključ pa dešifriranje. Tak par ključev imenujemo javni in zasebni ključ. Kot že ime pove, javni ključ ni nobena skrivnost in ga lahko brez skrbi objavimo na javnem mestu, obratno pa velja za zasebni ključ. Sporočilo, šifrirano z javnim ključem je možno dešifrirati samo s pripadajočim zasebnim ključem. 
 
 \subsection{Simetrične šifre}
 
+\subsubsection{AES}
+
 \subsection{Asimetrične šifre}
+
+\subsubsection{Diffe-Hellman}
+
+\subsubsection{RSA}
+
+\subsubsection{DES}
+
+\subsection{Ostale oblike šifre}
+
+Attribute based encryption?
+
+\subsection{Uporaba šifer v oblaku}
+
+Uvod, encryption at rest, in transit
+
+\subsubsection{SSL in TLS}
+
+\subsubsection{Server-side encryption}
+
+\subsubsection{Client-side encryption}
+
+\subsubsection{Homomorfne šifre}
+
+
 
 \newpage
 
