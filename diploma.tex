@@ -15,6 +15,8 @@
 \usepackage{todonotes}
 \usepackage{mdframed}
 \usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
 \renewcommand{\baselinestretch}{1.3} 
 
 \usepackage[pdftex,colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black,pagebackref]{hyperref}
@@ -504,7 +506,39 @@ Ta problem lahko rešijo asimetrične šifre, ki uporabljajo en ključ za šifri
 
 \subsection{Simetrične šifre}
 
+V kategorijo simetričnih šifer spadajo vse šifre, pri katerih se za šifriranje in dešifriranje uporablja enak ključ ali pa obstaja bijektivna preslikava, ki nam šifrirni ključ preslika v dešifrirni in obratno. Simetrične šifre še naprej delimo na tokovne in bločne šifre. Poglavitna razlika med tokovnimi in bločnimi šiframi je v načinu šifriranja podatkov.
+
+Naj bo dano sporočilo $X$ velikosti $n$ ($|X|=n$), ki je sestavljeno iz $n$ osnovnih nosilcev informacij (to so lahko biti, bajti ali kaj čisto tretjega). Simobol $\|$ predstavlja združevanje (lepljenje) dveh nizov.
+$$
+X=x_0\|x_1\|x_2\|...\|x_{n-1}
+$$
+
+Bločna šifra vzame blok (del sporočila) velikosti $m$; $n=im, i\in\mathbb{N} $ in ga šifrira s ključem $K$. Tajnopis $Y$ tako pridobimo po naslednjem postopku:
+\begin{align*}
+1*1
+\end{align*}
+
+
+\begin{gather*}
+	y_j = e_K(e_{j} \| e_{j+1} \| \ldots \| e_{j+m-1})  \quad j=0,1,\ldots,i\\
+	Y = y_0\|y_1\|\ldots\|y_i
+\end{gather*}
+
+Bločne šifre delujejo na bloku podatkov fiksne velikosti (običajno velikost ključa določi velikost bloka) in v kolikor dolžina sporočila ni deljiva z $m$, je potrebno sporočilo doploniti s posebnim zaporedjem znakov, dokler dolžina ni večkratnik števila $m$.
+
+Drugačen pristop pa uporabljajo tokovne šifre, ki iz ključa $K$ generirajo neskončno zaporedje ključev $z$, ki ga nato uporabijo za šifriranje sporočila.
+
+\begin{gather*}
+z=z_0\|z_1\|z_2\|\ldots\|z_n \\
+y_j=e_{z_j}(x_j) \quad j=0,1,\ldots,n\\
+Y = y_0\|y_1\|\ldots\|y_n \\
+\end{gather*}
+
+Tak način šifriranja lahko uporabimo za poljubno dolga sporočila, brez potrebe po dopolnjevanju.
+
 \subsubsection{AES}
+
+\subsubsection{DES in 3DES}
 
 \subsection{Asimetrične šifre}
 
@@ -512,23 +546,28 @@ Ta problem lahko rešijo asimetrične šifre, ki uporabljajo en ključ za šifri
 
 \subsubsection{RSA}
 
-\subsubsection{DES}
+\subsubsection{DSA}
 
 \subsection{Ostale oblike šifre}
 
 Attribute based encryption?
 
-\subsection{Uporaba šifer v oblaku}
+\chapter{Uporaba kriptografije v oblaku}
 
 Uvod, encryption at rest, in transit
 
-\subsubsection{SSL in TLS}
+\subsection{SSL in TLS}
 
-\subsubsection{Server-side encryption}
+\subsection{Server-side encryption}
 
-\subsubsection{Client-side encryption}
+\subsection{Client-side encryption}
 
-\subsubsection{Homomorfne šifre}
+\subsection{Homomorfne šifre}
+
+\subsection{Attribute based encryption}
+
+\subsection{Avtentikacija}
+
 
 
 
