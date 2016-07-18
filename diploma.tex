@@ -48,6 +48,7 @@
 \newcommand{\tikzname}{Ti\emph{k}Z}
 
 \DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+\mdfsetup{nobreak=true}
 
 \makeglossaries
 
@@ -620,7 +621,7 @@ Eden večjih problemov simetričnih šifrirnih algoritmov je distribucija ključ
 
 Rešitev za ta problem so lahko asimetrični šifrirni algoritmi, oziroma kriptografija javnih ključev. Asimetrični algoritmi ne uporabljajo samo enega, ampak dva ključa. Javni ključ poznajo vsi in ga uporabijo za šifriranje sporočil. Sporočila, šifrirana z javnim ključem, lahko dešifrira samo imetnik zasebnega ključa.
 
-Asimetrični algoritmi delujejo na predpostavki, da so nekatere matematični problemi preprosto pretežki, da bi jih bilo možno rešiti v razumnem časovnem okvirju. Eden takih problemov je faktorizacija števil. Če si izmislite dve dokaj veliki praštevili $p$ in $q$, ju med seboj pomnožite, dobite novo število $n$, za katero ni tako preprosto ugotoviti iz katerih faktorjev je sestavljeno, ob predpostavki, da ne poznamo $p$ in $q$.
+Asimetrični algoritmi delujejo na predpostavki, da so nekatere matematični v eno smer preprosto izračunljivi, v drugo pa preprosto pretežki, da bi jih bilo možno rešiti v razumnem časovnem okvirju. Eden takih problemov je faktorizacija števil. Če si izmislite dve dokaj veliki praštevili $p$ in $q$, ju med seboj pomnožite, dobite novo število $n$, za katero ni tako preprosto ugotoviti iz katerih faktorjev je sestavljeno, ob predpostavki, da ne poznamo $p$ in $q$.
 
 Na žalost pa so zaradi svoje povezanosti s težkimi matematičnimi problemi pogosto asimetrični šifrirni algoritmi veliko počasnejši od svojih simetričnih sorodnikov. V praksi se uporablja kombinacija asimetričnih in simetričnih algoritmov. Asimetrični algoritmi so sicer počasnejši, vendar veliko bolj praktični zaradi preproste izmenjave ključev. 
 
@@ -629,11 +630,46 @@ V začetni fazi vzpostavljanja varnega komunikacijska kanala se zaradi preproste
 
 \subsubsection{Izmenjava ključa Diffe-Hellman}
 
-Metoda za izmenjavo ključa Diffe-Hellman je 
+Metoda za izmenjavo ključa Diffe-Hellman je bil prvi javno objavljen algoritem, ki uporablja princip javnih in zasebnih ključev. V praksi omogoča, da se dva neznanca preko nezavarovanega kanala kot je Internet dogovorita za skupni ključ, ki ga bosta uporabljala za nadaljnjo komunikacijo. Prva sta ga objavila Whitfield Diffe in Martin Hellman leta 1976, vendar se je kasneje izkazalo, da je angleška tajna služba odkrila princip kriptografije javnih ključev že leto poprej, vendar to ostalo tajno do leta 1997.
+
+Metoda temelji na reševanju problema diskretnega logaritma, za katerega matematiki verjamejo, da ne obstaja algoritem, ki ga bi bil sposoben rešiti v sprejemljivih časovnih okvirjih (izjema so algoritmi, ki tečejo na kvantnih računalnikih, vendar je to povsem drug svet).
+
+Originalna različica algoritma uporablja multplikativno grupo števil po modulu $p$, kjer je $p$ praštevilo in $g$ primitivni koren števila $p$.
+
+Recimo da se želita Anita in Bojan preko Interneta dogovoriti o skupnem ključu, ki ga bosta uporabljala za nadaljnjo komunikacijo. To lahko storita po sledečem postopku:
+
+\begin{mdframed}[frametitle={Izmenjava ključa Diffe-Hellman}]
+\begin{enumerate}
+	\item Anita in Bojan se dogovorita os skupnih parametrih, ki jih bosta uporabljala v algoritmu. To je praštevilo $p$ in primitivni koren praštevila $g$
+	\item Anita si izbere skrivno število $a$, izračuna $A=g^a mod p$ in pošlje $A$ Bojanu.
+	\item Bojan si izbere skrivno število $b$, izračuna $B=g^b mod p$ in pošlje $B$ Aniti.
+	\item Anita izračuna $s=B^a mod p$
+	\item Bojan izračuna $s=A^b mod p$
+	\item Anita in Bojan sta dobila enak rezultat $s$, ki ga sedaj lahko uporabita kot skupni ključ za nadaljnjo komunikacijo.
+\end{enumerate}
+
+\vspace{0.5cm}
+
+Oba sta izračunala enak rezultat, ker velja:
+$$
+A^b \equiv g^{ab} \equiv g^{ba} \equiv B^a \mod p
+$$
+
+\end{mdframed}
+
+\newacronym{RSA}{RSA}{RSA}
+
 
 \subsubsection{RSA}
 
-\subsubsection{DSA}
+Medtem ko prej opisana metoda omogoča samo dogovor o skupnem ključu, pa je bil \arcshort{RSA} prvi pravi kriptosistem, ki je uporabljal javne ključe. Varnost \arcshort{RSA} temelji na tem, da je faktorizacija produkta dveh velikih praštevil težko rešljiv problem za današnje računalnike.
+
+Javni ključ je par $(n, e)$, zasebni pa par $(n, d)$, ki ju dobimo po naslednjem postopku:
+
+\begin{enumerate}
+\item Izberemo dve naključni, približno enako dolgi praštevili $p$ in $q$
+
+\end{enumerate}
 
 \subsection{Attribute based encryption}
 
