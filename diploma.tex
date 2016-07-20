@@ -662,20 +662,35 @@ $$
 
 \subsubsection{RSA}
 
-Medtem ko prej opisana metoda omogoča samo dogovor o skupnem ključu, pa je bil \arcshort{RSA} prvi pravi kriptosistem, ki je uporabljal javne ključe. Varnost \arcshort{RSA} temelji na tem, da je faktorizacija produkta dveh velikih praštevil težko rešljiv problem za današnje računalnike.
+Medtem ko prej opisana metoda omogoča samo dogovor o skupnem ključu, pa je bil RSA prvi pravi kriptosistem, ki je uporabljal javne ključe. Varnost RSA temelji na tem, da je faktorizacija produkta dveh velikih praštevil težko rešljiv problem za današnje računalnike.
 
-Javni ključ je par $(n, e)$, zasebni pa par $(n, d)$, ki ju dobimo po naslednjem postopku:
+Javni ključ je par $(n, e)$, zasebni ključ pa par $(n, d)$, ki ju dobimo po naslednjem postopku:
 
 \begin{enumerate}
-\item Izberemo dve naključni, približno enako dolgi praštevili $p$ in $q$
-
+\item Izberemo dve naključni, približno enako veliki praštevili $p$ in $q$
+\item Izračunamo $n=pq$
+\item Izračunamo $\varphi(n)=\varphi(p)\varphi(q)=(p-1)(q-1)$
+\item Izberemo število $e$, tako da $1<e<\varphi(n)$ tako da je $e$ tuje $\varphi(n)$
+\item Izračunamo $d$, tako da $d \equiv e^{-1} \pmod{\varphi(n)}$ 
 \end{enumerate}
 
-\subsection{Attribute based encryption}
+Poleg zasebnega ključa moramo moramo paziti tudi na zasebnost vrednosti $p$, $q$ in $\varphi(n)$
 
-\subsection{Ostale oblike šifre}
+\newacronym{ABE}{ABE}{Attribute Based Encryption}
 
-Attribute based encryption?
+
+\subsection{Šifriranje na osnovi pogojev}
+
+Poglejmo si za primer Anito, ki shrani šifrirane podatke v oblak. Anita ima datoteko $X$, ki bi jo rada delila s skupinama $Prijatelji$ in $Znanci$. Prav tako ima datoteko $Y$, ki bi jo rada delila s skupinama $Družina$ in $Prijatelji$. To lahko stori tako, da ustvari en ključ za datoteko $X$ in ta ključ deli s $Prijatelji$ in $Znanci$, nato ustvari drug ključ za datoteko $Y$ in ta ključ deli s skupinama $Družina$ in $Prijatelji$. Problem je, da mora Anita za vsako datoteko, ki jo želi deliti, ustvariti nov ključ.
+
+Naivna rešitev tega problema bi bila, da Anita ustvari en ključ za vsako skupino ljudi, s katerimi želi deliti datoteke. Vendar življenje ni preprosto, in lahko se zgodi, da neka oseba pripada večim skupinam s katerimi želi Anita deliti datoteke. Prav tako si lahko zaželi deliti neko datoteko samo z ljudmi, ki so hkrati $Prijatelji$ in $Sodelavci$. Recimo da je to datoteka $Z$. Tako datoteko lahko najprej šifrira s ključem, ki pripada skupini $Prijatelji$ in nato še s ključem, ki pripada skupini $Sodelavci$. Naivno bi mislili da je to dobra rešitev, vendar se izkaže da tak sistem ni odporen proti zaroti. Šifrirano datoteko lahko kot posamezniki odprejo samo ljudje, ki pripadajo obema skupinama, saj imajo le oni v posesti oba ključa. Vendar pa se lahko proti Aniti zarotita dva posameznika skupaj, kjer noben od nju ne pripada obema skupinama hkrati, vendar imata skupaj dostop do obeh ključev, saj vsak od nju pripada eni od skupin.
+
+Ta problem nam rešuje šifriranje na podlagi pogojev, v nadaljevanju ABE. Kratica ABE pride iz angleške besede \gls{ABE}. ABE je primer asimetrične šifre, kjer je možno tajnopis dešifrirati z več različnimi ključi, pod pogojem da ima ključ take lastnosti oziroma atribute, kot so bili predpisani ob šifriranju.
+
+Možnost dešifriranja določajo pravila, ki so predstavljena z drevesi, kjer so notranja vozlišča logične operacije, listi pa pogoji, ki so lahko zadovoljeni ali nezadovoljeni. Drevo beremo od listov proti korenu in za vsako notranje vozlišče ugotovimo ali je v zadovoljenem ali nezadovoljenem stanju. Na koncu pridemo do korena drevesa, in dešifriranje uspe samo v primeru, da je koren drevesa v zadovoljenem stanju.
+
+Poznamo dve vrsti šifriranja na osnovi pogojev. V prvem je drevo, ki določa pravila shranjeno skupaj s ključem, v drugem primeru pa je shranjeno skupaj s tajnopisom.
+
 
 \chapter{Uporaba kriptografije v oblaku}
 
