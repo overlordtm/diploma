@@ -1,3 +1,5 @@
+% openout_any=1 bibtex .latex/diploma
+
 \documentclass[12pt,a4paper,openany]{book}
 
 \usepackage[utf8]{inputenc}
@@ -17,7 +19,7 @@
 \usepackage{mathtools}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\renewcommand{\baselinestretch}{1.3} 
+\renewcommand{\baselinestretch}{1.3}
 
 \usepackage[pdftex,colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black,pagebackref]{hyperref}
 \usepackage{tikz}
@@ -49,9 +51,7 @@
 
 \DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
 \mdfsetup{nobreak=true}
-
 \makeglossaries
-
 \input{cc}
 
 %********************************************
@@ -59,10 +59,10 @@
 \begin{document}
 
 % stran 1 med uvodnimi listi
-\thispagestyle{empty} 
+\thispagestyle{empty}
 
 \begin{center}
-{\large 
+{\large
 UNIVERZA V LJUBLJANI\\
 FAKULTETA ZA RAČUNALNIŠTVO IN INFORMATIKO\\
 }
@@ -71,7 +71,7 @@ FAKULTETA ZA RAČUNALNIŠTVO IN INFORMATIKO\\
 {\LARGE Andraž Vrhovec}\\
 
 \vspace{2cm}
-\textsc{\textbf{\LARGE 
+\textsc{\textbf{\LARGE
 Varnost podatkov v oblaku
 }}
 
@@ -81,7 +81,7 @@ Varnost podatkov v oblaku
 }
 
 
-\vspace{2cm} 
+\vspace{2cm}
 {\Large Mentor: prof. dr. Aleksandar Jurišić}
 
 \vfill
@@ -122,7 +122,7 @@ različica 3 ali (po želji) novejšo različico. To pomeni, da se lahko prosto 
 Podrobnosti licence so dostopne na spletni strani \url{http://www.gnu.org/licenses/}.
 }
 
-\begin{center} 
+\begin{center}
 \ \\ \vfill
 {\em
 Besedilo je oblikovano z urejevalnikom besedil \LaTeX.
@@ -147,7 +147,7 @@ dvigne v študent\-skem referatu,  preden odda izdelek v vezavo!
 
 %********************************************
 
-% stran 4 med uvodnimi listi je prazna 
+% stran 4 med uvodnimi listi je prazna
 \ \thispagestyle{empty}
 
 \newpage
@@ -159,11 +159,11 @@ dvigne v študent\-skem referatu,  preden odda izdelek v vezavo!
 \thispagestyle{empty}
 
 \vspace{1cm}
-\begin{center} 
+\begin{center}
 {\Large \textbf{IZJAVA O AVTORSTVU}}
 \end{center}
 
-\begin{center} 
+\begin{center}
 {\Large diplomskega dela}
 \end{center}
 
@@ -175,26 +175,26 @@ z vpisno številko \hspace{0.5cm} 63080117,
 
 \vspace{1cm}
 sem avtor/-ica diplomskega dela z naslovom:
-   
+
 \vspace{0.5cm}
 Varnost v oblaku
 \vspace{1.5cm}
 S svojim podpisom zagotavljam, da:
 \begin{itemize}
-	\item sem diplomsko delo izdelal/-a samostojno pod mentorstvom 
-	
-	prof. [doc.] dr. Aleksandar Jurišić
-	
-	\item	so elektronska oblika diplomskega dela, naslov (slov., angl.), povzetek (slov., angl.) ter ključne besede (slov., 			angl.) identični s tiskano obliko diplomskega dela
+	\item sem diplomsko delo izdelal/-a samostojno pod mentorstvom
+
+	prof. dr. Aleksandar Jurišić
+
+	\item	so elektronska oblika diplomskega dela, naslov (slov., angl.), povzetek (slov., angl.) ter ključne besede (slov., angl.) identični s tiskano obliko diplomskega dela
 	\item soglašam z javno objavo elektronske oblike diplomskega dela v zbirki ''Dela FRI''.
 \end{itemize}
 
 \vspace{1cm}
 V Ljubljani, dne \today \hspace{1cm} Podpis avtorja/-ice:
 
-\newpage 
+\newpage
 
-%********************************************
+%*******************************************
 
 % stran 6 med uvodnimi listi je prazna pri dvostranskem tiskanju
 \ \thispagestyle{empty}
@@ -208,7 +208,7 @@ V Ljubljani, dne \today \hspace{1cm} Podpis avtorja/-ice:
 \chapter*{Zahvala}
 
 \thispagestyle{empty}
-
+ablak
 Mogoče :D
 
 
@@ -226,15 +226,13 @@ Mogoče :D
 % stran 9 med uvodnimi listi
 \thispagestyle{empty}
 
-$\;$ 
+$\;$
 
 \vspace{5cm}
 \hfill {\Large \em Morebitno posvetilo}
 \thispagestyle{empty}
 
 \newpage
-
-%********************************************
 
 % stran 10 med uvodnimi listi je prazna pri dvostranskem tiskanju
 
@@ -244,7 +242,7 @@ $\;$
 
 %********************************************
 
-\renewcommand\thepage{} 
+\renewcommand\thepage{}
 \tableofcontents
 \renewcommand\thepage{\arabic{page}}
 
@@ -302,7 +300,7 @@ Ključne besede v angleškem jeziku.
 
 \chapter{Uvod}
 
-V zadnjih letih smo priča bliskovitemu porastu popularnosti t.i. računalništva v oblaku. Gartner je v začetku leta 2015 uvrstil računalništvo v oblaku med 10 strateško najpomembnejših tehnoloških trendov, ki bodo krojili prihodnost. Oblak nam omogoča udobno, cenovno ugodno delo, kadarkoli in kjerkoli, tudi zunaj pisarne, saj je vse kar potrebujemo internetni dostop in računalnik ali telefon. Računalništvo v oblaku je posledica razvoja več različnih tehnologij, ki so skupaj omogočile cenovno učinkovite rešitve, ki so hkrati preproste za uporabo. Končni uporabniki uporabljajo oblak, ker je preprosto za uporabo, omogoča dostop do podatkov kjerkoli in kadarkoli. Na drugi strani vedno več podjetji v žeji, da znižajo stroške poslovanja in povečajo sposobnost prilagajanja zahtevam trga, seli svoje poslovanje v oblak. Posledica tega premika je selitev podatkov iz fizičnih nosilcev, ki so bili tradicionalno v lasti iste osebe kot podatki, v oblak. To pomeni da varnost hrambe svojih podatkov zaupamo tretjim osebam, kar niti ni nujno tako slabo, kot se sliši. Za veliko ljudi in manjših podjetji je skrb za varnost podatkov velik zalogaj, ki zahteva ustrezno tehnično izobrazbo, strojno opremo in prostor. Kadar hranimo podatke v oblaku, nič od tega ni potrebno, saj nam vse to zagotavlja ponudnik storitev v oblaku v zameno za mesečno naročnino. V nadaljevanju tega dela, bomo najprej pregledali kaj je oblak, kakšne oblike oblaka poznamo. Ko bomo opremljeni z osnovnim poznavanjem oblaka, si bomo pogledali še formalno definicijo varnosti nato pa bomo preučili kako vpeljava in vsesplošna uporaba oblaka vpliva na varnost naših podatkov. 
+V zadnjih letih smo priča bliskovitemu porastu popularnosti t.i. računalništva v oblaku. Gartner je v začetku leta 2015 uvrstil računalništvo v oblaku med 10 strateško najpomembnejših tehnoloških trendov, ki bodo krojili prihodnost. Oblak nam omogoča udobno, cenovno ugodno delo, kadarkoli in kjerkoli, tudi zunaj pisarne, saj je vse kar potrebujemo internetni dostop in računalnik ali telefon. Računalništvo v oblaku je posledica razvoja več različnih tehnologij, ki so skupaj omogočile cenovno učinkovite rešitve, ki so hkrati preproste za uporabo. Končni uporabniki uporabljajo oblak, ker je preprosto za uporabo, omogoča dostop do podatkov kjerkoli in kadarkoli. Na drugi strani vedno več podjetji v žeji, da znižajo stroške poslovanja in povečajo sposobnost prilagajanja zahtevam trga, seli svoje poslovanje v oblak. Posledica tega premika je selitev podatkov iz fizičnih nosilcev, ki so bili tradicionalno v lasti iste osebe kot podatki, v oblak. To pomeni da varnost hrambe svojih podatkov zaupamo tretjim osebam, kar niti ni nujno tako slabo, kot se sliši. Za veliko ljudi in manjših podjetji je skrb za varnost podatkov velik zalogaj, ki zahteva ustrezno tehnično izobrazbo, strojno opremo in prostor. Kadar hranimo podatke v oblaku, nič od tega ni potrebno, saj nam vse to zagotavlja ponudnik storitev v oblaku v zameno za mesečno naročnino. V nadaljevanju tega dela, bomo najprej pregledali kaj je oblak, kakšne oblike oblaka poznamo. Ko bomo opremljeni z osnovnim poznavanjem oblaka, si bomo pogledali še formalno definicijo varnosti nato pa bomo preučili kako vpeljava in vsesplošna uporaba oblaka vpliva na varnost naših podatkov.
 
 \section{Kaj je oblak?}
 Priljubljen internetni rek gre nekako takole: “There is no cloud, just someone else's computer”. Preprosto rečeno je to delno res, saj oblak ni nič drugega kot skupek velikega števila računalnikov, ki niso v lasti uporabnika storitve v oblaku, morda niso niti v lasti ponudnika storitve, ampak jih ta najema pri tretjem ponudniku. Pojem oblak je le krovni izraz za nove načine ponudbe in uporabe storitev, zato ga moramo podrobneje razdelati in razložiti.
@@ -311,13 +309,13 @@ NIST opredeli oblak kot: “Računalništvo v oblaku je model, ki omogoča vsepr
 
 \begin{description}[style=nextline]
    \item[Storitev na zahtevo] Stranka lahko pridobi nove vire v oblaku po potrebi, lahko tudi popolnoma samodejno brez človeškega posredovanja.
-   
+
    \item[Širok dostop preko omrežja] Zmogljivosti oblaka so na voljo preko omrežja in do njih lahko dostopamo preko standardnih mehanizmov, kar omogoča dostops praktično katerekoli naprave ki se je zmožna povezati v omrežje (telefoni, tablice, računalniki, …).
-   
+
    \item[Uporaba skupnih virov] Ponudnikovi fizični viri so zdrženi v bazen virov iz katerega stranke dobijo virtualizirane vire. Virtualizirani vir lahko prosto prehaja med fizičnimi gostitelji, zato težko govorimo o točni lokaciji vira.
-   
+
    \item[Bliskovita prožnost] Uporabnik lahko preprosto poveča ali zmanjša zmogljivosti virov, ki jih potrebuje glede na potrebe. Uporabnik ima pogosto občutek da so mu na voljo neomejene zmogljivosti.
-   
+
    \item[Merjenje porabe in obračun glede na porabo virov]  Oblačni sistemi samodejno nadzirajo in optimizirajo porabo virov s pomočjo metrik (poraba prostora, pasovne širine, procesorskega časa …). Poraba virov se nadzira, kontrolira in poroča, kar omogoča transparentnost za ponudnika in uporabnika.
 \end{description}
 
@@ -328,9 +326,9 @@ NIST opredeli oblak kot: “Računalništvo v oblaku je model, ki omogoča vsepr
 
 \begin{description}[style=nextline]
 	\item[\gls{SaaS}] Ponudnik storitev uporabniku omogoča uporabo njegove aplikacije, ki teče v oblaku. Aplikacija je dosegljiva iz različnih naprav, preko recimo spletnega brskalnika ali aplikacijskega vmesnika (\gls{API}). Uporabnik nima nadzora nad infrastrukturo na kateri teče aplikacija (omrežje, strežniki …), kot tudi ne nad samo aplikacijo (z izjemo konfiguracije aplikacije).
-	
+
 	\item[\gls{PaaS}]: Ponudnik storitev uporabniku ponuja platformo, na katero lahko uporabnik namesti lastne ali kupljene aplikacije, ki so prilagojene za delovanje v oblaku. Tudi tu uporabnik nima nadzora nad infrastrukturo na kateri teče aplikacije, ima pa popolni nadzor nad aplikacijo.
-	
+
 	\item[\gls{IaaS}]: Ponudnik uporabniku omogoča postavitev osnovnih gradnikov računalniškega sistema (procesiranje, hramba podatkov, omrežje …) iz katerih lahko uporabnik sestavi kar želi. Uporabnik sicer nima nadzora nad spodaj ležečo fizično infrastrukturo, vendar ima ves nadzor nad virtualiziranimi viri ki jih pridobi.
 \end{description}
 
@@ -426,7 +424,7 @@ Vse zgoraj naštete lastnosti so splošne lastnosti varnosti in se kot take seve
 
 Zaradi vse večje popularnosti storitev v oblaku in posledično ogromne količine podatkov, s katerimi razpolagajo ponudniki storitev v oblaku, so ti vedno pogosteje tarča napadov kriminalnih združb. Za sisteme, ki tečejo “v oblaku”, je značilno da navzven delujejo kot en strežnik, v resnici pa tečejo na velikem številu strežnikov, ki so med seboj povezani. To pomeni da morebitni vdor v samo en strežnik napadalcu omogoča dostop tudi na druge strežnike, ki tečejo znotraj istega sistema. Če si sistem predstavljamo kot trdnjavo, to pomeni da je večina zaščitnih mehanizmov skoncentrirana na obrobju, na obzidju trdnjave. Če uspemo to obzidje predreti na samo enem delčku, se potem lahko več ali manj prosto sprehajamo znotraj trdnjave. Pred pojavom storitev v oblaku je bilo znotraj enega obzidja le nekaj strežnikov, zato je bilo obzidje malo in ga je bilo lažje vzdrževati. Sistem, na katerem teče storitev v oblaku pa je lahko sestavljen iz več tisoč strežnikov, kar pomeni da velikost obzidja močno poveča in veliko obzidje je težko vzdrževati, zato se kaj hitro v njem pojavijo razpoke.
 
-Druga stvar, ki dela sisteme v oblaku zanimive za napadalce je koncentracija podatkov. V primeru do vdora v klasični strežnik, napadalec dobi dostop do veliko manjše količine podatkov kot ob vdoru v oblačni sistem. Razlog je preprost, saj na en sam strežnik fizično ni mogoče shraniti toliko podatkov, kot na sistem, ki je sestavljen iz tičoče strežnikov. 
+Druga stvar, ki dela sisteme v oblaku zanimive za napadalce je koncentracija podatkov. V primeru do vdora v klasični strežnik, napadalec dobi dostop do veliko manjše količine podatkov kot ob vdoru v oblačni sistem. Razlog je preprost, saj na en sam strežnik fizično ni mogoče shraniti toliko podatkov, kot na sistem, ki je sestavljen iz tičoče strežnikov.
 
 Ranljivost računalniškega sistema je lastnost, zaradi katere je ogroženo njegovo delovanje in varnost podatkov, ki jih vsebuje. Storitve, ki delujejo v oblaku tako podedujejo vse ranljivosti, ki jih imajo klasični računalniški sistemi, zaradi posebnih lastnosti oblaka, pa obstaja se nekaj groženj, specifičnih za storitve v oblaku:
 
@@ -442,7 +440,59 @@ Ranljivost računalniškega sistema je lastnost, zaradi katere je ogroženo njeg
 
 \end{description}
 
-\subsection{Novi izzivi na področju varnosti v oblaku}
+\subsection{Izzivi na področju varnosti v oblaku}
+
+\subsubsection{Razkritje podatkov}
+O razkritju podatkov govorimo v primeru, da se občutljivi in zaupni podatki znajdejo na očeh nepooblaščenih oseb ali javnosti.  To se lahko zgodi kot posledica ciljanega napada ali preprosto zaradi človeške napake, napake v aplikaciji ali slabih varnostnih mehanizmov aplikacije. Primeri zaupnih podatkov, ki so pogosto tarča napadov so: zdravstveni podatki, finančni podatki, osebno določljivi podatki, poslovne skrivnosti in intelektualna lastnina.
+
+Razkritje podatkov je stara in vseprisotna grožnja v vseh računalniških sistemih, vendar zaradi prej omenjene koncentracije podatkov je ta grožnja v oblačnih sistemih še večja.
+
+Obseg škode, ki ga povzroči razkritje podatkov je odvisen od občutljivosti podatkov, ki so bili odtujeni. V veliko državah po svetu obstajajo zakoni in predpisi, ki podjetja ki hranijo določene tipe občutljivih podatkov obvezuje k določenim standardom zaščite. V primeru, da pride do razkritja podatkov, lahko odgovorno podjetje doleti denarna kazen ali celo kazenska ovadba. Poleg škode, ki je bila povzročena z razkritjem podatkov in morebitno denarno kaznijo so tu še stroški preiskave incidenta, obveščanja uporabnikov in izguba ugleda podjetja.
+
+\subsubsection{Pomankljivo upravljanje identitete, poverilnic in nadzora dostopa}
+Površno upravljanje lahko pripelje do nenamernega razkritja uporabniških imen, gesel in ključev, ki se uporabljajo za dostop do storitev. Ponudniki storitev v oblaku upravljajo z identitetami milijonov uporabnikov in zaposlenimi, zato je potrebna velika skrb da se zagotovin pravilno upravlanje identitete skozi celoten cikel. Potrebno je poskrbeti za takojšno prekinitev veljavnosti identitete, v primeru da pride do odpovedi delovenega razmerja zaposlenega ali prekinitve pogodbe s stranko. Uporaba šibkih gesel in neuporaba dvostopenjske avtentikacije in neuporaba rotacije šifrirnih ključev, gesel in certifikatov so primeri slabe prakse, ki v primeru napada napadalcu olašajo delo in povečajo razsežnosti škode, ki jo napadalec lahko povzroči.
+
+\subsubsection{Nezaščiteni uporabniški in programski vmesniki}
+Ponudniki storitev v oblaku ponujajo nabor uporabniški in programskih vmesnikov, preko katerih uporabniki dostopajo do storitev ponudnika. So stična točka med uporabnikom in storitvijo in od varnosti in dostopnosti teh vmesnikov je odvisna varnost celotnega sistema. So prva linija obrambe sistema, zato je pri zasnovi teh vmesnikov potrebno misliti na varnost s pravilno implementacijo varnostnih mehanizmov kot so avtentikacija, nadzor dostopa in enkripcija. Vmesniki morajo biti zasnovanai tako, da ščitijo pred namerno in nenamerno zlorabo sistema.
+
+\subsubsection{Sistemske ranljivosti}
+Sistemske ranljivosti so preprosto povedano hrošči v uporabljeni programski opremi, katere je možno izkoristiti za napad na računalniški sistem. Ranljivosti, ki se nahajajo v jedru opreacijskega sistema ali sistemskih knjižnicah predstavljajo grožnjo za celoten sistem.
+
+Tako kot večina ostalih predstavljenih groženj, tudi sistemske ranljivosti niso nič novega, vendar razsežnost oblačnih sistemov doda takim ranljivostim popolnoma nov pomen. Zaradi napredka tehnologije je možno na enem strežniku gostiti več virtualnih strežnikov različnih organizacij, kar pomeni da si ti virtualni strežniki delijo pomnilnik in ostale vire, kar omogoča nove načine izrabe sistemskih ranljivosti.
+
+\subsubsection{Ugrabitev uporabniškega računa}
+Ugrabitve uporabniških računov so posledica napadov ribarjenja, prevare ali izkoriščanja sistemskih pomankljivosti. V primeru, da ista uporabniška imena in gesla uporabljamo za več različnih storitev, to še dodatno poveča posledice napada. V primeru, da pride do ugrabitve uporabnišlega računa za storitev v oblaku, lahko napadalec izkoristi to storitev kot odskočno desko za nove napade.
+
+\subsubsection{Notranje grožnje}
+Tveganje, ki ga predstavljajo notranje grožnje, kot so škodoželjni zaposleni, je dokaj novo in še vedno predmet debate v industriji računalniške varnosti. Dejstvo je da tako tveganje obstaja, predvsem pri uporabi javnega oblaka, saj v tem primeru z infrastrukturo in podatki razpolaga tretja oseba. V tem primeru uporabnik storitve nima nikakršnega mehanizma, s katerim bi lahko nadziral zaposlene pri ponudniku storitve.
+
+\subsubsection{Organizirana trajna grožnja}
+Organiziranje trajne grožnje so ena najnaprednejših oblik grožnje računalniški varnosti. Za napadi te oblike so ponadavi skrivajo velike organizacije z državno podporo (tajne službe, vojska). Značilnost te oblike napada je, da napadalec temeljito preuči ciljni sistem, njegovo organizacijo in šibke točke. Ta oblika napada se pogosto začne z usmerjenim zvablanjem, to je posebna tehnika ribarjenja, ki je sumerjena proti točno določenim osebam, v našem primeru zaposleni v ciljni organizaciji. S pomočjo usmerjenega zavblanja napadalec poskuša pridobiti vstopno točko v ciljni sistem. Ko enkrat pridobi dostop do notranjega omrežja sistema, to uporabi kot odskočno desko za nadalnje premike proti željenim tarčam. Cilj napada so podatki, ki se nahajajo v sistemu žrtve, pogosto so to poslovne skrivnosti ali državne tajne. Napadalec želi čimdlje ostati skrit, saj tako pridobi dostop do večjega števila računalnikov znotraj omrežja in s tem večje količine podatkov. V želji da ostane skrit, uporablja napredne tehnike brisanja sledov, zato je take tipe napada zelo težko zaznati, saj navzven sistem izgleda kot da deluje normalno.
+
+Posebna oblika organiziranih trajnih groženj so kibernetska orožja. Verjetno najbolj znan med njimi je Stuxnet, ki js sabotiral Iranski jedrski program. Kibernetska orožja se od ostalih oblik napadov razlikujejo v tem, da žrtvi povzročijo dejansko fizično škodo v obliki uničene opreme.
+
+\subsubsection{Izguba podatkov}
+Izguba podatkov predstavlja za večino uporabnikov in podjetji eno najhujših nočnih mor. Trajna izguba podatkov, shranjenih v oblaku ni nujno posledica napada tretje osebe, ampak je lahko tudi posledica malomarnosti, kot je recimo nenameren izbris podatkov s strani ponudnika storitve ali posledica naravne katastrofe kot je požar ali potres. V izogib trajni izgubi podatkov ponudniki storitev v oblaku uporabljajo različne mehanizme, kot so gegografska redundanca in varnostno kopiranje na drugo lokacijo. Vendar v primeru, da uporabnik podatke kriptira še preden jih posšlje v oblak in nato izgibu enkripcijski ključ, noben od naštetih mehanizmov ne more preprečiti takojšne in trajne izgube podatkov.
+
+\subsubsection{Malomarnost}
+Preden začnemo uporabljati storitve v oblaku, je potrebno preučiti vse aspekte, ki jih bo taka sprememba prinesla. Vodilni kadri v podjetjih pogosto nimajo dovolj poglobljenega poznavanja oblaka s tehnološkega vidika, kot tudi ne poznajo pravnih zank, ki jih vsebujejo “pogoji uporabe” določenih ponudnikov storitev v oblaku. V primeru, da pred uporabo storitev v oblaku ne naredimo temeljite analize, lahko pride do tehnoloških, pravnih, skladenjskih in poslovnih tveganj, ki ogrozijo uspeh podjetja.
+
+\subsubsection{Zloraba in zlonamerna uporaba sistemov}
+Pogosto ponudniki storitev v oblaku omogočajo brezplačne preizkusne račune za omejeno časovno obdobje, pa tudi če jih ne, lahko napadalec s pomočjo ukradenih bančnih podatkov ustvari veliko količino uporabniških računov, ki jih potem izkoristi za izvajanje različnih nelegalnih aktivnosti. Te lažni uporabniški računi napadalcu omogočajo pošiljanje nezaželjene pošte, izvajanje napadov ribarjenja ali napadov zavrnitve storitve, ki so lahko usmerjeni k ponudniku storitve, njegovim strankam ali pa tretjim osebam.
+
+\subsubsection{Napadi zavrnitve storitve}
+Napad zavrnitve storitve je ena najpreprostejših in pogosto zelo učinkovitih oblik napada na računalniške sisteme. Cilj napada je uporabnikom preprečiti normalen dostop do storitve, kar napadalec doseže s tem da napaden sistem prisili v nerazumno veliko porabo različnih virov, kot so pasovna širina, procesorski čas ali podatkovni prostor. Najbol osnovna oblika napada zavrnitve storitve se zanaša na dejstvo da napadalec razpolaga z večjo količino določenega vira (pasovna širina, procesorski čas …) kot napaden sistem. Obstajajo pa tudi bolj prefinjene asimetrične oblike napada, kjer napadalec z veliko manjšo količino virov kot tarča, s pomočjo izrabe varnostne pomankljivosti v sistemu ali aplikaciji onemogoči tarčo napada. Napadi zavrnitve storitve običajno ne pustijo trajnih posledic, vendar predstavljajo veliko neprijetnost za uporabnike, saj le ti za čas trajanja napada ne morejo uporabljati storitve, prav tako pa škodujejo ugledu ponudnika.
+
+\subsubsection{Ranljivosti zaradi uporabe skupnih virov}
+Zadnji sklop varnostnih groženj v oblaku predstavljajo ranljivosti, ki so posledica ene od ključnih lastnosti oblaka, to je uporaba skupnih virov. Ponudniki storitev v oblaku zagotavljajo navidezno neomejene vire končnemu uporabniku s pomočjo tehnologij virtualizacije in skupne uporabe. Pri tem uporabljajo klasično strojno opremo, ki sicer s pomočjo posebne programske opreme omogoča delitev virov, vendar ni bila zasnovana, da bi omogočala varno skupno uporabo. Tak tip napadov izkorišča dejstvo, da si različni virtualni strežniki delijo fizično strojno opremo, zato je možno s posebno obliko napada, ki se imenuje napad preko stranskega kanala pridobiti informacije iz žrtvinega strežnika, brez da bi dejansko prišlo do vdora. V času pisanja še ni prišlo do takega tipa vdora v praksi, vendar obstajajo primeri takih napadov, ki so jih demonstrirali pod laboratorijskimi pogoji.
+
+
+
+
+
+
+
+
 
 
 \newglossaryentry{cistopis}
@@ -503,7 +553,7 @@ Skozi zgodovino človeštva se je že zelo zgodaj pojavila želja po skrivanju s
 
 Simetrične šifre so najstarejša in najbolj razširjena vrsta šifriranja, kamor spadajo tudi vse zgodovinske šifre, ki se ne uporabljajo več. Poglavitna lastnost simetričnih šifer je, da se za šifriranje in dešifriranje uporablja enak ključ. Take šifre so lahko zelo preproste in hitre, vendar se pojavi problem distribucije ključev. Tajnopise lahko prenašamo po nezavarovanih kanalih, kar pa ne velja za ključe.
 
-Ta problem lahko rešijo asimetrične šifre, ki uporabljajo en ključ za šifriranje, drug ključ pa dešifriranje. Tak par ključev imenujemo javni in zasebni ključ. Kot že ime pove, javni ključ ni nobena skrivnost in ga lahko brez skrbi objavimo na javnem mestu, obratno pa velja za zasebni ključ. Sporočilo, šifrirano z javnim ključem je možno dešifrirati samo s pripadajočim zasebnim ključem. 
+Ta problem lahko rešijo asimetrične šifre, ki uporabljajo en ključ za šifriranje, drug ključ pa dešifriranje. Tak par ključev imenujemo javni in zasebni ključ. Kot že ime pove, javni ključ ni nobena skrivnost in ga lahko brez skrbi objavimo na javnem mestu, obratno pa velja za zasebni ključ. Sporočilo, šifrirano z javnim ključem je možno dešifrirati samo s pripadajočim zasebnim ključem.
 
 \subsection{Simetrične šifre}
 
@@ -603,9 +653,9 @@ Kjer je $C$ tajnopis in $P$ čistopis.
 			\item SubBytes
 			\item ShiftRows
 			\item MixColumns
-			\item AddRoundKey	
+			\item AddRoundKey
 		\end{enumerate}
-		
+
 	\item[Zadnji krogi]
 		\begin{enumerate}
 			\item SubBytes
@@ -617,16 +667,16 @@ Kjer je $C$ tajnopis in $P$ čistopis.
 
 \subsection{Asimetrične šifre}
 
-Eden večjih problemov simetričnih šifrirnih algoritmov je distribucija ključev. V kolikor želita dve osebi svojo komunikacijo zaščititi z uporabo simetričnega šifrirnega algoritma, se morata najprej izmenjati ključ. Dobra praksa je tudi, da se izognemo ponovni uporabi istega ključa, kar v praksi pomeni, da si moramo z vsako osebo, s katero želimo komunicirati izmenjati ključ in hitro se izkaže, da omrežje $n$ ljudi potrebuje $\frac{n(n-1)}{2}$ ključev. Če to preslikamo na omrežje kot je Internet, ki ga uporablja približno 40 odstotkov svetovne populacije. Če vzamemo pesimistično oceno da si vsak uporabnik Interneta lasti samo eno elektronsko napravo ki uporablja varno komunikacijo je , je naš $n \approx 3.500.000.000$.
+Eden večjih problemov simetričnih šifrirnih algoritmov je distribucija ključev. V kolikor želita dve osebi svojo komunikacijo zaščititi z uporabo simetričnega šifrirnega algoritma, se morata najprej izmenjati ključ. Dobra praksa je tudi, da se izognemo ponovni uporabi istega ključa, kar v praksi pomeni, da si moramo z vsako osebo, s katero želimo komunicirati izmenjati ključ in hitro se izkaže, da omrežje $n$ ljudi potrebuje $\frac{n(n-1)}{2}$ ključev. Če to preslikamo na omrežje kot je Internet, ki ga uporablja približno 40 odstotkov svetovne populacije. Če vzamemo pesimistično oceno da si vsak uporabnik Interneta lasti samo eno elektronsko napravo, ki uporablja varno komunikacijo je, je naš $n \approx 3.500.000.000$.
 
 Rešitev za ta problem so lahko asimetrični šifrirni algoritmi, oziroma kriptografija javnih ključev. Asimetrični algoritmi ne uporabljajo samo enega, ampak dva ključa. Javni ključ poznajo vsi in ga uporabijo za šifriranje sporočil. Sporočila, šifrirana z javnim ključem, lahko dešifrira samo imetnik zasebnega ključa.
 
 Asimetrični algoritmi delujejo na predpostavki, da so nekatere matematični v eno smer preprosto izračunljivi, v drugo pa preprosto pretežki, da bi jih bilo možno rešiti v razumnem časovnem okvirju. Eden takih problemov je faktorizacija števil. Če si izmislite dve dokaj veliki praštevili $p$ in $q$, ju med seboj pomnožite, dobite novo število $n$, za katero ni tako preprosto ugotoviti iz katerih faktorjev je sestavljeno, ob predpostavki, da ne poznamo $p$ in $q$.
 
-Na žalost pa so zaradi svoje povezanosti s težkimi matematičnimi problemi pogosto asimetrični šifrirni algoritmi veliko počasnejši od svojih simetričnih sorodnikov. V praksi se uporablja kombinacija asimetričnih in simetričnih algoritmov. Asimetrični algoritmi so sicer počasnejši, vendar veliko bolj praktični zaradi preproste izmenjave ključev. 
+Na žalost pa so zaradi svoje povezanosti s težkimi matematičnimi problemi pogosto asimetrični šifrirni algoritmi veliko počasnejši od svojih simetričnih sorodnikov. V praksi se uporablja kombinacija asimetričnih in simetričnih algoritmov. Asimetrični algoritmi so sicer počasnejši, vendar veliko bolj praktični zaradi preproste izmenjave ključev.
 
 
-V začetni fazi vzpostavljanja varnega komunikacijska kanala se zaradi preprostejše distribucije ključev uporabi asimetrični algoritem. Ko je varni kanal vzpostavljen se preko njega izmenja sejni ključ, to je ključ ki se 
+V začetni fazi vzpostavljanja varnega komunikacijska kanala se zaradi preprostejše distribucije ključev uporabi asimetrični algoritem. Ko je varni kanal vzpostavljen se preko njega izmenja sejni ključ, to je ključ ki se
 
 \subsubsection{Izmenjava ključa Diffe-Hellman}
 
@@ -641,10 +691,10 @@ Recimo da se želita Anita in Bojan preko Interneta dogovoriti o skupnem ključu
 \begin{mdframed}[frametitle={Izmenjava ključa Diffe-Hellman}]
 \begin{enumerate}
 	\item Anita in Bojan se dogovorita os skupnih parametrih, ki jih bosta uporabljala v algoritmu. To je praštevilo $p$ in primitivni koren praštevila $g$
-	\item Anita si izbere skrivno število $a$, izračuna $A=g^a mod p$ in pošlje $A$ Bojanu.
-	\item Bojan si izbere skrivno število $b$, izračuna $B=g^b mod p$ in pošlje $B$ Aniti.
-	\item Anita izračuna $s=B^a mod p$
-	\item Bojan izračuna $s=A^b mod p$
+	\item Anita si izbere skrivno število $a$, izračuna $A=g^a \mod p$ in pošlje $A$ Bojanu.
+	\item Bojan si izbere skrivno število $b$, izračuna $B=g^b \mod p$ in pošlje $B$ Aniti.
+	\item Anita izračuna $s=B^a \mod p$
+	\item Bojan izračuna $s=A^b \mod p$
 	\item Anita in Bojan sta dobila enak rezultat $s$, ki ga sedaj lahko uporabita kot skupni ključ za nadaljnjo komunikacijo.
 \end{enumerate}
 
@@ -671,7 +721,7 @@ Javni ključ je par $(n, e)$, zasebni ključ pa par $(n, d)$, ki ju dobimo po na
 \item Izračunamo $n=pq$
 \item Izračunamo $\varphi(n)=\varphi(p)\varphi(q)=(p-1)(q-1)$
 \item Izberemo število $e$, tako da $1<e<\varphi(n)$ tako da je $e$ tuje $\varphi(n)$
-\item Izračunamo $d$, tako da $d \equiv e^{-1} \pmod{\varphi(n)}$ 
+\item Izračunamo $d$, tako da $d \equiv e^{-1} \pmod{\varphi(n)}$
 \end{enumerate}
 
 Poleg zasebnega ključa moramo moramo paziti tudi na zasebnost vrednosti $p$, $q$ in $\varphi(n)$
@@ -690,6 +740,8 @@ Ta problem nam rešuje šifriranje na podlagi pogojev, v nadaljevanju ABE. Krati
 Možnost dešifriranja določajo pravila, ki so predstavljena z drevesi, kjer so notranja vozlišča logične operacije, listi pa pogoji, ki so lahko zadovoljeni ali nezadovoljeni. Drevo beremo od listov proti korenu in za vsako notranje vozlišče ugotovimo ali je v zadovoljenem ali nezadovoljenem stanju. Na koncu pridemo do korena drevesa, in dešifriranje uspe samo v primeru, da je koren drevesa v zadovoljenem stanju.
 
 Poznamo dve vrsti šifriranja na osnovi pogojev. V prvem je drevo, ki določa pravila shranjeno skupaj s ključem, v drugem primeru pa je shranjeno skupaj s tajnopisom.
+
+Neki narobenapisan
 
 
 \chapter{Uporaba kriptografije v oblaku}
@@ -734,11 +786,7 @@ Uvod, encryption at rest, in transit
 \bibliographystyle{slplainurl}
 \addcontentsline{toc}{chapter}{Literatura}
 \label{stran_literatura}
-\bibliography{diploma} 
+\bibliography{diploma}
 
 
 \end{document}
-
-
-
-
