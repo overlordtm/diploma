@@ -19,6 +19,8 @@
 \usepackage{mathtools}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{caption}
+\usepackage{subcaption}
 \renewcommand{\baselinestretch}{1.3}
 
 \usepackage[pdftex,colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black,pagebackref]{hyperref}
@@ -509,7 +511,7 @@ Zadnji sklop varnostnih groženj v oblaku predstavljajo ranljivosti, ki so posle
 
 \chapter{Zaščita podatkov s pomočjo kriptografije}
 
-Kriptografija omgoča doseganje informacijske varnosti s pomočjo matematičnih postopkov. Verjetno najbolj poznan tak postopek je šifriranje, ki zagotavlja zaupnost podatkov, pogled tega v področje kriptografije spadajo tudi digitalni podpisi, avtentikacijske kode MAC in zgoščevalne funkcije, ki nam pomagajo pri ohranjanju celovitosti in overjanju identitete podatkov.
+Kriptografija omogoča doseganje informacijske varnosti s pomočjo matematičnih postopkov. Verjetno najbolj poznan tak postopek je šifriranje, ki zagotavlja zaupnost podatkov, pogled tega v področje kriptografije spadajo tudi digitalni podpisi, avtentikacijske kode MAC in zgoščevalne funkcije, ki nam pomagajo pri ohranjanju celovitosti in overjanju identitete podatkov.
 
 Šifriranje je način, kako skriti vsebino sporočila (\gls{cistopis}a) pred nepooblaščenimi očmi. To se doseže z uporabo algoritma, ki mu kot vhodni podatek damo \gls{cistopis} in \gls{sifrirnikljuc}, on pa nam vrne \gls{tajnopis}. \Gls{tajnopis} vsebuje enake informacije kot \gls{cistopis}, vendar ima to lastnost, da ga je mogoče prebrati le v primeru, da posedujete ključ za dešifriranje. V kolikor takega ključa ne posedujete, je iz \gls{tajnopis}a praktično nemogoče razbrati vsebino originalnega sporočila.\footnote{Težanost je odvisna od moči kriptografske sheme in pravilnosti implementacije}
 
@@ -529,11 +531,9 @@ Kriptografska shema je peterka  $(\mathcal{P}, \mathcal{C}, \mathcal{K},  \mathc
 	\end{enumerate}
 \end{mdframed}
 
-Zgornjo matematično definicijo se da povzeti z naslednjimi besedami. Kriptografsko shemo sestavlja pet sestavin. Čistopisi, tajnopisi, ključi, šifrirni in dešifrirni postopek. Pomembno je, da ob danem ključu in šifrirnem postopu, obstaja dešifrirni postopek, ki nam vsak tajnopis, ki je bil šifriran z izbranim šifrirnim postopkom nedvoumno pretvori nazaj v čistopis.
+Zgornjo matematično definicijo se da povzeti z naslednjimi besedami. Kriptografsko shemo sestavlja pet sestavin. Čistopisi, tajnopisi, ključi, šifrirni in de-šifrirni postopek. Pomembno je, da ob danem ključu in šifrirnem postopku, obstaja de-šifrirni postopek, ki nam vsak tajnopis, ki je bil šifriran z izbranim šifrirnim postopkom nedvoumno pretvori nazaj v čistopis.
 
-Skozi zgodovino človeštva se je že zelo zgodaj pojavila želja po skrivanju sporočil in s tem so se razvile tudi prve metode šifriranja, vendar nobena od njih ni prestala preiskusa časa.
-
-\
+Skozi zgodovino človeštva se je že zelo zgodaj pojavila želja po skrivanju sporočil in s tem so se razvile tudi prve metode šifriranja, vendar nobena od njih ni prestala preizkusa časa.
 
 Šifrirne algoritme delimo na dve skupini:
 \begin{enumerate}
@@ -547,20 +547,17 @@ Simetrične šifre so najstarejša in najbolj razširjena vrsta šifriranja, kam
 
 Ta problem lahko rešijo asimetrične šifre, ki uporabljajo en ključ za šifriranje, drug ključ pa dešifriranje. Tak par ključev imenujemo javni in zasebni ključ. Kot že ime pove, javni ključ ni nobena skrivnost in ga lahko brez skrbi objavimo na javnem mestu, obratno pa velja za zasebni ključ. Sporočilo, šifrirano z javnim ključem je možno dešifrirati samo s pripadajočim zasebnim ključem.
 
-\subsection{Simetrične šifre}
+\section{Simetrične šifre}
 
 V kategorijo simetričnih šifer spadajo vse šifre, pri katerih se za šifriranje in dešifriranje uporablja enak ključ ali pa obstaja bijektivna preslikava, ki nam šifrirni ključ preslika v de-šifrirni in obratno. Simetrične šifre še naprej delimo na tokovne in bločne šifre. Poglavitna razlika med tokovnimi in bločnimi šiframi je v načinu šifriranja podatkov.
 
 Naj bo dano sporočilo $X$ velikosti $n$ ($|X|=n$), ki je sestavljeno iz $n$ osnovnih nosilcev informacij (to so lahko biti, bajti ali kaj čisto tretjega). Simbol $\|$ predstavlja združevanje (lepljenje) dveh nizov.
+
 $$
 X=x_0\|x_1\|x_2\|...\|x_{n-1}
 $$
 
 Bločna šifra vzame blok (del sporočila) velikosti $m$; $n=im, i\in\mathbb{N} $ in ga šifrira s ključem $K$. Tajnopis $Y$ tako pridobimo po naslednjem postopku:
-\begin{align*}
-1*1
-\end{align*}
-
 
 \begin{gather*}
 	y_j = e_K(e_{j} \| e_{j+1} \| \ldots \| e_{j+m-1})  \quad j=0,1,\ldots,i\\
@@ -590,8 +587,7 @@ Tak način šifriranja lahko uporabimo za poljubno dolga sporočila, brez potreb
   description={encryption key},
 }
 
-
-\subsubsection{DES in 3DES}
+\subsection{DES in 3DES}
 
 \gls{DES} je bil eden prvih modernih šifrirnih algoritmov. Originalna implementacija je nosila ime Lucifer in bila razvita v sedemdesetih letih v laboratorijih podjetja IBM. Kasneje je bila rahlo modificirana različica tega algoritma sprejeta s strani \acrshort{NIST}-a (takrat se je imenoval še \acrshort{NBS}) kot standard \gls{DES}.
 
@@ -619,7 +615,7 @@ Kjer je $C$ tajnopis in $P$ čistopis.
 \newacronym{AES}{AES}{Advanced encryption standard}
 
 
-\subsubsection{AES}
+\subsection{AES}
 
 \gls{AES} je bil leta 2001 izbran kot naslednik standarda \gls{DES}. Med 15 prijavljenimi algoritmi je \gls{NIST} izbral družino algoritmov Rijndael. Kot standard \gls{AES} so bile sprejete tri različice algoritma. Vse tri uporabljajo 128-bitne bloke, razlikujejo pa se v velikosti ključa. Na voljo so 3 opcije: 128, 192 ali 256-bitni ključ.
 
@@ -656,6 +652,149 @@ Kjer je $C$ tajnopis in $P$ čistopis.
 		\end{enumerate}
 
 \end{description}
+
+\newacronym{IV}{IV}{inicializacijski vektor}
+
+
+\subsection{Načini delovanja bločnih šifer}
+
+Bločna šifra sama po sebi kot vhodni podatek lahko sprejme samo blok točno določene dolžine, kar ni najbolj praktično, saj so sporočila pogosto različnih in predvsem nepredvidljivih velikosti. Ta problem lahko rešimo tako, da uporabimo bločno šifro v enem od načinov delovanja.
+
+Način delovanja je algoritem, ki pove kako vhodno sporočilo razdeliti na bloke primerne velikosti in na kak način na teh blokih potem uporabiti bločno šifro.
+
+Večina načinov delovanja poleg bločne šifre in šifrirnega ključa potrebuje še \gls{IV}. Inicializacijski vektor skrbi, da tudi v primeru, da večkrat šifriramo isti čistopis z enakim ključem, dobimo kot rezultat različne tajnopise.
+
+Kot smo že povedali, bločne šifre sprejemajo le bloke točno določene velikosti, zato je potrebno tudi v nekaterih načinih delovanja šifre sporočilo najprej dopolniti, tako da je njegova dolžina večkratnik velikosti bloka. Vendar obstajajo tudi načini delovanja, kjer to ni potrebno, saj ti iz bločne šifre naredijo tokovno šifro.
+
+\newacronym{ECB}{ECB}{Electronic Codebook}
+
+\subsubsection{ECB}
+\label{subs:ECB}
+
+Najpreprostejši način delovanja je \gls{ECB}. V tem načinu delovanja se sporočilo razdeli na bloke take velikosti, kot jih zahteva bločna šifra. Po potrebi se zadnji blok dopolni do zahtevane dolžine. Nato se vsak blok šifrira neodvisno od drugih, kar sicer pomeni da je možno operaciji šifriranja in dešifriranja na precej preprost način paralelizirati in s tem pohitriti. Prav tako je v tem načinu delovanja možno de-šifrirati poljubni blok sporočila, brez potrebe da najprej de-šifriramo vse predhodne bloke.
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}[b]{\textwidth}
+    \includegraphics[width=\textwidth]{images/ECB_encryption}
+    \caption{Šifriranje v načinu \gls{ECB}}
+    \label{fig:ecbenc}
+  \end{subfigure}
+  \begin{subfigure}[b]{\textwidth}
+    \includegraphics[width=\textwidth]{images/ECB_decryption}
+    \caption{De-šifriranje v načunu \gls{ECB}}
+    \label{fig:ecbdec}
+  \end{subfigure}
+  \caption{Način delovanja \gls{ECB}}\label
+  {fig:ecbmode}
+\end{figure}
+
+Vse to so sicer dobrodošle lastnosti, vendar ima \gls{ECB} nekaj resnih pomanjkljivosti, zaradi katerih ni primeren za uporabo v resničnem svetu, ampak služi bolj kot opomin, da močni šifrirni algoritmi kot je \gls{AES}, ne zagotavljajo varnosti, če so uporabljeni na napačen način.
+
+Slika \ref{fig:ecbbad} prikazuje uporabo 128 bitne AES šifre v načinu ECB. Na šifrirani sliki je še vedno možno razpoznati logotip Fakultete za računlništvo in informatiko, kar pomeni da tak način šifriranja ne zagotavlja varnosti.
+
+\begin{figure}[ht!]
+  \centering
+  \begin{subfigure}[b]{0.3\textwidth}
+    \includegraphics[width=\textwidth]{images/LogoFRI}
+    \caption{Original}
+    \label{fig:logoFRIorig}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.3\textwidth}
+    \includegraphics[width=\textwidth]{images/LogoFRI_ecb}
+    \caption{AES-128-ECB}
+    \label{fig:logoFRIECB}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.3\textwidth}
+    \includegraphics[width=\textwidth]{images/LogoFRI_cbc}
+    \caption{AES-128-CBC}
+    \label{fig:logoFRIECB}
+  \end{subfigure}
+  \caption{Primer različnih načinov šifriranja}
+  \label{fig:ecbbad}
+\end{figure}
+
+\newacronym{CBC}{CBC}{Cipher Block Chaining}
+
+\subsubsection{CBC}
+\label{subs:CBC}
+
+V načinu \Gls{CBC} se vsak blok čistopisa pred šifriranjem s pomočjo operacije $XOR$ zmeša z tajnopisom prejšnega bloka. Tak pristop naredi vsak naslednji blok odvisen od vseh prejšnih blokov. S tem se rešimo problema ponavlajočih se vzorcev v tajnopisu, kot smo jih videli v načinu ECB (slika \ref{fig:ecbbad}). Posebni primer je prvi blok, saj tu nimamo na voljo tajnopisa prejšnega bloka, s katerim bi izvedli operacijo $XOR$, zato namesto tajnopisa prejšnega bloka uporabimo \acrfull{IV}. Dodatno nam naključni \gls{IV} doda tudi element naključnosti v tajnopis, kar pomeni da tudi če šifriramo enako sporočilo z enakim ključem, tajnopis ne bo enak, saj smo uporabili drugačen \gls{IV}.
+
+Slabost takega pristopa pa je da je operacija šifriranja strogo zaporedna, saj naslednjega bloka ne moremo šifrirati dokler ne končamo šifriranja trenutnega bloka.
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}[b]{\textwidth}
+    \includegraphics[width=\textwidth]{images/CBC_encryption}
+    \caption{Šifriranje v načinu CBC}
+    \label{fig:cbcenc}
+  \end{subfigure}
+  \begin{subfigure}[b]{\textwidth}
+    \includegraphics[width=\textwidth]{images/CBC_decryption}
+    \caption{De-šifriranje v načinu CBC}
+    \label{fig:cbcdec}
+  \end{subfigure}
+  \caption{Način delovanja \gls{CBC}}
+  \label{fig:cfbmode}
+\end{figure}
+
+\newacronym{CFB}{CFB}{Cipher Feedback}
+
+\newglossaryentry{otp}
+{
+  name=enkratni ščit,
+  description={(ang. one time pad)},
+}
+
+\subsubsection{CFB}
+\label{subs:CFB}
+
+V \gls{CFB} načinu delovanja se bločna šifra uporablja kot tokovna. Prednost takega načina delovanja je, da ni potrebe po dopolnjevanju sporočila, prav tako pa se uporablja samo ena smer delovanja bločne šifre (to je ponavadi smer šifriranja), kar poenostavi implementacijo takega načina v strojni opremi.
+
+Kot se vidi na sliki \ref{fig:cfbmode}, se v tem načinu delovanja bločna šifra uporablja le za generiranje naključnega zaporedja, tajnopis pa rezultat operacije $XOR$ med čistopisom in naključnim zaporedjem, podobno kot pri enkratnem ščitu (ang. one time pad).
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}[b]{\textwidth}
+    \includegraphics[width=\textwidth]{images/CFB_encryption}
+    \caption{Šifriranje v načinu CFB}
+    \label{fig:cbcenc}
+  \end{subfigure}
+  \begin{subfigure}[b]{\textwidth}
+    \includegraphics[width=\textwidth]{images/CFB_decryption}
+    \caption{De-šifriranje v načinu CFB}
+    \label{fig:cbcdec}
+  \end{subfigure}
+  \caption{Način delovanja \gls{CFB}}
+  \label{fig:cfbmode}
+\end{figure}
+
+\newacronym{OFB}{OFB}{Output Feedback}
+
+
+\subsubsection{OFB}
+\label{subs:OFB}
+
+V \gls{OFB} je podoben načinu \gls{CFB}, s to razliko, da se za generiranje nakjučnega zaporedja uporablja samo \gls{IV}. Prav to je lahko problematična lastnost, v primeru da šifriramo daljša sporočila, saj se lahko naredi cikel v naključnem zaporedju. To se lahko zgodi v primeru, da se v naključnem zaporedju pojavi blok, katerega tajnopis je enak IV.
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}[b]{\textwidth}
+    \includegraphics[width=\textwidth]{images/OFB_encryption}
+    \caption{Šifriranje v načinu OFB}
+    \label{fig:cbcenc}
+  \end{subfigure}
+  \begin{subfigure}[b]{\textwidth}
+    \includegraphics[width=\textwidth]{images/OFB_decryption}
+    \caption{De-šifriranje v načinu OFB}
+    \label{fig:cbcdec}
+  \end{subfigure}
+  \caption{Način delovanja \gls{OFB}}
+  \label{fig:cfbmode}
+\end{figure}
+
+
 
 \subsection{Asimetrične šifre}
 
@@ -721,36 +860,39 @@ Poleg zasebnega ključa moramo moramo paziti tudi na zasebnost vrednosti $p$, $q
 \newacronym{ABE}{ABE}{Attribute Based Encryption}
 
 
-\subsection{Šifriranje na osnovi pogojev}
+\subsection{Šifriranje na osnovi parametrov}
 
 Poglejmo si za primer Anito, ki shrani šifrirane podatke v oblak. Anita ima datoteko $X$, ki bi jo rada delila s skupinama $Prijatelji$ in $Znanci$. Prav tako ima datoteko $Y$, ki bi jo rada delila s skupinama $Družina$ in $Prijatelji$. To lahko stori tako, da ustvari en ključ za datoteko $X$ in ta ključ deli s $Prijatelji$ in $Znanci$, nato ustvari drug ključ za datoteko $Y$ in ta ključ deli s skupinama $Družina$ in $Prijatelji$. Problem je, da mora Anita za vsako datoteko, ki jo želi deliti, ustvariti nov ključ.
 
 Naivna rešitev tega problema bi bila, da Anita ustvari en ključ za vsako skupino ljudi, s katerimi želi deliti datoteke. Vendar življenje ni preprosto, in lahko se zgodi, da neka oseba pripada večim skupinam s katerimi želi Anita deliti datoteke. Prav tako si lahko zaželi deliti neko datoteko samo z ljudmi, ki so hkrati $Prijatelji$ in $Sodelavci$. Recimo da je to datoteka $Z$. Tako datoteko lahko najprej šifrira s ključem, ki pripada skupini $Prijatelji$ in nato še s ključem, ki pripada skupini $Sodelavci$. Naivno bi mislili da je to dobra rešitev, vendar se izkaže da tak sistem ni odporen proti zaroti. Šifrirano datoteko lahko kot posamezniki odprejo samo ljudje, ki pripadajo obema skupinama, saj imajo le oni v posesti oba ključa. Vendar pa se lahko proti Aniti zarotita dva posameznika skupaj, kjer noben od nju ne pripada obema skupinama hkrati, vendar imata skupaj dostop do obeh ključev, saj vsak od nju pripada eni od skupin.
 
-Ta problem nam rešuje šifriranje na podlagi pogojev, v nadaljevanju ABE. Kratica ABE pride iz angleške besede \gls{ABE}. ABE je primer asimetrične šifre, kjer je možno tajnopis dešifrirati z več različnimi ključi, pod pogojem da ima ključ take lastnosti oziroma atribute, kot so bili predpisani ob šifriranju.
+Ta problem nam rešuje šifriranje na osnovi parametrov, v nadaljevanju ABE. Kratica ABE pride iz angleške besede \gls{ABE}. ABE je primer asimetrične šifre, kjer je možno tajnopis dešifrirati z več različnimi ključi, pod pogojem da ima ključ take parametre, kot so bili predpisani ob šifriranju.
 
 Možnost dešifriranja določajo pravila, ki so predstavljena z drevesi, kjer so notranja vozlišča logične operacije, listi pa pogoji, ki so lahko zadovoljeni ali nezadovoljeni. Drevo beremo od listov proti korenu in za vsako notranje vozlišče ugotovimo ali je v zadovoljenem ali nezadovoljenem stanju. Na koncu pridemo do korena drevesa, in dešifriranje uspe samo v primeru, da je koren drevesa v zadovoljenem stanju.
 
-Poznamo dve vrsti šifriranja na osnovi pogojev. V prvem je drevo, ki določa pravila shranjeno skupaj s ključem, v drugem primeru pa je shranjeno skupaj s tajnopisom.
-
-Neki narobenapisan
-
+Poznamo dve vrsti šifriranja na osnovi parametrov. V prvem je drevo, ki določa pravila shranjeno skupaj s ključem, v drugem primeru pa je shranjeno skupaj s tajnopisom.
 
 \chapter{Uporaba kriptografije v oblaku}
 
-Uvod, encryption at rest, in transit
+Največji problem uporabe šifriranja v oblaku je v bistvu enak kot povsod kjer poskušamo zagotoviti varnost na tak in drugačen način. Potrebno je najti kompromis med zadovoljivim nivojem varnosti in uporabnostjo. Trivialno je nareditit 100\% varnen sistem, vendar ta verjetno ne bo kaj prida uporaben.
+Ko iščemo kompromis med varnostjo in uporabnostjo, kaj hitro ugotovimo da je potrebno upoštevati še nekaj posebnosti oblaka. Če je v tradicionalnem sistemu največja skrb posvečena varni hrambi podatkov v mirovanju, je pri oblaku potrebno poskrbeti tudi za varen prenos podatkov do oblačnega sistema, saj le ta običajno poteka po Internetu, ki pa je nezavarovan komunikacijski kanal.
+
+
+\section{Varovanje podatkov v mirovanju}
+\label{subs:Varovanje podatkov v mirovanju}
+\section{Varovanje podatkov v tranzitu}
+\label{sec:Varovanje podatkov v tranzitu}
 
 \subsection{SSL in TLS}
+\label{sub:SSL in TLS}
 
-\subsection{Server-side encryption}
+
+\section{Varovanje podatkov med obdelavo}
+\label{sec:Varovanje podatkov med obdelavo}
+
+
 
 \subsection{Client-side encryption}
-
-\subsection{Homomorfne šifre}
-
-\subsection{Attribute based encryption}
-
-\subsection{Avtentikacija}
 
 
 
