@@ -1,4 +1,5 @@
 % openout_any=1 bibtex .latex/diploma
+%!TEX spellcheck = en-US ,sl-SI
 
 \documentclass[12pt,a4paper,openany]{book}
 
@@ -21,19 +22,11 @@
 \usepackage{amssymb}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage[a4paper]{geometry}
 \renewcommand{\baselinestretch}{1.3}
 
 \usepackage[pdftex,colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black,pagebackref]{hyperref}
 \usepackage{tikz}
-
-%Velikost strani - dvostransko
-\oddsidemargin 1.4cm
-\evensidemargin 0.35cm
-\textwidth 14cm
-\topmargin 0.26cm
-\headheight 0.6cm
-\headsep 1.5cm
-\textheight 20cm
 
 %Nastavitev glave in repa strani
 \pagestyle{fancy}
@@ -53,7 +46,7 @@
 
 \DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
 \mdfsetup{nobreak=true}
-\makeglossaries
+\makeglossaries{}
 \input{cc}
 
 %********************************************
@@ -84,7 +77,7 @@ Varnost podatkov v oblaku
 
 
 \vspace{2cm}
-{\Large Mentor: prof. dr. Aleksandar Jurišić}
+{\Large Mentor: prof.\ dr.\ Aleksandar Jurišić}
 
 \vfill
 {\Large Ljubljana, 2016}
@@ -125,7 +118,7 @@ Podrobnosti licence so dostopne na spletni strani \url{http://www.gnu.org/licens
 }
 
 \begin{center}
-\ \\ \vfill
+\vfill
 {\em
 Besedilo je oblikovano z urejevalnikom besedil \LaTeX.
 }
@@ -185,10 +178,10 @@ S svojim podpisom zagotavljam, da:
 \begin{itemize}
 	\item sem diplomsko delo izdelal/-a samostojno pod mentorstvom
 
-	prof. dr. Aleksandar Jurišić
+	prof.\ dr.\ Aleksandar Jurišić
 
 	\item	so elektronska oblika diplomskega dela, naslov (slov., angl.), povzetek (slov., angl.) ter ključne besede (slov., angl.) identični s tiskano obliko diplomskega dela
-	\item soglašam z javno objavo elektronske oblike diplomskega dela v zbirki ''Dela FRI''.
+	\item soglašam z javno objavo elektronske oblike diplomskega dela v zbirki ``Dela FRI''.
 \end{itemize}
 
 \vspace{1cm}
@@ -211,7 +204,7 @@ V Ljubljani, dne \today \hspace{1cm} Podpis avtorja/-ice:
 
 \thispagestyle{empty}
 ablak
-Mogoče :D
+Mogoče
 
 
 \newpage
@@ -231,7 +224,7 @@ Mogoče :D
 $\;$
 
 \vspace{5cm}
-\hfill {\Large \em Morebitno posvetilo}
+\hfill{\Large{\em{Morebitno posvetilo}}}
 \thispagestyle{empty}
 
 \newpage
@@ -256,7 +249,7 @@ $\;$
 \chapter*{Seznam uporabljenih kratic in simbolov}
 \thispagestyle{empty}
 
-\printglossaries
+\printglossaries{}
 
 %\cleardoublepage
 
@@ -302,7 +295,7 @@ Ključne besede v angleškem jeziku.
 
 \chapter{Uvod}
 
-V zadnjih letih smo priča bliskovitemu porastu popularnosti t.i. računalništva v oblaku. Gartner je v začetku leta 2015 uvrstil računalništvo v oblaku med 10 strateško najpomembnejših tehnoloških trendov, ki bodo krojili prihodnost. Oblak nam omogoča udobno, cenovno ugodno delo, kadarkoli in kjerkoli, tudi zunaj pisarne, saj je vse kar potrebujemo internetni dostop in računalnik ali telefon. Računalništvo v oblaku je posledica razvoja več različnih tehnologij, ki so skupaj omogočile cenovno učinkovite rešitve, ki so hkrati preproste za uporabo. Končni uporabniki uporabljajo oblak, ker je preprosto za uporabo, omogoča dostop do podatkov kjerkoli in kadarkoli. Na drugi strani vedno več podjetji v žeji, da znižajo stroške poslovanja in povečajo sposobnost prilagajanja zahtevam trga, seli svoje poslovanje v oblak. Posledica tega premika je selitev podatkov iz fizičnih nosilcev, ki so bili tradicionalno v lasti iste osebe kot podatki, v oblak. To pomeni da varnost hrambe svojih podatkov zaupamo tretjim osebam, kar niti ni nujno tako slabo, kot se sliši. Za veliko ljudi in manjših podjetji je skrb za varnost podatkov velik zalogaj, ki zahteva ustrezno tehnično izobrazbo, strojno opremo in prostor. Kadar hranimo podatke v oblaku, nič od tega ni potrebno, saj nam vse to zagotavlja ponudnik storitev v oblaku v zameno za mesečno naročnino. V nadaljevanju tega dela, bomo najprej pregledali kaj je oblak, kakšne oblike oblaka poznamo. Ko bomo opremljeni z osnovnim poznavanjem oblaka, si bomo pogledali še formalno definicijo varnosti nato pa bomo preučili kako vpeljava in vsesplošna uporaba oblaka vpliva na varnost naših podatkov.
+V zadnjih letih smo priča bliskovitemu porastu popularnosti tako imenovanega računalništva v oblaku. Gartner je v začetku leta 2015 uvrstil računalništvo v oblaku med 10 strateško najpomembnejših tehnoloških trendov, ki bodo krojili prihodnost. Oblak nam omogoča udobno, cenovno ugodno delo, kadarkoli in kjerkoli, tudi zunaj pisarne, saj je vse kar potrebujemo internetni dostop in računalnik ali telefon. Računalništvo v oblaku je posledica razvoja več različnih tehnologij, ki so skupaj omogočile cenovno učinkovite rešitve, ki so hkrati preproste za uporabo. Končni uporabniki uporabljajo oblak, ker je preprosto za uporabo, omogoča dostop do podatkov kjerkoli in kadarkoli. Na drugi strani vedno več podjetji v žeji, da znižajo stroške poslovanja in povečajo sposobnost prilagajanja zahtevam trga, seli svoje poslovanje v oblak. Posledica tega premika je selitev podatkov iz fizičnih nosilcev, ki so bili tradicionalno v lasti iste osebe kot podatki, v oblak. To pomeni da varnost hrambe svojih podatkov zaupamo tretjim osebam, kar niti ni nujno tako slabo, kot se sliši. Za veliko ljudi in manjših podjetji je skrb za varnost podatkov velik zalogaj, ki zahteva ustrezno tehnično izobrazbo, strojno opremo in prostor. Kadar hranimo podatke v oblaku, nič od tega ni potrebno, saj nam vse to zagotavlja ponudnik storitev v oblaku v zameno za mesečno naročnino. V nadaljevanju tega dela, bomo najprej pregledali kaj je oblak, kakšne oblike oblaka poznamo. Ko bomo opremljeni z osnovnim poznavanjem oblaka, si bomo pogledali še formalno definicijo varnosti nato pa bomo preučili kako vpeljava in vsesplošna uporaba oblaka vpliva na varnost naših podatkov.
 
 \section{Kaj je oblak?}
 Priljubljen internetni rek gre nekako takole: “There is no cloud, just someone else's computer”. Preprosto rečeno je to delno res, saj oblak ni nič drugega kot skupek velikega števila računalnikov, ki niso v lasti uporabnika storitve v oblaku, morda niso niti v lasti ponudnika storitve, ampak jih ta najema pri tretjem ponudniku. Pojem oblak je le krovni izraz za nove načine ponudbe in uporabe storitev, zato ga moramo podrobneje razdelati in razložiti.
@@ -412,11 +405,11 @@ Poleg treh ključnih lastnosti, ki jih najdemo zgoraj je Meier identificiral še
 
 \begin{description}
 
-\item[\Gls{overjanje}] identificira vir podatka oz. izvor operacije, ki je lahko človek ali računalnik in se prepričamo da je res tisti za katerega se izdaja.
+\item[\Gls{overjanje}] identificira vir podatka oziroma izvor operacije, ki je lahko človek ali računalnik in se prepričamo da je res tisti za katerega se izdaja.
 
 \item[\Gls{avtorizacija}] nadzira dostop do virov glede na pravila sistema in dodeljene pravice. Avtorizacijski mehanizmi uporabnikom preprečujejo da bi presegli svoja pooblastila.
 
-\item[\Gls{neizpodbitnost}] onemogoča uporabniku da izpodbija oz. zanika neko dejanje ali veljavnost pogodbe.
+\item[\Gls{neizpodbitnost}] onemogoča uporabniku da izpodbija oziroma zanika neko dejanje ali veljavnost pogodbe.
 
 \end{description}
 
@@ -538,8 +531,8 @@ Skozi zgodovino človeštva se je že zelo zgodaj pojavila želja po skrivanju s
 Šifrirne algoritme delimo na dve skupini:
 \begin{enumerate}
 
-	\item Simetrične oz. klasične šifre
-	\item Asimetrične šifre oz. kriptografija javnih ključev
+	\item Simetrične oziroma klasične šifre
+	\item Asimetrične šifre oziroma kriptografija javnih ključev
 
 \end{enumerate}
 
@@ -554,14 +547,14 @@ V kategorijo simetričnih šifer spadajo vse šifre, pri katerih se za šifriran
 Naj bo dano sporočilo $X$ velikosti $n$ ($|X|=n$), ki je sestavljeno iz $n$ osnovnih nosilcev informacij (to so lahko biti, bajti ali kaj čisto tretjega). Simbol $\|$ predstavlja združevanje (lepljenje) dveh nizov.
 
 $$
-X=x_0\|x_1\|x_2\|...\|x_{n-1}
+X=x_0 \| x_1 \| x_2 \| \dotsc \| x_{n-1}
 $$
 
 Bločna šifra vzame blok (del sporočila) velikosti $m$; $n=im, i\in\mathbb{N} $ in ga šifrira s ključem $K$. Tajnopis $Y$ tako pridobimo po naslednjem postopku:
 
 \begin{gather*}
-	y_j = e_K(e_{j} \| e_{j+1} \| \ldots \| e_{j+m-1})  \quad j=0,1,\ldots,i\\
-	Y = y_0\|y_1\|\ldots\|y_i
+	y_j = e_K(e_{j} \| e_{j+1} \| \dotsc \| e_{j+m-1})  \quad j=0,1,\dotsc,i\\
+	Y = y_0 \| y_1 \| \dotsc \| y_i
 \end{gather*}
 
 Bločne šifre delujejo na bloku podatkov fiksne velikosti (običajno velikost ključa določi velikost bloka) in v kolikor dolžina sporočila ni deljiva z $m$, je potrebno sporočilo dopolniti s posebnim zaporedjem znakov, dokler dolžina ni večkratnik števila $m$.
@@ -569,9 +562,9 @@ Bločne šifre delujejo na bloku podatkov fiksne velikosti (običajno velikost k
 Drugačen pristop pa uporabljajo tokovne šifre, ki iz ključa $K$ ustvarijo neskončno zaporedje ključev $z$, ki ga nato uporabijo za šifriranje sporočila.
 
 \begin{gather*}
-z=z_0\|z_1\|z_2\|\ldots\|z_n \\
-y_j=e_{z_j}(x_j) \quad j=0,1,\ldots,n\\
-Y = y_0\|y_1\|\ldots\|y_n \\
+z=z_0 \| z_1 \| z_2 \| \dotsc \| z_n \\
+y_j=e_{z_j}(x_j) \quad j=0,1,\dotsc,n\\
+Y = y_0 \| y_1 \| \dotsc \| y_n \\
 \end{gather*}
 
 Tak način šifriranja lahko uporabimo za poljubno dolga sporočila, brez potrebe po dopolnjevanju.
@@ -589,13 +582,13 @@ Tak način šifriranja lahko uporabimo za poljubno dolga sporočila, brez potreb
 
 \subsection{DES in 3DES}
 
-\gls{DES} je bil eden prvih modernih šifrirnih algoritmov. Originalna implementacija je nosila ime Lucifer in bila razvita v sedemdesetih letih v laboratorijih podjetja IBM. Kasneje je bila rahlo modificirana različica tega algoritma sprejeta s strani \acrshort{NIST}-a (takrat se je imenoval še \acrshort{NBS}) kot standard \gls{DES}.
+\gls{DES} je bil eden prvih modernih šifrirnih algoritmov. Originalna implementacija je nosila ime Lucifer in bila razvita v sedemdesetih letih v laboratorijih podjetja IBM.\  Kasneje je bila rahlo modificirana različica tega algoritma sprejeta s strani \acrshort{NIST}-a (takrat se je imenoval še \acrshort{NBS}) kot standard \gls{DES}.
 
 \gls{DES} je simetrična bločna šifra, ki deluje na blokih velikosti 64 bitov in uporablja 64 bitni ključ, vendar je v ključu možno poljubno izbrati le 56 bitov, preostalih 8 pa se uporablja samo za odkrivanje napak v ključu.
 
-Algoritem je sestavljen iz 16 identičnih korakov oz. krogov, nekaj pre- in post-procesiranja vhodnih podatkov, Feistelove F-funkcije ter funkcije, ki iz glavnega ključa ustvari zaporedje podključev. Na začetku se 64-bitni blok razdeli na dve 32-bitni polovici, levo in desno, ki se po vsakem končanem krogu algoritma zamenjata. Taka shema delovanja je znana tudi kot \gls{feistelovasifra}. V vsakem krogu se leva polovica bloka z operacijo $XOR$ zmeša z rezultatom Feistelove F-funkcije, ki kot vhodne parametre dobi pod-ključ trenutnega kroga in desno polovico bloka. Po koncu vsakega kroga se leva in desna polovica zamenjata.
+Algoritem je sestavljen iz 16 identičnih korakov oziroma krogov, nekaj pre- in post-procesiranja vhodnih podatkov, Feistelove F-funkcije ter funkcije, ki iz glavnega ključa ustvari zaporedje podključev. Na začetku se 64-bitni blok razdeli na dve 32-bitni polovici, levo in desno, ki se po vsakem končanem krogu algoritma zamenjata. Taka shema delovanja je znana tudi kot \gls{feistelovasifra}. V vsakem krogu se leva polovica bloka z operacijo $XOR$ zmeša z rezultatom Feistelove F-funkcije, ki kot vhodne parametre dobi pod-ključ trenutnega kroga in desno polovico bloka. Po koncu vsakega kroga se leva in desna polovica zamenjata.
 
-Ob prelomu tisočletja se je izkazalo da je \gls{DES}-ov 64-bitni o. 56-bitni ključ prešibak, da bi zadržal napade s surovo silo. Zato se je pojavila varianta algoritma imenovana 3DES. 3DES uporablja 3 ključe, pri čemer imamo na voljo 3 opcije za izbiro ključev.
+Ob prelomu tisočletja se je izkazalo da je \gls{DES}-ov 64-bitni o. 56-bitni ključ prešibak, da bi zadržal napade s surovo silo. Zato se je pojavila varianta algoritma imenovana 3DES.\ 3DES uporablja 3 ključe, pri čemer imamo na voljo 3 opcije za izbiro ključev.
 
 \begin{enumerate}
 \item Vse tri ključe izberemo neodvisno
@@ -658,7 +651,7 @@ Kjer je $C$ tajnopis in $P$ čistopis.
 
 \subsection{Načini delovanja bločnih šifer}
 
-Bločna šifra sama po sebi kot vhodni podatek lahko sprejme samo blok točno določene dolžine, kar ni najbolj praktično, saj so sporočila pogosto različnih in predvsem nepredvidljivih velikosti. Ta problem lahko rešimo tako, da uporabimo bločno šifro v enem od načinov delovanja.
+Bločna šifra sama po sebi kot vhodni podatek lahko sprejme samo blok točno določene dolžine, kar ni najbolj praktično, saj so sporočila pogosto različnih in predvsem nepredvidljivih velikosti. Poleg tega če isti blok čistopisa večkrat šifriramo z enakim ključem, dobimo kot rezultat vsakič isti tajnopis, kar je nezaželjen rezultat, saj morebitni napadalec lahko zazna vzorce v tajnopisu in iz tega poskuša razbrati pomen. Ta problem lahko rešimo tako, da uporabimo bločno šifro v enem od načinov delovanja.
 
 Način delovanja je algoritem, ki pove kako vhodno sporočilo razdeliti na bloke primerne velikosti in na kak način na teh blokih potem uporabiti bločno šifro.
 
@@ -678,40 +671,41 @@ Najpreprostejši način delovanja je \gls{ECB}. V tem načinu delovanja se sporo
   \begin{subfigure}[b]{\textwidth}
     \includegraphics[width=\textwidth]{images/ECB_encryption}
     \caption{Šifriranje v načinu \gls{ECB}}
-    \label{fig:ecbenc}
+\label{fig:ecbenc}
   \end{subfigure}
   \begin{subfigure}[b]{\textwidth}
     \includegraphics[width=\textwidth]{images/ECB_decryption}
-    \caption{De-šifriranje v načunu \gls{ECB}}
-    \label{fig:ecbdec}
+    \caption{De-šifriranje v načinu \gls{ECB}}
+\label{fig:ecbdec}
   \end{subfigure}
-  \caption{Način delovanja \gls{ECB}}\label
-  {fig:ecbmode}
+  \caption{Način delovanja \gls{ECB}}
+\label{fig:ecbmode}
+
 \end{figure}
 
 Vse to so sicer dobrodošle lastnosti, vendar ima \gls{ECB} nekaj resnih pomanjkljivosti, zaradi katerih ni primeren za uporabo v resničnem svetu, ampak služi bolj kot opomin, da močni šifrirni algoritmi kot je \gls{AES}, ne zagotavljajo varnosti, če so uporabljeni na napačen način.
 
-Slika \ref{fig:ecbbad} prikazuje uporabo 128 bitne AES šifre v načinu ECB. Na šifrirani sliki je še vedno možno razpoznati logotip Fakultete za računlništvo in informatiko, kar pomeni da tak način šifriranja ne zagotavlja varnosti.
+Slika~\ref{fig:ecbbad} prikazuje uporabo 128 bitne AES šifre v načinu ECB.\@ Na šifrirani sliki je še vedno možno razpoznati logotip Fakultete za računlništvo in informatiko, kar pomeni da tak način šifriranja ne zagotavlja varnosti.
 
 \begin{figure}[ht!]
   \centering
   \begin{subfigure}[b]{0.3\textwidth}
     \includegraphics[width=\textwidth]{images/LogoFRI}
     \caption{Original}
-    \label{fig:logoFRIorig}
+\label{fig:logoFRIorig}
   \end{subfigure}
   \begin{subfigure}[b]{0.3\textwidth}
     \includegraphics[width=\textwidth]{images/LogoFRI_ecb}
     \caption{AES-128-ECB}
-    \label{fig:logoFRIECB}
+\label{fig:logoFRIECB}
   \end{subfigure}
   \begin{subfigure}[b]{0.3\textwidth}
     \includegraphics[width=\textwidth]{images/LogoFRI_cbc}
     \caption{AES-128-CBC}
-    \label{fig:logoFRIECB}
+\label{fig:logoFRICBC}
   \end{subfigure}
   \caption{Primer različnih načinov šifriranja}
-  \label{fig:ecbbad}
+\label{fig:ecbbad}
 \end{figure}
 
 \newacronym{CBC}{CBC}{Cipher Block Chaining}
@@ -719,7 +713,7 @@ Slika \ref{fig:ecbbad} prikazuje uporabo 128 bitne AES šifre v načinu ECB. Na 
 \subsubsection{CBC}
 \label{subs:CBC}
 
-V načinu \Gls{CBC} se vsak blok čistopisa pred šifriranjem s pomočjo operacije $XOR$ zmeša z tajnopisom prejšnega bloka. Tak pristop naredi vsak naslednji blok odvisen od vseh prejšnih blokov. S tem se rešimo problema ponavlajočih se vzorcev v tajnopisu, kot smo jih videli v načinu ECB (slika \ref{fig:ecbbad}). Posebni primer je prvi blok, saj tu nimamo na voljo tajnopisa prejšnega bloka, s katerim bi izvedli operacijo $XOR$, zato namesto tajnopisa prejšnega bloka uporabimo \acrfull{IV}. Dodatno nam naključni \gls{IV} doda tudi element naključnosti v tajnopis, kar pomeni da tudi če šifriramo enako sporočilo z enakim ključem, tajnopis ne bo enak, saj smo uporabili drugačen \gls{IV}.
+V načinu \Gls{CBC} se vsak blok čistopisa pred šifriranjem s pomočjo operacije $XOR$ zmeša z tajnopisom prejšnjega bloka. Tak pristop naredi vsak naslednji blok odvisen od vseh prejšnjih blokov. S tem se rešimo problema ponavljajočih se vzorcev v tajnopisu, kot smo jih videli v načinu \acrshort{ECB} (slika~\ref{fig:ecbbad}). Posebni primer je prvi blok, saj tu nimamo na voljo tajnopisa prejšnjega bloka, s katerim bi izvedli operacijo $XOR$, zato namesto tajnopisa prejšnjega bloka uporabimo \acrfull{IV}. Dodatno nam naključni \gls{IV} doda tudi element naključnosti v tajnopis, kar pomeni da tudi če šifriramo enako sporočilo z enakim ključem, tajnopis ne bo enak, saj smo uporabili drugačen \gls{IV}.
 
 Slabost takega pristopa pa je da je operacija šifriranja strogo zaporedna, saj naslednjega bloka ne moremo šifrirati dokler ne končamo šifriranja trenutnega bloka.
 
@@ -727,16 +721,16 @@ Slabost takega pristopa pa je da je operacija šifriranja strogo zaporedna, saj 
   \centering
   \begin{subfigure}[b]{\textwidth}
     \includegraphics[width=\textwidth]{images/CBC_encryption}
-    \caption{Šifriranje v načinu CBC}
-    \label{fig:cbcenc}
+    \caption{Šifriranje v načinu \gls{CBC}}
+\label{fig:cbcenc}
   \end{subfigure}
   \begin{subfigure}[b]{\textwidth}
     \includegraphics[width=\textwidth]{images/CBC_decryption}
-    \caption{De-šifriranje v načinu CBC}
-    \label{fig:cbcdec}
+    \caption{De-šifriranje v načinu \gls{CBC}}
+\label{fig:cbcdec}
   \end{subfigure}
   \caption{Način delovanja \gls{CBC}}
-  \label{fig:cfbmode}
+\label{fig:cfbmode}
 \end{figure}
 
 \newacronym{CFB}{CFB}{Cipher Feedback}
@@ -744,7 +738,7 @@ Slabost takega pristopa pa je da je operacija šifriranja strogo zaporedna, saj 
 \newglossaryentry{otp}
 {
   name=enkratni ščit,
-  description={(ang. one time pad)},
+  description={(angl.\ one time pad)},
 }
 
 \subsubsection{CFB}
@@ -752,22 +746,22 @@ Slabost takega pristopa pa je da je operacija šifriranja strogo zaporedna, saj 
 
 V \gls{CFB} načinu delovanja se bločna šifra uporablja kot tokovna. Prednost takega načina delovanja je, da ni potrebe po dopolnjevanju sporočila, prav tako pa se uporablja samo ena smer delovanja bločne šifre (to je ponavadi smer šifriranja), kar poenostavi implementacijo takega načina v strojni opremi.
 
-Kot se vidi na sliki \ref{fig:cfbmode}, se v tem načinu delovanja bločna šifra uporablja le za generiranje naključnega zaporedja, tajnopis pa rezultat operacije $XOR$ med čistopisom in naključnim zaporedjem, podobno kot pri enkratnem ščitu (ang. one time pad).
+Kot se vidi na sliki~\ref{fig:cfbmode}, se v tem načinu delovanja bločna šifra uporablja le za generiranje naključnega zaporedja, tajnopis pa rezultat operacije $XOR$ med čistopisom in naključnim zaporedjem, podobno kot pri enkratnem ščitu (angl.\ one time pad).
 
 \begin{figure}[h!]
   \centering
   \begin{subfigure}[b]{\textwidth}
     \includegraphics[width=\textwidth]{images/CFB_encryption}
     \caption{Šifriranje v načinu CFB}
-    \label{fig:cbcenc}
+\label{fig:cbcenc}
   \end{subfigure}
   \begin{subfigure}[b]{\textwidth}
     \includegraphics[width=\textwidth]{images/CFB_decryption}
     \caption{De-šifriranje v načinu CFB}
-    \label{fig:cbcdec}
+\label{fig:cbcdec}
   \end{subfigure}
   \caption{Način delovanja \gls{CFB}}
-  \label{fig:cfbmode}
+\label{fig:cfbmode}
 \end{figure}
 
 \newacronym{OFB}{OFB}{Output Feedback}
@@ -776,22 +770,22 @@ Kot se vidi na sliki \ref{fig:cfbmode}, se v tem načinu delovanja bločna šifr
 \subsubsection{OFB}
 \label{subs:OFB}
 
-V \gls{OFB} je podoben načinu \gls{CFB}, s to razliko, da se za generiranje nakjučnega zaporedja uporablja samo \gls{IV}. Prav to je lahko problematična lastnost, v primeru da šifriramo daljša sporočila, saj se lahko naredi cikel v naključnem zaporedju. To se lahko zgodi v primeru, da se v naključnem zaporedju pojavi blok, katerega tajnopis je enak IV.
+V \gls{OFB} je podoben načinu \gls{CFB}, s to razliko, da se za generiranje nakjučnega zaporedja uporablja samo \gls{IV}. Prav to je lahko problematična lastnost, v primeru da šifriramo daljša sporočila, saj se lahko naredi cikel v naključnem zaporedju. To se lahko zgodi v primeru, da se v naključnem zaporedju pojavi blok, katerega tajnopis je enak IV.\@
 
 \begin{figure}[h!]
   \centering
   \begin{subfigure}[b]{\textwidth}
     \includegraphics[width=\textwidth]{images/OFB_encryption}
-    \caption{Šifriranje v načinu OFB}
-    \label{fig:cbcenc}
+    \caption{Šifriranje v načinu OFB
+\label{fig:cbcenc}
   \end{subfigure}
   \begin{subfigure}[b]{\textwidth}
     \includegraphics[width=\textwidth]{images/OFB_decryption}
     \caption{De-šifriranje v načinu OFB}
-    \label{fig:cbcdec}
+\label{fig:cbcdec}
   \end{subfigure}
   \caption{Način delovanja \gls{OFB}}
-  \label{fig:cfbmode}
+\label{fig:cfbmode}
 \end{figure}
 
 
@@ -866,7 +860,7 @@ Poglejmo si za primer Anito, ki shrani šifrirane podatke v oblak. Anita ima dat
 
 Naivna rešitev tega problema bi bila, da Anita ustvari en ključ za vsako skupino ljudi, s katerimi želi deliti datoteke. Vendar življenje ni preprosto, in lahko se zgodi, da neka oseba pripada večim skupinam s katerimi želi Anita deliti datoteke. Prav tako si lahko zaželi deliti neko datoteko samo z ljudmi, ki so hkrati $Prijatelji$ in $Sodelavci$. Recimo da je to datoteka $Z$. Tako datoteko lahko najprej šifrira s ključem, ki pripada skupini $Prijatelji$ in nato še s ključem, ki pripada skupini $Sodelavci$. Naivno bi mislili da je to dobra rešitev, vendar se izkaže da tak sistem ni odporen proti zaroti. Šifrirano datoteko lahko kot posamezniki odprejo samo ljudje, ki pripadajo obema skupinama, saj imajo le oni v posesti oba ključa. Vendar pa se lahko proti Aniti zarotita dva posameznika skupaj, kjer noben od nju ne pripada obema skupinama hkrati, vendar imata skupaj dostop do obeh ključev, saj vsak od nju pripada eni od skupin.
 
-Ta problem nam rešuje šifriranje na osnovi parametrov, v nadaljevanju ABE. Kratica ABE pride iz angleške besede \gls{ABE}. ABE je primer asimetrične šifre, kjer je možno tajnopis dešifrirati z več različnimi ključi, pod pogojem da ima ključ take parametre, kot so bili predpisani ob šifriranju.
+Ta problem nam rešuje šifriranje na osnovi parametrov, v nadaljevanju ABE.\@ Kratica ABE pride iz angleške besede \gls{ABE}. ABE je primer asimetrične šifre, kjer je možno tajnopis dešifrirati z več različnimi ključi, pod pogojem da ima ključ take parametre, kot so bili predpisani ob šifriranju.
 
 Možnost dešifriranja določajo pravila, ki so predstavljena z drevesi, kjer so notranja vozlišča logične operacije, listi pa pogoji, ki so lahko zadovoljeni ali nezadovoljeni. Drevo beremo od listov proti korenu in za vsako notranje vozlišče ugotovimo ali je v zadovoljenem ali nezadovoljenem stanju. Na koncu pridemo do korena drevesa, in dešifriranje uspe samo v primeru, da je koren drevesa v zadovoljenem stanju.
 
@@ -874,12 +868,80 @@ Poznamo dve vrsti šifriranja na osnovi parametrov. V prvem je drevo, ki določa
 
 \chapter{Uporaba kriptografije v oblaku}
 
-Največji problem uporabe šifriranja v oblaku je v bistvu enak kot povsod kjer poskušamo zagotoviti varnost na tak in drugačen način. Potrebno je najti kompromis med zadovoljivim nivojem varnosti in uporabnostjo. Trivialno je nareditit 100\% varnen sistem, vendar ta verjetno ne bo kaj prida uporaben.
-Ko iščemo kompromis med varnostjo in uporabnostjo, kaj hitro ugotovimo da je potrebno upoštevati še nekaj posebnosti oblaka. Če je v tradicionalnem sistemu največja skrb posvečena varni hrambi podatkov v mirovanju, je pri oblaku potrebno poskrbeti tudi za varen prenos podatkov do oblačnega sistema, saj le ta običajno poteka po Internetu, ki pa je nezavarovan komunikacijski kanal.
+Največji problem uporabe šifriranja v oblaku je v bistvu enak kot povsod kjer poskušamo zagotoviti varnost na tak in drugačen način. Potrebno je najti kompromis med zadovoljivim nivojem varnosti in uporabnostjo. Trivialno je narediti 100\% varen sistem, vendar ta verjetno ne bo kaj prida uporaben.
 
+Prav tako ločimo tri stanja digitalnih podatkov: podatki v mirovanju, podatki v tranzitu in podatki v uporabi. V vsakem stanju obstajajo različne varnostne zahteve, zato se potrebni različni pristopi. Jaber in Zolkipli\cite{jaber2013use} sta uporabila tabelo~\ref{tbl:cloudtriad}, ki lepo ponazori načine uporabe kriptografije glede na različna stanja podatkov.
+
+\newglossaryentry{cold-boot-attack}
+{
+  name=Cold boot attack,
+  description={Cold boot attack},
+}
+
+
+
+\begin{table}[]
+  \centering
+  \begin{tabular}{lllll}
+                                        & Podatki v mirovanju                   & Podatki v uporabi                    & Podatki v tranzitu              &  \\ \cline{2-4}
+    \multicolumn{1}{l|}{Zaupnost}       & \multicolumn{1}{l|}{Simetrične šifre} & \multicolumn{1}{l|}{Homomorfne šifre} & \multicolumn{1}{l|}{TLS}        &  \\ \cline{2-4}
+    \multicolumn{1}{l|}{Istovetnost}    & \multicolumn{1}{l|}{MAC}              & \multicolumn{1}{l|}{Homomorfne šifre} & \multicolumn{1}{l|}{TLS}        &  \\ \cline{2-4}
+    \multicolumn{1}{l|}{Razpoložjivost} & \multicolumn{1}{l|}{redundanca}       & \multicolumn{1}{l|}{redundanca}       & \multicolumn{1}{l|}{redundanca} &  \\ \cline{2-4}
+  \end{tabular}
+  \caption{}
+  \label{tbl:cloudtriad}
+\end{table}
+
+Zgodovinsko gledano je bila kriptografija izumljena z motivom varovanja komunikacij, torej podatkov v tranzitu, vendar na problem varovanja podatkov v mirovanju lahko gledamo kot na komunikacijo s samim sabo. To nam predvsem poenostavi problem distribucije ključev, zato so za varovanje podatkov v mirovanju zelo primerne simetrične šifre.
+
+Na začetku obdobja računalništva se največ pozornosti posvečalo predvsem varnosti podatkov v mirovanju, saj so se informacijski sistemi nahajali znotraj podjetja, oziroma so bili do podjetja povezani preko najetih vodov. Prav tako so se podatki obdelovali na strojni opremi, ki je bila v lasti podjetja in se je nahajala na varni lokaciji. S prihodom storitev v oblaku, se je ta paradigma spremenila. Podatke je treba najprej prenesti v oblačni sistem, največkrat kar preko Interneta. Prav tako podatke v oblak pošljemo z namenom, da jih bomo tam obdelovali in analizirali, kar pomeni da je potrebno poskrbeti tudi za varnost podatkov v uporabi.
+
+\newacronym{SSL}{SSL}{Secure Sockets Layer}
+\newacronym{TLS}{TLS}{Transport Layer Security}
+
+To se odraža tudi v pristopih k varovanju podatkov v različnih stanjih. Dočim za varovanje podatkov v mirovanju obstajajo ustaljene prakse, pa za ostali dve področji velja, da se nenehno spreminjata. Na področju varovanja podatkov v tranzitu, ki ga v primeru oblačnih sistemov večinoma pokrivata kriptografska protokola \acrfull{SSL} in njegov naslednik \acrfull{TLS}, je v zadnjih letih prišlo do odkritji različnih napadov in posledično opustitve določenih verzij protokolov, ker te niso več zagotavljale zadovoljivega nivoja varnosti. Drugačna pa je situacija na področju varovanja podatkov v uporabi, saj v preteklosti ni bilo velike potrebe po praktični implementaciji takih kriptografskih protokolov, vendar se je s prihodom oblačnih storitev tudi to področje začelo pospešeno razvijati.
+
+
+\newglossaryentry{cold-boot-attack}
+{
+  name=Cold boot attack,
+  description={Cold boot attack},
+}
+
+\newglossaryentry{izlocanje-dvojnic}
+{
+  name=Izločanje dvojnic,
+  description={angl.\ deduplication},
+}
 
 \section{Varovanje podatkov v mirovanju}
 \label{subs:Varovanje podatkov v mirovanju}
+
+Podatke v mirovanju predstavljajo vsi podatki na trajnem pomnilniku, izklučujoč podatke ki so trenutno v traznitu in podatke, ki so trenutno v delovnem pomnilniku računalnika. Praviloma so to podatki ki se ne spreminjajo pogosto oziroma arhivski podatki, ki se sploh ne spreminjajo. Količinsko predstavljajo glavnino vseh podatkov, kar pomeni da morajo biti kriptografski algoritmi, ki delujejo na temi podatki hitri. Zato se za varovanje takih podatkov zelo primerne simetrične šifre.
+
+Podatki v mirovanju so dolgotrajne narave, kar pomeni da je dolgotrajna tudi skrb za varnost šifrirnih ključev, ki nam zagotavljajo dostop do teh podatkov. V preteklosti so bili ključi ``shranjeni'' kar v uporabnikovi glavi, vendar ob količini podatkov s katerimi operiramo danes, je to žal postala misija nemogoče. Dodaten problem predstavlja dejstvo, da je do podatkov pogosto potrebno dostopati povsem avtomatsko, brez posredovanja človeka.
+
+V kontekstu oblačnih sistemov je zaželjina tudi sposobnost deuplikacije podatkov
+
+
+\subsubsection{Šifrirni algoritmi}
+\label{subs:Šifrirni algoritmi}
+
+
+
+\subsubsection{Upravljanje ključev}
+\label{subs:Upravljanje ključev}
+
+
+
+
+
+\subsubsection{Problemi varovanja podatkov v mirovanju}
+\label{subs:Problemi varovanja podatkov v mirovanju}
+
+
+
+
 \section{Varovanje podatkov v tranzitu}
 \label{sec:Varovanje podatkov v tranzitu}
 
