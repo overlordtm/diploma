@@ -1,5 +1,4 @@
 % openout_any=1 bibtex .latex/diploma
-%!TEX spellcheck = en-US ,sl-SI
 
 \documentclass[12pt,a4paper,openany]{book}
 
@@ -13,8 +12,6 @@
 \usepackage{cite}
 \usepackage{mathrsfs}
 \usepackage{enumitem}
-%\usepackage[nolist,nohyperlinks]{acronym}
-\usepackage[acronym,toc,xindy]{glossaries}
 \usepackage{todonotes}
 \usepackage{mdframed}
 \usepackage{mathtools}
@@ -25,7 +22,9 @@
 \usepackage[a4paper, headheight=15pt]{geometry}
 \renewcommand{\baselinestretch}{1.3}
 
+
 \usepackage[pdftex,colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black,pagebackref,unicode]{hyperref}
+\usepackage[acronym,toc,xindy]{glossaries}
 \usepackage{tikz}
 
 %Nastavitev glave in repa strani
@@ -224,7 +223,7 @@ Mogoče
 $\;$
 
 \vspace{5cm}
-\hfill{\Large{\em{Morebitno posvetilo}}}
+\hfill{\Large \em Morebitno posvetilo \/ }
 \thispagestyle{empty}
 
 \newpage
@@ -768,7 +767,7 @@ Kot se vidi na sliki~\ref{fig:cfbmode}, se v tem načinu delovanja bločna šifr
 \subsubsection{OFB}
 \label{subs:OFB}
 
-V \gls{OFB} je podoben načinu \gls{CFB}, s to razliko, da se za generiranje nakjučnega zaporedja uporablja samo \gls{IV}. Prav to je lahko problematična lastnost, v primeru da šifriramo daljša sporočila, saj se lahko naredi cikel v naključnem zaporedju. To se lahko zgodi v primeru, da se v naključnem zaporedju pojavi blok, katerega tajnopis je enak IV.\@
+V \gls{OFB} je podoben načinu \gls{CFB}, s to razliko, da se za generiranje naključnega zaporedja uporablja samo \gls{IV}. Prav to je lahko problematična lastnost, v primeru da šifriramo daljša sporočila, saj se lahko naredi cikel v naključnem zaporedju. To se lahko zgodi v primeru, da se v naključnem zaporedju pojavi blok, katerega tajnopis je enak IV.\@
 
 \begin{figure}[ht!]
   \centering
@@ -876,8 +875,6 @@ Prav tako ločimo tri stanja digitalnih podatkov: podatki v mirovanju, podatki v
   description={Cold boot attack},
 }
 
-
-
 \begin{table}[]
   \centering
   \begin{tabular}{lllll}
@@ -906,39 +903,30 @@ To se odraža tudi v pristopih k varovanju podatkov v različnih stanjih. Dočim
   description={Cold boot attack},
 }
 
-\newglossaryentry{izlocanje-dvojnic}
+\newglossaryentry{deduplication}
 {
-  name=Izločanje dvojnic,
+  name=izločanje dvojnic,
   description={angl.\ deduplication},
 }
 
 \section{Varovanje podatkov v mirovanju}
 \label{subs:Varovanje podatkov v mirovanju}
 
-Podatke v mirovanju predstavljajo vsi podatki na trajnem pomnilniku, izklučujoč podatke ki so trenutno v traznitu in podatke, ki so trenutno v delovnem pomnilniku računalnika. Praviloma so to podatki ki se ne spreminjajo pogosto oziroma arhivski podatki, ki se sploh ne spreminjajo. Količinsko predstavljajo glavnino vseh podatkov, kar pomeni da morajo biti kriptografski algoritmi, ki delujejo na temi podatki hitri. Zato se za varovanje takih podatkov zelo primerne simetrične šifre.
+Podatke v mirovanju predstavljajo vsi podatki na trajnem pomnilniku, izključujoč podatke ki so trenutno v tranzitu in podatke, ki so trenutno v delovnem pomnilniku računalnika. Praviloma so to podatki ki se ne spreminjajo pogosto oziroma arhivski podatki, ki se sploh ne spreminjajo. Količinsko predstavljajo glavnino vseh podatkov, kar pomeni da morajo biti kriptografski algoritmi, ki delujejo na temi podatki hitri. Zato se za varovanje takih podatkov zelo primerne simetrične šifre.
 
 Podatki v mirovanju so dolgotrajne narave, kar pomeni da je dolgotrajna tudi skrb za varnost šifrirnih ključev, ki nam zagotavljajo dostop do teh podatkov. V preteklosti so bili ključi ``shranjeni'' kar v uporabnikovi glavi, vendar ob količini podatkov s katerimi operiramo danes, je to žal postala misija nemogoče. Dodaten problem predstavlja dejstvo, da je do podatkov pogosto potrebno dostopati povsem avtomatsko, brez posredovanja človeka.
 
-V kontekstu oblačnih sistemov je zaželjina tudi sposobnost deuplikacije podatkov
+V kontekstu oblačnih sistemov je zaželjena tudi sposobnost \glslink{deduplication}{izločanja dvojnic}.
 
 
 \subsubsection{Šifrirni algoritmi}
 \label{subs:Šifrirni algoritmi}
 
-
-
 \subsubsection{Upravljanje ključev}
 \label{subs:Upravljanje ključev}
 
-
-
-
-
 \subsubsection{Problemi varovanja podatkov v mirovanju}
 \label{subs:Problemi varovanja podatkov v mirovanju}
-
-
-
 
 \section{Varovanje podatkov v tranzitu}
 \label{sec:Varovanje podatkov v tranzitu}
