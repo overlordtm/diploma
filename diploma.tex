@@ -134,8 +134,8 @@ Besedilo je oblikovano z urejevalnikom besedil \LaTeX.
 % stran 3 med uvodnimi listi
 \thispagestyle{empty}
 
-Namesto te strani {\bf vstavite} original izdane teme diplomskega dela s podpisom mentorja in dekana ter \v zigom fakultete, ki ga diplomant
-dvigne v študent\-skem referatu,  preden odda izdelek v vezavo!
+Namesto te strani {\bf vstavite} original izdane teme diplomskega dela s podpisom mentorja in dekana ter žigom fakultete, ki ga diplomant
+dvigne v študentskem referatu, preden odda izdelek v vezavo!
 
 \newpage
 
@@ -168,7 +168,7 @@ Spodaj podpisani/-a \hspace{0.5cm} Andraž Vrhovec,
 z vpisno številko \hspace{0.5cm} 63080117,
 
 \vspace{1cm}
-sem avtor/-ica diplomskega dela z naslovom:
+sem avtor diplomskega dela z naslovom:
 
 \vspace{0.5cm}
 Varnost v oblaku
@@ -223,7 +223,7 @@ Mogoče
 $\;$
 
 \vspace{5cm}
-\hfill{\Large \em Morebitno posvetilo \/ }
+\hfill{\Large \em Morebitno posvetilo\/ }
 \thispagestyle{empty}
 
 \newpage
@@ -255,7 +255,7 @@ $\;$
 \clearpage{\pagestyle{empty}\cleardoublepage}
 
 %********************************************
-%zacno se glavni listi, ki so numerirani z arabskimi stevilkami
+%začno se glavni listi, ki so numerirani z arabskimi stevilkami
 
 \setcounter{page}{1}
 \pagenumbering{arabic}
@@ -264,7 +264,7 @@ $\;$
 
 \addcontentsline{toc}{chapter}{Povzetek}
 
-\todo[inline]{Napisi povzetek}
+\todo[inline]{Napiši povzetek}
 
 \vspace{1.3cm}
 \noindent
@@ -296,7 +296,11 @@ Ključne besede v angleškem jeziku.
 
 V zadnjih letih smo priča bliskovitemu porastu popularnosti tako imenovanega računalništva v oblaku. Gartner je v začetku leta 2015 uvrstil računalništvo v oblaku med 10 strateško najpomembnejših tehnoloških trendov, ki bodo krojili prihodnost. Oblak nam omogoča udobno, cenovno ugodno delo, kadarkoli in kjerkoli, tudi zunaj pisarne, saj je vse kar potrebujemo internetni dostop in računalnik ali telefon. Računalništvo v oblaku je posledica razvoja več različnih tehnologij, ki so skupaj omogočile cenovno učinkovite rešitve, ki so hkrati preproste za uporabo. Končni uporabniki uporabljajo oblak, ker je preprosto za uporabo, omogoča dostop do podatkov kjerkoli in kadarkoli. Na drugi strani vedno več podjetji v žeji, da znižajo stroške poslovanja in povečajo sposobnost prilagajanja zahtevam trga, seli svoje poslovanje v oblak. Posledica tega premika je selitev podatkov iz fizičnih nosilcev, ki so bili tradicionalno v lasti iste osebe kot podatki, v oblak. To pomeni da varnost hrambe svojih podatkov zaupamo tretjim osebam, kar niti ni nujno tako slabo, kot se sliši. Za veliko ljudi in manjših podjetji je skrb za varnost podatkov velik zalogaj, ki zahteva ustrezno tehnično izobrazbo, strojno opremo in prostor. Kadar hranimo podatke v oblaku, nič od tega ni potrebno, saj nam vse to zagotavlja ponudnik storitev v oblaku v zameno za mesečno naročnino. V nadaljevanju tega dela, bomo najprej pregledali kaj je oblak, kakšne oblike oblaka poznamo. Ko bomo opremljeni z osnovnim poznavanjem oblaka, si bomo pogledali še formalno definicijo varnosti nato pa bomo preučili kako vpeljava in vsesplošna uporaba oblaka vpliva na varnost naših podatkov.
 
+
 \section{Kaj je oblak?}
+\label{sec:Kaj je oblak?}
+
+
 Priljubljen internetni rek gre nekako takole: “There is no cloud, just someone else's computer”. Preprosto rečeno je to delno res, saj oblak ni nič drugega kot skupek velikega števila računalnikov, ki niso v lasti uporabnika storitve v oblaku, morda niso niti v lasti ponudnika storitve, ampak jih ta najema pri tretjem ponudniku. Pojem oblak je le krovni izraz za nove načine ponudbe in uporabe storitev, zato ga moramo podrobneje razdelati in razložiti.
 
 NIST opredeli oblak kot: “Računalništvo v oblaku je model, ki omogoča vseprisoten preprost dostop na zahtevo do skupnega računalniških virov (omrežja, strežniki, pomnilniški mediji, aplikacije in storitve), ki so lahko hitro pridobljeni ali sproščeni z minimalnim trudom in popolnoma samodejno, brez posredovanja ponudnika storitve. Model oblaka sestavlja pet ključnih lastnosti, trije nivoji storitve in štirje tipi oblakov.”
@@ -444,7 +448,7 @@ Razkritje podatkov je stara in vseprisotna grožnja v vseh računalniških siste
 Obseg škode, ki ga povzroči razkritje podatkov je odvisen od občutljivosti podatkov, ki so bili odtujeni. V veliko državah po svetu obstajajo zakoni in predpisi, ki podjetja ki hranijo določene tipe občutljivih podatkov obvezuje k določenim standardom zaščite. V primeru, da pride do razkritja podatkov, lahko odgovorno podjetje doleti denarna kazen ali celo kazenska ovadba. Poleg škode, ki je bila povzročena z razkritjem podatkov in morebitno denarno kaznijo so tu še stroški preiskave incidenta, obveščanja uporabnikov in izguba ugleda podjetja.
 
 \subsubsection{Pomanjkljivo upravljanje identitete, poverilnic in nadzora dostopa}
-Površno upravljanje lahko pripelje do nenamernega razkritja uporabniških imen, gesel in ključev, ki se uporabljajo za dostop do storitev. Ponudniki storitev v oblaku upravljajo z identitetami milijonov uporabnikov in zaposlenimi, zato je potrebna velika skrb da se zagotovi pravilno uupravljanjeidentitete skozi celoten cikel. Potrebno je poskrbeti za takojšno prekinitev veljavnosti identitete, v primeru da pride do odpovedi delovnega razmerja zaposlenega ali prekinitve pogodbe s stranko. Uporaba šibkih gesel in neuporaba dvostopenjske avtentikacije in neuporaba rotacije šifrirnih ključev, gesel in certifikatov so primeri slabe prakse, ki v primeru napada napadalcu oolajšajodelo in povečajo razsežnosti škode, ki jo napadalec lahko povzroči.
+Površno upravljanje lahko pripelje do nenamernega razkritja uporabniških imen, gesel in ključev, ki se uporabljajo za dostop do storitev. Ponudniki storitev v oblaku upravljajo z identitetami milijonov uporabnikov in zaposlenimi, zato je potrebna velika skrb da se zagotovi pravilno uupravljanje identitete skozi celoten cikel. Potrebno je poskrbeti za takojšno prekinitev veljavnosti identitete, v primeru da pride do odpovedi delovnega razmerja zaposlenega ali prekinitve pogodbe s stranko. Uporaba šibkih gesel in neuporaba dvostopenjske avtentikacije in neuporaba rotacije šifrirnih ključev, gesel in certifikatov so primeri slabe prakse, ki v primeru napada napadalcu olajšajodelo in povečajo razsežnosti škode, ki jo napadalec lahko povzroči.
 
 \subsubsection{Nezaščiteni uporabniški in programski vmesniki}
 Ponudniki storitev v oblaku ponujajo nabor uporabniški in programskih vmesnikov, preko katerih uporabniki dostopajo do storitev ponudnika. So stična točka med uporabnikom in storitvijo in od varnosti in dostopnosti teh vmesnikov je odvisna varnost celotnega sistema. So prva linija obrambe sistema, zato je pri zasnovi teh vmesnikov potrebno misliti na varnost s pravilno implementacijo varnostnih mehanizmov kot so avtentikacija, nadzor dostopa in šifriranje. Vmesniki morajo biti zasnovani tako, da ščitijo pred namerno in nenamerno zlorabo sistema.
@@ -481,7 +485,7 @@ Napad zavrnitve storitve je ena najpreprostejših in pogosto zelo učinkovitih o
 Zadnji sklop varnostnih groženj v oblaku predstavljajo ranljivosti, ki so posledica ene od ključnih lastnosti oblaka, to je uporaba skupnih virov. Ponudniki storitev v oblaku zagotavljajo navidezno neomejene vire končnemu uporabniku s pomočjo tehnologij virtualizacije in skupne uporabe. Pri tem uporabljajo klasično strojno opremo, ki sicer s pomočjo posebne programske opreme omogoča delitev virov, vendar ni bila zasnovana, da bi omogočala varno skupno uporabo. Tak tip napadov izkorišča dejstvo, da si različni virtualni strežniki delijo fizično strojno opremo, zato je možno s posebno obliko napada, ki se imenuje napad preko stranskega kanala pridobiti informacije iz žrtvinega strežnika, brez da bi dejansko prišlo do vdora. V času pisanja še ni prišlo do takega tipa vdora v praksi, vendar obstajajo primeri takih napadov, ki so jih demonstrirali pod laboratorijskimi pogoji.
 
 
-\newglossaryentry{cistopis}
+\newglossaryentry{plaintext}
 {
   name=čistopis,
   description={plaintext},
@@ -505,7 +509,7 @@ Zadnji sklop varnostnih groženj v oblaku predstavljajo ranljivosti, ki so posle
 
 Kriptografija omogoča doseganje informacijske varnosti s pomočjo matematičnih postopkov. Verjetno najbolj poznan tak postopek je šifriranje, ki zagotavlja zaupnost podatkov, pogled tega v področje kriptografije spadajo tudi digitalni podpisi, avtentikacijske kode MAC in zgoščevalne funkcije, ki nam pomagajo pri ohranjanju celovitosti in overjanju identitete podatkov.
 
-Šifriranje je način, kako skriti vsebino sporočila (\gls{cistopis}a) pred nepooblaščenimi očmi. To se doseže z uporabo algoritma, ki mu kot vhodni podatek damo \gls{cistopis} in \gls{sifrirnikljuc}, on pa nam vrne \gls{tajnopis}. \Gls{tajnopis} vsebuje enake informacije kot \gls{cistopis}, vendar ima to lastnost, da ga je mogoče prebrati le v primeru, da posedujete ključ za dešifriranje. V kolikor takega ključa ne posedujete, je iz \gls{tajnopis}a praktično nemogoče razbrati vsebino originalnega sporočila.\footnote{Težanost je odvisna od moči kriptografske sheme in pravilnosti implementacije}
+Šifriranje je način, kako skriti vsebino sporočila (\gls{plaintext}a) pred nepooblaščenimi očmi. To se doseže z uporabo algoritma, ki mu kot vhodni podatek damo \gls{plaintext} in \gls{sifrirnikljuc}, on pa nam vrne \gls{tajnopis}. \Gls{tajnopis} vsebuje enake informacije kot \gls{plaintext}, vendar ima to lastnost, da ga je mogoče prebrati le v primeru, da posedujete ključ za dešifriranje. V kolikor takega ključa ne posedujete, je iz \gls{tajnopis}a praktično nemogoče razbrati vsebino originalnega sporočila.\footnote{Težanost je odvisna od moči kriptografske sheme in pravilnosti implementacije}
 
 To pomeni, da lahko tajnopis javno objavimo, varovati je potrebno samo ključ, s katerim se le ta dešifrira. Ta lastnost nam omogoča, da varno poslujemo s svojo banko, pošiljamo e-pošto, ki jo lahko prebere samo prejemnik navkljub temu, da Internet ni varen komunikacijski kanal in na njemu mrgoli zlobnežev, ki želijo priti do naših zaupnih podatkov.
 
@@ -914,9 +918,25 @@ To se odraža tudi v pristopih k varovanju podatkov v različnih stanjih. Dočim
 
 Podatke v mirovanju predstavljajo vsi podatki na trajnem pomnilniku, izključujoč podatke ki so trenutno v tranzitu in podatke, ki so trenutno v delovnem pomnilniku računalnika. Praviloma so to podatki ki se ne spreminjajo pogosto oziroma arhivski podatki, ki se sploh ne spreminjajo. Količinsko predstavljajo glavnino vseh podatkov, kar pomeni da morajo biti kriptografski algoritmi, ki delujejo na temi podatki hitri. Zato se za varovanje takih podatkov zelo primerne simetrične šifre.
 
-Podatki v mirovanju so dolgotrajne narave, kar pomeni da je dolgotrajna tudi skrb za varnost šifrirnih ključev, ki nam zagotavljajo dostop do teh podatkov. V preteklosti so bili ključi ``shranjeni'' kar v uporabnikovi glavi, vendar ob količini podatkov s katerimi operiramo danes, je to žal postala misija nemogoče. Dodaten problem predstavlja dejstvo, da je do podatkov pogosto potrebno dostopati povsem avtomatsko, brez posredovanja človeka.
+Podatki v mirovanju so dolgotrajne narave, kar pomeni da je dolgotrajna tudi skrb za varnost šifrirnih ključev, ki nam zagotavljajo dostop do teh podatkov. V preteklosti so bili ključi ``shranjeni'' kar v uporabnikovi glavi, vendar ob količini podatkov s katerimi operiramo danes, je to žal postala misija nemogoče. Dodaten problem predstavlja dejstvo, da je do podatkov pogosto potreben povsem avtomatski dostop, brez posredovanja človeka.
 
-V kontekstu oblačnih sistemov je zaželjena tudi sposobnost \glslink{deduplication}{izločanja dvojnic}.
+V kontekstu oblačnih sistemov je pri zagotavljanju varnosti podatkov v mirovanju najbolj problematičen del prav upravljanje s ključi, saj je potrebno poskrbeti za ključe velikega števila uporabnikov. Prav tako je s stališča varnosti neodgovorno, da zaupamo ustvarjanje in upravljanje šifrirnih ključev tretji osebi, v našem primeru ponudniku storitve v oblaku. Zato je v primeru, da je potrebno zagotoviti visoko stopnjo varnosti, kljub temu pa želimo podatke hraniti v oblaku, najbolj primerna šifriranje podatkov še preden jih pošljemo v oblak, tako imenovano client-side šifriranje. Prednosti so očitne, saj šifrirni ključ nikoli ne rabi zapustiti našega računalnika, tako da smo lahko prepričani, da do naših podatkov shranjenih v oblaku, ne more dostopati nihče.
+
+V primeru oblačnih storitev, ki ponujajo hrambo velikih količin podatkov v oblaku (storitve, kot so Dropbox) pa je zaželena lastnost tudi sposobnost \glslink{deduplication}{izločanja dvojnic}. Kot smo omenili v poglavju ~\ref{sec:Kaj je oblak?}, oblačni sistemi izkoriščajo skupno rabo sredstev, kar pomeni da so datoteke večjega števila uporabnikov shranjene na skupnem pomnilniku. Pogosto se namreč zgodi, da več uporabnikov želi shraniti identično datoteko v oblak in v takem primeru je najbolj optimalna rešitev da se taka datoteka shrani samo enkrat, saj bi v nasprotnem primeru samo tratili razpoložljiv prostor z podvojenimi kopijami datotek.
+
+\begin{mdframed}[frametitle={Semantična varnost}]
+Kriptosistem je semantično varen, če iz tajnopisa ni mogoče na praktičen način\footnote{v polinomskem času na verjetnostnem Turingovem stroju} pridobiti nobene informacije o čistopisu.
+\end{mdframed}
+
+\newglossaryentry{ciphertext indistinguishability}
+{
+  name=ciphertext indistinguishability,
+  description={angl. ciphertext indistinguishability},
+}
+
+Kasneje sta \cite{Goldwasser1984} Goldwasser in Micali pokazala, da je problem semantične varnosti enakovreden problemu \gls{ciphertext indistinguishability}, ki zahteva da potencialni napadalec ne more razločiti poljubnih dveh tajnopisov glede na njun čistopis.
+
+Problem izločanja dvojnic in zagotavljanja (semantične) varnosti
 
 
 \subsubsection{Šifrirni algoritmi}
@@ -964,10 +984,10 @@ V kontekstu oblačnih sistemov je zaželjena tudi sposobnost \glslink{deduplicat
 %********************************************
 
 \newpage
-
+\nocite{*}
 \bibliographystyle{slplainurl}
 \addcontentsline{toc}{chapter}{Literatura}
-\label{stran_literatura}
+\label{literatura}
 \bibliography{diploma}
 
 \end{document}
