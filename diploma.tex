@@ -426,11 +426,17 @@ Druga stvar, ki dela sisteme v oblaku zanimive za napadalce je koncentracija pod
 
 Ranljivost računalniškega sistema je lastnost, zaradi katere je ogroženo njegovo delovanje in varnost podatkov, ki jih vsebuje. Storitve, ki delujejo v oblaku tako podedujejo vse ranljivosti, ki jih imajo klasični računalniški sistemi, zaradi posebnih lastnosti oblaka, pa obstaja se nekaj groženj, specifičnih za storitve v oblaku:
 
+\newglossaryentry{mitm}
+{
+  name={napad vrinjenega napadalca},
+  description={angl. man-in-the-middle/MITM attack}
+}
+
 \begin{description}[style=nextline]
 
 \item[Nedovoljen dostop do upraviteljskega in programskega vmesnika] Narava storitev v oblaku zahteva da so upraviteljski vmesniki dostopni preko Interneta široki množici uporabnikov, kar posledično pomeni da so ti vmesniki izpostavljeni napadom preko Interneta.
 
-\item[Ranljivosti internetnega protokola] Ena ključnih lastnosti oblaka je tudi široka dostopnost preko standardiziranih protokolov kot je Internetni protokol, zato je potrebno ko govorimo o varnosti v oblaku upoštevati tudi vse ranljivosti Internetnega protokola, kot so recimo napadi vrinjenega napadalca (Man in the middle attack).
+\item[Ranljivosti internetnega protokola] Ena ključnih lastnosti oblaka je tudi široka dostopnost preko standardiziranih protokolov kot je Internetni protokol, zato je potrebno ko govorimo o varnosti v oblaku upoštevati tudi vse ranljivosti Internetnega protokola, kot je recimo \gls{mitm}.
 
 \item[Ranljivosti obnovitve podatkov] Zaradi uporabe skupnih virov, ki je ena ključnih lastnosti oblaka, se lahko en fizični nosilec podatkov, ki je prej pripadal enemu uporabniku kasneje dodeli drugemu uporabniku. Če pred tem ne poskrbimo za varen izbris podatkov, lahko drugi uporabnik obnovi izbrisane podatke z nosilca in tako pride do razkritja podatkov.
 
@@ -805,6 +811,8 @@ Na žalost pa so zaradi svoje povezanosti s težkimi matematičnimi problemi pog
 V začetni fazi vzpostavljanja varnega komunikacijska kanala se zaradi preprostejše distribucije ključev uporabi asimetrični algoritem. Ko je varni kanal vzpostavljen se preko njega izmenja sejni ključ, to je ključ ki se
 
 \subsubsection{Izmenjava ključa Diffe-Hellman}
+\label{subs:Izmenjava ključa Diffe-Hellman}
+
 
 Metoda za izmenjavo ključa Diffe-Hellman je bil prvi javno objavljen algoritem, ki uporablja princip javnih in zasebnih ključev. V praksi omogoča, da se dva neznanca preko nezavarovanega kanala kot je Internet dogovorita za skupni ključ, ki ga bosta uporabljala za nadaljnjo komunikacijo. Prva sta ga objavila Whitfield Diffe in Martin Hellman leta 1976, vendar se je kasneje izkazalo, da je angleška tajna služba odkrila princip kriptografije javnih ključev že leto poprej, vendar to ostalo tajno do leta 1997.
 
@@ -871,18 +879,12 @@ Poznamo dve vrsti šifriranja na osnovi parametrov. V prvem je drevo, ki določa
 
 Največji problem uporabe šifriranja v oblaku je v bistvu enak kot povsod kjer poskušamo zagotoviti varnost na tak in drugačen način. Potrebno je najti kompromis med zadovoljivim nivojem varnosti in uporabnostjo. Trivialno je narediti 100\% varen sistem, vendar ta verjetno ne bo kaj prida uporaben.
 
-Prav tako ločimo tri stanja digitalnih podatkov: podatki v mirovanju, podatki v tranzitu in podatki v uporabi. V vsakem stanju obstajajo različne varnostne zahteve, zato se potrebni različni pristopi. Jaber in Zolkipli\cite{jaber2013use} sta uporabila tabelo~\ref{tbl:cloudtriad}, ki lepo ponazori načine uporabe kriptografije glede na različna stanja podatkov.
-
-\newglossaryentry{cold-boot-attack}
-{
-  name=Cold boot attack,
-  description={Cold boot attack},
-}
+Prav tako ločimo tri stanja digitalnih podatkov: podatki v mirovanju, podatki v gibanju in podatki v uporabi. V vsakem stanju obstajajo različne varnostne zahteve, zato se potrebni različni pristopi. Jaber in Zolkipli\cite{jaber2013use} sta uporabila tabelo~\ref{tbl:cloudtriad}, ki lepo ponazori načine uporabe kriptografije glede na različna stanja podatkov.
 
 \begin{table}[]
   \centering
   \begin{tabular}{lllll}
-                                        & Podatki v mirovanju                   & Podatki v uporabi                    & Podatki v tranzitu              &  \\ \cline{2-4}
+                                        & Podatki v mirovanju                   & Podatki v uporabi                    & Podatki v gibanju              &  \\ \cline{2-4}
     \multicolumn{1}{l|}{Zaupnost}       & \multicolumn{1}{l|}{Simetrične šifre} & \multicolumn{1}{l|}{Homomorfne šifre} & \multicolumn{1}{l|}{TLS}        &  \\ \cline{2-4}
     \multicolumn{1}{l|}{Istovetnost}    & \multicolumn{1}{l|}{MAC}              & \multicolumn{1}{l|}{Homomorfne šifre} & \multicolumn{1}{l|}{TLS}        &  \\ \cline{2-4}
     \multicolumn{1}{l|}{Razpoložjivost} & \multicolumn{1}{l|}{redundanca}       & \multicolumn{1}{l|}{redundanca}       & \multicolumn{1}{l|}{redundanca} &  \\ \cline{2-4}
@@ -891,14 +893,14 @@ Prav tako ločimo tri stanja digitalnih podatkov: podatki v mirovanju, podatki v
 \label{tbl:cloudtriad}
 \end{table}
 
-Zgodovinsko gledano je bila kriptografija izumljena z motivom varovanja komunikacij, torej podatkov v tranzitu, vendar na problem varovanja podatkov v mirovanju lahko gledamo kot na komunikacijo s samim sabo. To nam predvsem poenostavi problem distribucije ključev, zato so za varovanje podatkov v mirovanju zelo primerne simetrične šifre.
+Zgodovinsko gledano je bila kriptografija izumljena z motivom varovanja komunikacij, torej podatkov v gibanju, vendar na problem varovanja podatkov v mirovanju lahko gledamo kot na komunikacijo s samim sabo. To nam predvsem poenostavi problem distribucije ključev, zato so za varovanje podatkov v mirovanju zelo primerne simetrične šifre.
 
 Na začetku obdobja računalništva se največ pozornosti posvečalo predvsem varnosti podatkov v mirovanju, saj so se informacijski sistemi nahajali znotraj podjetja, oziroma so bili do podjetja povezani preko najetih vodov. Prav tako so se podatki obdelovali na strojni opremi, ki je bila v lasti podjetja in se je nahajala na varni lokaciji. S prihodom storitev v oblaku, se je ta paradigma spremenila. Podatke je treba najprej prenesti v oblačni sistem, največkrat kar preko Interneta. Prav tako podatke v oblak pošljemo z namenom, da jih bomo tam obdelovali in analizirali, kar pomeni da je potrebno poskrbeti tudi za varnost podatkov v uporabi.
 
 \newacronym{SSL}{SSL}{Secure Sockets Layer}
 \newacronym{TLS}{TLS}{Transport Layer Security}
 
-To se odraža tudi v pristopih k varovanju podatkov v različnih stanjih. Dočim za varovanje podatkov v mirovanju obstajajo ustaljene prakse, pa za ostali dve področji velja, da se nenehno spreminjata. Na področju varovanja podatkov v tranzitu, ki ga v primeru oblačnih sistemov večinoma pokrivata kriptografska protokola \acrfull{SSL} in njegov naslednik \acrfull{TLS}, je v zadnjih letih prišlo do odkritji različnih napadov in posledično opustitve določenih verzij protokolov, ker te niso več zagotavljale zadovoljivega nivoja varnosti. Drugačna pa je situacija na področju varovanja podatkov v uporabi, saj v preteklosti ni bilo velike potrebe po praktični implementaciji takih kriptografskih protokolov, vendar se je s prihodom oblačnih storitev tudi to področje začelo pospešeno razvijati.
+To se odraža tudi v pristopih k varovanju podatkov v različnih stanjih. Dočim za varovanje podatkov v mirovanju obstajajo ustaljene prakse, pa za ostali dve področji velja, da se nenehno spreminjata. Na področju varovanja podatkov v gibanju, ki ga v primeru oblačnih sistemov večinoma pokrivata kriptografska protokola \acrfull{SSL} in njegov naslednik \acrfull{TLS}, je v zadnjih letih prišlo do odkritji različnih napadov in posledično opustitve določenih verzij protokolov, ker te niso več zagotavljale zadovoljivega nivoja varnosti. Drugačna pa je situacija na področju varovanja podatkov v uporabi, saj v preteklosti ni bilo velike potrebe po praktični implementaciji takih kriptografskih protokolov, vendar se je s prihodom oblačnih storitev tudi to področje začelo pospešeno razvijati.
 
 
 \newglossaryentry{cold-boot-attack}
@@ -916,28 +918,17 @@ To se odraža tudi v pristopih k varovanju podatkov v različnih stanjih. Dočim
 \section{Varovanje podatkov v mirovanju}
 \label{subs:Varovanje podatkov v mirovanju}
 
-Podatke v mirovanju predstavljajo vsi podatki na trajnem pomnilniku, izključujoč podatke ki so trenutno v tranzitu in podatke, ki so trenutno v delovnem pomnilniku računalnika. Praviloma so to podatki ki se ne spreminjajo pogosto oziroma arhivski podatki, ki se sploh ne spreminjajo. Količinsko predstavljajo glavnino vseh podatkov, kar pomeni da morajo biti kriptografski algoritmi, ki delujejo na temi podatki hitri. Zato se za varovanje takih podatkov zelo primerne simetrične šifre.
+Podatke v mirovanju predstavljajo vsi podatki na trajnem pomnilniku, izključujoč podatke ki so trenutno v gibanju in podatke, ki so trenutno v delovnem pomnilniku računalnika. Praviloma so to podatki ki se ne spreminjajo pogosto oziroma arhivski podatki, ki se sploh ne spreminjajo. Količinsko predstavljajo glavnino vseh podatkov, kar pomeni da morajo biti kriptografski algoritmi, ki delujejo na temi podatki hitri. Zato se za varovanje takih podatkov zelo primerne simetrične šifre.
 
 Podatki v mirovanju so dolgotrajne narave, kar pomeni da je dolgotrajna tudi skrb za varnost šifrirnih ključev, ki nam zagotavljajo dostop do teh podatkov. V preteklosti so bili ključi ``shranjeni'' kar v uporabnikovi glavi, vendar ob količini podatkov s katerimi operiramo danes, je to žal postala misija nemogoče. Dodaten problem predstavlja dejstvo, da je do podatkov pogosto potreben povsem avtomatski dostop, brez posredovanja človeka.
 
 V kontekstu oblačnih sistemov je pri zagotavljanju varnosti podatkov v mirovanju najbolj problematičen del prav upravljanje s ključi, saj je potrebno poskrbeti za ključe velikega števila uporabnikov. Prav tako je s stališča varnosti neodgovorno, da zaupamo ustvarjanje in upravljanje šifrirnih ključev tretji osebi, v našem primeru ponudniku storitve v oblaku. Zato je v primeru, da je potrebno zagotoviti visoko stopnjo varnosti, kljub temu pa želimo podatke hraniti v oblaku, najbolj primerna šifriranje podatkov še preden jih pošljemo v oblak, tako imenovano client-side šifriranje. Prednosti so očitne, saj šifrirni ključ nikoli ne rabi zapustiti našega računalnika, tako da smo lahko prepričani, da do naših podatkov shranjenih v oblaku, ne more dostopati nihče.
 
-V primeru oblačnih storitev, ki ponujajo hrambo velikih količin podatkov v oblaku (storitve, kot so Dropbox) pa je zaželena lastnost tudi sposobnost \glslink{deduplication}{izločanja dvojnic}. Kot smo omenili v poglavju ~\ref{sec:Kaj je oblak?}, oblačni sistemi izkoriščajo skupno rabo sredstev, kar pomeni da so datoteke večjega števila uporabnikov shranjene na skupnem pomnilniku. Pogosto se namreč zgodi, da več uporabnikov želi shraniti identično datoteko v oblak in v takem primeru je najbolj optimalna rešitev da se taka datoteka shrani samo enkrat, saj bi v nasprotnem primeru samo tratili razpoložljiv prostor z podvojenimi kopijami datotek.
+V primeru oblačnih storitev, ki ponujajo hrambo velikih količin podatkov v oblaku (storitve, kot so Dropbox) pa je zaželena lastnost tudi sposobnost \glslink{deduplication}{izločanja dvojnic}. Kot smo omenili v poglavju ~\ref{sec:Kaj je oblak?}, oblačni sistemi izkoriščajo skupno rabo sredstev, kar pomeni da so datoteke večjega števila uporabnikov shranjene na skupnem pomnilniku. Pogosto se namreč zgodi, da več uporabnikov želi shraniti identično datoteko v oblak in v takem primeru je najbolj optimalna rešitev da se taka datoteka shrani samo enkrat, saj bi v nasprotnem primeru samo tratili razpoložljiv prostor z podvojenimi kopijami datotek. Vendar v primeru uporabe šifriranja se bo ista datoteka, šifrirana s ključi dveh različnih uporabnikov zelo verjetno zašifrirala v dva popolnoma različna tajnopisa.
 
-\begin{mdframed}[frametitle={Semantična varnost}]
-Kriptosistem je semantično varen, če iz tajnopisa ni mogoče na praktičen način\footnote{v polinomskem času na verjetnostnem Turingovem stroju} pridobiti nobene informacije o čistopisu.
-\end{mdframed}
-
-\newglossaryentry{ciphertext indistinguishability}
-{
-  name=ciphertext indistinguishability,
-  description={angl. ciphertext indistinguishability},
-}
-
-Kasneje sta \cite{Goldwasser1984} Goldwasser in Micali pokazala, da je problem semantične varnosti enakovreden problemu \gls{ciphertext indistinguishability}, ki zahteva da potencialni napadalec ne more razločiti poljubnih dveh tajnopisov glede na njun čistopis.
-
-Problem izločanja dvojnic in zagotavljanja (semantične) varnosti
-
+% \begin{mdframed}[frametitle={Semantična varnost}]
+% Kriptosistem je semantično varen, če iz tajnopisa ni mogoče na praktičen način\footnote{v polinomskem času na verjetnostnem Turingovem stroju} pridobiti nobene informacije o čistopisu.
+% \end{mdframed}
 
 \subsubsection{Šifrirni algoritmi}
 \label{subs:Šifrirni algoritmi}
@@ -945,23 +936,78 @@ Problem izločanja dvojnic in zagotavljanja (semantične) varnosti
 \subsubsection{Upravljanje ključev}
 \label{subs:Upravljanje ključev}
 
-\subsubsection{Problemi varovanja podatkov v mirovanju}
-\label{subs:Problemi varovanja podatkov v mirovanju}
+\subsubsection{Konvergentne kriptografske sheme}
+\label{subs:Konvergentne kriptografske sheme}
 
-\section{Varovanje podatkov v tranzitu}
-\label{sec:Varovanje podatkov v tranzitu}
+
+\begin{mdframed}[frametitle={Polinomska varnost}]
+\label{def:polysec}
+Za dano šifrirno funkcijo $e$ in poljubna dva čistopisa $p_1$ in $p_2$ iz katerih pridobimo tajnopisa $c=e(p_1)$ in $c=e(p_1)$ velja: Sistem je polinomsko varen, če velja da v polinomskem času ne moremo ugotoviti kateri $c$ pripada kateremu čistopisu z verjetnostjo občutno večjo kot $0.5$.
+\end{mdframed}
+
+
+\newglossaryentry{ciphertext indistinguishability}
+{
+  name=ciphertext indistinguishability,
+  description={angl. ciphertext indistinguishability},
+}
+
+Kasneje sta \cite{Goldwasser1984} Goldwasser in Micali pokazala, da je problem semantične varnosti enakovreden problemu \gls{ciphertext indistinguishability}, ki zahteva, da napadalec ne more razločiti poljubnih dveh tajnopisov glede na njun čistopis.
+
+The primary security disadvantage of this approach, as identified
+in its original description [10], is that it leaks some information. In
+particular, convergent encryption reveals if two ciphertext strings
+decrypt to the same plaintext value. However, this behavior is nec-
+essary in systems that use deduplication, since it allows a system
+to remove duplicate plaintext data chunks while only observing the
+ciphertext; information leakage is part of the compromise needed
+to achieve space-efficiency through deduplication.
+
+Problem izločanja dvojnic in zagotavljanja (semantične) varnosti
+
+
+\section{Varovanje podatkov v gibanju}
+\label{sec:Varovanje podatkov v gibanju}
+
+Za podatke v gibanju veljajo vsi podatki, ki se preko interneta pretakajo od uporabnika proti oblaku in obratno. Poleg tega pa so podatki v gibanju tudi vsi podatki, ki se prenašajo med različnimi strežniki znotraj oblačnega sistema.
+
+Omrežja po katerih podatki potujejo velikokrat uporabljajo dinamične usmerjevalne algoritme, ne moremo vnaprej vedeti po kateri poti bodo podatki potovali. Podatki v gibanju na svoji poti potujejo skozi veliko omrežnih naprav, katere imajo vse vpogled v podatke, prav tako pa jim ne moremo zaupati. Dodatno nevarnost predstavlja še napad \gls{mitm}, kjer napadalec izkoristi dinamičnost omrežja in se vrine na pot podatkov med uporabnika in oblačni sistem.
+
+Podatki so v gibanju praviloma malo časa, zato ni potrebe po kompleksnem upravljanju ključev. S pomočjo algoritmov za varno izmenjavo ključev, kot je recimo Diffe-Hellman algoritem opisan v poglavju~\ref{subs:Izmenjava ključa Diffe-Hellman}, je možno da se za vsako sejo uporabi nov, naključno generiran ključ.
+
+% Najbolj razširjen protokol za zaščito podatkov med tem ko so v gibanju je \gls{SSL} in njegov naslednik \gls{TLS}. Poleg njega se predvsem za statične povezave med dvema omrežjema uporabljajo še protokoli iz družine VPN. Znotraj omrežja ponudnika pa se lahko uporabijo tudi tehnologije kot je VLAN. VLAN ne zagotavlja varnosti s pomočjo šifriranja, ampak deluje na principu omejevanja dostopa do prometa, ki sicer poteka po skupnem mediju. Tak način pristopa sicer ščiti pred napadalci, ki imajo ustrezno malo pooblastil, recimo drugi uporabniki sistema, ne more pa nas začititi pred napadalci notranjimi napadalci, kot so zaposleni pri ponudniku storitve.
 
 \subsection{SSL in TLS}
 \label{sub:SSL in TLS}
+\todo[inline]{Opis protokola, opis napadov}
+
+\subsubsection{Prihodnja varnost}
+\label{subs:Prihodnja varnost}
 
 
-\section{Varovanje podatkov med obdelavo}
-\label{sec:Varovanje podatkov med obdelavo}
 
+\section{Varovanje podatkov v uporabi}
+\label{sec:Varovanje podatkov v uporabi}
 
+\newglossaryentry{rootkit}
+{
+  name=korenski komplet,
+  description={angl. rootkit},
+}
 
-\subsection{Client-side encryption}
+\newglossaryentry{varno vecstransko računanje}
+{
+  name=varno večstransko računanje,
+  description={angl. secure multi-party computation},
+}
 
+Podatki v uporabi so zelo kratkotrajne narave, vendar jih je kljub temu zelo težko zaščititi. Problem izhaja iz same definicije podatkov v uporabi, saj so to podatki, nad katerimi računalniški sistem želi izvesti neko operacijo, oziroma jih prikazati uporabniku. Podatki v uporabi se nahajajo v delovnem pomnilniku računalnika, in so zato izpostavljeni tako imenovanemu \glslink{cold-boot-attack}{napadu cold-boot}, kjer napadalec dobesedno zamrzne stanje pomnilnika ob delujočem računalniku in nato poskuša iz njega izvleči vsebino, predvsem šifrirne ključe, saj lahko z njihovo pomočjo dešifrira veliko večjo količino podatkov, ki so trenutno v mirovanju ali gibanju.
+
+Kjub temu pa tveganje za napad cold-boot ni veliko, saj z napadalčeve strani zahteva fizičen dostop do sistema in kar nekaj tehnologije. Večji problem predstavlja morebitna okužba sistema s \glslink{rootkit}{korenskim kompletom}, ki napadalcu omogoča dostop do celotnega pomnilnika sistema.
+
+Rešitve tega problema se lahko lotimo na več načinov. Najstarejši način je popolna sprememba načina, kako računamo stvari.
+
+\todo[inline]{Šifriranje delovnega pomnilnika, homomorfna enkricpija, secure MPC}
 
 
 
