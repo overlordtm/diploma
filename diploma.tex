@@ -1,6 +1,6 @@
 % openout_any=1 bibtex .latex/diploma
 
-\documentclass[12pt,a4paper,openany]{book}
+\documentclass[12pt,a4paper,openany,tikz]{book}
 
 \usepackage[utf8]{inputenc}
 \usepackage{cmap}
@@ -19,8 +19,11 @@
 \usepackage{amssymb}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{tikz}
+\usetikzlibrary{graphs,graphs.standard,quotes}
 \usepackage[a4paper, headheight=15pt]{geometry}
 \renewcommand{\baselinestretch}{1.3}
+
 
 
 \usepackage[pdftex,colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black,pagebackref,unicode]{hyperref}
@@ -107,13 +110,6 @@ intelektualno lastnino, Streliška 1, 1000 Ljubljana.
 \begin{center}% 0.66 / 0.89 = 0.741573033707865
   \CcImageCc{0.741573033707865}\hspace*{1ex}\CcGroupBySa{1}{1ex}
 \end{center}
-}
-
-\vspace*{1.5cm}
-{\small \noindent
-Izvorna koda diplomskega dela, njenih rezultatov in v ta namen razvite programske opreme je ponujena pod GNU General Public License,
-različica 3 ali (po želji) novejšo različico. To pomeni, da se lahko prosto uporablja, distribuira in/ali predeluje pod njenimi pogoji.
-Podrobnosti licence so dostopne na spletni strani \url{http://www.gnu.org/licenses/}.
 }
 
 \begin{center}
@@ -314,7 +310,7 @@ NIST opredeli oblak kot: ``Računalništvo v oblaku je model, ki omogoča vsepri
 
    \item[Bliskovita prožnost] Uporabnik lahko preprosto poveča ali zmanjša zmogljivosti virov, ki jih potrebuje glede na potrebe. Uporabnik ima pogosto občutek da so mu na voljo neomejene zmogljivosti.
 
-   \item[Merjenje porabe in obračun glede na porabo virov]  Oblačni sistemi samodejno nadzirajo in optimizirajo porabo virov s pomočjo metrik (poraba prostora, pasovne širine, procesorskega časa …). Poraba virov se nadzira, kontrolira in poroča, kar omogoča transparentnost za ponudnika in uporabnika.
+   \item[Merjenje porabe in obračun glede na porabo virov]  Oblačni sistemi samodejno nadzirajo in optimizirajo porabo virov s pomočjo metrik (poraba prostora, pasovne širine, procesorskega časa \ldots). Poraba virov se nadzira, kontrolira in poroča, kar omogoča transparentnost za ponudnika in uporabnika.
 \end{description}
 
 \newacronym{SaaS}{SaaS}{Software as a Service}
@@ -426,17 +422,17 @@ Druga stvar, ki dela sisteme v oblaku zanimive za napadalce je koncentracija pod
 
 Ranljivost računalniškega sistema je lastnost, zaradi katere je ogroženo njegovo delovanje in varnost podatkov, ki jih vsebuje. Storitve, ki delujejo v oblaku tako podedujejo vse ranljivosti, ki jih imajo klasični računalniški sistemi, zaradi posebnih lastnosti oblaka, pa obstaja se nekaj groženj, specifičnih za storitve v oblaku:
 
-\newglossaryentry{mitm}
+\newglossaryentry{MITM}
 {
   name={napad vrinjenega napadalca},
-  description={angl. man-in-the-middle/MITM attack}
+  description={angl.\ man-in-the-middle/MITM attack}
 }
 
 \begin{description}[style=nextline]
 
 \item[Nedovoljen dostop do upraviteljskega in programskega vmesnika] Narava storitev v oblaku zahteva da so upraviteljski vmesniki dostopni preko Interneta široki množici uporabnikov, kar posledično pomeni da so ti vmesniki izpostavljeni napadom preko Interneta.
 
-\item[Ranljivosti internetnega protokola] Ena ključnih lastnosti oblaka je tudi široka dostopnost preko standardiziranih protokolov kot je Internetni protokol, zato je potrebno ko govorimo o varnosti v oblaku upoštevati tudi vse ranljivosti Internetnega protokola, kot je recimo \gls{mitm}.
+\item[Ranljivosti internetnega protokola] Ena ključnih lastnosti oblaka je tudi široka dostopnost preko standardiziranih protokolov kot je Internetni protokol, zato je potrebno ko govorimo o varnosti v oblaku upoštevati tudi vse ranljivosti Internetnega protokola, kot je recimo \gls{MITM}.
 
 \item[Ranljivosti obnovitve podatkov] Zaradi uporabe skupnih virov, ki je ena ključnih lastnosti oblaka, se lahko en fizični nosilec podatkov, ki je prej pripadal enemu uporabniku kasneje dodeli drugemu uporabniku. Če pred tem ne poskrbimo za varen izbris podatkov, lahko drugi uporabnik obnovi izbrisane podatke z nosilca in tako pride do razkritja podatkov.
 
@@ -536,6 +532,11 @@ Zadnji sklop varnostnih groženj v oblaku predstavljajo ranljivosti, ki so posle
   description={encryption key},
 }
 
+\newglossaryentry{otp}
+{
+  name=enkratni ščit,
+  description={(angl.\ one time pad)},
+}
 
 \chapter{Zaščita podatkov s pomočjo kriptografije}
 
@@ -544,6 +545,8 @@ Kriptografija omogoča doseganje informacijske varnosti s pomočjo matematičnih
 Šifriranje je način, kako skriti vsebino sporočila (\gls{plaintext}a) pred nepooblaščenimi očmi. To se doseže z uporabo algoritma, ki mu kot vhodni podatek damo \gls{plaintext} in \gls{sifrirnikljuc}, on pa nam vrne \gls{tajnopis}. \Gls{tajnopis} vsebuje enake informacije kot \gls{plaintext}, vendar ima to lastnost, da ga je mogoče prebrati le v primeru, da posedujete ključ za dešifriranje. V kolikor takega ključa ne posedujete, je iz \gls{tajnopis}a praktično nemogoče razbrati vsebino originalnega sporočila.\footnote{Težanost je odvisna od moči kriptografske sheme in pravilnosti implementacije}
 
 To pomeni, da lahko tajnopis javno objavimo, varovati je potrebno samo ključ, s katerim se le ta dešifrira. Ta lastnost nam omogoča, da varno poslujemo s svojo banko, pošiljamo e-pošto, ki jo lahko prebere samo prejemnik navkljub temu, da Internet ni varen komunikacijski kanal in na njemu mrgoli zlobnežev, ki želijo priti do naših zaupnih podatkov.
+
+Potrebno se je zavedati da so formalne zahteve za $100\%$ varnost zelo visoke, zato se v praksi največkrat uporabi princip računske varnosti, ker pomeni da varnost kriptosistema sloni na predpostavi, da so računske zahteve za razbitje kriptografske sheme veliko višje od tistih, ki jih ima na voljo potencialni napadalec. Najbolj znana implementacija popolne varnosti je sicer \gls{otp}, ki ga je leta 1918 patentiral Gilbert S. Vernam~\cite{vernam1919secret}, za katerega je Claude Shannon v leta 1949 objavljenem poročilu\cite{shannon1949communication} dokazal, da zagotavlja popolno varnost. Kot zanimivost lahko povemo, da je domnevno do enakih zaključkov še nekaj let prej, prišel tudi ruski znanstvenik Vladimir Kotelnikov, vendar njegovo poročilo še vedno ostaja zaupno. Problem \glslink{otp}{enkratnega ščita} je v tem, da zahteva ključ enake dolžine kot sporočilo, ki ga želimo šifrirati. Prav tako pa lahko vsak ključ uporabimo samo enkrat, v nasprotnem primeru pa sistem ne zagotavlja več popolne varnosti.
 
 \
 
@@ -563,6 +566,8 @@ Zgornjo matematično definicijo se da povzeti z naslednjimi besedami. Kriptograf
 
 Skozi zgodovino človeštva se je že zelo zgodaj pojavila želja po skrivanju sporočil in s tem so se razvile tudi prve metode šifriranja, vendar nobena od njih ni prestala preizkusa časa.
 
+\
+
 Šifrirne algoritme delimo na dve skupini:
 \begin{enumerate}
 
@@ -571,9 +576,18 @@ Skozi zgodovino človeštva se je že zelo zgodaj pojavila želja po skrivanju s
 
 \end{enumerate}
 
-Simetrične šifre so najstarejša in najbolj razširjena vrsta šifriranja, kamor spadajo tudi vse zgodovinske šifre, ki se ne uporabljajo več. Poglavitna lastnost simetričnih šifer je, da se za šifriranje in dešifriranje uporablja enak ključ. Take šifre so lahko zelo preproste in hitre, vendar se pojavi problem distribucije ključev. Tajnopise lahko prenašamo po nezavarovanih kanalih, kar pa ne velja za ključe.
+Simetrične šifre so najstarejša in najbolj razširjena vrsta šifriranja, kamor spadajo tudi vse zgodovinske šifre, ki se ne uporabljajo več. Poglavitna lastnost simetričnih šifer je, da se za šifriranje in dešifriranje uporablja enak ključ. Take šifre so lahko zelo preproste in hitre, vendar se pojavi problem distribucije ključev. Tajnopise lahko prenašamo po nezavarovanih kanalih, kar pa ne velja za ključe. To pomeni da si mora vsak par uporabnikov, če želi med sabo komunicirati v šifrirani obliki, najprej preko varnega kanala izmenjati šifrirni ključ. Število potrebnih izmenjav raste $O(n^2)$ glede na število uporabnikov sistema, in na sliki \ref{fig:symmetricproblem} vidimo, da je že pri dvajsetih uporabnikih število potrebnih izmenjav zelo veliko.
 
-Ta problem lahko rešijo asimetrične šifre, ki uporabljajo en ključ za šifriranje, drug ključ pa dešifriranje. Tak par ključev imenujemo javni in zasebni ključ. Kot že ime pove, javni ključ ni nobena skrivnost in ga lahko brez skrbi objavimo na javnem mestu, obratno pa velja za zasebni ključ. Sporočilo, šifrirano z javnim ključem je možno dešifrirati samo s pripadajočim zasebnim ključem.
+\begin{figure}[ht!]
+  \centering
+  \begin{tikzpicture}[shape=circle]
+    \graph { subgraph K_n [n=20,clockwise,radius=6cm] };
+  \end{tikzpicture}
+\label{fig:symmetricproblem}
+\caption{Graf predstavlja potrebne izmenjave šifrirnih ključev v primeru uporabe simetričnih šifrirnih algoritmov. Vsako vozlišče predstavlja enega uporabnika, povezave pa predstavljajo izmenjavo ključa med dvema uporabnikoma}
+\end{figure}
+
+Ta problem lahko rešijo asimetrične šifre, ki uporabljajo en ključ za šifriranje, drug ključ pa dešifriranje. Tak par ključev imenujemo javni in zasebni ključ. Kot že ime pove, javni ključ ni nobena skrivnost in ga lahko brez skrbi objavimo na javnem mestu, obratno pa velja za zasebni ključ. Sporočilo, šifrirano z javnim ključem je možno dešifrirati samo s pripadajočim zasebnim ključem. Slabost asimetričnih šifer je njihova hitrost, saj z njimi ni praktično šifrirati večjih količin podatkov. Zato se v praksi največkrat uporabljajo protokoli, ki uporabljajo obe skupini šifer. Najprej se uporabi asimetrična šifra za, s pomočjo katere si uporabnika izmenjata šifrirni ključ, ki ga bosta kasneje uporabila za šifriranje podatkov s pomočjo simetrične šifre.
 
 \section{Simetrične šifre}
 
@@ -768,12 +782,6 @@ Slabost takega pristopa pa je da je operacija šifriranja strogo zaporedna, saj 
 
 \newacronym{CFB}{CFB}{Cipher Feedback}
 
-\newglossaryentry{otp}
-{
-  name=enkratni ščit,
-  description={(angl.\ one time pad)},
-}
-
 \subsubsection{CFB}
 \label{subs:CFB}
 
@@ -903,8 +911,10 @@ Možnost dešifriranja določajo pravila, ki so predstavljena z drevesi, kjer so
 
 Poznamo dve vrsti šifriranja na osnovi parametrov. V prvem je drevo, ki določa pravila shranjeno skupaj s ključem, v drugem primeru pa je shranjeno skupaj s tajnopisom.
 
-\subsection{Homomorfne šifre}
+\section{Homomorfne šifre}
 \label{subs:Homomorfne šifre}
+
+Šifre, o katerih smo katerih smo govorili do sedaj, imajo to lastnost da je njihov tajnopis kolikor je pač možno naključen.
 
 \chapter{Uporaba kriptografije v oblaku}
 
@@ -955,7 +965,7 @@ Podatki v mirovanju so dolgotrajne narave, kar pomeni da je dolgotrajna tudi skr
 
 V kontekstu oblačnih sistemov je pri zagotavljanju varnosti podatkov v mirovanju najbolj problematičen del prav upravljanje s ključi, saj je potrebno poskrbeti za ključe velikega števila uporabnikov. Prav tako je s stališča varnosti neodgovorno, da zaupamo ustvarjanje in upravljanje šifrirnih ključev tretji osebi, v našem primeru ponudniku storitve v oblaku. Zato je v primeru, da je potrebno zagotoviti visoko stopnjo varnosti, kljub temu pa želimo podatke hraniti v oblaku, najbolj primerna šifriranje podatkov še preden jih pošljemo v oblak, tako imenovano client-side šifriranje. Prednosti so očitne, saj šifrirni ključ nikoli ne rabi zapustiti našega računalnika, tako da smo lahko prepričani, da do naših podatkov shranjenih v oblaku, ne more dostopati nihče.
 
-V primeru oblačnih storitev, ki ponujajo hrambo velikih količin podatkov v oblaku (storitve, kot so Dropbox) pa je zaželena lastnost tudi sposobnost \glslink{deduplication}{izločanja dvojnic}. Kot smo omenili v poglavju ~\ref{sec:Kaj je oblak?}, oblačni sistemi izkoriščajo skupno rabo sredstev, kar pomeni da so datoteke večjega števila uporabnikov shranjene na skupnem pomnilniku. Pogosto se namreč zgodi, da več uporabnikov želi shraniti identično datoteko v oblak in v takem primeru je najbolj optimalna rešitev da se taka datoteka shrani samo enkrat, saj bi v nasprotnem primeru samo tratili razpoložljiv prostor z podvojenimi kopijami datotek. Vendar v primeru uporabe šifriranja se bo ista datoteka, šifrirana s ključi dveh različnih uporabnikov zelo verjetno zašifrirala v dva popolnoma različna tajnopisa.
+V primeru oblačnih storitev, ki ponujajo hrambo velikih količin podatkov v oblaku (storitve, kot so Dropbox) pa je zaželena lastnost tudi sposobnost \glslink{deduplication}{izločanja dvojnic}. Kot smo omenili v poglavju~\ref{sec:Kaj je oblak?}, oblačni sistemi izkoriščajo skupno rabo sredstev, kar pomeni da so datoteke večjega števila uporabnikov shranjene na skupnem pomnilniku. Pogosto se namreč zgodi, da več uporabnikov želi shraniti identično datoteko v oblak in v takem primeru je najbolj optimalna rešitev da se taka datoteka shrani samo enkrat, saj bi v nasprotnem primeru samo tratili razpoložljiv prostor z podvojenimi kopijami datotek. Vendar v primeru uporabe šifriranja se bo ista datoteka, šifrirana s ključi dveh različnih uporabnikov zelo verjetno zašifrirala v dva popolnoma različna tajnopisa.
 
 % \begin{mdframed}[frametitle={Semantična varnost}]
 % Kriptosistem je semantično varen, če iz tajnopisa ni mogoče na praktičen način\footnote{v polinomskem času na verjetnostnem Turingovem stroju} pridobiti nobene informacije o čistopisu.
@@ -982,10 +992,10 @@ Za dano šifrirno funkcijo $e$ in poljubna dva čistopisa $p_1$ in $p_2$ iz kate
 \newglossaryentry{ciphertext indistinguishability}
 {
   name=ciphertext indistinguishability,
-  description={angl. ciphertext indistinguishability},
+  description={angl.\ ciphertext indistinguishability},
 }
 
-Kasneje sta \cite{Goldwasser1984} Goldwasser in Micali pokazala, da je problem semantične varnosti enakovreden problemu \gls{ciphertext indistinguishability}, ki zahteva, da napadalec ne more razločiti poljubnih dveh tajnopisov glede na njun čistopis.
+Kasneje sta~\cite{Goldwasser1984} Goldwasser in Micali pokazala, da je problem semantične varnosti enakovreden problemu \gls{ciphertext indistinguishability}, ki zahteva, da napadalec ne more razločiti poljubnih dveh tajnopisov glede na njun čistopis.
 
 The primary security disadvantage of this approach, as identified
 in its original description [10], is that it leaks some information. In
@@ -1004,7 +1014,7 @@ Problem izločanja dvojnic in zagotavljanja (semantične) varnosti
 
 Za podatke v gibanju veljajo vsi podatki, ki se preko interneta pretakajo od uporabnika proti oblaku in obratno. Poleg tega pa so podatki v gibanju tudi vsi podatki, ki se prenašajo med različnimi strežniki znotraj oblačnega sistema.
 
-Omrežja po katerih podatki potujejo velikokrat uporabljajo dinamične usmerjevalne algoritme, ne moremo vnaprej vedeti po kateri poti bodo podatki potovali. Podatki v gibanju na svoji poti potujejo skozi veliko omrežnih naprav, katere imajo vse vpogled v podatke, prav tako pa jim ne moremo zaupati. Dodatno nevarnost predstavlja še napad \gls{mitm}, kjer napadalec izkoristi dinamičnost omrežja in se vrine na pot podatkov med uporabnika in oblačni sistem.
+Omrežja po katerih podatki potujejo velikokrat uporabljajo dinamične usmerjevalne algoritme, ne moremo vnaprej vedeti po kateri poti bodo podatki potovali. Podatki v gibanju na svoji poti potujejo skozi veliko omrežnih naprav, katere imajo vse vpogled v podatke, prav tako pa jim ne moremo zaupati. Dodatno nevarnost predstavlja še napad \gls{MITM}, kjer napadalec izkoristi dinamičnost omrežja in se vrine na pot podatkov med uporabnika in oblačni sistem.
 
 Podatki so v gibanju praviloma malo časa, zato ni potrebe po kompleksnem upravljanju ključev. S pomočjo algoritmov za varno izmenjavo ključev, kot je recimo Diffe-Hellman algoritem opisan v poglavju~\ref{sec:Izmenjava ključa Diffe-Hellman}, je možno da se za vsako sejo uporabi nov, naključno generiran ključ.
 
@@ -1025,13 +1035,13 @@ Podatki so v gibanju praviloma malo časa, zato ni potrebe po kompleksnem upravl
 \newglossaryentry{rootkit}
 {
   name=korenski komplet,
-  description={angl. rootkit},
+  description={angl.\ rootkit},
 }
 
 \newglossaryentry{varno vecstransko racunanje}
 {
   name=varno večstransko računanje,
-  description={angl. secure multi-party computation},
+  description={angl.\ secure multi-party computation},
 }
 
 Podatki v uporabi so zelo kratkotrajne narave, vendar jih je kljub temu zelo težko zaščititi. Problem izhaja iz same definicije podatkov v uporabi, saj so to podatki, nad katerimi računalniški sistem želi izvesti neko operacijo, oziroma jih prikazati uporabniku. Podatki v uporabi se nahajajo v delovnem pomnilniku računalnika, in so zato izpostavljeni tako imenovanemu \glslink{cold-boot-attack}{napadu cold-boot}, kjer napadalec dobesedno zamrzne stanje pomnilnika ob delujočem računalniku in nato poskuša iz njega izvleči vsebino, predvsem šifrirne ključe, saj lahko z njihovo pomočjo dešifrira veliko večjo količino podatkov, ki so trenutno v mirovanju ali gibanju.
