@@ -18,6 +18,9 @@ all: $(OUTDIR)/$(MAIN).pdf
 $(OUTDIR):
 	mkdir -p $(OUTDIR)
 
+$(MAIN).pdf: $(OUTDIR)/$(MAIN).pdf
+	ln -sf out/diploma.pdf diploma.pdf
+
 $(OUTDIR)/$(MAIN).pdf: $(MAIN).tex $(OUTDIR)
 	$(LATEXMK) $(LATEXMKOPT) $(CONTINUOUS) \
 		-pdflatex="$(LATEX) $(LATEXOPT) $(NONSTOP) %O %S" $(MAIN)
@@ -33,12 +36,12 @@ once: $(MAIN).tex
 check:
 	chktex $(MAIN)
 
-debug: clean
-	$(LATEX) $(LATEXOPT) $(MAIN)
+debug: clean $(OUTDIR)
+	$(LATEX) -output-directory=$(OUTDIR) $(LATEXOPT) $(MAIN)
 	$(MAKE) check
 
 clean:
-	$(LATEXMK) $(LATEXMKOPT) -C $(MAIN)
+	$(LATEXMK) -outdir=$(OUTDIR) -C $(MAIN)
 
 .github-release-installed:
 	touch .github-release-installed
