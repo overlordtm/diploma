@@ -1,5 +1,3 @@
-% openout_any=1 bibtex .latex/diploma
-
 \documentclass[12pt,a4paper,openany,tikz]{book}
 
 \usepackage[utf8]{inputenc}
@@ -583,11 +581,12 @@ Simetrične šifre so najstarejša in najbolj razširjena vrsta šifriranja, kam
   \begin{tikzpicture}[shape=circle]
     \graph { subgraph K_n [n=20,clockwise,radius=6cm] };
   \end{tikzpicture}
-\label{fig:symmetricproblem}
 \caption{Graf predstavlja potrebne izmenjave šifrirnih ključev v primeru uporabe simetričnih šifrirnih algoritmov. Vsako vozlišče predstavlja enega uporabnika, povezave pa predstavljajo izmenjavo ključa med dvema uporabnikoma}
+\label{fig:symmetricproblem}
 \end{figure}
 
-Ta problem lahko rešijo asimetrične šifre, ki uporabljajo en ključ za šifriranje, drug ključ pa dešifriranje. Tak par ključev imenujemo javni in zasebni ključ. Kot že ime pove, javni ključ ni nobena skrivnost in ga lahko brez skrbi objavimo na javnem mestu, obratno pa velja za zasebni ključ. Sporočilo, šifrirano z javnim ključem je možno dešifrirati samo s pripadajočim zasebnim ključem. Slabost asimetričnih šifer je njihova hitrost, saj z njimi ni praktično šifrirati večjih količin podatkov. Zato se v praksi največkrat uporabljajo protokoli, ki uporabljajo obe skupini šifer. Najprej se uporabi asimetrična šifra za, s pomočjo katere si uporabnika izmenjata šifrirni ključ, ki ga bosta kasneje uporabila za šifriranje podatkov s pomočjo simetrične šifre.
+Ta problem lahko rešijo asimetrične šifre, ki uporabljajo en ključ za šifriranje, drug ključ pa dešifriranje. Tak par ključev imenujemo javni in zasebni ključ. Kot že ime pove, javni ključ ni nobena skrivnost in ga lahko brez skrbi objavimo na javnem mestu, obratno pa velja za zasebni ključ. Sporočilo, šifrirano z javnim ključem je možno dešifrirati samo s pripadajočim zasebnim ključem. Slabost asimetričnih šifer je njihova hitrost, saj z njimi ni praktično šifrirati večjih količin podatkov. Zato se v praksi največkrat uporabljajo protokoli, ki uporabljajo obe družini šifer, kot bomo videli kasneje.
+
 
 \section{Simetrične šifre}
 
@@ -645,7 +644,7 @@ Ob prelomu tisočletja se je izkazalo da je \gls{DES}-ov 64-bitni o. 56-bitni kl
 \item Vsi ključi so isti, torej $K_1=K_2=K_3$
 \end{enumerate}
 
-Postopek šifriranja in dešifriranja je nato tak:
+Postopek šifriranja in dešifriranja je nato:
 
 \begin{gather*}
 C=E_{K_3}(D_{K_2}(E_{K_1}(P))) \\
@@ -833,14 +832,13 @@ V \gls{OFB} je podoben načinu \gls{CFB}, s to razliko, da se za generiranje nak
 
 \section{Asimetrične šifre}
 
-Eden večjih problemov simetričnih šifrirnih algoritmov je distribucija ključev. V kolikor želita dve osebi svojo komunikacijo zaščititi z uporabo simetričnega šifrirnega algoritma, se morata najprej izmenjati ključ. Dobra praksa je tudi, da se izognemo ponovni uporabi istega ključa, kar v praksi pomeni, da si moramo z vsako osebo, s katero želimo komunicirati izmenjati ključ in hitro se izkaže, da omrežje $n$ ljudi potrebuje $\frac{n(n-1)}{2}$ ključev. Če to preslikamo na omrežje kot je Internet, ki ga uporablja približno 40 odstotkov svetovne populacije. Če vzamemo pesimistično oceno da si vsak uporabnik Interneta lasti samo eno elektronsko napravo, ki uporablja varno komunikacijo je, je naš $n \approx 3.500.000.000$.
+Eden večjih problemov simetričnih šifrirnih algoritmov je distribucija ključev. V kolikor želita dve osebi svojo komunikacijo zaščititi z uporabo simetričnega šifrirnega algoritma, se morata najprej izmenjati ključ. Dobra praksa je tudi, da se izognemo ponovni uporabi istega ključa, kar v praksi pomeni, da si moramo z vsako osebo, s katero želimo komunicirati izmenjati ključ in hitro se izkaže, da omrežje $n$ ljudi potrebuje $\frac{n(n-1)}{2}$ ključev. Če to preslikamo na omrežje kot je Internet, ki ga uporablja približno 40 odstotkov svetovne populacije. Vzemimo pesimistično oceno, da si vsak uporabnik Interneta lasti samo eno elektronsko napravo, ki uporablja varno komunikacijo in tako omrežje potrebuje $\approx 3.500.000.000$ izmenjav.
 
 Rešitev za ta problem so lahko asimetrični šifrirni algoritmi, oziroma kriptografija javnih ključev. Asimetrični algoritmi ne uporabljajo samo enega, ampak dva ključa. Javni ključ poznajo vsi in ga uporabijo za šifriranje sporočil. Sporočila, šifrirana z javnim ključem, lahko dešifrira samo imetnik zasebnega ključa.
 
 Asimetrični algoritmi delujejo na predpostavki, da so nekatere matematični v eno smer preprosto izračunljivi, v drugo pa preprosto pretežki, da bi jih bilo možno rešiti v razumnem časovnem okvirju. Eden takih problemov je faktorizacija števil. Če si izmislite dve dokaj veliki praštevili $p$ in $q$, ju med seboj pomnožite, dobite novo število $n$, za katero ni tako preprosto ugotoviti iz katerih faktorjev je sestavljeno, ob predpostavki, da ne poznamo $p$ in $q$.
 
 Na žalost pa so zaradi svoje povezanosti s težkimi matematičnimi problemi pogosto asimetrični šifrirni algoritmi veliko počasnejši od svojih simetričnih sorodnikov. V praksi se uporablja kombinacija asimetričnih in simetričnih algoritmov. Asimetrični algoritmi so sicer počasnejši, vendar veliko bolj praktični zaradi preproste izmenjave ključev.
-
 
 V začetni fazi vzpostavljanja varnega komunikacijska kanala se zaradi preprostejše distribucije ključev uporabi asimetrični algoritem. Ko je varni kanal vzpostavljen se preko njega izmenja sejni ključ, to je ključ ki se
 
@@ -897,19 +895,22 @@ Poleg zasebnega ključa moramo moramo paziti tudi na zasebnost vrednosti $p$, $q
 
 \todo{napisi vec}
 
-\subsection{Šifriranje na osnovi parametrov}
-\label{subs:Šifriranje na osnovi parametrov}
+\subsection{Šifriranje na osnovi pogojev}
+\label{subs:Šifriranje na osnovi pogojev}
+\newacronym{IBE}{IBE}{Identity Based Encryption}
 \newacronym{ABE}{ABE}{Attribute Based Encryption}
+\newacronym{KP-ABE}{KP-ABE}{Key-policy attribute based encryption}
+\newacronym{CP-ABE}{CP-ABE}{Ciphertext-policy attribute based encryption}
+
+Šifriranje na osnovi pogojev je eden najnovših pristopov na področju kriptografije javnih ključev. V tradicionalni kriptografski shemi javnih ključev se sporočilo šifrira za točno določenega prejemnika (tistega, kateremu pripada javni ključ, ki ga uporabimo za šifriranje). Korak dlje je šlo šifriranje na osnovi identitete (angl. \acrlong{IBE}), kjer lahko za javni ključ uporabimo kar preprost niz znakov, kot je recimo prejemnikov e-naslov. Šifriranje na osnovi pogojev pa je šlo še korak dlje, saj dovoljuje, da isti tajnopis dešifria kdorkoli poseduje ključ, ki zadovolji vse pogoje.
 
 Poglejmo si za primer Anito, ki shrani šifrirane podatke v oblak. Anita ima datoteko $X$, ki bi jo rada delila s skupinama $Prijatelji$ in $Znanci$. Prav tako ima datoteko $Y$, ki bi jo rada delila s skupinama $Družina$ in $Prijatelji$. To lahko stori tako, da ustvari en ključ za datoteko $X$ in ta ključ deli s $Prijatelji$ in $Znanci$, nato ustvari drug ključ za datoteko $Y$ in ta ključ deli s skupinama $Družina$ in $Prijatelji$. Problem je, da mora Anita za vsako datoteko, ki jo želi deliti, ustvariti nov ključ.
 
 Naivna rešitev tega problema bi bila, da Anita ustvari en ključ za vsako skupino ljudi, s katerimi želi deliti datoteke. Vendar življenje ni preprosto, in lahko se zgodi, da neka oseba pripada večim skupinam s katerimi želi Anita deliti datoteke. Prav tako si lahko zaželi deliti neko datoteko samo z ljudmi, ki so hkrati $Prijatelji$ in $Sodelavci$. Recimo da je to datoteka $Z$. Tako datoteko lahko najprej šifrira s ključem, ki pripada skupini $Prijatelji$ in nato še s ključem, ki pripada skupini $Sodelavci$. Naivno bi mislili da je to dobra rešitev, vendar se izkaže da tak sistem ni odporen proti zaroti. Šifrirano datoteko lahko kot posamezniki odprejo samo ljudje, ki pripadajo obema skupinama, saj imajo le oni v posesti oba ključa. Vendar pa se lahko proti Aniti zarotita dva posameznika skupaj, kjer noben od nju ne pripada obema skupinama hkrati, vendar imata skupaj dostop do obeh ključev, saj vsak od nju pripada eni od skupin.
 
-Ta problem nam rešuje šifriranje na osnovi parametrov, v nadaljevanju ABE.\@ Kratica ABE pride iz angleške besede \gls{ABE}. ABE je primer asimetrične šifre, kjer je možno tajnopis dešifrirati z več različnimi ključi, pod pogojem da ima ključ take parametre, kot so bili predpisani ob šifriranju.
-
 Možnost dešifriranja določajo pravila, ki so predstavljena z drevesi, kjer so notranja vozlišča logične operacije, listi pa pogoji, ki so lahko zadovoljeni ali nezadovoljeni. Drevo beremo od listov proti korenu in za vsako notranje vozlišče ugotovimo ali je v zadovoljenem ali nezadovoljenem stanju. Na koncu pridemo do korena drevesa, in dešifriranje uspe samo v primeru, da je koren drevesa v zadovoljenem stanju.
 
-Poznamo dve vrsti šifriranja na osnovi parametrov. V prvem je drevo, ki določa pravila shranjeno skupaj s ključem, v drugem primeru pa je shranjeno skupaj s tajnopisom.
+Poznamo dve vrsti šifriranja na osnovi parametrov. V prvem je drevo, ki določa pravila shranjeno v ključu  (angl. \acrlong{KP-ABE}), v drugem primeru pa je shranjeno v tajnopisu (angl. \acrlong{CP-ABE}).
 
 \section{Homomorfne šifre}
 \label{subs:Homomorfne šifre}
@@ -1056,12 +1057,7 @@ V nadaljevanju bomo predstavili tri možnih načinov, kako zagotoviti različne 
 Varno večstransko računanje je področje kriptografije, ki se ukvarja z razvojem algoritmov, ki omogočajo, da več udeležencev skupaj izračuna rezultat neke funkcije, brez da bi kdorkoli poznal vse vhodne parametre funkcije.
 
 
-
-
-
-
-
-\todo[inline]{Šifriranje delovnega pomnilnika, homomorfna enkricpija, secure MPC}
+\todo[inline]{Šifriranje delovnega pomnilnika, homomorfna enkricpija, secure MPC, ...}
 
 
 
