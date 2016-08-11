@@ -21,7 +21,7 @@
 \usetikzlibrary{graphs,graphs.standard,quotes}
 \usepackage[a4paper, headheight=15pt]{geometry}
 \renewcommand{\baselinestretch}{1.3}
-
+\providecommand\mathplus{+}
 
 
 \usepackage[pdftex,colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black,pagebackref,unicode]{hyperref}
@@ -895,20 +895,27 @@ Poleg zasebnega ključa moramo moramo paziti tudi na zasebnost vrednosti $p$, $q
 
 \todo{napisi vec}
 
-\subsection{Šifriranje na osnovi pogojev}
-\label{subs:Šifriranje na osnovi pogojev}
+\subsection{Funkcionalne šifrirne sheme}
+\label{sub:Funkcionalne šifrirne sheme}
+
+\cite{boneh2011functional}
+\todo{Prevod, wtf?}
+
+
+\subsubsection{Šifriranje na osnovi predikatov}
+\label{subs:Šifriranje na osnovi predikatov}
 \newacronym{IBE}{IBE}{Identity Based Encryption}
 \newacronym{ABE}{ABE}{Attribute Based Encryption}
 \newacronym{KP-ABE}{KP-ABE}{Key-policy attribute based encryption}
 \newacronym{CP-ABE}{CP-ABE}{Ciphertext-policy attribute based encryption}
 
-Šifriranje na osnovi pogojev je eden najnovših pristopov na področju kriptografije javnih ključev. V tradicionalni kriptografski shemi javnih ključev se sporočilo šifrira za točno določenega prejemnika (tistega, kateremu pripada javni ključ, ki ga uporabimo za šifriranje). Korak dlje je šlo šifriranje na osnovi identitete (angl. \acrlong{IBE}), kjer lahko za javni ključ uporabimo kar preprost niz znakov, kot je recimo prejemnikov e-naslov. Šifriranje na osnovi pogojev pa je šlo še korak dlje, saj dovoljuje, da isti tajnopis dešifria kdorkoli poseduje ključ, ki zadovolji vse pogoje.
+Šifriranje na osnovi predikatov je eden najnovejših pristopov na področju kriptografije javnih ključev. V tradicionalni kriptografski shemi javnih ključev se sporočilo šifrira za točno določenega prejemnika (tistega, kateremu pripada javni ključ, ki ga uporabimo za šifriranje). Korak dlje je šlo šifriranje na osnovi identitete (angl. \acrlong{IBE}), kjer lahko za javni ključ uporabimo kar preprost niz znakov, kot je recimo prejemnikov e-naslov. Šifriranje na osnovi predikatov pa je šlo še korak dlje, saj dovoljuje, da isti tajnopis dešifrira kdorkoli poseduje ključ, ki zadovolji vse predikate.
 
-Poglejmo si za primer Anito, ki shrani šifrirane podatke v oblak. Anita ima datoteko $X$, ki bi jo rada delila s skupinama $Prijatelji$ in $Znanci$. Prav tako ima datoteko $Y$, ki bi jo rada delila s skupinama $Družina$ in $Prijatelji$. To lahko stori tako, da ustvari en ključ za datoteko $X$ in ta ključ deli s $Prijatelji$ in $Znanci$, nato ustvari drug ključ za datoteko $Y$ in ta ključ deli s skupinama $Družina$ in $Prijatelji$. Problem je, da mora Anita za vsako datoteko, ki jo želi deliti, ustvariti nov ključ.
+Poglejmo si za primer Anito, ki shrani šifrirane podatke v oblak. Anita ima datoteko $X$, ki bi jo rada delila s skupinama \textbf{Prijatelji} in \textbf{Znanci}. Prav tako ima datoteko $Y$, ki bi jo rada delila s skupinama \textbf{Družina} in \textbf{Prijatelji}. To lahko stori tako, da ustvari en ključ za datoteko $X$ in ta ključ deli s \textbf{Prijatelji} in  \textbf{Znanci}, nato ustvari drug ključ za datoteko $Y$ in ta ključ deli s skupinama \textbf{Družina} in \textbf{Prijatelji}. Problem je, da mora Anita za vsako datoteko, ki jo želi deliti, ustvariti nov ključ.
 
-Naivna rešitev tega problema bi bila, da Anita ustvari en ključ za vsako skupino ljudi, s katerimi želi deliti datoteke. Vendar življenje ni preprosto, in lahko se zgodi, da neka oseba pripada večim skupinam s katerimi želi Anita deliti datoteke. Prav tako si lahko zaželi deliti neko datoteko samo z ljudmi, ki so hkrati $Prijatelji$ in $Sodelavci$. Recimo da je to datoteka $Z$. Tako datoteko lahko najprej šifrira s ključem, ki pripada skupini $Prijatelji$ in nato še s ključem, ki pripada skupini $Sodelavci$. Naivno bi mislili da je to dobra rešitev, vendar se izkaže da tak sistem ni odporen proti zaroti. Šifrirano datoteko lahko kot posamezniki odprejo samo ljudje, ki pripadajo obema skupinama, saj imajo le oni v posesti oba ključa. Vendar pa se lahko proti Aniti zarotita dva posameznika skupaj, kjer noben od nju ne pripada obema skupinama hkrati, vendar imata skupaj dostop do obeh ključev, saj vsak od nju pripada eni od skupin.
+Naivna rešitev tega problema bi bila, da Anita ustvari en ključ za vsako skupino ljudi, s katerimi želi deliti datoteke. Vendar življenje ni preprosto, in lahko se zgodi, da neka oseba pripada večim skupinam s katerimi želi Anita deliti datoteke. Prav tako si lahko zaželi deliti neko datoteko samo z ljudmi, ki so hkrati \textbf{Prijatelji} in \textbf{Sodelavci}. Recimo da je to datoteka $Z$. Tako datoteko lahko najprej šifrira s ključem, ki pripada skupini \textbf{Prijatelji} in nato še s ključem, ki pripada skupini \textbf{Sodelavci}. Naivno bi mislili da je to dobra rešitev, vendar se izkaže da tak sistem ni odporen proti zaroti. Šifrirano datoteko lahko kot posamezniki odprejo samo ljudje, ki pripadajo obema skupinama, saj imajo le oni v posesti oba ključa. Vendar pa se lahko proti Aniti zarotita dva posameznika skupaj, kjer noben od nju ne pripada obema skupinama hkrati, vendar imata skupaj dostop do obeh ključev, saj vsak od nju pripada eni od skupin.
 
-Možnost dešifriranja določajo pravila, ki so predstavljena z drevesi, kjer so notranja vozlišča logične operacije, listi pa pogoji, ki so lahko zadovoljeni ali nezadovoljeni. Drevo beremo od listov proti korenu in za vsako notranje vozlišče ugotovimo ali je v zadovoljenem ali nezadovoljenem stanju. Na koncu pridemo do korena drevesa, in dešifriranje uspe samo v primeru, da je koren drevesa v zadovoljenem stanju.
+Možnost dešifriranja določajo pravila, ki so predstavljena z drevesi, kjer so notranja vozlišča logične operacije, listi pa predikati, ki so lahko zadovoljeni ali nezadovoljeni. Drevo beremo od listov proti korenu in za vsako notranje vozlišče ugotovimo ali je v zadovoljenem ali nezadovoljenem stanju. Na koncu pridemo do korena drevesa, in dešifriranje uspe samo v primeru, da je koren drevesa v zadovoljenem stanju.
 
 Poznamo dve vrsti šifriranja na osnovi parametrov. V prvem je drevo, ki določa pravila shranjeno v ključu  (angl. \acrlong{KP-ABE}), v drugem primeru pa je shranjeno v tajnopisu (angl. \acrlong{CP-ABE}).
 
@@ -923,7 +930,7 @@ Največji problem uporabe šifriranja v oblaku je v bistvu enak kot povsod kjer 
 
 Prav tako ločimo tri stanja digitalnih podatkov: podatki v mirovanju, podatki v gibanju in podatki v uporabi. V vsakem stanju obstajajo različne varnostne zahteve, zato se potrebni različni pristopi. Jaber in Zolkipli\cite{jaber2013use} sta uporabila tabelo~\ref{tbl:cloudtriad}, ki lepo ponazori načine uporabe kriptografije glede na različna stanja podatkov.
 
-\begin{table}[]
+\begin{table}[ht!]
   \centering
   \begin{tabular}{lllll}
                                         & Podatki v mirovanju                   & Podatki v uporabi                    & Podatki v gibanju              &  \\ \cline{2-4}
