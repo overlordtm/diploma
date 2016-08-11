@@ -13,44 +13,40 @@ CONTINUOUS=-pvc
 
 export openout_any=a
 
-all: $(MAIN).pdf
+all: $(OUTDIR)/$(MAIN).pdf
 
-$(OUTDIR)/.refresh:
+$(OUTDIR):
 	mkdir -p $(OUTDIR)
-	touch $(OUTDIR)/.refresh
 
-$(MAIN).pdf: $(MAIN).tex $(OUTDIR)/.refresh
+$(OUTDIR)/$(MAIN).pdf: $(MAIN).tex $(OUTDIR)
 	$(LATEXMK) $(LATEXMKOPT) $(CONTINUOUS) \
 		-pdflatex="$(LATEX) $(LATEXOPT) $(NONSTOP) %O %S" $(MAIN)
 
-debug:
-force:
-	mkdir -p $(OUTDIR)
-	touch $(OUTDIR)/.refresh
-	rm -f $(OUTDIR)/$(MAIN).pdf
+force: clean $(OUTDIR)
 	$(LATEXMK) $(LATEXMKOPT) $(CONTINUOUS) \
 		-pdflatex="$(LATEX) $(LATEXOPT) %O %S" $(MAIN)
 
-clean:
-	$(LATEXMK) $(LATEXMKOPT) -C $(MAIN)
-
-once: $(MAIN).tex $(OUTDIR)/.refresh
+once: $(MAIN).tex
 	$(LATEXMK) $(LATEXMKOPT) \
 		-pdflatex="$(LATEX) $(LATEXOPT) %O %S" $(MAIN)
 
 check:
 	chktex $(MAIN)
 
-debug:
+debug: clean
 	$(LATEX) $(LATEXOPT) $(MAIN)
+	$(MAKE) check
 
-.deps:
-	touch .deps
+clean:
+	$(LATEXMK) $(LATEXMKOPT) -C $(MAIN)
 
-github-release: .deps
+.github-release-installed:
+	touch .github-release-installed
 	go get github.com/aktau/github-release
 
-release: $(MAIN).tex $(OUTDIR)/.refresh github-release
+github-release: .github-release-installed
+
+release: once github-release
 	TAG=`date "+%Y-%m-%d"`; \
 	TAG2=`date "+%Y-%m-%d-%H-%M"`; \
 	NAME="diploma-$$TAG2.pdf"; \
@@ -58,4 +54,4 @@ release: $(MAIN).tex $(OUTDIR)/.refresh github-release
 	github-release release $$OPTS --pre-release || github-release edit $$OPTS --pre-release; \
 	github-release upload $$OPTS --file ./$(OUTDIR)/diploma.pdf
 
-.PHONY: clean force debug once all
+.PHONY: clean force debug once all github-release
