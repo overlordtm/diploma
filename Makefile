@@ -50,6 +50,7 @@ clean:
 github-release: .github-release-installed
 
 release: once github-release
+	. ./secrets; \
 	TAG=`date "+%Y-%m-%d"`; \
 	TAG2=`date "+%Y-%m-%d-%H-%M"`; \
 	NAME="diploma-$$TAG2.pdf"; \
