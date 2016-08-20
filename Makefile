@@ -36,6 +36,9 @@ once: $(MAIN).tex
 check:
 	chktex $(MAIN)
 
+spell-check:
+	hunspell -l -t -i utf_8 -d sl_SI,en_US $(MAIN).tex
+
 debug: clean $(OUTDIR)
 	$(LATEX) -output-directory=$(OUTDIR) $(LATEXOPT) $(MAIN)
 	$(MAKE) check

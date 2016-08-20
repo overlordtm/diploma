@@ -17,9 +17,10 @@
 \usepackage{amssymb}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage[numbers]{natbib}
 \usepackage{tikz}
 \usetikzlibrary{graphs,graphs.standard,quotes}
-\usepackage[a4paper, headheight=15pt]{geometry}
+\usepackage[a4paper,headheight=15pt]{geometry}
 \renewcommand{\baselinestretch}{1.3}
 \providecommand\mathplus{+}
 
@@ -52,6 +53,48 @@
 %********************************************
 
 \begin{document}
+
+%********************************************
+
+\newglossaryentry{MITM}
+{
+  name={napad vrinjenega napadalca},
+  description={angl.\ man-in-the-middle/MITM attack}
+}
+
+\newglossaryentry{plaintext}
+{
+  name=čistopis,
+  description={plaintext},
+}
+
+
+\newglossaryentry{tajnopis}
+{
+  name=tajnopis,
+  description={ciphertext},
+}
+
+\newglossaryentry{enckey}
+{
+  name=šifrirni ključ,
+  description={encryption key},
+}
+
+\newglossaryentry{otp}
+{
+  name=enkratni ščit,
+  description={(angl.\ one time pad)},
+}
+
+\newglossaryentry{neizpodbitnost}
+{
+  name=preprečevanje tajenja,
+  description={non-repudiation},
+}
+
+
+%********************************************
 
 % stran 1 med uvodnimi listi
 \thispagestyle{empty}
@@ -196,7 +239,6 @@ V Ljubljani, dne \today \hspace{1cm} Podpis avtorja/-ice:
 \chapter*{Zahvala}
 
 \thispagestyle{empty}
-ablak
 Mogoče
 
 
@@ -240,9 +282,12 @@ $\;$
 %********************************************
 
 \chapter*{Seznam uporabljenih kratic in simbolov}
+\glsaddall{}
+\printglossaries{}
+\printglossary
 \thispagestyle{empty}
 
-\printglossaries{}
+
 
 %\cleardoublepage
 
@@ -336,11 +381,6 @@ NIST opredeli oblak kot: ``Računalništvo v oblaku je model, ki omogoča vsepri
 \section{Kaj je varnost?}
 Varnost je širok pojem, ki ga v kontekstu računalništva lahko razdelimo na tri dele. To so: računalniška varnost (computer security), informacijska varnost (information security) in varovanje podatkov (information assurance).
 
-\newglossaryentry{neizpodbitnost}
-{
-  name=preprečevanje tajenja,
-  description={non-repudiation},
-}
 
 \begin{description}
 
@@ -420,11 +460,7 @@ Druga stvar, ki dela sisteme v oblaku zanimive za napadalce je koncentracija pod
 
 Ranljivost računalniškega sistema je lastnost, zaradi katere je ogroženo njegovo delovanje in varnost podatkov, ki jih vsebuje. Storitve, ki delujejo v oblaku tako podedujejo vse ranljivosti, ki jih imajo klasični računalniški sistemi, zaradi posebnih lastnosti oblaka, pa obstaja se nekaj groženj, specifičnih za storitve v oblaku:
 
-\newglossaryentry{MITM}
-{
-  name={napad vrinjenega napadalca},
-  description={angl.\ man-in-the-middle/MITM attack}
-}
+
 
 \begin{description}[style=nextline]
 
@@ -510,45 +546,19 @@ Napad zavrnitve storitve je ena najpreprostejših in pogosto zelo učinkovitih o
 
 Zadnji sklop varnostnih groženj v oblaku predstavljajo ranljivosti, ki so posledica ene od ključnih lastnosti oblaka, to je uporaba skupnih virov. Ponudniki storitev v oblaku zagotavljajo navidezno neomejene vire končnemu uporabniku s pomočjo tehnologij virtualizacije in skupne uporabe. Pri tem uporabljajo klasično strojno opremo, ki sicer s pomočjo posebne programske opreme omogoča delitev virov, vendar ni bila zasnovana, da bi omogočala varno skupno uporabo. Tak tip napadov izkorišča dejstvo, da si različni virtualni strežniki delijo fizično strojno opremo, zato je možno s posebno obliko napada, ki se imenuje napad preko stranskega kanala pridobiti informacije iz žrtvinega strežnika, brez da bi dejansko prišlo do vdora. V času pisanja še ni prišlo do takega tipa vdora v praksi, vendar obstajajo primeri takih napadov, ki so jih demonstrirali pod laboratorijskimi pogoji.
 
+\chapter{Osnove kriptografije}
 
-\newglossaryentry{plaintext}
-{
-  name=čistopis,
-  description={plaintext},
-}
+Kriptografija omogoča doseganje informacijske varnosti s pomočjo matematičnih postopkov. Verjetno najbolj poznan tak postopek je šifriranje, ki zagotavlja zaupnost podatkov, pogled tega v področje kriptografije spadajo tudi digitalni podpisi, avtentikacijske kode MAC in zgoščevalne funkcije, ki nam pomagajo pri ohranjanju celovitosti in overjanju identitete podatkov.\todo{dodaj se RNG ...}
 
+Šifriranje je način, kako skriti vsebino sporočila (\gls{plaintext}a) pred nepooblaščenimi očmi. To se doseže z uporabo algoritma, ki mu kot vhodni podatek damo \gls{plaintext} in \gls{enckey}, le-ta pa nam vrne \gls{tajnopis}. \Gls{tajnopis} vsebuje enake informacije kot \gls{plaintext}, vendar ima to lastnost, da ga je mogoče prebrati le v primeru, da posedujete ključ za dešifriranje. Brez takega ključa je iz \gls{tajnopis}a praktično nemogoče razbrati vsebino originalnega sporočila.\footnote{Težanost je odvisna od moči kriptografske sheme in pravilnosti implementacije}
 
-\newglossaryentry{tajnopis}
-{
-  name=tajnopis,
-  description={ciphertext},
-}
+To pomeni, da lahko tajnopis javno objavimo, varovati je potrebno samo šifrirni ključ. Ta lastnost nam omogoča, da varno poslujemo s svojo banko, pošiljamo e-pošto, ki jo lahko prebere samo prejemnik navkljub temu, da Internet ni varen komunikacijski kanal in na njemu mrgoli zlobnežev, ki želijo priti do naših zaupnih podatkov.
 
-\newglossaryentry{sifrirnikljuc}
-{
-  name=šifrirni ključ,
-  description={encryption key},
-}
-
-\newglossaryentry{otp}
-{
-  name=enkratni ščit,
-  description={(angl.\ one time pad)},
-}
-
-\chapter{Zaščita podatkov s pomočjo kriptografije}
-
-Kriptografija omogoča doseganje informacijske varnosti s pomočjo matematičnih postopkov. Verjetno najbolj poznan tak postopek je šifriranje, ki zagotavlja zaupnost podatkov, pogled tega v področje kriptografije spadajo tudi digitalni podpisi, avtentikacijske kode MAC in zgoščevalne funkcije, ki nam pomagajo pri ohranjanju celovitosti in overjanju identitete podatkov.
-
-Šifriranje je način, kako skriti vsebino sporočila (\gls{plaintext}a) pred nepooblaščenimi očmi. To se doseže z uporabo algoritma, ki mu kot vhodni podatek damo \gls{plaintext} in \gls{sifrirnikljuc}, on pa nam vrne \gls{tajnopis}. \Gls{tajnopis} vsebuje enake informacije kot \gls{plaintext}, vendar ima to lastnost, da ga je mogoče prebrati le v primeru, da posedujete ključ za dešifriranje. V kolikor takega ključa ne posedujete, je iz \gls{tajnopis}a praktično nemogoče razbrati vsebino originalnega sporočila.\footnote{Težanost je odvisna od moči kriptografske sheme in pravilnosti implementacije}
-
-To pomeni, da lahko tajnopis javno objavimo, varovati je potrebno samo ključ, s katerim se le ta dešifrira. Ta lastnost nam omogoča, da varno poslujemo s svojo banko, pošiljamo e-pošto, ki jo lahko prebere samo prejemnik navkljub temu, da Internet ni varen komunikacijski kanal in na njemu mrgoli zlobnežev, ki želijo priti do naših zaupnih podatkov.
-
-Potrebno se je zavedati da so formalne zahteve za $100\%$ varnost zelo visoke, zato se v praksi največkrat uporabi princip računske varnosti, ker pomeni da varnost kriptosistema sloni na predpostavi, da so računske zahteve za razbitje kriptografske sheme veliko višje od tistih, ki jih ima na voljo potencialni napadalec. Najbolj znana implementacija popolne varnosti je sicer \gls{otp}, ki ga je leta 1918 patentiral Gilbert S. Vernam~\cite{vernam1919secret}, za katerega je Claude Shannon v leta 1949 objavljenem poročilu\cite{shannon1949communication} dokazal, da zagotavlja popolno varnost. Kot zanimivost lahko povemo, da je domnevno do enakih zaključkov še nekaj let prej, prišel tudi ruski znanstvenik Vladimir Kotelnikov, vendar njegovo poročilo še vedno ostaja zaupno. Problem \glslink{otp}{enkratnega ščita} je v tem, da zahteva ključ enake dolžine kot sporočilo, ki ga želimo šifrirati. Prav tako pa lahko vsak ključ uporabimo samo enkrat, v nasprotnem primeru pa sistem ne zagotavlja več popolne varnosti.
+Potrebno se je zavedati, da so formalne zahteve za popolno varnost zelo visoke, zato se v praksi največkrat uporabi princip računske varnosti, ker pomeni, da varnost kriptosistema sloni na predpostavki, da so računske zahteve za razbitje kriptografske sheme veliko višje od tistih, ki jih ima na voljo potencialni napadalec. Najbolj znana implementacija popolne varnosti je sicer \gls{otp}, ki ga je leta 1918 patentiral Gilbert S. Vernam~\cite{vernam1919secret}. Claude Shannon v leta 1949 objavljenem poročilu~\cite{shannon1949communication} dokazal, da le-ta zagotavlja popolno varnost. Kot zanimivost lahko povemo, da je domnevno do enakih zaključkov še nekaj let prej, prišel tudi ruski znanstvenik Vladimir Kotelnikov, vendar njegovo poročilo še vedno ostaja zaupno. Problem \glslink{otp}{enkratnega ščita} je v tem, da zahteva ključ enake dolžine kot sporočilo, ki ga želimo šifrirati. Prav tako lahko vsak ključ uporabimo samo enkrat, v nasprotnem primeru pa sistem ne zagotavlja več popolne varnosti.
 
 \
 
-Da nam bo lažje, najprej definirajmo kaj je kriptografska shema ali kriptosistem.
+Najprej definirajmo, kaj je kriptografska shema ali kriptosistem.
 
 \begin{mdframed}[frametitle={Kriptografska shema}]
 Kriptografska shema je peterka  $(\mathcal{P}, \mathcal{C}, \mathcal{K},  \mathcal{E}, \mathcal{D})$, kjer veljajo naslednje lastnosti:
@@ -560,7 +570,7 @@ Kriptografska shema je peterka  $(\mathcal{P}, \mathcal{C}, \mathcal{K},  \mathc
 	\end{enumerate}
 \end{mdframed}
 
-Zgornjo matematično definicijo se da povzeti z naslednjimi besedami. Kriptografsko shemo sestavlja pet sestavin. Čistopisi, tajnopisi, ključi, šifrirni in de-šifrirni postopek. Pomembno je, da ob danem ključu in šifrirnem postopku, obstaja de-šifrirni postopek, ki nam vsak tajnopis, ki je bil šifriran z izbranim šifrirnim postopkom nedvoumno pretvori nazaj v čistopis.
+Zgornjo matematično definicijo lahko povzamemo z naslednjimi besedami. Kriptografsko shemo sestavlja pet sestavin. Čistopisi, tajnopisi, ključi, šifrirni in dešifrirni postopek. Pomembno je, da ob danem ključu in šifrirnem postopku, obstaja dešifrirni postopek, ki nam vsak tajnopis, ki je bil šifriran z izbranim šifrirnim postopkom nedvoumno pretvori nazaj v čistopis.
 
 Skozi zgodovino človeštva se je že zelo zgodaj pojavila želja po skrivanju sporočil in s tem so se razvile tudi prve metode šifriranja, vendar nobena od njih ni prestala preizkusa časa.
 
@@ -570,7 +580,7 @@ Skozi zgodovino človeštva se je že zelo zgodaj pojavila želja po skrivanju s
 \begin{enumerate}
 
 	\item Simetrične oziroma klasične šifre
-	\item Asimetrične šifre oziroma kriptografija javnih ključev
+	\item Asimetrične šifre oziroma kriptosistemi z javnimi ključi
 
 \end{enumerate}
 
@@ -662,35 +672,6 @@ Kjer je $C$ tajnopis in $P$ čistopis.
 
 \gls{AES} se po strukturi algoritma razlikuje od \gls{DES}-a, saj namesto Feistelove šifre uporablja substitucijsko-permutacijsko omrežje.  Algoritem iz ptičje perspektive izgleda tako:
 
-\begin{description}
-	\item[KeyExpansions] S posebnim algoritmom se na podlagi glavnega ključa izračunajo 128-bitni podključi, ki se bodo uporabili v vsakem krogu šifriranja.
-	\item[AddRoundKey]  S pomočjo operacije $XOR$ se bloku čistopisa primeša 128-bitni pod-ključ.
-	\item[SubBytes] Substitucija bajtov v bloku po pravilu ki ga določa S-škatla.
-	\item[ShiftRows] Permutacija bajtov v bloku
-	\item[MixColumns] Linearna transformacija
-\end{description}
-
-\begin{description}[style=nextline]
-	\item[KeyExpansions]
-	\item[Prvi krog]
-		\begin{enumerate}
-			\item AddRoundKey
-		\end{enumerate}
-	\item[Vmesni krogi]
-		\begin{enumerate}
-			\item SubBytes
-			\item ShiftRows
-			\item MixColumns
-			\item AddRoundKey
-		\end{enumerate}
-	\item[Zadnji krogi]
-		\begin{enumerate}
-			\item SubBytes
-			\item ShiftRows
-			\item AddRoundKey
-		\end{enumerate}
-
-\end{description}
 
 \newacronym{IV}{IV}{inicializacijski vektor}
 
@@ -831,6 +812,7 @@ V \gls{OFB} je podoben načinu \gls{CFB}, s to razliko, da se za generiranje nak
 
 
 \section{Asimetrične šifre}
+\todo{rename v asimetricni kriptosistemi}
 
 Eden večjih problemov simetričnih šifrirnih algoritmov je distribucija ključev. V kolikor želita dve osebi svojo komunikacijo zaščititi z uporabo simetričnega šifrirnega algoritma, se morata najprej izmenjati ključ. Dobra praksa je tudi, da se izognemo ponovni uporabi istega ključa, kar v praksi pomeni, da si moramo z vsako osebo, s katero želimo komunicirati izmenjati ključ in hitro se izkaže, da omrežje $n$ ljudi potrebuje $\frac{n(n-1)}{2}$ ključev. Če to preslikamo na omrežje kot je Internet, ki ga uporablja približno 40 odstotkov svetovne populacije. Vzemimo pesimistično oceno, da si vsak uporabnik Interneta lasti samo eno elektronsko napravo, ki uporablja varno komunikacijo in tako omrežje potrebuje $\approx 3.500.000.000$ izmenjav.
 
@@ -844,9 +826,10 @@ V začetni fazi vzpostavljanja varnega komunikacijska kanala se zaradi preproste
 
 \subsection{Izmenjava ključa Diffe-Hellman}
 \label{sec:Izmenjava ključa Diffe-Hellman}
+\todo{Izmenjava -> dogovor o kljucu}
 
 
-Metoda za izmenjavo ključa Diffe-Hellman je bil prvi javno objavljen algoritem, ki uporablja princip javnih in zasebnih ključev. V praksi omogoča, da se dva neznanca preko nezavarovanega kanala kot je Internet dogovorita za skupni ključ, ki ga bosta uporabljala za nadaljnjo komunikacijo. Prva sta ga objavila Whitfield Diffe in Martin Hellman leta 1976, vendar se je kasneje izkazalo, da je angleška tajna služba odkrila princip kriptografije javnih ključev že leto poprej, vendar to ostalo tajno do leta 1997.
+Metoda za izmenjavo ključa Diffe-Hellman je bil prvi javno objavljen algoritem, ki uporablja princip javnih in zasebnih ključev. V praksi omogoča, da se dva neznanca preko nezavarovanega kanala kot je Internet dogovorita za skupni ključ, ki ga bosta uporabljala za nadaljnjo komunikacijo. Prva sta ga objavila Whitfield Diffe in Martin Hellman leta 1976 \cite{diffie1976new}, vendar se je kasneje izkazalo, da je angleška tajna služba odkrila princip kriptografije javnih ključev že leto poprej, vendar to ostalo tajno do leta 1997.
 
 Metoda temelji na reševanju problema diskretnega logaritma, za katerega matematiki verjamejo, da ne obstaja algoritem, ki ga bi bil sposoben rešiti v sprejemljivih časovnih okvirjih (izjema so algoritmi, ki tečejo na kvantnih računalnikih, vendar je to povsem drug svet).
 
@@ -856,11 +839,11 @@ Recimo da se želita Anita in Bojan preko Interneta dogovoriti o skupnem ključu
 
 \begin{mdframed}[frametitle={Izmenjava ključa Diffe-Hellman}]
 \begin{enumerate}
-	\item Anita in Bojan se dogovorita os skupnih parametrih, ki jih bosta uporabljala v algoritmu. To je praštevilo $p$ in primitivni koren praštevila $g$
+	\item Anita in Bojan se dogovorita os skupnih parametrih, ki jih bosta uporabljala v algoritmu. To je praštevilo $p$ in primitivni koren praštevila~$g$.
 	\item Anita si izbere skrivno število $a$, izračuna $A=g^a \mod p$ in pošlje $A$ Bojanu.
 	\item Bojan si izbere skrivno število $b$, izračuna $B=g^b \mod p$ in pošlje $B$ Aniti.
-	\item Anita izračuna $s=B^a \mod p$
-	\item Bojan izračuna $s=A^b \mod p$
+	\item Anita izračuna $s=B^a \mod p$.
+	\item Bojan izračuna $s=A^b \mod p$.
 	\item Anita in Bojan sta dobila enak rezultat $s$, ki ga sedaj lahko uporabita kot skupni ključ za nadaljnjo komunikacijo.
 \end{enumerate}
 
@@ -895,41 +878,11 @@ Poleg zasebnega ključa moramo moramo paziti tudi na zasebnost vrednosti $p$, $q
 
 \todo{napisi vec}
 
-\subsection{Funkcionalne šifrirne sheme}
-\label{sub:Funkcionalne šifrirne sheme}
-
-Pred iznajdbo asimetričnih šifrirnih shem, je veljalo prepričanje, da če želimo vzpostaviti šifrirano komunikacijo, si morata najprej obe strani izmenjati skrivni ključ. V sedemdesetih letih sta Diffe in Hellman~\cite{diffie1976new} to prepričanje postavila na glavo in predstavila algoritem za izmenjavo ključa, kjer ni potrebe po varnem kanalu.
-Podobno je še do pred kratkim veljalo prepričanje: \textit{(1) Šifrirano sporočilo mogoče poslati samo eni osebi (prejemniku), ki si lasti pripadajoč dešifrirni ključ.} in  \textit{(2) Dešifriranje je možno samo na principu vse ali nič. Torej ali je prejemnik sposoben dešifrirati sporočilo v celoti (poseduje dešifrirni ključ), ali pa ga sploh ne more dešifrirati.}
-
-To lahko predstavlja nekaj nevšečnosti v oblačnih sistemih, kjer želimo uporabiti šifriranje. V primeru, da želimo deliti šifrirane datoteke, je potrebno za vsakega uporabnika ustvariti unikaten ključ in na novo šifrirati datoteko. V praksi se je sicer možno izogniti vsakokratnemu šifriranju, vendar veliko lepša rešitev bi bila, če bi lahko datoteko šifrirali tako, da jo lahko dešifrira več uporabnikov. Podoben primer so strežniški dnevniki in revizijske sledi, ki lahko vsebujejo občutljive podatke o uporabnikovi aktivnosti ob določenem času. Da uporabnikom zagotovimo visoko stopnjo zasebnosti, lahko take datoteke šifriramo. Vendar se pojavi problem, če policija po nalogu sodišča od ponudnika zahteva strežniške dnevnike skupaj z dešifrirnim ključem. Če je dešifriranje možno samo na principu vse ali nič, policija pridobi vpogled v aktivnost vseh uporabnikov sistema, ne le osumljenca. Rešitev bi bila, da za vsakega uporabnika izberemo unikaten ključ, vendar če želimo policiji omejiti tudi obdobje, za katerega lahko dešifrira podatke, je potrebno ta ključ rotirati in število teh ključev lahko naraste čez vse razumne meje. Priročnejša rešitev bi bila, če bi lahko uporabili tako šifrirno shemo, kjer lahko ključ dešifrira le del tajnopisa.
-
-Izkaže se da take šifrirne sheme res obstajajo
-
-\cite{boneh2011functional}
-\todo{Prevod, wtf?}
-
-
-\subsubsection{Šifriranje na osnovi predikatov}
-\label{subs:Šifriranje na osnovi predikatov}
 \newacronym{IBE}{IBE}{Identity Based Encryption}
 \newacronym{ABE}{ABE}{Attribute Based Encryption}
 \newacronym{KP-ABE}{KP-ABE}{Key-policy attribute based encryption}
 \newacronym{CP-ABE}{CP-ABE}{Ciphertext-policy attribute based encryption}
 
-Šifriranje na osnovi predikatov je eden najnovejših pristopov na področju kriptografije javnih ključev. V tradicionalni kriptografski shemi javnih ključev se sporočilo šifrira za točno določenega prejemnika (tistega, kateremu pripada javni ključ, ki ga uporabimo za šifriranje). Korak dlje je šlo šifriranje na osnovi identitete (angl. \acrlong{IBE}), kjer lahko za javni ključ uporabimo kar preprost niz znakov, kot je recimo prejemnikov e-naslov. Šifriranje na osnovi predikatov pa je šlo še korak dlje, saj dovoljuje, da isti tajnopis dešifrira kdorkoli poseduje ključ, ki zadovolji vse predikate.
-
-Poglejmo si za primer Anito, ki shrani šifrirane podatke v oblak. Anita ima datoteko $X$, ki bi jo rada delila s skupinama \textbf{Prijatelji} in \textbf{Znanci}. Prav tako ima datoteko $Y$, ki bi jo rada delila s skupinama \textbf{Družina} in \textbf{Prijatelji}. To lahko stori tako, da ustvari en ključ za datoteko $X$ in ta ključ deli s \textbf{Prijatelji} in  \textbf{Znanci}, nato ustvari drug ključ za datoteko $Y$ in ta ključ deli s skupinama \textbf{Družina} in \textbf{Prijatelji}. Problem je, da mora Anita za vsako datoteko, ki jo želi deliti, ustvariti nov ključ.
-
-Naivna rešitev tega problema bi bila, da Anita ustvari en ključ za vsako skupino ljudi, s katerimi želi deliti datoteke. Vendar življenje ni preprosto, in lahko se zgodi, da neka oseba pripada večim skupinam s katerimi želi Anita deliti datoteke. Prav tako si lahko zaželi deliti neko datoteko samo z ljudmi, ki so hkrati \textbf{Prijatelji} in \textbf{Sodelavci}. Recimo da je to datoteka $Z$. Tako datoteko lahko najprej šifrira s ključem, ki pripada skupini \textbf{Prijatelji} in nato še s ključem, ki pripada skupini \textbf{Sodelavci}. Naivno bi mislili da je to dobra rešitev, vendar se izkaže da tak sistem ni odporen proti zaroti. Šifrirano datoteko lahko kot posamezniki odprejo samo ljudje, ki pripadajo obema skupinama, saj imajo le oni v posesti oba ključa. Vendar pa se lahko proti Aniti zarotita dva posameznika skupaj, kjer noben od nju ne pripada obema skupinama hkrati, vendar imata skupaj dostop do obeh ključev, saj vsak od nju pripada eni od skupin.
-
-Možnost dešifriranja določajo pravila, ki so predstavljena z drevesi, kjer so notranja vozlišča logične operacije, listi pa predikati, ki so lahko zadovoljeni ali nezadovoljeni. Drevo beremo od listov proti korenu in za vsako notranje vozlišče ugotovimo ali je v zadovoljenem ali nezadovoljenem stanju. Na koncu pridemo do korena drevesa, in dešifriranje uspe samo v primeru, da je koren drevesa v zadovoljenem stanju.
-
-Poznamo dve vrsti šifriranja na osnovi parametrov. V prvem je drevo, ki določa pravila shranjeno v ključu  (angl. \acrlong{KP-ABE}), v drugem primeru pa je shranjeno v tajnopisu (angl. \acrlong{CP-ABE}).
-
-\section{Homomorfne šifre}
-\label{subs:Homomorfne šifre}
-
-Šifre, o katerih smo katerih smo govorili do sedaj, imajo to lastnost da je njihov tajnopis kolikor je pač možno naključen.
 
 \chapter{Uporaba kriptografije v oblaku}
 
@@ -970,6 +923,58 @@ To se odraža tudi v pristopih k varovanju podatkov v različnih stanjih. Dočim
   name=izločanje dvojnic,
   description={angl.\ deduplication},
 }
+
+\newglossaryentry{authority}
+{
+  name=upravnik,
+  description={angl.\ authority},
+}
+
+\section{Funkcionalne šifrirne sheme}
+\label{sec:Funkcionalne šifrirne sheme}
+
+Pred iznajdbo asimetričnih šifrirnih shem, je veljalo prepričanje, da če želimo vzpostaviti šifrirano komunikacijo, si morata najprej obe strani izmenjati skrivni ključ. V sedemdesetih letih sta Diffe in Hellman~\cite{diffie1976new} to prepričanje postavila na glavo in predstavila algoritem za izmenjavo ključa, kjer ni potrebe po varnem kanalu.
+Podobno je še do pred kratkim veljalo prepričanje: \textit{(1) Šifrirano sporočilo mogoče poslati samo eni osebi (prejemniku), ki si lasti pripadajoč dešifrirni ključ.} in  \textit{(2) Dešifriranje je možno samo na principu vse ali nič. Torej ali je prejemnik sposoben dešifrirati sporočilo v celoti (poseduje dešifrirni ključ), ali pa ga sploh ne more dešifrirati.}
+
+To lahko predstavlja nekaj nevšečnosti v oblačnih sistemih, kjer želimo uporabiti šifriranje. V primeru, da želimo deliti šifrirane datoteke, je potrebno za vsakega uporabnika ustvariti unikaten ključ in na novo šifrirati datoteko. V praksi se je sicer možno izogniti vsakokratnemu šifriranju, vendar veliko lepša rešitev bi bila, če bi lahko datoteko šifrirali tako, da jo lahko dešifrira več uporabnikov. Podoben primer so strežniški dnevniki in revizijske sledi, ki lahko vsebujejo občutljive podatke o uporabnikovi aktivnosti ob določenem času. Da uporabnikom zagotovimo visoko stopnjo zasebnosti, lahko take datoteke šifriramo. Vendar se pojavi problem, če policija po nalogu sodišča od ponudnika zahteva strežniške dnevnike skupaj z dešifrirnim ključem. Če je dešifriranje možno samo na principu vse ali nič, policija pridobi vpogled v aktivnost vseh uporabnikov sistema, ne le osumljenca. Rešitev bi bila, da za vsakega uporabnika izberemo unikaten ključ, vendar če želimo policiji omejiti tudi obdobje, za katerega lahko dešifrira podatke, je potrebno ta ključ rotirati in število teh ključev lahko naraste čez vse razumne meje. Priročnejša rešitev bi bila, če bi lahko uporabili tako šifrirno shemo, kjer lahko ključ dešifrira le del tajnopisa.
+
+Izkaže se, da take šifrirne sheme res obstajajo, vendar je to področje kriptografije še dokaj novo in obstaja še veliko odprtih problemov, vendar prvi rezultati so obetavni. Čeprav so bili mnogi algoritmi, ki jih sedaj uvrščamo pod funkcionalne šifrirne sheme odkriti že prej, pa je bila prva formalizacija javno predstavljena šele leta 2011~\cite{boneh2011functional}.
+
+V takih šifrirnih shemah posebni dešifrirni ključ omogoča uporabniku izračun vrednosti neke funkcije nad šifriranimi podatki. V funkcionalni šifrirni shemi za funkcionalnost~$F(\cdot, \cdot)$ lahko \gls{authority}, ki si lasti glavni skrivni ključ, ustvari ključ~$sk_k$, s katerim lahko uporabnik izračuna vrednost funkcije~$F(k, x)$ iz tajnopisa za~$x$.
+
+\begin{mdframed}[frametitle={Funkcionalnost F}]
+Funkcionalnost $F$, definirana na $(K, X)$ je funkcija $F: K \times X \rightarrow \{0,1\}^*$ predstavljena kot determinističen turingov stroj. Množica $K$ je prostor vseh ključev in množica $X$ je prostor vseh čistopisov. Zahtevamo tudi da množica $K$ vsebuje prazen ključ \epsilon.
+\end{mdframed}
+
+\begin{mdframed}[frametitle={Funkcionalna šifrirna shema}]
+Funkcionalna šifrirna shema za funkcionalnost $F: K \times X \rightarrow \{0,1\}^*$ je četvorka algoritmov:
+\begin{align*}
+  (pp, mk) \leftarrow setup(1^\lambda) & \qquad \text{(generiranje para javnega in zasebnega ključa)} \\
+  sk \leftarrow keygen(mk, k) & \qquad \text{(generiranje skrivnega ključa za k)} \\
+  c \leftarrow enc(pp, x) & \qquad \text{(šifriranje sporočila)} \\
+  y \leftarrow dec(sk, c) & \qquad \text{(dešifriranje sporočila - izračun vrednosti F(k,x))} \\
+\end{align*}
+\end{mdframed}
+
+\subsubsection{Šifriranje na osnovi predikatov}
+\label{subs:Šifriranje na osnovi predikatov}
+
+Šifriranje na osnovi predikatov je eden najnovejših pristopov na področju kriptografije javnih ključev. V tradicionalni kriptografski shemi javnih ključev se sporočilo šifrira za točno določenega prejemnika (tistega, kateremu pripada javni ključ, ki ga uporabimo za šifriranje). Korak dlje je šlo šifriranje na osnovi identitete (angl. \acrlong{IBE}), kjer lahko za javni ključ uporabimo kar preprost niz znakov, kot je recimo prejemnikov e-naslov. Šifriranje na osnovi predikatov pa je šlo še korak dlje, saj dovoljuje, da isti tajnopis dešifrira kdorkoli poseduje ključ, ki zadovolji vse predikate.
+
+Poglejmo si za primer Anito, ki shrani šifrirane podatke v oblak. Anita ima datoteko $X$, ki bi jo rada delila s skupinama \textbf{Prijatelji} in \textbf{Znanci}. Prav tako ima datoteko $Y$, ki bi jo rada delila s skupinama \textbf{Družina} in \textbf{Prijatelji}. To lahko stori tako, da ustvari en ključ za datoteko $X$ in ta ključ deli s \textbf{Prijatelji} in  \textbf{Znanci}, nato ustvari drug ključ za datoteko $Y$ in ta ključ deli s skupinama \textbf{Družina} in \textbf{Prijatelji}. Problem je, da mora Anita za vsako datoteko, ki jo želi deliti, ustvariti nov ključ.
+
+Naivna rešitev tega problema bi bila, da Anita ustvari en ključ za vsako skupino ljudi, s katerimi želi deliti datoteke. Vendar življenje ni preprosto, in lahko se zgodi, da neka oseba pripada večim skupinam s katerimi želi Anita deliti datoteke. Prav tako si lahko zaželi deliti neko datoteko samo z ljudmi, ki so hkrati \textbf{Prijatelji} in \textbf{Sodelavci}. Recimo da je to datoteka $Z$. Tako datoteko lahko najprej šifrira s ključem, ki pripada skupini \textbf{Prijatelji} in nato še s ključem, ki pripada skupini \textbf{Sodelavci}. Naivno bi mislili da je to dobra rešitev, vendar se izkaže da tak sistem ni odporen proti zaroti. Šifrirano datoteko lahko kot posamezniki odprejo samo ljudje, ki pripadajo obema skupinama, saj imajo le oni v posesti oba ključa. Vendar pa se lahko proti Aniti zarotita dva posameznika skupaj, kjer noben od nju ne pripada obema skupinama hkrati, vendar imata skupaj dostop do obeh ključev, saj vsak od nju pripada eni od skupin.
+
+Možnost dešifriranja določajo pravila, ki so predstavljena z drevesi, kjer so notranja vozlišča logične operacije, listi pa predikati, ki so lahko zadovoljeni ali nezadovoljeni. Drevo beremo od listov proti korenu in za vsako notranje vozlišče ugotovimo ali je v zadovoljenem ali nezadovoljenem stanju. Na koncu pridemo do korena drevesa, in dešifriranje uspe samo v primeru, da je koren drevesa v zadovoljenem stanju.
+
+Poznamo dve vrsti šifriranja na osnovi parametrov. V prvem je drevo, ki določa pravila shranjeno v ključu  (angl. \acrlong{KP-ABE}), v drugem primeru pa je shranjeno v tajnopisu (angl. \acrlong{CP-ABE}).
+
+\section{Homomorfne šifre}
+\label{subs:Homomorfne šifre}
+
+Šifre, o katerih smo katerih smo govorili do sedaj, imajo to lastnost da je njihov tajnopis kolikor je pač možno naključen.
+
+
 
 \section{Varovanje podatkov v mirovanju}
 \label{subs:Varovanje podatkov v mirovanju}
@@ -1098,6 +1103,7 @@ Varno večstransko računanje je področje kriptografije, ki se ukvarja z razvoj
 \bibliographystyle{slplainurl}
 \addcontentsline{toc}{chapter}{Literatura}
 \label{literatura}
+\bibliographystyle{apa}
 \bibliography{diploma}
 
 \end{document}
