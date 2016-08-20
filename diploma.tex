@@ -41,10 +41,6 @@
 \renewcommand{\headrulewidth}{0.0pt}
 \renewcommand{\footrulewidth}{0.0pt}
 
-\newcommand{\gnuplot}{\textbf{gnuplot}}
-\newcommand{\pgfname}{\textsc{pgf}}
-\newcommand{\tikzname}{Ti\emph{k}Z}
-
 \DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
 \mdfsetup{nobreak=true}
 \makeglossaries{}
@@ -55,6 +51,28 @@
 \begin{document}
 
 %********************************************
+
+\newacronym{SaaS}{SaaS}{Software as a Service}
+\newacronym{PaaS}{PaaS}{Platform as a Service}
+\newacronym{IaaS}{IaaS}{Infrastructure as a Service}
+\newacronym{API}{API}{Application programming interface}
+\newacronym{DES}{DES}{Data encryption standard}
+\newacronym{NIST}{NIST}{National Institute of Standards and Technology}
+\newacronym{NBS}{NBS}{National Bureau of Standards}
+\newacronym{AES}{AES}{Advanced encryption standard}
+\newacronym{IV}{IV}{inicializacijski vektor}
+\newacronym{ECB}{ECB}{Electronic Codebook}
+\newacronym{CBC}{CBC}{Cipher Block Chaining}
+\newacronym{CFB}{CFB}{Cipher Feedback}
+\newacronym{OFB}{OFB}{Output Feedback}
+\newacronym{RSA}{RSA}{RSA}
+\newacronym{IBE}{IBE}{Identity Based Encryption}
+\newacronym{ABE}{ABE}{Attribute Based Encryption}
+\newacronym{KP-ABE}{KP-ABE}{Key-policy attribute based encryption}
+\newacronym{CP-ABE}{CP-ABE}{Ciphertext-policy attribute based encryption}
+\newacronym{SSL}{SSL}{Secure Sockets Layer}
+\newacronym{TLS}{TLS}{Transport Layer Security}
+
 
 \newglossaryentry{MITM}
 {
@@ -67,7 +85,6 @@
   name=čistopis,
   description={plaintext},
 }
-
 
 \newglossaryentry{tajnopis}
 {
@@ -93,6 +110,75 @@
   description={non-repudiation},
 }
 
+\newglossaryentry{zaupnost}
+{
+  name=zaupnost,
+  description={Confidentiality},
+}
+
+\newglossaryentry{celovitost}
+{
+  name=celovitost,
+  description={Integrity},
+}
+
+\newglossaryentry{razpolozljivost}
+{
+  name=razpoložljivost,
+  description={Availability},
+}
+
+\newglossaryentry{overjanje}
+{
+  name=overjanje,
+  description={Authentication},
+}
+
+\newglossaryentry{avtorizacija}
+{
+  name=avtorizacija,
+  description={Authorization},
+}
+
+\newglossaryentry{feistelovasifra}
+{
+  name=Feistlova šifra,
+  description={encryption key},
+}
+\newglossaryentry{cold-boot-attack}
+{
+  name=Cold boot attack,
+  description={Cold boot attack},
+}
+
+\newglossaryentry{deduplication}
+{
+  name=izločanje dvojnic,
+  description={angl.\ deduplication},
+}
+
+\newglossaryentry{authority}
+{
+  name=upravnik,
+  description={angl.\ authority},
+}
+\newglossaryentry{ciphertext indistinguishability}
+{
+  name=ciphertext indistinguishability,
+  description={angl.\ ciphertext indistinguishability},
+}
+
+\newglossaryentry{rootkit}
+{
+  name=korenski komplet,
+  description={angl.\ rootkit},
+}
+
+\newglossaryentry{varno vecstransko racunanje}
+{
+  name=varno večstransko računanje,
+  description={angl.\ secure multi-party computation},
+}
 
 %********************************************
 
@@ -356,10 +442,6 @@ NIST opredeli oblak kot: ``Računalništvo v oblaku je model, ki omogoča vsepri
    \item[Merjenje porabe in obračun glede na porabo virov]  Oblačni sistemi samodejno nadzirajo in optimizirajo porabo virov s pomočjo metrik (poraba prostora, pasovne širine, procesorskega časa \ldots). Poraba virov se nadzira, kontrolira in poroča, kar omogoča transparentnost za ponudnika in uporabnika.
 \end{description}
 
-\newacronym{SaaS}{SaaS}{Software as a Service}
-\newacronym{PaaS}{PaaS}{Platform as a Service}
-\newacronym{IaaS}{IaaS}{Infrastructure as a Service}
-\newacronym{API}{API}{Application programming interface}
 
 \begin{description}[style=nextline]
 	\item[\gls{SaaS}] Ponudnik storitev uporabniku omogoča uporabo njegove aplikacije, ki teče v oblaku. Aplikacija je dosegljiva iz različnih naprav, preko recimo spletnega brskalnika ali aplikacijskega vmesnika (\gls{API}). Uporabnik nima nadzora nad infrastrukturo na kateri teče aplikacija (omrežje in strežniki), kot tudi ne nad samo aplikacijo (z izjemo konfiguracije aplikacije).
@@ -393,23 +475,7 @@ Varnost je širok pojem, ki ga v kontekstu računalništva lahko razdelimo na tr
 
 Iz teh opisov lahko razberemo ključne lastnosti varnega računalniškega sistema. V literaturi se te ključne tri lastnosti imenujemo CIA triad, kjer je CIA angleška kratica za ključne 3 lastnosti:
 
-\newglossaryentry{zaupnost}
-{
-  name=zaupnost,
-  description={Confidentiality},
-}
 
-\newglossaryentry{celovitost}
-{
-  name=celovitost,
-  description={Integrity},
-}
-
-\newglossaryentry{razpolozljivost}
-{
-  name=razpoložljivost,
-  description={Availability},
-}
 
 \begin{description}
 \item[\Gls{zaupnost}] pomeni zasebnost podatkov. Ukrepi, ki zagotavljajo zaupnost podatkov so usmerjeni k preprečevanju dostopa nepooblaščenih oseb. Pogosti mehanizmi, ki se uporabljajo za zagotavljanje zaupnosti podatkov so zaščita z uporabniškim imenom in geslom, dvostopenjska overitev (two-factor auth), biometrična overitev in šifriranje podatkov.
@@ -422,23 +488,7 @@ Iz teh opisov lahko razberemo ključne lastnosti varnega računalniškega sistem
 
 Poleg treh ključnih lastnosti, ki jih najdemo zgoraj je Meier identificiral še tri lastnosti, to so:
 
-\newglossaryentry{overjanje}
-{
-  name=overjanje,
-  description={Authentication},
-}
 
-\newglossaryentry{avtorizacija}
-{
-  name=avtorizacija,
-  description={Authorization},
-}
-
-\newglossaryentry{neizpodbitnost}
-{
-  name=neizpodbitnost,
-  description={Non-repudioation},
-}
 
 \begin{description}
 
@@ -627,17 +677,6 @@ Y = y_0 \| y_1 \| \dotsc \| y_n \\
 
 Tak način šifriranja lahko uporabimo za poljubno dolga sporočila, brez potrebe po dopolnjevanju.
 
-\newacronym{DES}{DES}{Data encryption standard}
-\newacronym{NIST}{NIST}{National Institute of Standards and Technology}
-\newacronym{NBS}{NBS}{National Bureau of Standards}
-
-
-\newglossaryentry{feistelovasifra}
-{
-  name=Feistlova šifra,
-  description={encryption key},
-}
-
 \subsection{DES in 3DES}
 
 \gls{DES} je bil eden prvih modernih šifrirnih algoritmov. Originalna implementacija je nosila ime Lucifer in bila razvita v sedemdesetih letih v laboratorijih podjetja IBM.\  Kasneje je bila rahlo modificirana različica tega algoritma sprejeta s strani \acrshort{NIST}-a (takrat se je imenoval še \acrshort{NBS}) kot standard \gls{DES}.
@@ -663,7 +702,6 @@ P=D_{K_1}(E_{K_2}(D_{K_3}(C)))
 
 Kjer je $C$ tajnopis in $P$ čistopis.
 
-\newacronym{AES}{AES}{Advanced encryption standard}
 
 
 \subsection{AES}
@@ -673,7 +711,6 @@ Kjer je $C$ tajnopis in $P$ čistopis.
 \gls{AES} se po strukturi algoritma razlikuje od \gls{DES}-a, saj namesto Feistelove šifre uporablja substitucijsko-permutacijsko omrežje.  Algoritem iz ptičje perspektive izgleda tako:
 
 
-\newacronym{IV}{IV}{inicializacijski vektor}
 
 
 \subsection{Načini delovanja bločnih šifer}
@@ -686,7 +723,6 @@ Večina načinov delovanja poleg bločne šifre in šifrirnega ključa potrebuje
 
 Kot smo že povedali, bločne šifre sprejemajo le bloke točno določene velikosti, zato je potrebno tudi v nekaterih načinih delovanja šifre sporočilo najprej dopolniti, tako da je njegova dolžina večkratnik velikosti bloka. Vendar obstajajo tudi načini delovanja, kjer to ni potrebno, saj ti iz bločne šifre naredijo tokovno šifro.
 
-\newacronym{ECB}{ECB}{Electronic Codebook}
 
 \subsubsection{ECB}
 \label{subs:ECB}
@@ -735,7 +771,6 @@ Slika~\ref{fig:ecbbad} prikazuje uporabo 128 bitne AES šifre v načinu ECB.\@ N
 \label{fig:ecbbad}
 \end{figure}
 
-\newacronym{CBC}{CBC}{Cipher Block Chaining}
 
 \subsubsection{CBC}
 \label{subs:CBC}
@@ -760,7 +795,6 @@ Slabost takega pristopa pa je da je operacija šifriranja strogo zaporedna, saj 
 \label{fig:cbcmode}
 \end{figure}
 
-\newacronym{CFB}{CFB}{Cipher Feedback}
 
 \subsubsection{CFB}
 \label{subs:CFB}
@@ -785,7 +819,6 @@ Kot se vidi na sliki~\ref{fig:cfbmode}, se v tem načinu delovanja bločna šifr
 \label{fig:cfbmode}
 \end{figure}
 
-\newacronym{OFB}{OFB}{Output Feedback}
 
 
 \subsubsection{OFB}
@@ -856,7 +889,6 @@ $$
 
 \end{mdframed}
 
-\newacronym{RSA}{RSA}{RSA}
 
 
 \subsection{RSA}
@@ -878,10 +910,6 @@ Poleg zasebnega ključa moramo moramo paziti tudi na zasebnost vrednosti $p$, $q
 
 \todo{napisi vec}
 
-\newacronym{IBE}{IBE}{Identity Based Encryption}
-\newacronym{ABE}{ABE}{Attribute Based Encryption}
-\newacronym{KP-ABE}{KP-ABE}{Key-policy attribute based encryption}
-\newacronym{CP-ABE}{CP-ABE}{Ciphertext-policy attribute based encryption}
 
 
 \chapter{Uporaba kriptografije v oblaku}
@@ -906,29 +934,7 @@ Zgodovinsko gledano je bila kriptografija izumljena z motivom varovanja komunika
 
 Na začetku obdobja računalništva se največ pozornosti posvečalo predvsem varnosti podatkov v mirovanju, saj so se informacijski sistemi nahajali znotraj podjetja, oziroma so bili do podjetja povezani preko najetih vodov. Prav tako so se podatki obdelovali na strojni opremi, ki je bila v lasti podjetja in se je nahajala na varni lokaciji. S prihodom storitev v oblaku, se je ta paradigma spremenila. Podatke je treba najprej prenesti v oblačni sistem, največkrat kar preko Interneta. Prav tako podatke v oblak pošljemo z namenom, da jih bomo tam obdelovali in analizirali, kar pomeni da je potrebno poskrbeti tudi za varnost podatkov v uporabi.
 
-\newacronym{SSL}{SSL}{Secure Sockets Layer}
-\newacronym{TLS}{TLS}{Transport Layer Security}
-
 To se odraža tudi v pristopih k varovanju podatkov v različnih stanjih. Dočim za varovanje podatkov v mirovanju obstajajo ustaljene prakse, pa za ostali dve področji velja, da se nenehno spreminjata. Na področju varovanja podatkov v gibanju, ki ga v primeru oblačnih sistemov večinoma pokrivata kriptografska protokola \acrfull{SSL} in njegov naslednik \acrfull{TLS}, je v zadnjih letih prišlo do odkritji različnih napadov in posledično opustitve določenih verzij protokolov, ker te niso več zagotavljale zadovoljivega nivoja varnosti. Drugačna pa je situacija na področju varovanja podatkov v uporabi, saj v preteklosti ni bilo velike potrebe po praktični implementaciji takih kriptografskih protokolov, vendar se je s prihodom oblačnih storitev tudi to področje začelo pospešeno razvijati.
-
-
-\newglossaryentry{cold-boot-attack}
-{
-  name=Cold boot attack,
-  description={Cold boot attack},
-}
-
-\newglossaryentry{deduplication}
-{
-  name=izločanje dvojnic,
-  description={angl.\ deduplication},
-}
-
-\newglossaryentry{authority}
-{
-  name=upravnik,
-  description={angl.\ authority},
-}
 
 \section{Funkcionalne šifrirne sheme}
 \label{sec:Funkcionalne šifrirne sheme}
@@ -943,7 +949,7 @@ Izkaže se, da take šifrirne sheme res obstajajo, vendar je to področje kripto
 V takih šifrirnih shemah posebni dešifrirni ključ omogoča uporabniku izračun vrednosti neke funkcije nad šifriranimi podatki. V funkcionalni šifrirni shemi za funkcionalnost~$F(\cdot, \cdot)$ lahko \gls{authority}, ki si lasti glavni skrivni ključ, ustvari ključ~$sk_k$, s katerim lahko uporabnik izračuna vrednost funkcije~$F(k, x)$ iz tajnopisa za~$x$.
 
 \begin{mdframed}[frametitle={Funkcionalnost F}]
-Funkcionalnost $F$, definirana na $(K, X)$ je funkcija $F: K \times X \rightarrow \{0,1\}^*$ predstavljena kot determinističen turingov stroj. Množica $K$ je prostor vseh ključev in množica $X$ je prostor vseh čistopisov. Zahtevamo tudi da množica $K$ vsebuje prazen ključ \epsilon.
+Funkcionalnost $F$, definirana na $(K, X)$ je funkcija $F: K \times X \rightarrow \{0,1\}^*$ predstavljena kot determinističen Turingov stroj. Množica $K$ je prostor vseh ključev in množica $X$ je prostor vseh čistopisov. Zahtevamo tudi, da množica $K$ vsebuje prazen ključ $\epsilon$.
 \end{mdframed}
 
 \begin{mdframed}[frametitle={Funkcionalna šifrirna shema}]
@@ -959,7 +965,7 @@ Funkcionalna šifrirna shema za funkcionalnost $F: K \times X \rightarrow \{0,1\
 \subsubsection{Šifriranje na osnovi predikatov}
 \label{subs:Šifriranje na osnovi predikatov}
 
-Šifriranje na osnovi predikatov je eden najnovejših pristopov na področju kriptografije javnih ključev. V tradicionalni kriptografski shemi javnih ključev se sporočilo šifrira za točno določenega prejemnika (tistega, kateremu pripada javni ključ, ki ga uporabimo za šifriranje). Korak dlje je šlo šifriranje na osnovi identitete (angl. \acrlong{IBE}), kjer lahko za javni ključ uporabimo kar preprost niz znakov, kot je recimo prejemnikov e-naslov. Šifriranje na osnovi predikatov pa je šlo še korak dlje, saj dovoljuje, da isti tajnopis dešifrira kdorkoli poseduje ključ, ki zadovolji vse predikate.
+Šifriranje na osnovi predikatov je eden najnovejših pristopov na področju kriptografije javnih ključev. V tradicionalni kriptografski shemi javnih ključev se sporočilo šifrira za točno določenega prejemnika (tistega, kateremu pripada javni ključ, ki ga uporabimo za šifriranje). Korak dlje je šlo šifriranje na osnovi identitete (angl. \acrlong{IBE}), kjer lahko za javni ključ uporabimo preprost niz znakov, kot je recimo prejemnikov e-naslov. Šifriranje na osnovi predikatov pa je šlo še korak dlje, saj dovoljuje, da isti tajnopis dešifrira kdorkoli poseduje ključ, ki zadovolji vse predikate.
 
 Poglejmo si za primer Anito, ki shrani šifrirane podatke v oblak. Anita ima datoteko $X$, ki bi jo rada delila s skupinama \textbf{Prijatelji} in \textbf{Znanci}. Prav tako ima datoteko $Y$, ki bi jo rada delila s skupinama \textbf{Družina} in \textbf{Prijatelji}. To lahko stori tako, da ustvari en ključ za datoteko $X$ in ta ključ deli s \textbf{Prijatelji} in  \textbf{Znanci}, nato ustvari drug ključ za datoteko $Y$ in ta ključ deli s skupinama \textbf{Družina} in \textbf{Prijatelji}. Problem je, da mora Anita za vsako datoteko, ki jo želi deliti, ustvariti nov ključ.
 
@@ -1008,13 +1014,6 @@ V primeru oblačnih storitev, ki ponujajo hrambo velikih količin podatkov v obl
 Za dano šifrirno funkcijo $e$ in poljubna dva čistopisa $p_1$ in $p_2$ iz katerih pridobimo tajnopisa $c=e(p_1)$ in $c=e(p_1)$ velja: Sistem je polinomsko varen, če velja da v polinomskem času ne moremo ugotoviti kateri $c$ pripada kateremu čistopisu z verjetnostjo občutno večjo kot $0.5$.
 \end{mdframed}
 
-
-\newglossaryentry{ciphertext indistinguishability}
-{
-  name=ciphertext indistinguishability,
-  description={angl.\ ciphertext indistinguishability},
-}
-
 Kasneje sta~\cite{Goldwasser1984} Goldwasser in Micali pokazala, da je problem semantične varnosti enakovreden problemu \gls{ciphertext indistinguishability}, ki zahteva, da napadalec ne more razločiti poljubnih dveh tajnopisov glede na njun čistopis.
 
 The primary security disadvantage of this approach, as identified
@@ -1052,18 +1051,6 @@ Podatki so v gibanju praviloma malo časa, zato ni potrebe po kompleksnem upravl
 \section{Varovanje podatkov v uporabi}
 \label{sec:Varovanje podatkov v uporabi}
 
-\newglossaryentry{rootkit}
-{
-  name=korenski komplet,
-  description={angl.\ rootkit},
-}
-
-\newglossaryentry{varno vecstransko racunanje}
-{
-  name=varno večstransko računanje,
-  description={angl.\ secure multi-party computation},
-}
-
 Podatki v uporabi so zelo kratkotrajne narave, vendar jih je kljub temu zelo težko zaščititi. Problem izhaja iz same definicije podatkov v uporabi, saj so to podatki, nad katerimi računalniški sistem želi izvesti neko operacijo, oziroma jih prikazati uporabniku. Podatki v uporabi se nahajajo v delovnem pomnilniku računalnika, in so zato izpostavljeni tako imenovanemu \glslink{cold-boot-attack}{napadu cold-boot}, kjer napadalec dobesedno zamrzne stanje pomnilnika ob delujočem računalniku in nato poskuša iz njega izvleči vsebino, predvsem šifrirne ključe, saj lahko z njihovo pomočjo dešifrira veliko večjo količino podatkov, ki so trenutno v mirovanju ali gibanju.
 
 Kjub temu pa tveganje za napad cold-boot ni veliko, saj z napadalčeve strani zahteva fizičen dostop do sistema in kar nekaj tehnologije. Večji problem predstavlja morebitna okužba sistema s \glslink{rootkit}{korenskim kompletom}, ki napadalcu omogoča dostop do celotnega pomnilnika sistema.
@@ -1073,7 +1060,7 @@ V nadaljevanju bomo predstavili tri možnih načinov, kako zagotoviti različne 
 \subsubsection{Varno večstransko računanje}
 \label{subs:Varno večstransko računanje}
 
-Varno večstransko računanje je področje kriptografije, ki se ukvarja z razvojem algoritmov, ki omogočajo, da več udeležencev skupaj izračuna rezultat neke funkcije, brez da bi kdorkoli poznal vse vhodne parametre funkcije.
+Varno večstransko računanje je področje kriptografije, ki se ukvarja z razvojem algoritmov, ki omogočajo, da več udeležencev skupaj izračuna rezultat neke funkcije, ne da bi kdorkoli poznal vse vhodne parametre funkcije.
 
 
 \todo[inline]{Šifriranje delovnega pomnilnika, homomorfna enkricpija, secure MPC, ...}
@@ -1103,7 +1090,6 @@ Varno večstransko računanje je področje kriptografije, ki se ukvarja z razvoj
 \bibliographystyle{slplainurl}
 \addcontentsline{toc}{chapter}{Literatura}
 \label{literatura}
-\bibliographystyle{apa}
 \bibliography{diploma}
 
 \end{document}
