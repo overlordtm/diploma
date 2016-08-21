@@ -36,8 +36,11 @@ once: $(MAIN).tex
 check:
 	chktex $(MAIN)
 
+glossaries:
+	makeglossaries -d out $(MAIN)
+
 spell-check:
-	hunspell -l -t -i utf_8 -d sl_SI,en_US $(MAIN).tex
+	@ hunspell -l -t -i utf-8 -d sl_SI,en_US $(MAIN).tex 2>/dev/null
 
 debug: clean $(OUTDIR)
 	$(LATEX) -output-directory=$(OUTDIR) $(LATEXOPT) $(MAIN)

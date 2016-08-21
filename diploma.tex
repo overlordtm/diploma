@@ -14,6 +14,7 @@
 \usepackage{mdframed}
 \usepackage{mathtools}
 \usepackage{amsmath}
+\usepackage{amsthm}
 \usepackage{amssymb}
 \usepackage{caption}
 \usepackage{subcaption}
@@ -22,12 +23,20 @@
 \usetikzlibrary{graphs,graphs.standard,quotes}
 \usepackage[a4paper,headheight=15pt]{geometry}
 \renewcommand{\baselinestretch}{1.3}
-\providecommand\mathplus{+}
 
+\providecommand\mathplus{+}
 
 \usepackage[pdftex,colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black,pagebackref,unicode]{hyperref}
 \usepackage[acronym,toc,xindy]{glossaries}
 \usepackage{tikz}
+
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[chapter] % reset theorem numbering for each chapter
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definicija} % definition numbers are dependent on theorem numbers
+\newtheorem{exmp}[thm]{Primer} % same for example numbers
 
 %Nastavitev glave in repa strani
 \pagestyle{fancy}
@@ -65,8 +74,9 @@
 \newacronym{CBC}{CBC}{Cipher Block Chaining}
 \newacronym{CFB}{CFB}{Cipher Feedback}
 \newacronym{OFB}{OFB}{Output Feedback}
-\newacronym{RSA}{RSA}{RSA}
+\newacronym{RSA}{RSA}{Rivest-Shamir-Adleman}
 \newacronym{IBE}{IBE}{Identity Based Encryption}
+\newacronym{FE}{FE}{Functional encryption}
 \newacronym{ABE}{ABE}{Attribute Based Encryption}
 \newacronym{KP-ABE}{KP-ABE}{Key-policy attribute based encryption}
 \newacronym{CP-ABE}{CP-ABE}{Ciphertext-policy attribute based encryption}
@@ -122,7 +132,7 @@
   description={Integrity},
 }
 
-\newglossaryentry{razpolozljivost}
+\newglossaryentry{availability}
 {
   name=razpoložljivost,
   description={Availability},
@@ -174,10 +184,16 @@
   description={angl.\ rootkit},
 }
 
-\newglossaryentry{varno vecstransko racunanje}
+\newglossaryentry{secMPC}
 {
   name=varno večstransko računanje,
   description={angl.\ secure multi-party computation},
+}
+
+\newglossaryentry{malleable}
+{
+  name=gnetljiv,
+  description={angl. malleable},
 }
 
 %********************************************
@@ -367,12 +383,12 @@ $\;$
 
 %********************************************
 
-\chapter*{Seznam uporabljenih kratic in simbolov}
-\glsaddall{}
-\printglossaries{}
-\printglossary
+% \chapter*{Seznam uporabljenih kratic in simbolov}
 \thispagestyle{empty}
-
+\glsaddall{}
+\thispagestyle{empty}
+\printglossaries{}
+\thispagestyle{empty}
 
 
 %\cleardoublepage
@@ -381,9 +397,6 @@ $\;$
 
 %********************************************
 %začno se glavni listi, ki so numerirani z arabskimi stevilkami
-
-\setcounter{page}{1}
-\pagenumbering{arabic}
 
 \chapter*{Povzetek}
 
@@ -416,7 +429,8 @@ Ključne besede v angleškem jeziku.
 
 
 %********************************************
-
+\setcounter{page}{1}
+\pagenumbering{arabic}
 \chapter{Uvod}
 
 V zadnjih letih smo priča bliskovitemu porastu popularnosti tako imenovanega računalništva v oblaku. Gartner je v začetku leta 2015 uvrstil računalništvo v oblaku med 10 strateško najpomembnejših tehnoloških trendov, ki bodo krojili prihodnost. Oblak nam omogoča udobno, cenovno ugodno delo, kadarkoli in kjerkoli, tudi zunaj pisarne, saj je vse kar potrebujemo internetni dostop in računalnik ali telefon. Računalništvo v oblaku je posledica razvoja več različnih tehnologij, ki so skupaj omogočile cenovno učinkovite rešitve, ki so hkrati preproste za uporabo. Končni uporabniki uporabljajo oblak, ker je preprosto za uporabo, omogoča dostop do podatkov kjerkoli in kadarkoli. Na drugi strani vedno več podjetji v žeji, da znižajo stroške poslovanja in povečajo sposobnost prilagajanja zahtevam trga, seli svoje poslovanje v oblak. Posledica tega premika je selitev podatkov iz fizičnih nosilcev, ki so bili tradicionalno v lasti iste osebe kot podatki, v oblak. To pomeni da varnost hrambe svojih podatkov zaupamo tretjim osebam, kar niti ni nujno tako slabo, kot se sliši. Za veliko ljudi in manjših podjetji je skrb za varnost podatkov velik zalogaj, ki zahteva ustrezno tehnično izobrazbo, strojno opremo in prostor. Kadar hranimo podatke v oblaku, nič od tega ni potrebno, saj nam vse to zagotavlja ponudnik storitev v oblaku v zameno za mesečno naročnino. V nadaljevanju tega dela, bomo najprej pregledali kaj je oblak, kakšne oblike oblaka poznamo. Ko bomo opremljeni z osnovnim poznavanjem oblaka, si bomo pogledali še formalno definicijo varnosti nato pa bomo preučili kako vpeljava in vsesplošna uporaba oblaka vpliva na varnost naših podatkov.
@@ -433,13 +447,13 @@ NIST opredeli oblak kot: ``Računalništvo v oblaku je model, ki omogoča vsepri
 \begin{description}[style=nextline]
    \item[Storitev na zahtevo] Stranka lahko pridobi nove vire v oblaku po potrebi, lahko tudi popolnoma samodejno brez človeškega posredovanja.
 
-   \item[Širok dostop preko omrežja] Zmogljivosti oblaka so na voljo preko omrežja in do njih lahko dostopamo preko standardnih mehanizmov, kar omogoča dostop praktično katerekoli naprave, ki se je zmožna povezati v omrežje (telefoni, tablice, računalniki, …).
+   \item[Širok dostop preko omrežja] Zmogljivosti oblaka so na voljo preko omrežja in do njih lahko dostopamo preko standardnih mehanizmov, kar omogoča dostop praktično katerekoli naprave, ki se je zmožna povezati v omrežje (telefoni, tablice, računalniki,~\ldots).
 
    \item[Uporaba skupnih virov] Ponudnikovi fizični viri so združeni v bazen virov iz katerega stranke dobijo virtualizirane vire. Virtualizirani vir lahko prosto prehaja med fizičnimi gostitelji, zato težko govorimo o točni lokaciji vira.
 
    \item[Bliskovita prožnost] Uporabnik lahko preprosto poveča ali zmanjša zmogljivosti virov, ki jih potrebuje glede na potrebe. Uporabnik ima pogosto občutek da so mu na voljo neomejene zmogljivosti.
 
-   \item[Merjenje porabe in obračun glede na porabo virov]  Oblačni sistemi samodejno nadzirajo in optimizirajo porabo virov s pomočjo metrik (poraba prostora, pasovne širine, procesorskega časa \ldots). Poraba virov se nadzira, kontrolira in poroča, kar omogoča transparentnost za ponudnika in uporabnika.
+   \item[Merjenje porabe in obračun glede na porabo virov]  Oblačni sistemi samodejno nadzirajo in optimizirajo porabo virov s pomočjo metrik (poraba prostora, pasovne širine, procesorskega časa~\ldots). Poraba virov se nadzira, kontrolira in poroča, kar omogoča transparentnost za ponudnika in uporabnika.
 \end{description}
 
 
@@ -482,7 +496,7 @@ Iz teh opisov lahko razberemo ključne lastnosti varnega računalniškega sistem
 
 \item[\Gls{celovitost}] pomeni ohranjanje točnosti in pravilnosti podatkov. Ukrepi, ki zagotavljajo celovitost podatkov, preprečujejo nepooblaščenim osebam spreminjanje podatkov med prenosom ali v mirovanju. Omogočajo sledenje spremembam podatkov skozi zgodovino (revizijska sled), obnovitev podatkov iz varnostne kopije v primeru da pride do nepooblaščene spremembe. Mehanizmi, ki zagotavljajo celovitost podatkov so nadzor dostopa in zgoščevalne funkcije in digitalni podpisi.
 
-\item[\Gls{razpolozljivost}] pomeni da so podatki vedno na voljo pooblaščenim osebam. Glavni vzrok nerazpoložljivosti so programske in strojne napake ter napadi zavrnitve storitve (denial of service). Razpoložljivost podatkov se zagotavlja z rednim vzdrževanjem strojne in programske opreme in s posebnimi ukrepi za preprečevanje napadov zavrnitve storitve.
+\item[\Gls{availability}] pomeni da so podatki vedno na voljo pooblaščenim osebam. Glavni vzrok nerazpoložljivosti so programske in strojne napake ter napadi zavrnitve storitve (denial of service). Razpoložljivost podatkov se zagotavlja z rednim vzdrževanjem strojne in programske opreme in s posebnimi ukrepi za preprečevanje napadov zavrnitve storitve.
 
 \end{description}
 
@@ -540,7 +554,7 @@ Obseg škode, ki ga povzroči razkritje podatkov je odvisen od občutljivosti po
 \subsection{Pomanjkljivo upravljanje identitete, poverilnic in nadzora dostopa}
 \label{sub:Pomanjkljivo upravljanje identitete, poverilnic in nadzora dostopa}
 
-Površno upravljanje lahko pripelje do nenamernega razkritja uporabniških imen, gesel in ključev, ki se uporabljajo za dostop do storitev. Ponudniki storitev v oblaku upravljajo z identitetami milijonov uporabnikov in zaposlenimi, zato je potrebna velika skrb da se zagotovi pravilno uupravljanje identitete skozi celoten cikel. Potrebno je poskrbeti za takojšno prekinitev veljavnosti identitete, v primeru da pride do odpovedi delovnega razmerja zaposlenega ali prekinitve pogodbe s stranko. Uporaba šibkih gesel in neuporaba dvostopenjske avtentikacije in neuporaba rotacije šifrirnih ključev, gesel in certifikatov so primeri slabe prakse, ki v primeru napada napadalcu olajšajodelo in povečajo razsežnosti škode, ki jo napadalec lahko povzroči.
+Površno upravljanje lahko pripelje do nenamernega razkritja uporabniških imen, gesel in ključev, ki se uporabljajo za dostop do storitev. Ponudniki storitev v oblaku upravljajo z identitetami milijonov uporabnikov in zaposlenimi, zato je potrebna velika skrb da se zagotovi pravilno upravljanje identitete skozi celoten cikel. Potrebno je poskrbeti za takojšno prekinitev veljavnosti identitete, v primeru da pride do odpovedi delovnega razmerja zaposlenega ali prekinitve pogodbe s stranko. Uporaba šibkih gesel in neuporaba dvostopenjske avtentikacije in neuporaba rotacije šifrirnih ključev, gesel in certifikatov so primeri slabe prakse, ki v primeru napada napadalcu olajšajodelo in povečajo razsežnosti škode, ki jo napadalec lahko povzroči.
 
 \subsection{Nezaščiteni uporabniški in programski vmesniki}
 \label{sub:Nezaščiteni uporabniški in programski vmesniki}
@@ -748,7 +762,7 @@ Najpreprostejši način delovanja je \gls{ECB}. V tem načinu delovanja se sporo
 
 Vse to so sicer dobrodošle lastnosti, vendar ima \gls{ECB} nekaj resnih pomanjkljivosti, zaradi katerih ni primeren za uporabo v resničnem svetu, ampak služi bolj kot opomin, da močni šifrirni algoritmi kot je \gls{AES}, ne zagotavljajo varnosti, če so uporabljeni na napačen način.
 
-Slika~\ref{fig:ecbbad} prikazuje uporabo 128 bitne AES šifre v načinu ECB.\@ Na šifrirani sliki je še vedno možno razpoznati logotip Fakultete za računlništvo in informatiko, kar pomeni da tak način šifriranja ne zagotavlja varnosti.
+Slika~\ref{fig:ecbbad} prikazuje uporabo 128 bitne AES šifre v načinu ECB.\@ Na šifrirani sliki je še vedno možno razpoznati logotip Fakultete za računalništvo in informatiko, kar pomeni da tak način šifriranja ne zagotavlja varnosti.
 
 \begin{figure}[ht!]
   \centering
@@ -844,25 +858,21 @@ V \gls{OFB} je podoben načinu \gls{CFB}, s to razliko, da se za generiranje nak
 
 
 
-\section{Asimetrične šifre}
-\todo{rename v asimetricni kriptosistemi}
+\section{Asimetrični kriptosistemi}
+\label{sec:Asimetrični kriptosistemi}
 
 Eden večjih problemov simetričnih šifrirnih algoritmov je distribucija ključev. V kolikor želita dve osebi svojo komunikacijo zaščititi z uporabo simetričnega šifrirnega algoritma, se morata najprej izmenjati ključ. Dobra praksa je tudi, da se izognemo ponovni uporabi istega ključa, kar v praksi pomeni, da si moramo z vsako osebo, s katero želimo komunicirati izmenjati ključ in hitro se izkaže, da omrežje $n$ ljudi potrebuje $\frac{n(n-1)}{2}$ ključev. Če to preslikamo na omrežje kot je Internet, ki ga uporablja približno 40 odstotkov svetovne populacije. Vzemimo pesimistično oceno, da si vsak uporabnik Interneta lasti samo eno elektronsko napravo, ki uporablja varno komunikacijo in tako omrežje potrebuje $\approx 3.500.000.000$ izmenjav.
 
-Rešitev za ta problem so lahko asimetrični šifrirni algoritmi, oziroma kriptografija javnih ključev. Asimetrični algoritmi ne uporabljajo samo enega, ampak dva ključa. Javni ključ poznajo vsi in ga uporabijo za šifriranje sporočil. Sporočila, šifrirana z javnim ključem, lahko dešifrira samo imetnik zasebnega ključa.
+Rešitev za ta problem so lahko asimetrični kriptosistemi, oziroma kriptografija javnih ključev. Taki sistemi ne uporabljajo samo enega, ampak dva ključa. Javni ključ poznajo vsi in ga uporabijo za šifriranje sporočil. Sporočila, šifrirana z javnim ključem, lahko dešifrira samo imetnik zasebnega ključa.
 
-Asimetrični algoritmi delujejo na predpostavki, da so nekatere matematični v eno smer preprosto izračunljivi, v drugo pa preprosto pretežki, da bi jih bilo možno rešiti v razumnem časovnem okvirju. Eden takih problemov je faktorizacija števil. Če si izmislite dve dokaj veliki praštevili $p$ in $q$, ju med seboj pomnožite, dobite novo število $n$, za katero ni tako preprosto ugotoviti iz katerih faktorjev je sestavljeno, ob predpostavki, da ne poznamo $p$ in $q$.
+Asimetrični kriptosistemi slonijo na predpostavki, da so nekatere matematični v eno smer preprosto izračunljivi, v drugo pa preprosto pretežki, da bi jih bilo možno rešiti v razumnem časovnem okvirju. Eden takih problemov je faktorizacija števil. Če si izmislite dve dokaj veliki praštevili $p$ in $q$, ju med seboj pomnožite, dobite novo število $n$, za katero ni tako preprosto ugotoviti iz katerih faktorjev je sestavljeno, ob predpostavki, da ne poznamo $p$ in $q$.
 
-Na žalost pa so zaradi svoje povezanosti s težkimi matematičnimi problemi pogosto asimetrični šifrirni algoritmi veliko počasnejši od svojih simetričnih sorodnikov. V praksi se uporablja kombinacija asimetričnih in simetričnih algoritmov. Asimetrični algoritmi so sicer počasnejši, vendar veliko bolj praktični zaradi preproste izmenjave ključev.
+Na žalost so asimetrični kriptosistemi, tudi zaradi svojega ozadja v netrivialnih matematičnih problemih, veliko počasnejši od simetričnih. V praksi se zato pogosto uporablja kombinacija obeh tipov sistemov. V prvi fazi se za dogovor o ključu uporabi asimetrični kriptosistem, ko pa se obe strani dogovorita o skupnem ključu, pa preklopita na simetrični kriptosistem.
 
-V začetni fazi vzpostavljanja varnega komunikacijska kanala se zaradi preprostejše distribucije ključev uporabi asimetrični algoritem. Ko je varni kanal vzpostavljen se preko njega izmenja sejni ključ, to je ključ ki se
+\subsection{Dogovor o ključu Diffe-Hellman}
+\label{subs:Dogovor o ključu Diffe-Hellman}
 
-\subsection{Izmenjava ključa Diffe-Hellman}
-\label{sec:Izmenjava ključa Diffe-Hellman}
-\todo{Izmenjava -> dogovor o kljucu}
-
-
-Metoda za izmenjavo ključa Diffe-Hellman je bil prvi javno objavljen algoritem, ki uporablja princip javnih in zasebnih ključev. V praksi omogoča, da se dva neznanca preko nezavarovanega kanala kot je Internet dogovorita za skupni ključ, ki ga bosta uporabljala za nadaljnjo komunikacijo. Prva sta ga objavila Whitfield Diffe in Martin Hellman leta 1976 \cite{diffie1976new}, vendar se je kasneje izkazalo, da je angleška tajna služba odkrila princip kriptografije javnih ključev že leto poprej, vendar to ostalo tajno do leta 1997.
+Dogovor o ključu Diffe-Hellman je bil prvi javno objavljen algoritem, ki uporablja princip javnih in zasebnih ključev. V praksi omogoča, da se dva neznanca preko nezavarovanega kanala kot je Internet dogovorita za skupni ključ, ki ga bosta uporabljala za nadaljnjo komunikacijo. Prva sta ga objavila W. Diffe in M. Hellman leta 1976 \cite{diffie1976new}, vendar se je kasneje izkazalo, da je angleška tajna služba odkrila princip kriptografije javnih ključev že leto poprej, vendar to ostalo tajno do leta 1997.
 
 Metoda temelji na reševanju problema diskretnega logaritma, za katerega matematiki verjamejo, da ne obstaja algoritem, ki ga bi bil sposoben rešiti v sprejemljivih časovnih okvirjih (izjema so algoritmi, ki tečejo na kvantnih računalnikih, vendar je to povsem drug svet).
 
@@ -890,26 +900,26 @@ $$
 \end{mdframed}
 
 
-
 \subsection{RSA}
 \label{sub:RSA}
 
-Medtem ko prej opisana metoda omogoča samo dogovor o skupnem ključu, pa je bil RSA prvi pravi kriptosistem, ki je uporabljal javne ključe. Varnost RSA temelji na tem, da je faktorizacija produkta dveh velikih praštevil težko rešljiv problem za današnje računalnike.
+Medtem ko prej opisana metoda omogoča samo dogovor o skupnem ključu, pa je bil \gls{RSA} prvi pravi kriptosistem, ki je uporabljal javne ključe. Varnost \gls{RSA} temelji na tem, da je faktorizacija produkta dveh velikih praštevil težko rešljiv problem za današnje računalnike.
 
-Javni ključ je par $(n, e)$, zasebni ključ pa par $(n, d)$, ki ju dobimo po naslednjem postopku:
+Javni ključ je par $(n, e)$, zasebni ključ pa par $d$, ki ju dobimo po naslednjem postopku:
 
 \begin{enumerate}
 \item Izberemo dve naključni, približno enako veliki praštevili $p$ in $q$
-\item Izračunamo $n=pq$
+\item Izračunamo modul $n=pq$
 \item Izračunamo $\varphi(n)=\varphi(p)\varphi(q)=(p-1)(q-1)$
 \item Izberemo število $e$, tako da $1<e<\varphi(n)$ tako da je $e$ tuje $\varphi(n)$
 \item Izračunamo $d$, tako da $d \equiv e^{-1} \pmod{\varphi(n)}$
 \end{enumerate}
 
-Poleg zasebnega ključa moramo moramo paziti tudi na zasebnost vrednosti $p$, $q$ in $\varphi(n)$
+Poleg zasebnega ključa moramo moramo paziti tudi na zasebnost vrednosti $p$, $q$ in $\varphi(n)$.
 
-\todo{napisi vec}
+Sporočilo $m \in \mathbb{Z}$ šifriramo po naslednjem postopku: $$c=e(m)=m^e \mod n$$
 
+Dešifriranje je podobna operacija, le da za eksponent vzamemo zasebni ključ: $$m=d(c)=c^d \mod n$$
 
 
 \chapter{Uporaba kriptografije v oblaku}
@@ -944,30 +954,37 @@ Podobno je še do pred kratkim veljalo prepričanje: \textit{(1) Šifrirano spor
 
 To lahko predstavlja nekaj nevšečnosti v oblačnih sistemih, kjer želimo uporabiti šifriranje. V primeru, da želimo deliti šifrirane datoteke, je potrebno za vsakega uporabnika ustvariti unikaten ključ in na novo šifrirati datoteko. V praksi se je sicer možno izogniti vsakokratnemu šifriranju, vendar veliko lepša rešitev bi bila, če bi lahko datoteko šifrirali tako, da jo lahko dešifrira več uporabnikov. Podoben primer so strežniški dnevniki in revizijske sledi, ki lahko vsebujejo občutljive podatke o uporabnikovi aktivnosti ob določenem času. Da uporabnikom zagotovimo visoko stopnjo zasebnosti, lahko take datoteke šifriramo. Vendar se pojavi problem, če policija po nalogu sodišča od ponudnika zahteva strežniške dnevnike skupaj z dešifrirnim ključem. Če je dešifriranje možno samo na principu vse ali nič, policija pridobi vpogled v aktivnost vseh uporabnikov sistema, ne le osumljenca. Rešitev bi bila, da za vsakega uporabnika izberemo unikaten ključ, vendar če želimo policiji omejiti tudi obdobje, za katerega lahko dešifrira podatke, je potrebno ta ključ rotirati in število teh ključev lahko naraste čez vse razumne meje. Priročnejša rešitev bi bila, če bi lahko uporabili tako šifrirno shemo, kjer lahko ključ dešifrira le del tajnopisa.
 
-Izkaže se, da take šifrirne sheme res obstajajo, vendar je to področje kriptografije še dokaj novo in obstaja še veliko odprtih problemov, vendar prvi rezultati so obetavni. Čeprav so bili mnogi algoritmi, ki jih sedaj uvrščamo pod funkcionalne šifrirne sheme odkriti že prej, pa je bila prva formalizacija javno predstavljena šele leta 2011~\cite{boneh2011functional}.
+Izkaže se, da take šifrirne sheme res obstajajo, vendar je to področje kriptografije še dokaj novo in obstaja še veliko odprtih problemov, vendar prvi rezultati so obetavni. Čeprav so bili mnogi algoritmi, ki jih sedaj uvrščamo v to kategorijo odkriti že prej, pa je bila prva formalizacija javno predstavljena šele leta 2011. V nadaljevanju bomo na kratko povzeli definicijo, kot je bila predstavljena v članku D. Boneh in drugih \cite{boneh2011functional}.
 
-V takih šifrirnih shemah posebni dešifrirni ključ omogoča uporabniku izračun vrednosti neke funkcije nad šifriranimi podatki. V funkcionalni šifrirni shemi za funkcionalnost~$F(\cdot, \cdot)$ lahko \gls{authority}, ki si lasti glavni skrivni ključ, ustvari ključ~$sk_k$, s katerim lahko uporabnik izračuna vrednost funkcije~$F(k, x)$ iz tajnopisa za~$x$.
-
-\begin{mdframed}[frametitle={Funkcionalnost F}]
-Funkcionalnost $F$, definirana na $(K, X)$ je funkcija $F: K \times X \rightarrow \{0,1\}^*$ predstavljena kot determinističen Turingov stroj. Množica $K$ je prostor vseh ključev in množica $X$ je prostor vseh čistopisov. Zahtevamo tudi, da množica $K$ vsebuje prazen ključ $\epsilon$.
+\begin{mdframed}[frametitle={Funkcionalnost}]
+\begin{defn}
+Funkcionalnost $F$, definirana na $(K, X)$ je funkcija $$F: K \times X \rightarrow \{0,1\}^*$$ predstavljena kot determinističen Turingov stroj. Množica $K$ je prostor vseh ključev in množica $X$ je prostor vseh čistopisov. Zahtevamo tudi, da množica $K$ vsebuje prazen ključ $\epsilon$.
+\end{defn}
 \end{mdframed}
 
+
 \begin{mdframed}[frametitle={Funkcionalna šifrirna shema}]
-Funkcionalna šifrirna shema za funkcionalnost $F: K \times X \rightarrow \{0,1\}^*$ je četvorka algoritmov:
+\begin{defn}
+Funkcionalna šifrirna shema za funkcionalnost~$F: K \times X \rightarrow \{0,1\}^*$ je četvorka algoritmov:
 \begin{align*}
   (pp, mk) \leftarrow setup(1^\lambda) & \qquad \text{(generiranje para javnega in zasebnega ključa)} \\
   sk \leftarrow keygen(mk, k) & \qquad \text{(generiranje skrivnega ključa za k)} \\
   c \leftarrow enc(pp, x) & \qquad \text{(šifriranje sporočila)} \\
   y \leftarrow dec(sk, c) & \qquad \text{(dešifriranje sporočila - izračun vrednosti F(k,x))} \\
 \end{align*}
+\end{defn}
 \end{mdframed}
 
-\subsubsection{Šifriranje na osnovi predikatov}
-\label{subs:Šifriranje na osnovi predikatov}
+V funkcionalni šifrirni shemi za funkcionalnost~$F(\cdot, \cdot)$ lahko \gls{authority}, ki si lasti glavni skrivni ključ, ustvari ključ~$sk_k$, s katerim uporabnik izračuna vrednost funkcije~$F(k, x)$ iz tajnopisa za~$x$. Recimo da je možno, da za $F$ vzamemo katerokoli funkcijo, ki jo je možno opisati z determinističnim Turingovim strojem. To nam odpre možnost, da v šifrirno shemo vgradimo ``program'' za nadzor dostopa. S tem lahko zaobidemo omejitve, omenjene v prvem odstavku.
 
-Šifriranje na osnovi predikatov je eden najnovejših pristopov na področju kriptografije javnih ključev. V tradicionalni kriptografski shemi javnih ključev se sporočilo šifrira za točno določenega prejemnika (tistega, kateremu pripada javni ključ, ki ga uporabimo za šifriranje). Korak dlje je šlo šifriranje na osnovi identitete (angl. \acrlong{IBE}), kjer lahko za javni ključ uporabimo preprost niz znakov, kot je recimo prejemnikov e-naslov. Šifriranje na osnovi predikatov pa je šlo še korak dlje, saj dovoljuje, da isti tajnopis dešifrira kdorkoli poseduje ključ, ki zadovolji vse predikate.
+Izkaže se, da je možno tudi povsem klasične asimetrične šifrirne sheme predstaviti v obliki funkcionalne šifrirne sheme, vendar so veliko bolj zanimive sheme, ki za ključe uporabljajo kar uporabnikovo identiteto - \gls{IBE} in njihova nadgradnja, ki je predstavljena v naslednjem poglavju.
 
-Poglejmo si za primer Anito, ki shrani šifrirane podatke v oblak. Anita ima datoteko $X$, ki bi jo rada delila s skupinama \textbf{Prijatelji} in \textbf{Znanci}. Prav tako ima datoteko $Y$, ki bi jo rada delila s skupinama \textbf{Družina} in \textbf{Prijatelji}. To lahko stori tako, da ustvari en ključ za datoteko $X$ in ta ključ deli s \textbf{Prijatelji} in  \textbf{Znanci}, nato ustvari drug ključ za datoteko $Y$ in ta ključ deli s skupinama \textbf{Družina} in \textbf{Prijatelji}. Problem je, da mora Anita za vsako datoteko, ki jo želi deliti, ustvariti nov ključ.
+\subsection{Šifriranje na osnovi atributov in predikatov}
+\label{sub:Šifriranje na osnovi atributov in predikatov}
+
+Šifriranje na osnovi atributov in predikatov je poseben primer funkcionalne šifrirne sheme z vgrajeno kontrolo dostopa. Za začetek si poglejmo naslednji primer:
+
+Anita ima datoteko $X$, ki bi jo rada delila s skupinama \textbf{Prijatelji} in \textbf{Znanci}. Prav tako ima datoteko $Y$, ki bi jo rada delila s skupinama \textbf{Družina} in \textbf{Prijatelji}. To lahko stori tako, da ustvari en ključ za datoteko $X$ in ta ključ deli s \textbf{Prijatelji} in  \textbf{Znanci}, nato ustvari drug ključ za datoteko $Y$ in ta ključ deli s skupinama \textbf{Družina} in \textbf{Prijatelji}. Problem je, da mora Anita za vsako datoteko, ki jo želi deliti, ustvariti nov ključ.
 
 Naivna rešitev tega problema bi bila, da Anita ustvari en ključ za vsako skupino ljudi, s katerimi želi deliti datoteke. Vendar življenje ni preprosto, in lahko se zgodi, da neka oseba pripada večim skupinam s katerimi želi Anita deliti datoteke. Prav tako si lahko zaželi deliti neko datoteko samo z ljudmi, ki so hkrati \textbf{Prijatelji} in \textbf{Sodelavci}. Recimo da je to datoteka $Z$. Tako datoteko lahko najprej šifrira s ključem, ki pripada skupini \textbf{Prijatelji} in nato še s ključem, ki pripada skupini \textbf{Sodelavci}. Naivno bi mislili da je to dobra rešitev, vendar se izkaže da tak sistem ni odporen proti zaroti. Šifrirano datoteko lahko kot posamezniki odprejo samo ljudje, ki pripadajo obema skupinama, saj imajo le oni v posesti oba ključa. Vendar pa se lahko proti Aniti zarotita dva posameznika skupaj, kjer noben od nju ne pripada obema skupinama hkrati, vendar imata skupaj dostop do obeh ključev, saj vsak od nju pripada eni od skupin.
 
@@ -976,14 +993,18 @@ Možnost dešifriranja določajo pravila, ki so predstavljena z drevesi, kjer so
 Poznamo dve vrsti šifriranja na osnovi parametrov. V prvem je drevo, ki določa pravila shranjeno v ključu  (angl. \acrlong{KP-ABE}), v drugem primeru pa je shranjeno v tajnopisu (angl. \acrlong{CP-ABE}).
 
 \section{Homomorfne šifre}
-\label{subs:Homomorfne šifre}
+\label{sec:Homomorfne šifre}
 
-Šifre, o katerih smo katerih smo govorili do sedaj, imajo to lastnost da je njihov tajnopis kolikor je pač možno naključen.
+Homomorfne šifre gredo še korak dlje, saj dovoljujejo, da nad tajnopisom izvajamo poljubne operacije in kot rezultat ponovno dobimo tajnopis. Take sheme omogočajo povsem varno računanje v oblaku, saj je možno vse operacije izvajati nad tajnopisi, tako da ni potrebe da oblačni sistem kadarkoli pride v stik s čistopisom podatkov.
+
+Potrebna lastnost homomorfne šifre je \glslink{malleable}{gnetljivost}, ki je sicer v večini ostalih shem nezaželjena lastnost. Gnetljivost omogoča spremembo tajnopisa na tak način, da se ta dešifrira v čistopis, ki je na nek način povezan z originalnim čistopisom. Če imamo dan tajnopis za $m$, to pomeni da je možno izračunati nov tajnopis, ki se bo dešifriral v vrednost $f(m)$ za neko funkcijo $f$, brez da bi sploh vedeli vrednost $m$.
+
+Ločimo dva tipa homomorfnih šifer, glede na to, katere operacije lahko opravimo nad tajnopisi. V prvo skupino spadajo delno homomorfni sistemi, kot so RSA brez dopolnjevanja, ElGamal in drugi. Taki sistemi so homomorfni samo za eno operacijo, ponavadi je to množenje. Veliko bolj zanimivi pa so popolnoma homomorfni sistemi, kjer je nad tajnopisi možno izvesti poljubno operacijo.
 
 
 
 \section{Varovanje podatkov v mirovanju}
-\label{subs:Varovanje podatkov v mirovanju}
+\label{sec:Varovanje podatkov v mirovanju}
 
 Podatke v mirovanju predstavljajo vsi podatki na trajnem pomnilniku, izključujoč podatke ki so trenutno v gibanju in podatke, ki so trenutno v delovnem pomnilniku računalnika. Praviloma so to podatki ki se ne spreminjajo pogosto oziroma arhivski podatki, ki se sploh ne spreminjajo. Količinsko predstavljajo glavnino vseh podatkov, kar pomeni da morajo biti kriptografski algoritmi, ki delujejo na temi podatki hitri. Zato se za varovanje takih podatkov zelo primerne simetrične šifre.
 
@@ -1001,9 +1022,6 @@ V primeru oblačnih storitev, ki ponujajo hrambo velikih količin podatkov v obl
 \label{subs:Šifrirni algoritmi}
 \todo{}
 
-\subsubsection{Upravljanje ključev}
-\label{subs:Upravljanje ključev}
-\todo{}
 
 \subsubsection{Konvergentne kriptografske sheme}
 \label{subs:Konvergentne kriptografske sheme}
@@ -1045,7 +1063,6 @@ Podatki so v gibanju praviloma malo časa, zato ni potrebe po kompleksnem upravl
 
 \subsubsection{Prihodnja varnost}
 \label{subs:Prihodnja varnost}
-
 
 
 \section{Varovanje podatkov v uporabi}
