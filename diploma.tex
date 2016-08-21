@@ -554,7 +554,7 @@ Obseg škode, ki ga povzroči razkritje podatkov je odvisen od občutljivosti po
 \subsection{Pomanjkljivo upravljanje identitete, poverilnic in nadzora dostopa}
 \label{sub:Pomanjkljivo upravljanje identitete, poverilnic in nadzora dostopa}
 
-Površno upravljanje lahko pripelje do nenamernega razkritja uporabniških imen, gesel in ključev, ki se uporabljajo za dostop do storitev. Ponudniki storitev v oblaku upravljajo z identitetami milijonov uporabnikov in zaposlenimi, zato je potrebna velika skrb da se zagotovi pravilno upravljanje identitete skozi celoten cikel. Potrebno je poskrbeti za takojšno prekinitev veljavnosti identitete, v primeru da pride do odpovedi delovnega razmerja zaposlenega ali prekinitve pogodbe s stranko. Uporaba šibkih gesel in neuporaba dvostopenjske avtentikacije in neuporaba rotacije šifrirnih ključev, gesel in certifikatov so primeri slabe prakse, ki v primeru napada napadalcu olajšajodelo in povečajo razsežnosti škode, ki jo napadalec lahko povzroči.
+Površno upravljanje lahko pripelje do nenamernega razkritja uporabniških imen, gesel in ključev, ki se uporabljajo za dostop do storitev. Ponudniki storitev v oblaku upravljajo z identitetami milijonov uporabnikov in zaposlenimi, zato je potrebna velika skrb da se zagotovi pravilno upravljanje identitete skozi celoten cikel. Potrebno je poskrbeti za takojšno prekinitev veljavnosti identitete, v primeru da pride do odpovedi delovnega razmerja zaposlenega ali prekinitve pogodbe s stranko. Uporaba šibkih gesel in neuporaba dvostopenjske avtentikacije in neuporaba rotacije šifrirnih ključev, gesel in certifikatov so primeri slabe prakse, ki v primeru napada napadalcu olajšajo delo in povečajo razsežnosti škode, ki jo napadalec lahko povzroči.
 
 \subsection{Nezaščiteni uporabniški in programski vmesniki}
 \label{sub:Nezaščiteni uporabniški in programski vmesniki}
@@ -934,7 +934,7 @@ Prav tako ločimo tri stanja digitalnih podatkov: podatki v mirovanju, podatki v
                                         & Podatki v mirovanju                   & Podatki v uporabi                    & Podatki v gibanju              &  \\ \cline{2-4}
     \multicolumn{1}{l|}{Zaupnost}       & \multicolumn{1}{l|}{Simetrične šifre} & \multicolumn{1}{l|}{Homomorfne šifre} & \multicolumn{1}{l|}{TLS}        &  \\ \cline{2-4}
     \multicolumn{1}{l|}{Istovetnost}    & \multicolumn{1}{l|}{MAC}              & \multicolumn{1}{l|}{Homomorfne šifre} & \multicolumn{1}{l|}{TLS}        &  \\ \cline{2-4}
-    \multicolumn{1}{l|}{Razpoložjivost} & \multicolumn{1}{l|}{redundanca}       & \multicolumn{1}{l|}{redundanca}       & \multicolumn{1}{l|}{redundanca} &  \\ \cline{2-4}
+    \multicolumn{1}{l|}{Razpoložljivost} & \multicolumn{1}{l|}{redundanca}       & \multicolumn{1}{l|}{redundanca}       & \multicolumn{1}{l|}{redundanca} &  \\ \cline{2-4}
   \end{tabular}
   \caption{}
 \label{tbl:cloudtriad}
@@ -1070,7 +1070,7 @@ Podatki so v gibanju praviloma malo časa, zato ni potrebe po kompleksnem upravl
 
 Podatki v uporabi so zelo kratkotrajne narave, vendar jih je kljub temu zelo težko zaščititi. Problem izhaja iz same definicije podatkov v uporabi, saj so to podatki, nad katerimi računalniški sistem želi izvesti neko operacijo, oziroma jih prikazati uporabniku. Podatki v uporabi se nahajajo v delovnem pomnilniku računalnika, in so zato izpostavljeni tako imenovanemu \glslink{cold-boot-attack}{napadu cold-boot}, kjer napadalec dobesedno zamrzne stanje pomnilnika ob delujočem računalniku in nato poskuša iz njega izvleči vsebino, predvsem šifrirne ključe, saj lahko z njihovo pomočjo dešifrira veliko večjo količino podatkov, ki so trenutno v mirovanju ali gibanju.
 
-Kjub temu pa tveganje za napad cold-boot ni veliko, saj z napadalčeve strani zahteva fizičen dostop do sistema in kar nekaj tehnologije. Večji problem predstavlja morebitna okužba sistema s \glslink{rootkit}{korenskim kompletom}, ki napadalcu omogoča dostop do celotnega pomnilnika sistema.
+Kljub temu pa tveganje za napad cold-boot ni veliko, saj z napadalčeve strani zahteva fizičen dostop do sistema in kar nekaj tehnologije. Večji problem predstavlja morebitna okužba sistema s \glslink{rootkit}{korenskim kompletom}, ki napadalcu omogoča dostop do celotnega pomnilnika sistema.
 
 V nadaljevanju bomo predstavili tri možnih načinov, kako zagotoviti različne stopnje zasebnosti podatkov v uporabi.
 
