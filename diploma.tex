@@ -745,9 +745,9 @@ Kjer je $C$ tajnopis in $P$ čistopis.
 \subsection{Načini delovanja bločnih šifer}
 \label{sub:Nacini delovanja blocnih sifer}
 
-Bločna šifra sama po sebi kot vhodni podatek lahko sprejme samo blok točno določene dolžine, kar ni najbolj praktično, saj so sporočila pogosto različnih in predvsem nepredvidljivih velikosti. Poleg tega če isti blok čistopisa večkrat šifriramo z enakim ključem, dobimo kot rezultat vsakič isti tajnopis, kar je nezaželjen rezultat, saj morebitni napadalec lahko zazna vzorce v tajnopisu in iz tega poskuša razbrati pomen. Ta problem lahko rešimo tako, da uporabimo bločno šifro v enem od načinov delovanja.
+Bločna šifra sama po sebi kot vhodni podatek lahko sprejme samo blok točno določene dolžine, kar ni najbolj praktično, saj so sporočila pogosto različnih in predvsem nepredvidljivih velikosti. Poleg tega, če isti blok čistopisa večkrat šifriramo z enakim ključem, dobimo vsakič isti tajnopis, kar je nezaželjen rezultat, saj morebitni napadalec lahko zazna vzorce v tajnopisu in iz tega poskuša razbrati pomen. Ta problem lahko rešimo tako, da uporabimo bločno šifro v enem od načinov delovanja.
 
-Način delovanja je algoritem, ki pove kako vhodno sporočilo razdeliti na bloke primerne velikosti in na kak način na teh blokih potem uporabiti bločno šifro.
+Način delovanja je algoritem, ki pove, kako vhodno sporočilo razdeliti na bloke primerne velikosti in na kak način na teh blokih potem uporabiti bločno šifro.
 
 Večina načinov delovanja poleg bločne šifre in šifrirnega ključa potrebuje še \gls{IV}. Inicializacijski vektor skrbi, da tudi v primeru, da večkrat šifriramo isti čistopis z enakim ključem, dobimo kot rezultat različne tajnopise.
 
@@ -757,24 +757,22 @@ Kot smo že povedali, bločne šifre sprejemajo le bloke točno določene veliko
 \subsubsection{ECB}
 \label{subs:ECB}
 
-Najpreprostejši način delovanja je \gls{ECB}. V tem načinu delovanja se sporočilo razdeli na bloke take velikosti, kot jih zahteva bločna šifra. Po potrebi se zadnji blok dopolni do zahtevane dolžine. Nato se vsak blok šifrira neodvisno od drugih, kar sicer pomeni da je možno operaciji šifriranja in dešifriranja na precej preprost način paralelizirati in s tem pohitriti. Prav tako je v tem načinu delovanja možno de-šifrirati poljubni blok sporočila, brez potrebe da najprej de-šifriramo vse predhodne bloke.
+Najpreprostejši način delovanja je \gls{ECB}. V tem načinu delovanja se sporočilo razdeli na bloke take velikosti, kot jih zahteva bločna šifra. Po potrebi se zadnji blok dopolni do zahtevane dolžine. Nato se vsak blok šifrira neodvisno od drugih, kar sicer pomeni, da je možno operaciji šifriranja in dešifriranja na precej preprost način paralelizirati in s tem pohitriti. Prav tako je v tem načinu delovanja možno de-šifrirati poljubni blok sporočila, ne da najprej dešifriramo vse predhodne bloke.
 
 \begin{figure}[ht!]
   \centering
-  \begin{subfigure}[b]{\textwidth}
     \includegraphics[width=\textwidth]{images/ECB_encryption}
     \caption{Šifriranje v načinu \gls{ECB}}
 \label{fig:ecbenc}
-  \end{subfigure}
-  \begin{subfigure}[b]{\textwidth}
-    \includegraphics[width=\textwidth]{images/ECB_decryption}
-    \caption{De-šifriranje v načinu \gls{ECB}}
-\label{fig:ecbdec}
-  \end{subfigure}
-  \caption{Način delovanja \gls{ECB}}
-\label{fig:ecbmode}
-
 \end{figure}
+
+\begin{figure}[ht!]
+  \centering
+    \includegraphics[width=\textwidth]{images/ECB_decryption}
+    \caption{Dešifriranje v načinu \gls{ECB}}
+\label{fig:ecbdec}
+\end{figure}
+
 
 Vse to so sicer dobrodošle lastnosti, vendar ima \gls{ECB} nekaj resnih pomanjkljivosti, zaradi katerih ni primeren za uporabo v resničnem svetu, ampak služi bolj kot opomin, da močni šifrirni algoritmi kot je \gls{AES}, ne zagotavljajo varnosti, če so uporabljeni na napačen način.
 
@@ -797,59 +795,51 @@ Slika~\ref{fig:ecbbad} prikazuje uporabo 128 bitne AES šifre v načinu ECB.\@ N
     \caption{AES-128-CBC}
 \label{fig:logoFRICBC}
   \end{subfigure}
-  \caption{Primer različnih načinov šifriranja}
+  \caption{Primer različnih načinov šifriranja, uporabljenih na logotipu FRI}
 \label{fig:ecbbad}
 \end{figure}
-
 
 \subsubsection{CBC}
 \label{subs:CBC}
 
-V načinu \Gls{CBC} se vsak blok čistopisa pred šifriranjem z operacijo $XOR$ zmeša z tajnopisom prejšnjega bloka. Tak pristop naredi vsak naslednji blok odvisen od vseh prejšnjih blokov. S tem se rešimo problema ponavljajočih se vzorcev v tajnopisu, kot smo jih videli v načinu \acrshort{ECB} (slika~\ref{fig:ecbbad}). Posebni primer je prvi blok, saj tu nimamo na voljo tajnopisa prejšnjega bloka, s katerim bi izvedli operacijo $XOR$, zato namesto tajnopisa prejšnjega bloka uporabimo \acrfull{IV}. Dodatno nam naključni \gls{IV} doda tudi element naključnosti v tajnopis, kar pomeni da tudi če šifriramo enako sporočilo z enakim ključem, tajnopis ne bo enak, saj smo uporabili drugačen \gls{IV}.
+V načinu \Gls{CBC} se vsak blok čistopisa pred šifriranjem z operacijo $XOR$ zmeša z tajnopisom prejšnjega bloka. Tak pristop naredi vsak naslednji blok odvisen od vseh prejšnjih blokov. S tem se rešimo problema ponavljajočih se vzorcev v tajnopisu, kot smo jih videli v načinu \acrshort{ECB} (slika~\ref{fig:ecbbad}). Posebni primer je prvi blok, saj tu nimamo na voljo tajnopisa prejšnjega bloka, s katerim bi izvedli operacijo $XOR$, zato namesto tajnopisa prejšnjega bloka uporabimo \acrfull{IV}. Dodatno nam naključni \gls{IV} doda tudi element naključnosti v tajnopis, kar pomeni, da tudi, če šifriramo enako sporočilo z enakim ključem, tajnopis ne bo enak, saj smo uporabili drugačen \gls{IV}.
 
-Slabost takega pristopa pa je da je operacija šifriranja strogo zaporedna, saj naslednjega bloka ne moremo šifrirati dokler ne končamo šifriranja trenutnega bloka.
+Slabost takega pristopa pa je, da je operacija šifriranja strogo zaporedna, saj naslednjega bloka ne moremo šifrirati, dokler ne končamo šifriranja trenutnega bloka.
 
 \begin{figure}[ht!]
   \centering
-  \begin{subfigure}[b]{\textwidth}
     \includegraphics[width=\textwidth]{images/CBC_encryption}
     \caption{Šifriranje v načinu \gls{CBC}}
 \label{fig:cbcenc}
-  \end{subfigure}
-  \begin{subfigure}[b]{\textwidth}
-    \includegraphics[width=\textwidth]{images/CBC_decryption}
-    \caption{De-šifriranje v načinu \gls{CBC}}
-\label{fig:cbcdec}
-  \end{subfigure}
-  \caption{Način delovanja \gls{CBC}}
-\label{fig:cbcmode}
 \end{figure}
 
+\begin{figure}[ht!]
+  \centering
+    \includegraphics[width=\textwidth]{images/CBC_decryption}
+    \caption{Dešifriranje v načinu \gls{CBC}}
+\label{fig:cbcdec}
+\end{figure}
 
 \subsubsection{CFB}
 \label{subs:CFB}
 
 V \gls{CFB} načinu delovanja se bločna šifra uporablja kot tokovna. Prednost takega načina delovanja je, da ni potrebe po dopolnjevanju sporočila, prav tako pa se uporablja samo ena smer delovanja bločne šifre (to je ponavadi smer šifriranja), kar poenostavi implementacijo takega načina v strojni opremi.
 
-Kot se vidi na sliki~\ref{fig:cfbmode}, se v tem načinu delovanja bločna šifra uporablja le za generiranje naključnega zaporedja, tajnopis pa rezultat operacije $XOR$ med čistopisom in naključnim zaporedjem, podobno kot pri enkratnem ščitu (angl.\ one time pad).
+Kot se vidi na slikah~\ref{fig:cfbenc} in~\ref{fig:cfbdec}, se v tem načinu delovanja bločna šifra uporablja le za generiranje naključnega zaporedja, tajnopis pa je rezultat operacije $XOR$ med čistopisom in naključnim zaporedjem, podobno kot pri enkratnem ščitu (angl.\ one time pad).
 
 \begin{figure}[ht!]
   \centering
-  \begin{subfigure}[b]{\textwidth}
     \includegraphics[width=\textwidth]{images/CFB_encryption}
     \caption{Šifriranje v načinu CFB}
 \label{fig:cfbenc}
-  \end{subfigure}
-  \begin{subfigure}[b]{\textwidth}
-    \includegraphics[width=\textwidth]{images/CFB_decryption}
-    \caption{De-šifriranje v načinu CFB}
-\label{fig:cfbdec}
-  \end{subfigure}
-  \caption{Način delovanja \gls{CFB}}
-\label{fig:cfbmode}
 \end{figure}
 
-
+\begin{figure}[ht!]
+  \centering
+    \includegraphics[width=\textwidth]{images/CFB_decryption}
+    \caption{Dešifriranje v načinu CFB}
+\label{fig:cfbdec}
+\end{figure}
 
 \subsubsection{OFB}
 \label{subs:OFB}
@@ -858,47 +848,43 @@ Kot se vidi na sliki~\ref{fig:cfbmode}, se v tem načinu delovanja bločna šifr
 
 \begin{figure}[ht!]
   \centering
-  \begin{subfigure}[b]{\textwidth}
     \includegraphics[width=\textwidth]{images/OFB_encryption}
     \caption{Šifriranje v načinu OFB}
 \label{fig:ofbenc}
-  \end{subfigure}
-  \begin{subfigure}[b]{\textwidth}
-    \includegraphics[width=\textwidth]{images/OFB_decryption}
-    \caption{De-šifriranje v načinu OFB}
-\label{fig:ofbdec}
-  \end{subfigure}
-  \caption{Način delovanja \gls{OFB}}
-\label{fig:ofbmode}
 \end{figure}
 
-
+\begin{figure}[ht!]
+  \centering
+    \includegraphics[width=\textwidth]{images/OFB_decryption}
+    \caption{Dešifriranje v načinu OFB}
+\label{fig:ofbdec}
+\end{figure}
 
 \section{Asimetrični kriptosistemi}
 \label{sec:Asimetrični kriptosistemi}
 
-Eden večjih problemov simetričnih šifrirnih algoritmov je distribucija ključev. V kolikor želita dve osebi svojo komunikacijo zaščititi z uporabo simetričnega šifrirnega algoritma, se morata najprej izmenjati ključ. Dobra praksa je tudi, da se izognemo ponovni uporabi istega ključa, kar v praksi pomeni, da si moramo z vsako osebo, s katero želimo komunicirati izmenjati ključ in hitro se izkaže, da omrežje $n$ ljudi potrebuje $\frac{n(n-1)}{2}$ ključev. Če to preslikamo na omrežje kot je Internet, ki ga uporablja približno 40 odstotkov svetovne populacije. Vzemimo pesimistično oceno, da si vsak uporabnik Interneta lasti samo eno elektronsko napravo, ki uporablja varno komunikacijo in tako omrežje potrebuje $\approx 3.500.000.000$ izmenjav.
+Eden večjih problemov simetričnih šifrirnih algoritmov je distribucija ključev. V kolikor želita dve osebi svojo komunikacijo zaščititi z uporabo simetričnega šifrirnega algoritma, si morata najprej izmenjati ključ. Dobra praksa je tudi, da se izognemo ponovni uporabi istega ključa, kar v praksi pomeni, da si moramo z vsako osebo, s katero želimo komunicirati izmenjati ključ in hitro se izkaže, da omrežje $n$ ljudi potrebuje $\frac{n(n-1)}{2}$ ključev. Če to preslikamo na omrežje kot je internet, ki ga uporablja približno 40 odstotkov svetovne populacije. Vzemimo pesimistično oceno, da si vsak uporabnik interneta lasti samo eno elektronsko napravo, ki uporablja varno komunikacijo in tako omrežje potrebuje $\approx 4*10^{18}$ izmenjav ključa.
 
 Rešitev za ta problem so lahko asimetrični kriptosistemi, oziroma kriptografija javnih ključev. Taki sistemi ne uporabljajo samo enega, ampak dva ključa. Javni ključ poznajo vsi in ga uporabijo za šifriranje sporočil. Sporočila, šifrirana z javnim ključem, lahko dešifrira samo imetnik zasebnega ključa.
 
-Asimetrični kriptosistemi slonijo na predpostavki, da so nekatere matematični v eno smer preprosto izračunljivi, v drugo pa preprosto pretežki, da bi jih bilo možno rešiti v razumnem časovnem okvirju. Eden takih problemov je faktorizacija števil. Če si izmislite dve dokaj veliki praštevili $p$ in $q$, ju med seboj pomnožite, dobite novo število $n$, za katero ni tako preprosto ugotoviti iz katerih faktorjev je sestavljeno, ob predpostavki, da ne poznamo $p$ in $q$.
+Asimetrični kriptosistemi slonijo na predpostavki, da so nekateri matematični v eno smer preprosto izračunljivi, v drugo pa preprosto pretežki, da bi jih bilo možno rešiti v razumnem časovnem okvirju. Eden takih problemov je faktorizacija števil. Če si izmislite dve dokaj veliki praštevili $p$ in $q$, ju med seboj pomnožite, dobite novo število $n$, za katero ni tako preprosto ugotoviti iz katerih faktorjev je sestavljeno, ob predpostavki, da ne poznamo $p$ in $q$.
 
 Na žalost so asimetrični kriptosistemi, tudi zaradi svojega ozadja v netrivialnih matematičnih problemih, veliko počasnejši od simetričnih. V praksi se zato pogosto uporablja kombinacija obeh tipov sistemov. V prvi fazi se za dogovor o ključu uporabi asimetrični kriptosistem, ko pa se obe strani dogovorita o skupnem ključu, pa preklopita na simetrični kriptosistem.
 
 \subsection{Dogovor o ključu Diffe-Hellman}
 \label{subs:Dogovor o kljucu Diffe-Hellman}
 
-Dogovor o ključu Diffe-Hellman je bil prvi javno objavljen algoritem, ki uporablja princip javnih in zasebnih ključev. V praksi omogoča, da se dva neznanca preko nezavarovanega kanala kot je Internet dogovorita za skupni ključ, ki ga bosta uporabljala za nadaljnjo komunikacijo. Prva sta ga objavila W. Diffe in M. Hellman leta 1976~\cite{diffie1976new}, vendar se je kasneje izkazalo, da je angleška tajna služba odkrila princip kriptografije javnih ključev že leto poprej, vendar to ostalo tajno do leta 1997.
+Dogovor o ključu Diffe-Hellman je bil prvi javno objavljen algoritem, ki uporablja princip javnih in zasebnih ključev. V praksi omogoča, da se dva neznanca preko nezavarovanega kanala kot je internet dogovorita za skupni ključ, ki ga bosta uporabljala za nadaljnjo komunikacijo. Prva sta ga objavila W. Diffe in M. Hellman leta 1976~\cite{diffie1976new}, vendar se je kasneje izkazalo, da je angleška tajna služba odkrila princip kriptografije javnih ključev že leto poprej, vendar to ostalo tajno do leta 1997.
 
 Metoda temelji na reševanju problema diskretnega logaritma, za katerega matematiki verjamejo, da ne obstaja algoritem, ki ga bi bil sposoben rešiti v sprejemljivih časovnih okvirjih (izjema so algoritmi, ki tečejo na kvantnih računalnikih, vendar je to povsem drug svet).
 
 Originalna različica algoritma uporablja multiplikativno grupo števil po modulu $p$, kjer je $p$ praštevilo in $g$ primitivni koren števila $p$.
 
-Recimo da se želita Anita in Bojan preko Interneta dogovoriti o skupnem ključu, ki ga bosta uporabljala za nadaljnjo komunikacijo. To lahko storita po sledečem postopku:
+Recimo da se želita Anita in Bojan preko interneta dogovoriti o skupnem ključu, ki ga bosta uporabljala za nadaljnjo komunikacijo. To lahko storita po sledečem postopku:
 
 \begin{mdframed}[frametitle={Izmenjava ključa Diffe-Hellman}]
 \begin{enumerate}
-	\item Anita in Bojan se dogovorita os skupnih parametrih, ki jih bosta uporabljala v algoritmu. To je praštevilo $p$ in primitivni koren praštevila~$g$.
+	\item Anita in Bojan se dogovorita o skupnih parametrih, ki jih bosta uporabljala v algoritmu. To je praštevilo $p$ in primitivni koren praštevila~$g$.
 	\item Anita si izbere skrivno število $a$, izračuna $A=g^a \mod p$ in pošlje $A$ Bojanu.
 	\item Bojan si izbere skrivno število $b$, izračuna $B=g^b \mod p$ in pošlje $B$ Aniti.
 	\item Anita izračuna $s=B^a \mod p$.
@@ -958,7 +944,7 @@ Prav tako ločimo tri stanja digitalnih podatkov: podatki v mirovanju, podatki v
 
 Zgodovinsko gledano je bila kriptografija izumljena z motivom varovanja komunikacij, torej podatkov v gibanju, vendar na problem varovanja podatkov v mirovanju lahko gledamo kot na komunikacijo s samim sabo. To nam predvsem poenostavi problem distribucije ključev, zato so za varovanje podatkov v mirovanju zelo primerne simetrične šifre.
 
-Na začetku obdobja računalništva se največ pozornosti posvečalo predvsem varnosti podatkov v mirovanju, saj so se informacijski sistemi nahajali znotraj podjetja, oziroma so bili do podjetja povezani preko najetih vodov. Prav tako so se podatki obdelovali na strojni opremi, ki je bila v lasti podjetja in se je nahajala na varni lokaciji. S prihodom storitev v oblaku, se je ta paradigma spremenila. Podatke je treba najprej prenesti v oblačni sistem, največkrat kar preko Interneta. Prav tako podatke v oblak pošljemo z namenom, da jih bomo tam obdelovali in analizirali, kar pomeni da je potrebno poskrbeti tudi za varnost podatkov v uporabi.
+Na začetku obdobja računalništva se največ pozornosti posvečalo predvsem varnosti podatkov v mirovanju, saj so se informacijski sistemi nahajali znotraj podjetja, oziroma so bili do podjetja povezani preko najetih vodov. Prav tako so se podatki obdelovali na strojni opremi, ki je bila v lasti podjetja in se je nahajala na varni lokaciji. S prihodom storitev v oblaku, se je ta paradigma spremenila. Podatke je treba najprej prenesti v oblačni sistem, največkrat kar preko interneta. Prav tako podatke v oblak pošljemo z namenom, da jih bomo tam obdelovali in analizirali, kar pomeni da je potrebno poskrbeti tudi za varnost podatkov v uporabi.
 
 To se odraža tudi v pristopih k varovanju podatkov v različnih stanjih. Dočim za varovanje podatkov v mirovanju obstajajo ustaljene prakse, pa za ostali dve področji velja, da se nenehno spreminjata. Na področju varovanja podatkov v gibanju, ki ga v primeru oblačnih sistemov večinoma pokrivata kriptografska protokola \acrfull{SSL} in njegov naslednik \acrfull{TLS}, je v zadnjih letih prišlo do odkritji različnih napadov in posledično opustitve določenih verzij protokolov, ker te niso več zagotavljale zadovoljivega nivoja varnosti. Drugačna pa je situacija na področju varovanja podatkov v uporabi, saj v preteklosti ni bilo velike potrebe po praktični implementaciji takih kriptografskih protokolov, vendar se je s prihodom oblačnih storitev tudi to področje začelo pospešeno razvijati.
 
@@ -1099,11 +1085,11 @@ Podatki so v gibanju praviloma malo časa, zato ni potrebe po kompleksnem upravl
 
 Najbolj razširjen protokol za zaščito podatkov med tem ko so v gibanju je \gls{SSL} in njegov naslednik \gls{TLS}. Poleg njega se predvsem za statične povezave med dvema omrežjema uporabljajo še protokoli iz družine VPN. Znotraj omrežja ponudnika pa se lahko uporabijo tudi tehnologije kot je VLAN. VLAN ne zagotavlja varnosti s pomočjo šifriranja, ampak deluje na principu omejevanja dostopa do prometa na skupnem mediju. Tak način pristopa sicer ščiti pred napadalci, ki imajo ustrezno malo pooblastil, recimo drugi uporabniki sistema, ne more pa nas zaščititi pred notranjimi napadalci, kot so zaposleni pri ponudniku storitve.
 
-Ker do storitev v oblaku praviloma dostopamo s spletnim brskalnikom preko Interneta, je standardna praksa uporaba protokola \gls{HTTPS}. \Gls{HTTPS} je implementacija HTTP protokola na povezavi, šifrirani s protokolom \gls{SSL} ali \gls{TLS}. Predvsem se priporoča uporaba slednjega, saj od leta 2014 naprej obstajajo učinkoviti napadi na vse različice protokola \gls{SSL}, zato se ta ne smatra več za varnega.
+Ker do storitev v oblaku praviloma dostopamo s spletnim brskalnikom preko interneta, je standardna praksa uporaba protokola \gls{HTTPS}. \Gls{HTTPS} je implementacija HTTP protokola na povezavi, šifrirani s protokolom \gls{SSL} ali \gls{TLS}. Predvsem se priporoča uporaba slednjega, saj od leta 2014 naprej obstajajo učinkoviti napadi na vse različice protokola \gls{SSL}, zato se ta ne smatra več za varnega.
 
 Protokol \gls{TLS} uporablja simetrične kriptosisteme za zagotavljanje zasebnosti, kriptografijo javnih ključev za ugotavljanje istovetnosti strežnika s katerim komuniciramo in za dogovor o ključu ter kode za overjanje, s katerimi zagotavljanje celovitosti podatkov. Točne detajle implementacije je možno najti v literaturi, kot je knjiga \textit{Cryptography and network security} avtorja W. Stallings~\cite{stallings2006cryptography}. Ker protokol ne predpisuje točno določenih algoritmov, ampak prepušča izbor le teh uporabniku, je pomembno, da namenimo nekaj časa pravilni nastavitvi protokola.
 
-\Gls{TLS} se uporablja za zaščito občutljivih podatkov v transportu praktično na vsakem kotičku Interneta, od varovanja gesel za prijavo na socialna omrežja, varovanja e-poštnih sporočil med transportom do varovanja elektronskih plačil. Prav zato v zadnjih letih skorajda ne mine mesec, ko ni bil predstavljen nov napad na \gls{TLS}, kljub temu pa se \gls{TLS} ob pravilnih nastavitvah še vedno smatra kot varen.
+\Gls{TLS} se uporablja za zaščito občutljivih podatkov v transportu praktično na vsakem kotičku interneta, od varovanja gesel za prijavo na socialna omrežja, varovanja e-poštnih sporočil med transportom do varovanja elektronskih plačil. Prav zato v zadnjih letih skorajda ne mine mesec, ko ni bil predstavljen nov napad na \gls{TLS}, kljub temu pa se \gls{TLS} ob pravilnih nastavitvah še vedno smatra kot varen.
 
 \begin{description}[style=nextline]
   \item[DROWN] Napad napadalcu omogoča dešifriranje celotne komunikacije, zaščitene s (sicer pravilno nastavljen) TLS. Za uspešen napad je potreben strežnik, ki uporablja zastarel protokol SSL v2 in isti zasebni ključ kot žrtvin strežnik~\cite{aviramdrown}.
