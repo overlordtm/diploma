@@ -872,7 +872,7 @@ Asimetrični kriptosistemi slonijo na predpostavki, da so nekateri matematični 
 Na žalost so asimetrični kriptosistemi, tudi zaradi svojega ozadja v netrivialnih matematičnih problemih, veliko počasnejši od simetričnih. V praksi se zato pogosto uporablja kombinacija obeh tipov sistemov. V prvi fazi se za dogovor o ključu uporabi asimetrični kriptosistem, ko pa se obe strani dogovorita o skupnem ključu, pa preklopita na simetrični kriptosistem.
 
 \subsection{Dogovor o ključu Diffe-Hellman}
-\label{subs:Dogovor o kljucu Diffe-Hellman}
+\label{sub:Dogovor o kljucu Diffe-Hellman}
 
 Dogovor o ključu Diffe-Hellman je bil prvi javno objavljen algoritem, ki uporablja princip javnih in zasebnih ključev. V praksi omogoča, da se dva neznanca preko nezavarovanega kanala kot je internet dogovorita za skupni ključ, ki ga bosta uporabljala za nadaljnjo komunikacijo. Prva sta ga objavila W. Diffie in M. Hellman leta 1976~\cite{diffie1976new}, vendar se je kasneje izkazalo, da je angleška tajna služba odkrila princip kriptografije javnih ključev že leto poprej, a je to ostalo tajno do leta 1997.
 
@@ -1048,7 +1048,7 @@ V načinu delovanja CBC šifriranje poteka tako: $$c_i = e_k(m_i \oplus c_{i-1})
 
 Po tem isti ključ uporabimo za šifriranje več kot $2^{n/2}$ blokov, kjer je $n$ velikost bloka v bitih, obstaja velika verjetnost da pride do trka. Trk je dogodek, kjer napadalec v tajnopisu opazi dva enaka bloka ($c_i = c_j$). Ker šifrirna funkcija $e_k$ izvede samo permutacijo nad vhodnimi, lahko sklepamo, da je bil vhodni podatek $e_k$ za oba bloka enak ($m_i \oplus c_{i-1} = m_j \oplus c_{j-1}$). Iz tega sledi: $$m_i \oplus m_j = c_{i-1} \oplus c_{j-1}$$
 
-Napadalcu sta že znana oba tajnopisa $c_{i-1}$ in $c_{j-1}$, zato če ugane bodisi vrednost $m_j$, bodisi vrednost $m_i$, lahko preko zgornje formule izračuna manjkajočo vrednost in tako dešifrira delček sporočila.
+Napadalcu sta že znana oba tajnopisa $c_{i-1}$ in $c_{j-1}$, zato lahko ugane bodisi vrednost $m_j$, bodisi vrednost $m_i$ in preko zgornje formule izračuna manjkajočo vrednost ter tako dešifrira delček sporočila.
 \end{mdframed}
 
 
@@ -1060,9 +1060,7 @@ V primeru oblačnih storitev, ki ponujajo hrambo podatkov v oblaku, pa je zažel
 Problem pa nastane, ko želimo izločanje dvojnikov uporabiti skupaj s šifriranjem. Praviloma želimo, da tajnopis izda karseda malo informacij o čistopisu, kateremu pripada. V praksi to pomeni, da za dva tajnopisa ne moremo ugotoviti, ali pripadata istemu čistopisu (isti datoteki), saj se v postopku šifriranja pogosto doda nek naključni element (recimo \gls{IV} v poglavju~\ref{sec:Nacini delovanja}). Tak pristop sicer omogoča doseganje \textit{semantične varnosti}, vendar onemogoči znatne prihranke pomnilniškega prostora ob poskusu izločanja dvojnikov. V kolikor želimo imeti oboje, je potrebno znižati varnostne zahteve. Če teoretičnemu napadalcu dovolimo, da ugotovi, da dva tajnopisa pripadata istemu čistopisu (torej tak kriptosistem ni \textit{semantično varen}) je izločanje dvojnikov možno.
 
 \begin{mdframed}[frametitle={Semantična varnost}]
-\begin{defn}
 Kriptosistem je semantično varen, če iz tajnopisa ni mogoče na praktičen način pridobiti nobene informacije o čistopisu.
-\end{defn}
 \end{mdframed}
 
 V principu je potrebno poskrbeti, da šifriranje enakega čistopisa vsakič da enak tajnopis. To pomeni, da moramo vsakič uporabiti enak šifrirni ključ in tudi \gls{IV}, v kolikor ga dani kriptosistem zahteva. Lahko bi za vse datoteke vseh uporabnikov uporabili isti ključ in isti \gls{IV}, vendar taka implementacija nebi zagotavljala prav visoke varnosti. V veliko primerih ima šifriranje različnih čistopisov z enakim ključem in IV katastrofalne posledice za varnost. To nam pridejo na pomoč konvergentne kriptografske sheme. Prva taka shemo je podjetje Stac, Inc.\ patentiralo že leta 1995, v zadnjih letih pa so predvsem zaradi vse večje uporabe oblačnih shramb podatkov te sheme deležne veliko pozornosti. Osnovna ideja sheme je, da se šifrirni ključ izračuna iz čistopisa. Ponavadi se izračuna zgoščena vrednost čistopisa s pomočjo enosmerne zgoščevalne funkcije, nato pa se iz te vrednosti na determinističen način ustvari šifrirni ključ. Ker je zgoščena vrednost dveh enakih datotek tudi enaka, in postopek za izračun ključa determinističen, smo tako dosegli cilj, da se dve isti datoteki vedno zašifrirata v isti tajnopis.
@@ -1078,9 +1076,9 @@ Vendar pa imajo zaradi znižanih varnostnih zahtev taki sistemi tudi svoje ranlj
 
 Za podatke v gibanju veljajo vsi podatki, ki se preko interneta pretakajo od uporabnika proti oblaku in obratno. Poleg tega pa so podatki v gibanju tudi vsi podatki, ki se prenašajo med različnimi strežniki znotraj oblačnega sistema.
 
-Omrežja po katerih podatki potujejo velikokrat uporabljajo dinamične usmerjevalne algoritme, ne moremo vnaprej vedeti po kateri poti bodo podatki potovali. Podatki v gibanju na svoji poti potujejo skozi veliko omrežnih naprav, katere imajo vse vpogled v podatke, prav tako pa jim ne moremo zaupati. Dodatno nevarnost predstavlja še napad \gls{MITM}, kjer napadalec izkoristi dinamičnost omrežja in se vrine na pot podatkov med uporabnika in oblačni sistem.
+Omrežja, po katerih podatki potujejo, velikokrat uporabljajo dinamične usmerjevalne algoritme, zato ne moremo vnaprej vedeti, po kateri poti bodo podatki potovali. Podatki v gibanju na svoji poti potujejo skozi veliko omrežnih naprav, ki imajo vpogled v podatke, prav tako pa jim ne moremo zaupati. Dodatno nevarnost predstavlja še \gls{MITM}, kjer napadalec izkoristi dinamičnost omrežja in se vrine na pot podatkov med uporabnika in sistem.
 
-Podatki so v gibanju praviloma malo časa, zato ni potrebe po kompleksnem upravljanju ključev. S pomočjo algoritmov za varno izmenjavo ključev, kot je recimo Diffe-Hellman algoritem opisan v poglavju~\ref{sec:Dogovor o kljucu Diffe-Hellman}, je možno da se za vsako sejo uporabi nov, naključno generiran ključ.
+Podatki so v gibanju praviloma malo časa, zato ni potrebe po kompleksnem upravljanju ključev. S pomočjo algoritmov za varno izmenjavo ključev, kot je algoritem  Diffe-Hellman, opisan v poglavju~\ref{sub:Dogovor o kljucu Diffe-Hellman}, je možno, da se za vsako sejo uporabi nov, naključno generiran ključ.
 
 Najbolj razširjen protokol za zaščito podatkov med tem ko so v gibanju je \gls{SSL} in njegov naslednik \gls{TLS}. Poleg njega se predvsem za statične povezave med dvema omrežjema uporabljajo še protokoli iz družine VPN. Znotraj omrežja ponudnika pa se lahko uporabijo tudi tehnologije kot je VLAN. VLAN ne zagotavlja varnosti s pomočjo šifriranja, ampak deluje na principu omejevanja dostopa do prometa na skupnem mediju. Tak način pristopa sicer ščiti pred napadalci, ki imajo ustrezno malo pooblastil, recimo drugi uporabniki sistema, ne more pa nas zaščititi pred notranjimi napadalci, kot so zaposleni pri ponudniku storitve.
 
