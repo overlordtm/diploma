@@ -368,13 +368,13 @@ Mogoče
 %********************************************
 
 % stran 9 med uvodnimi listi
-\thispagestyle{empty}
-
-$\;$
-
-\vspace{5cm}
-\hfill{\Large \em Morebitno posvetilo\/ }
-\thispagestyle{empty}
+% \thispagestyle{empty}
+%
+% $\;$
+%
+% \vspace{5cm}
+% \hfill{\Large \em Morebitno posvetilo\/ }
+% \thispagestyle{empty}
 
 \newpage
 
@@ -1080,27 +1080,32 @@ Omrežja, po katerih podatki potujejo, velikokrat uporabljajo dinamične usmerje
 
 Podatki so v gibanju praviloma malo časa, zato ni potrebe po kompleksnem upravljanju ključev. S pomočjo algoritmov za varno izmenjavo ključev, kot je algoritem  Diffe-Hellman, opisan v poglavju~\ref{sub:Dogovor o kljucu Diffe-Hellman}, je možno, da se za vsako sejo uporabi nov, naključno generiran ključ.
 
-Najbolj razširjen protokol za zaščito podatkov med tem ko so v gibanju je \gls{SSL} in njegov naslednik \gls{TLS}. Poleg njega se predvsem za statične povezave med dvema omrežjema uporabljajo še protokoli iz družine VPN. Znotraj omrežja ponudnika pa se lahko uporabijo tudi tehnologije kot je VLAN. VLAN ne zagotavlja varnosti s pomočjo šifriranja, ampak deluje na principu omejevanja dostopa do prometa na skupnem mediju. Tak način pristopa sicer ščiti pred napadalci, ki imajo ustrezno malo pooblastil, recimo drugi uporabniki sistema, ne more pa nas zaščititi pred notranjimi napadalci, kot so zaposleni pri ponudniku storitve.
+Najbolj razširjen protokol za zaščito podatkov med tem ko so v gibanju je \gls{SSL} in njegov naslednik \gls{TLS}, pogosto imenovana s skupnim imenovalcem SSL/TLS. Poleg njega se predvsem za statične povezave med dvema omrežjema uporabljajo še protokoli iz družine VPN. Znotraj omrežja ponudnika pa se lahko uporabijo tudi tehnologije kot je VLAN. VLAN ne zagotavlja varnosti s pomočjo šifriranja, ampak deluje na principu omejevanja dostopa do prometa na skupnem mediju. Tak način pristopa sicer ščiti pred napadalci, ki imajo ustrezno malo pooblastil, recimo drugi uporabniki sistema, ne more pa nas zaščititi pred notranjimi napadalci, kot so zaposleni pri ponudniku storitve.
 
 Ker do storitev v oblaku praviloma dostopamo s spletnim brskalnikom preko interneta, je standardna praksa uporaba protokola \gls{HTTPS}. \Gls{HTTPS} je implementacija HTTP protokola na povezavi, šifrirani s protokolom \gls{SSL} ali \gls{TLS}. Predvsem se priporoča uporaba slednjega, saj od leta 2014 naprej obstajajo učinkoviti napadi na vse različice protokola \gls{SSL}, zato se ta ne smatra več za varnega.
 
-Protokol \gls{TLS} uporablja simetrične kriptosisteme za zagotavljanje zasebnosti, kriptografijo javnih ključev za ugotavljanje istovetnosti strežnika s katerim komuniciramo in za dogovor o ključu ter kode za overjanje, s katerimi zagotavljanje celovitosti podatkov. Točne detajle implementacije je možno najti v literaturi, kot je knjiga \textit{Cryptography and network security} avtorja W. Stallings~\cite{stallings2006cryptography}. Ker protokol ne predpisuje točno določenih algoritmov, ampak prepušča izbor le teh uporabniku, je pomembno, da namenimo nekaj časa pravilni nastavitvi protokola.
+Protokol SSL/TLS uporablja simetrične kriptosisteme za zagotavljanje zasebnosti, kriptografijo javnih ključev za ugotavljanje istovetnosti strežnika s katerim komuniciramo in za dogovor o ključu ter kode za overjanje, s katerimi zagotavljanje celovitosti podatkov. Točne detajle implementacije je možno najti v literaturi, kot je knjiga \textit{Cryptography and network security} avtorja W. Stallings~\cite{stallings2006cryptography}. Ker protokol ne predpisuje točno določenih algoritmov, ampak prepušča izbor le teh uporabniku, je pomembno, da namenimo nekaj časa pravilni nastavitvi protokola.
 
 \Gls{TLS} se uporablja za zaščito občutljivih podatkov v transportu praktično na vsakem kotičku interneta, od varovanja gesel za prijavo na socialna omrežja, varovanja e-poštnih sporočil med transportom do varovanja elektronskih plačil. Prav zato v zadnjih letih skorajda ne mine mesec, ko ni bil predstavljen nov napad na \gls{TLS}, kljub temu pa se \gls{TLS} ob pravilnih nastavitvah še vedno smatra kot varen.
 
+\subsection{Priporočila za varno uporabo protokola SSL/TLS}
+\label{sub:Priporočila za varno uporabo protokola SSL/TLS}
+
+Vsaka povezava, zaščitena s protokolom TLS najprej poizkusi overiti identiteto strežnika/osebe na drugi strani, saj se tako prepričamo, da res komuniciramo s tistim, s komur želimo. Če ne preverimo identitete druge strani, napadalcu omogočimo MITM napad, saj se lahko postavi med nas in strežnik, in tako prestreza komunikacijo. Za overjanje identitete se uporablja kriptografija javnih ključev, najpogosteje kar protokol RSA. Pomembno je, da uporabimo varne zasebne ključe ter tudi poskrbimo za varno hrambo le teh. Za večino primerov uporabe se priporočajo 2048 bitni RSA, ki zagotavljajo stopnjo varnosti, primerljivo z 112 bitnim simetričnim ključem. V kolikor obstaja zahteva po višji stopnji varnosti, se lahko uporabijo 3072 bitni ključi, ki zagotavljajo približno 128 bitov varnosti. Vse te primerjave so zgolj informativne narave, saj se z napredkom napadov na RSA, stopnja varnosti, ki jo nudi določena dolžina ključa, vztrajno niža.
+
+Poleg dolžine ključa je potrebno poskrbeti, da se za podpis certifikata uporablja kriptografsko varna zgoščevalna funkcija. Od začetka leta 2016 se \textit{SHA1} ne smatra več kot varna zgoščevalna funkcija, zato je priporočena uporaba \textit{SHA256}.
+
+Družina protokolov SSL/TLS je sestavljena iz 5 različic protokolov: SSL v2, SSL v3, TLS v1.0, TLS v1.1 in TLS v1.2. Priporoča se uporaba najnovejše različice TLS v1.2, v kolikor pa je pa je potrebno zagotoviti podporo tudi za stranke, ki uporabljajo starejšo programsko opremo, pa je možna tudi uporaba TLS v1.0 in TLS v1.1.
+
 \begin{description}[style=nextline]
-  \item[DROWN] Napad napadalcu omogoča dešifriranje celotne komunikacije, zaščitene s (sicer pravilno nastavljen) TLS. Za uspešen napad je potreben strežnik, ki uporablja zastarel protokol SSL v2 in isti zasebni ključ kot žrtvin strežnik~\cite{aviramdrown}.
-  \item[BEAST]
-  \item[CRIME in BREACH]
-  \item[POODLE]
-  \item[Shellshock]
-  \item[Heartbleed]
-  \item[Unholy PAC]
-  \item[Sweet32]
+  \item[SSL v2] Protokol je zastarel, njegova uporaba je zelo nevarna. Zaradi napada \textit{DROWN}~\cite{aviramdrown}, uporaba tega protokola ogrozi tudi varnost strežnikov, ki ne uporabljajo tega protokola, uporabljajo pa enak zasebni ključ kot ranljiv strežnik.
+  \item[SSL v3] Uporaba SSL v3 v kombinaciji s protokolom HTTP, zaradi napada \textit{POODLE}~\cite{moller2014poodle}, prav tako ni več varna.
+  \item[TLS v1.0] Uporaba tega protokola sicer ni priporočljiva, vendar pogosto zaradi združljivosti s starejšo programsko opremo nujna. Glavna ranljivost je napad \textit{BEAST}. Ranljivosti, ki so omogočale napad so bile večinoma odpravljene v modernih brskalnikih, vendar vedno obstaja delež uporabnikov, ki ne uporablja posodobljene programske opreme.
+  \item[TLS v1.1] Protokol se smatra za varnega, vendar podpira zastarele šifrirne algoritme, zato je potrebno biti pazljiv pri nastavitvah le teh.
+  \item[TLS v1.2] Protokol se prav tako smatra za varnega, poleg tega pa ponuja še možnost uporabe overjenih šifrirnih postopkov, ki ponujajo višjo stopnjo varnosti.
 \end{description}
 
-Splošni nasveti za varno uporabo TLS protokola so naslednji:
-
+Protokol SSL/TLS uporabniku omogoča izbor nabora kriptosistemov, ki se uporabljajo za doseganje zaupnosti, istovetnosti in celovitosti komunikacije. Žal nekateri kriptosistemi, ki jih protokol podpira, niso več varni za uporabo. Za dogovor o ključu je priporočena uporaba sistemov, ki zagotavljajo prihodnjo varnost. Prihodnja varnost zagotavlja, da tudi če je napadalec posnel šifriran promet, v upanju, da bo enkrat v prihodnosti zmogel razbiti zasebni ključ strežnika, s tem ključem ne bo zmogel dešifrirati pretekle komunikacije. To se doseže tako, da se za vsako sejo uporabi začasni sejni ključ, neodvisen od zasebnega ključa strežnika.
 
 
 \section{Varovanje podatkov v uporabi}
