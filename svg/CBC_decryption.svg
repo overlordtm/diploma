@@ -110,12 +110,12 @@
            y="904.67273"
            x="137.96094"
            id="tspan3218"
-           sodipodi:role="line">block cipher</tspan><tspan
+           sodipodi:role="line">postopek za</tspan><tspan
            id="tspan3220"
            y="919.67273"
            x="137.96094"
            sodipodi:role="line"
-           style="font-weight:normal">decryption</tspan></text>
+           style="font-weight:normal">dešifriranje</tspan></text>
       <rect
          y="80.5"
          x="89.5"
@@ -229,7 +229,7 @@
          sodipodi:role="line"
          id="tspan3564"
          x="51.643028"
-         y="95.625977">Key</tspan></text>
+         y="95.625977">Ključ</tspan></text>
     <g
        id="g3496-2-8"
        transform="translate(18,117)">
@@ -336,7 +336,7 @@
          id="tspan3568-9"
          x="158.30957"
          y="190.5"
-         style="text-align:center;text-anchor:middle">Plaintext</tspan></text>
+         style="text-align:center;text-anchor:middle">Čistopis</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)"
        d="m 158.5,113.5 0,47"
@@ -366,7 +366,7 @@
          x="158.05762"
          y="27.5"
          id="tspan3528-0-6"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';text-align:center;writing-mode:lr-tb;text-anchor:middle">Ciphertext</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';text-align:center;writing-mode:lr-tb;text-anchor:middle">Tajnopis</tspan></text>
     <g
        transform="translate(20,10)"
        style="display:inline"
@@ -490,7 +490,7 @@
          sodipodi:role="line"
          id="tspan11636"
          x="4.8222656"
-         y="129.25">Initialization Vector (IV)</tspan></text>
+         y="129.25">Inicializacijski vektor (IV)</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker11421)"
        d="m 114.5,143.5 34,0"
@@ -518,12 +518,12 @@
            y="904.67273"
            x="137.96094"
            id="tspan3218-3"
-           sodipodi:role="line">block cipher</tspan><tspan
+           sodipodi:role="line">postopek za</tspan><tspan
            id="tspan3220-8"
            y="919.67273"
            x="137.96094"
            sodipodi:role="line"
-           style="font-weight:normal">decryption</tspan></text>
+           style="font-weight:normal">dešifriranje</tspan></text>
       <rect
          y="80.5"
          x="89.5"
@@ -638,7 +638,7 @@
          sodipodi:role="line"
          id="tspan3564-0"
          x="235.64304"
-         y="95.625977">Key</tspan></text>
+         y="95.625977">Ključ</tspan></text>
     <g
        style="display:inline"
        id="g3496-2-8-6"
@@ -746,7 +746,7 @@
          id="tspan3568-9-6"
          x="342.30957"
          y="190.5"
-         style="text-align:center;text-anchor:middle">Plaintext</tspan></text>
+         style="text-align:center;text-anchor:middle">Čistopis</tspan></text>
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)"
        d="m 342.5,113.5 0,47"
@@ -776,7 +776,7 @@
          x="342.05762"
          y="27.499998"
          id="tspan3528-0-6-4"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';text-align:center;writing-mode:lr-tb;text-anchor:middle">Ciphertext</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';text-align:center;writing-mode:lr-tb;text-anchor:middle">Tajnopis</tspan></text>
     <g
        transform="translate(204,9.9999975)"
        style="display:inline"
@@ -815,12 +815,12 @@
            y="904.67273"
            x="137.96094"
            id="tspan3218-3-6"
-           sodipodi:role="line">block cipher</tspan><tspan
+           sodipodi:role="line">postopek za</tspan><tspan
            id="tspan3220-8-8"
            y="919.67273"
            x="137.96094"
            sodipodi:role="line"
-           style="font-weight:normal">decryption</tspan></text>
+           style="font-weight:normal">dešifriranje</tspan></text>
       <rect
          y="80.5"
          x="89.5"
@@ -935,7 +935,7 @@
          sodipodi:role="line"
          id="tspan3564-0-9"
          x="419.64304"
-         y="95.625977">Key</tspan></text>
+         y="95.625977">Ključ</tspan></text>
     <g
        style="display:inline"
        id="g3496-2-8-6-8"
@@ -1043,7 +1043,7 @@
          id="tspan3568-9-6-2"
          x="526.30957"
          y="190.5"
-         style="text-align:center;text-anchor:middle">Plaintext</tspan></text>
+         style="text-align:center;text-anchor:middle">Čistopis</tspan></text>
     <path
        style="display:inline;fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)"
        d="m 526.5,113.5 0,47"
@@ -1073,7 +1073,7 @@
          x="526.05762"
          y="27.499998"
          id="tspan3528-0-6-4-9"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';text-align:center;writing-mode:lr-tb;text-anchor:middle">Ciphertext</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';text-align:center;writing-mode:lr-tb;text-anchor:middle">Tajnopis</tspan></text>
     <g
        transform="translate(388,9.9999969)"
        style="display:inline"
