@@ -201,6 +201,12 @@
   name=samozagonska,
   description={angl.\ bootstrappable},
 }
+\newglossaryentry{hypervisor}
+{
+  name=hipernadzornik,
+  description={angl.\ hypervisor},
+}
+
 
 %********************************************
 
@@ -439,57 +445,70 @@ Ključne besede v angleškem jeziku.
 \pagenumbering{arabic}
 \chapter{Uvod}
 
-V zadnjih letih smo priča bliskovitemu porastu popularnosti tako imenovanega računalništva v oblaku. Gartner je v začetku leta 2015 uvrstil računalništvo v oblaku med 10 strateško najpomembnejših tehnoloških trendov, ki bodo krojili prihodnost. Oblak nam omogoča udobno, cenovno ugodno delo, kadarkoli in kjerkoli, tudi zunaj pisarne, saj je vse kar potrebujemo internetni dostop in računalnik ali telefon. Računalništvo v oblaku je posledica razvoja več različnih tehnologij, ki so skupaj omogočile cenovno učinkovite rešitve, ki so hkrati preproste za uporabo. Končni uporabniki uporabljajo oblak, ker je preprosto za uporabo, omogoča dostop do podatkov kjerkoli in kadarkoli. Na drugi strani vedno več podjetji v žeji, da znižajo stroške poslovanja in povečajo sposobnost prilagajanja zahtevam trga, seli svoje poslovanje v oblak. Posledica tega premika je selitev podatkov iz fizičnih nosilcev, ki so bili tradicionalno v lasti iste osebe kot podatki, v oblak. To pomeni, da varnost hrambe svojih podatkov zaupamo tretjim osebam, kar niti ni nujno tako slabo, kot se sliši. Za veliko ljudi in manjših podjetji je skrb za varnost podatkov velik zalogaj, ki zahteva ustrezno tehnično izobrazbo, strojno opremo in prostor. Kadar hranimo podatke v oblaku, nič od tega ni potrebno, saj nam vse to zagotavlja ponudnik storitev v oblaku v zameno za mesečno naročnino. V kolikor vseeno ne želimo vseh svojih podatkov zaupati ponudniku storitve, pa nam kriptografija ponuja nekaj rešitev, kako zavarovati podatke pred nepooblaščenimi očmi. Posebej zanimive so metode šifriranja podatkov, saj zagotavlja zaščito pred širokom naborom groženj, ki jih bomo spoznali kasneje.  V nadaljevanju bomo najprej pogledali, kaj se skriva pod pojmoma ``oblak'' in ``varnost'', nato pa se posvetili kriptografskim metodam varovanja podatkov.
+V zadnjih letih smo priča bliskovitemu porastu popularnosti računalništva v oblaku. Gartner je v začetku leta 2015 uvrstil računalništvo v oblaku med 10 strateško najpomembnejših tehnoloških trendov, ki bodo krojili prihodnost. Oblak nam omogoča udobno, cenovno ugodno delo kadarkoli in kjerkoli, tudi zunaj pisarne, saj je vse kar potrebujemo internetni dostop in računalnik ali telefon.
+
+Računalništvo v oblaku je posledica razvoja več različnih tehnologij, ki so skupaj omogočile cenovno učinkovite rešitve, ki so hkrati preproste za uporabo. Končni uporabniki uporabljajo oblak, ker je preprost za uporabo ter omogoča dostop do podatkov kjerkoli in kadarkoli. Na drugi strani vedno več podjetji v želji, da znižajo stroške poslovanja in povečajo sposobnost prilagajanja zahtevam trga, seli svoje poslovanje v oblak. Posledica tega premika je selitev podatkov iz fizičnih nosilcev, ki so bili tradicionalno v lasti iste osebe kot podatki, v oblak. To pomeni, da varnost hrambe svojih podatkov zaupamo tretjim osebam. Za veliko ljudi in manjših podjetji je skrb za varnost podatkov (pre)velik zalogaj, ki zahteva ustrezno tehnično izobrazbo, strojno opremo in prostor. Kadar hranimo podatke v oblaku, nič od tega ni potrebno, saj nam vse to zagotavlja ponudnik storitev v oblaku v zameno za mesečno naročnino.
+
+V kolikor vseeno ne želimo vseh svojih podatkov zaupati ponudniku storitve, pa nam kriptografija ponuja nekaj rešitev, kako zavarovati podatke pred nepooblaščenimi očmi. Posebej zanimive so metode šifriranja podatkov, saj zagotavlja zaščito pred širokom naborom groženj, ki jih bomo spoznali kasneje.  V nadaljevanju bomo najprej pogledali, kaj se skriva pod pojmoma ``oblak'' in ``varnost'', nato pa se posvetili kriptografskim metodam varovanja podatkov.
 
 \section{Kaj je oblak?}
 \label{sec:Kaj je oblak?}
 
 
-Priljubljen internetni rek gre nekako takole: “There is no cloud, just someone else's computer”. Preprosto rečeno je to delno res, saj oblak ni nič drugega kot skupek velikega števila računalnikov, ki niso v lasti uporabnika storitve v oblaku, morda niso niti v lasti ponudnika storitve, ampak jih ta najema pri tretjem ponudniku. Pojem oblak je le krovni izraz za nove načine ponudbe in uporabe storitev, zato ga moramo podrobneje razdelati in razložiti.
+Priljubljen internetni rek gre nekako takole: “there is no cloud, just someone else's computer”. Oblak ni nič drugega kot skupek velikega števila računalnikov, ki niso v lasti uporabnika storitve v oblaku, morda niso niti v lasti ponudnika storitve, ampak jih ta najema pri tretjem ponudniku. Pojem oblak je le krovni izraz za nove načine ponudbe in uporabe storitev, zato ga moramo podrobneje razdelati in razložiti.
 
-NIST opredeli oblak kot: ``Računalništvo v oblaku je model, ki omogoča vseprisoten preprost dostop na zahtevo do skupnega računalniških virov (omrežja, strežniki, pomnilniški mediji, aplikacije in storitve), ki so lahko hitro pridobljeni ali sproščeni z minimalnim trudom in popolnoma samodejno, brez posredovanja ponudnika storitve. Model oblaka sestavlja pet ključnih lastnosti, trije nivoji storitve in štirje tipi oblakov.''~\cite{mell2011nist}
+NIST opredeli oblak kot: ``Računalništvo v oblaku je model, ki omogoča vseprisoten preprost dostop na zahtevo do skupnih računalniških virov (omrežja, strežniki, pomnilniški mediji, aplikacije in storitve), ki so lahko hitro pridobljeni ali sproščeni z minimalnim trudom in popolnoma samodejno, brez posredovanja ponudnika storitve. Model oblaka sestavlja pet ključnih lastnosti, trije nivoji storitve in štirje tipi oblakov.''~\cite{mell2011nist}
+
+\subsection{Lastnosti oblaka}
+\label{sub:Lastnosti oblaka}
 
 \begin{description}[style=nextline]
-   \item[Storitev na zahtevo] Stranka lahko pridobi nove vire v oblaku po potrebi, lahko tudi popolnoma samodejno brez človeškega posredovanja.
+   \item[Storitev na zahtevo] Stranka lahko pridobi nove vire v oblaku po potrebi, lahko tudi popolnoma samodejno, brez človeškega posredovanja.
 
    \item[Širok dostop preko omrežja] Zmogljivosti oblaka so na voljo preko omrežja in do njih lahko dostopamo preko standardnih mehanizmov, kar omogoča dostop praktično katerekoli naprave, ki se je zmožna povezati v omrežje (telefoni, tablice, računalniki,~\ldots).
 
    \item[Uporaba skupnih virov] Ponudnikovi fizični viri so združeni v bazen virov iz katerega stranke dobijo virtualizirane vire. Virtualizirani vir lahko prosto prehaja med fizičnimi gostitelji, zato težko govorimo o točni lokaciji vira.
 
-   \item[Bliskovita prožnost] Uporabnik lahko preprosto poveča ali zmanjša zmogljivosti virov, ki jih potrebuje glede na potrebe. Uporabnik ima pogosto občutek da so mu na voljo neomejene zmogljivosti.
+   \item[Bliskovita prožnost] Uporabnik lahko preprosto poveča ali zmanjša zmogljivosti virov, ki jih uporablja, glede na potrebe. Uporabnik ima pogosto občutek, da so mu na voljo neomejene zmogljivosti.
 
    \item[Merjenje porabe in obračun glede na porabo virov]  Oblačni sistemi samodejno nadzirajo in optimizirajo porabo virov z metrikami (poraba prostora, pasovne širine, procesorskega časa~\ldots). Poraba virov se nadzira, kontrolira in poroča, kar omogoča transparentnost za ponudnika in uporabnika.
 \end{description}
 
+\subsection{Nivoji storitve}
+\label{sub:Nivoji storitve}
 
 \begin{description}[style=nextline]
-	\item[\gls{SaaS}] Ponudnik storitev uporabniku omogoča uporabo njegove aplikacije, ki teče v oblaku. Aplikacija je dosegljiva iz različnih naprav, preko recimo spletnega brskalnika ali aplikacijskega vmesnika (\gls{API}). Uporabnik nima nadzora nad infrastrukturo na kateri teče aplikacija (omrežje in strežniki), kot tudi ne nad samo aplikacijo (z izjemo konfiguracije aplikacije).
+	\item[\gls{SaaS}] Ponudnik storitev uporabniku omogoča uporabo njegove aplikacije, ki teče v oblaku. Aplikacija je dosegljiva iz različnih naprav, preko recimo spletnega brskalnika ali aplikacijskega vmesnika (API). Uporabnik nima nadzora nad infrastrukturo, na kateri teče aplikacija (omrežje in strežniki), kot tudi ne nad samo aplikacijo (z izjemo konfiguracije aplikacije).
 
-	\item[\gls{PaaS}]: Ponudnik storitev uporabniku ponuja platformo, na katero lahko uporabnik namesti lastne ali kupljene aplikacije, ki so prilagojene za delovanje v oblaku. Tudi tu uporabnik nima nadzora nad infrastrukturo na kateri teče aplikacije, ima pa popolni nadzor nad aplikacijo.
+	\item[\gls{PaaS}] Ponudnik storitev uporabniku ponuja platformo, na katero uporabnik namesti lastne ali kupljene aplikacije, ki so prilagojene za delovanje v oblaku. Tudi tu uporabnik nima nadzora nad infrastrukturo na kateri teče aplikacije, ima pa popolni nadzor nad aplikacijo.
 
-	\item[\gls{IaaS}]: Ponudnik uporabniku omogoča postavitev osnovnih gradnikov računalniškega sistema (procesiranje, hramba podatkov, omrežje …) iz katerih lahko uporabnik sestavi kar želi. Uporabnik sicer nima nadzora nad spodaj ležečo fizično infrastrukturo, vendar ima ves nadzor nad virtualiziranimi viri ki jih pridobi.
+	\item[\gls{IaaS}] Ponudnik uporabniku omogoča postavitev osnovnih gradnikov računalniškega sistema (procesiranje, hramba podatkov, omrežje …) iz katerih lahko uporabnik sestavi kar želi. Uporabnik sicer nima nadzora nad spodaj ležečo fizično infrastrukturo, vendar ima ves nadzor nad virtualiziranimi viri ki jih pridobi.
 \end{description}
 
+\subsection{Tipi oblakov}
+\label{sub:Tipi oblakov}
 \begin{description}[style=nextline]
-	\item[Zasebni oblak] Vsa infrastruktura je namenjena uporabi znotraj ene organizacije, ki je sestavljena iz več delov. Upravljanje, vzdrževanje in lastništvo je lahko v domeni iste organizacije, tretje osebe ali kombinacije obojega. Lokacija sistema je lahko v prostorih organizacije ali pa izven.
+	\item[Zasebni oblak] Vsa infrastruktura je namenjena uporabi znotraj ene organizacije, ki je sestavljena iz več delov. Upravljanje, vzdrževanje in lastništvo so lahko v domeni iste organizacije, tretje osebe ali kombinacije obojega. Lokacija sistema je lahko v prostorih organizacije ali pa izven njih.
 
-	\item[Skupni oblak] Infrastruktura je namenjena uporabi s strani skupnosti organizacij, ki imajo skupne zahteve ali skupni cilj. Upravljanje, vzdrževanje in lastništvo je lahko v domeni ene ali večih organizacij znotraj skupnosti, tretje osebe ali kombinacije obojega. Lokacija sistema je lahko v prostorih ene od organizacij ali pa izven.
+	\item[Skupni oblak] Infrastruktura je namenjena uporabi s strani skupnosti organizacij, ki imajo skupne zahteve ali skupen cilj. Upravljanje, vzdrževanje in lastništvo je lahko v domeni ene ali večih organizacij znotraj skupnosti, tretje osebe ali kombinacije obojega. Lokacija sistema je lahko v prostorih ene od organizacij ali pa izven njih.
 
 	\item[Javni oblak] Infrastruktura je namenjena uporabi s strani vseh. Ponudnik je lahko zasebno podjetje, izobraževalna ustanova ali vladna agencija. Infrastruktura se ponavadi nahaja na lokaciji ponudnika.
-	Hibridni oblak: Hibridni oblak je kombinacija dveh ali več tipov oblakov iz prvih treh točk (zasebni, javni, skupni). Oblaka sta sicer fizično ločena, vendar skupni standardi in tehnologije omogočajo preprosto prehajanje aplikacij in podatkov iz enega na drugega.
+
+  \item[Hibridni oblak] Hibridni oblak je kombinacija dveh ali več tipov oblakov iz prvih treh točk (zasebni, javni, skupni). Oblaka sta sicer fizično ločena, vendar skupni standardi in tehnologije omogočajo preprosto prehajanje aplikacij in podatkov iz enega v drugega.
 \end{description}
 
 \section{Kaj je varnost?}
-Varnost je širok pojem, ki ga v kontekstu računalništva lahko razdelimo na tri dele. To so: računalniška varnost (computer security), informacijska varnost (information security) in varovanje podatkov (information assurance).
+\label{sec:Kaj je varnost?}
 
+
+Varnost je širok pojem, ki ga v kontekstu računalništva lahko razdelimo na tri dele. Računalniško varnost (computer security), informacijsko varnost (information security) in varovanje podatkov (information assurance).
 
 \begin{description}
-
 	\item[Računalniška varnost] se ukvarja z varovanjem računalniških sistemov, od strojne opreme preko programske opreme do podatkov, ki se procesirajo na tej strojni opremi. Naloga računalniške varnosti je zagotoviti integriteto, dostopnost in zaupnost vseh sestavnih delov računalniškega sistema.
 
-\item[Informacijska varnost] se ukvarja z varovanjem podatkov, ki se obdelujejo in shranjujejo v informacijskih sistemih. Njena naloga je zaščititi podatke pred nepooblaščenim dostopom, uporabo, spreminjanjem in uničenjem z ciljem zagotavljanja integritete, dostopnosti in zaupnosti podatkov.
+  \item[Informacijska varnost] se ukvarja z varovanjem podatkov, ki se obdelujejo in shranjujejo v informacijskih sistemih. Njena naloga je zaščititi podatke pred nepooblaščenim dostopom, uporabo, spreminjanjem in uničenjem z ciljem zagotavljanja integritete, dostopnosti in zaupnosti podatkov.
 
-\item[Varovanje podatkov] se ukvarja z varovanjem podatkov in upravljanjem tveganj povezanih z uporabo, prenosom in procesiranjem podatkov z ciljem zagotavljanja integritete, dostopnosti, zaupnosti in neizpodbitnostjo podatkov.
+  \item[Varovanje podatkov] se ukvarja z varovanjem podatkov in upravljanjem tveganj povezanih z uporabo, prenosom in procesiranjem podatkov s ciljem zagotavljanja integritete, dostopnosti, zaupnosti in neizpodbitnosti podatkov.
 \end{description}
 
 Iz teh opisov lahko razberemo ključne lastnosti varnega računalniškega sistema. V literaturi se te ključne tri lastnosti imenujemo CIA triad, kjer je CIA angleška kratica za ključne 3 lastnosti:
@@ -497,86 +516,81 @@ Iz teh opisov lahko razberemo ključne lastnosti varnega računalniškega sistem
 
 
 \begin{description}
-\item[\Gls{zaupnost}] pomeni zasebnost podatkov. Ukrepi, ki zagotavljajo zaupnost podatkov so usmerjeni k preprečevanju dostopa nepooblaščenih oseb. Pogosti mehanizmi, ki se uporabljajo za zagotavljanje zaupnosti podatkov so zaščita z uporabniškim imenom in geslom, dvostopenjska overitev (two-factor auth), biometrična overitev in šifriranje podatkov.
+\item[\Gls{zaupnost} (confidentiality)] pomeni zasebnost podatkov. Ukrepi, ki zagotavljajo zaupnost podatkov so usmerjeni k preprečevanju dostopa nepooblaščenih oseb. Pogosti mehanizmi, ki se uporabljajo za zagotavljanje zaupnosti podatkov so: zaščita z uporabniškim imenom in geslom, dvostopenjska overitev (two-factor auth), biometrična overitev in šifriranje podatkov.
 
-\item[\Gls{celovitost}] pomeni ohranjanje točnosti in pravilnosti podatkov. Ukrepi, ki zagotavljajo celovitost podatkov, preprečujejo nepooblaščenim osebam spreminjanje podatkov med prenosom ali v mirovanju. Omogočajo sledenje spremembam podatkov skozi zgodovino (revizijska sled), obnovitev podatkov iz varnostne kopije v primeru da pride do nepooblaščene spremembe. Mehanizmi, ki zagotavljajo celovitost podatkov so nadzor dostopa in zgoščevalne funkcije in digitalni podpisi.
+\item[\Gls{celovitost} (integrity)] pomeni ohranjanje točnosti in pravilnosti podatkov. Ukrepi, ki zagotavljajo celovitost podatkov, preprečujejo nepooblaščenim osebam spreminjanje podatkov med prenosom ali v mirovanju. Omogočajo sledenje spremembam podatkov skozi zgodovino (revizijska sled), obnovitev podatkov iz varnostne kopije, v primeru, da pride do nepooblaščene spremembe. Mehanizmi, ki zagotavljajo celovitost podatkov so: nadzor dostopa in zgoščevalne funkcije ter digitalni podpisi.
 
-\item[\Gls{availability}] pomeni da so podatki vedno na voljo pooblaščenim osebam. Glavni vzrok nerazpoložljivosti so programske in strojne napake ter napadi zavrnitve storitve (denial of service). Razpoložljivost podatkov se zagotavlja z rednim vzdrževanjem strojne in programske opreme in s posebnimi ukrepi za preprečevanje napadov zavrnitve storitve.
+\item[\Gls{availability} (availability)] pomeni, da so podatki vedno na voljo pooblaščenim osebam. Glavni vzrok nerazpoložljivosti so programske in strojne napake ter napadi zavrnitve storitve (denial of service). Razpoložljivost podatkov se zagotavlja z rednim vzdrževanjem strojne in programske opreme in s posebnimi ukrepi za preprečevanje napadov zavrnitve storitve.
 
 \end{description}
 
-Poleg treh ključnih lastnosti, ki jih najdemo zgoraj je Meier identificiral še tri lastnosti, to so:
-
-
+Poleg treh ključnih lastnosti, ki jih najdemo zgoraj, je Meier~\cite{meier2003improving} identificiral še tri lastnosti, to so:
 
 \begin{description}
 
-\item[\Gls{overjanje}] identificira vir podatka oziroma izvor operacije, ki je lahko človek ali računalnik in se prepričamo da je res tisti za katerega se izdaja.
+\item[\Gls{overjanje}] identificira vir podatka oziroma izvor operacije, ki je lahko človek ali računalnik, in zagotovi, da je res tisti, za katerega se izdaja.
 
-\item[\Gls{avtorizacija}] nadzira dostop do virov glede na pravila sistema in dodeljene pravice. Avtorizacijski mehanizmi uporabnikom preprečujejo da bi presegli svoja pooblastila.
+\item[\Gls{avtorizacija}] nadzira dostop do virov glede na pravila sistema in dodeljene pravice. Avtorizacijski mehanizmi uporabnikom preprečujejo, da bi presegli svoja pooblastila.
 
-\item[\Gls{neizpodbitnost}] onemogoča uporabniku da izpodbija oziroma zanika neko dejanje ali veljavnost pogodbe.
+\item[\Gls{neizpodbitnost}] onemogoča uporabniku, da izpodbija oziroma zanika neko dejanje ali veljavnost pogodbe.
 
 \end{description}
 
-Vse zgoraj naštete lastnosti so splošne lastnosti varnosti in se kot take seveda tičejo tudi računalništva v oblaku. Pri uporabi storitev v oblaku bi morali najbolj izpostaviti vprašanje varnosti podatkov, saj le te zaupamo v hrambo ponudniku storitve.
+Vse zgoraj naštete lastnosti so splošne lastnosti varnosti in zato seveda tičejo tudi računalništva v oblaku. Pri uporabi storitev v oblaku, bi morali najbolj izpostaviti vprašanje varnosti podatkov, saj le te zaupamo v hrambo ponudniku storitve.
 
 \chapter{Varnostna tveganja v oblaku}
 
-Zaradi vse večje popularnosti storitev v oblaku in posledično ogromne količine podatkov, s katerimi razpolagajo ponudniki storitev v oblaku, so ti vedno pogosteje tarča napadov kriminalnih združb. Za sisteme, ki tečejo “v oblaku”, je značilno da navzven delujejo kot en strežnik, v resnici pa tečejo na velikem številu strežnikov, ki so med seboj povezani. To pomeni da morebitni vdor v samo en strežnik napadalcu omogoča dostop tudi na druge strežnike, ki tečejo znotraj istega sistema. Če si sistem predstavljamo kot trdnjavo, to pomeni da je večina zaščitnih mehanizmov skoncentrirana na obrobju, na obzidju trdnjave. Če uspemo to obzidje predreti na samo enem delčku, se potem lahko več ali manj prosto sprehajamo znotraj trdnjave. Pred pojavom storitev v oblaku je bilo znotraj enega obzidja le nekaj strežnikov, zato je bilo obzidje malo in ga je bilo lažje vzdrževati. Sistem, na katerem teče storitev v oblaku pa je lahko sestavljen iz več tisoč strežnikov, kar pomeni da velikost obzidja močno poveča in veliko obzidje je težko vzdrževati, zato se kaj hitro v njem pojavijo razpoke.
+Zaradi vse večje priljubljenosti storitev v oblaku in posledično ogromne količine podatkov, s katerimi razpolagajo ponudniki storitev v oblaku, so ti vedno pogosteje tarča napadov kriminalnih združb. Za sisteme, ki tečejo “v oblaku”, je značilno, da navzven delujejo kot en strežnik, v resnici pa tečejo na velikem številu strežnikov, ki so med seboj povezani. To pomeni da morebitni vdor v samo en strežnik napadalcu omogoča dostop na ostale strežnike, ki tečejo znotraj istega sistema. Če si sistem predstavljamo kot trdnjavo, to pomeni, da je večina zaščitnih mehanizmov skoncentrirana na obrobju, na obzidju trdnjave. Če uspemo to obzidje predreti na samo enem delčku, se lahko več ali manj prosto sprehajamo znotraj trdnjave. Pred pojavom storitev v oblaku je bilo znotraj enega obzidja le nekaj strežnikov, zato je bilo obzidje majhno in ga je bilo lažje vzdrževati. Sistem, na katerem teče storitev v oblaku pa je lahko sestavljen iz več tisoč strežnikov, kar pomeni, da se velikost obzidja močno poveča, veliko obzidje pa je tudi težko vzdrževati, zato se v njem hitro pojavijo razpoke.
 
-Druga stvar, ki dela sisteme v oblaku zanimive za napadalce je koncentracija podatkov. V primeru do vdora v klasični strežnik, napadalec dobi dostop do veliko manjše količine podatkov kot ob vdoru v oblačni sistem. Razlog je preprost, saj na en sam strežnik fizično ni mogoče shraniti toliko podatkov, kot na sistem, ki je sestavljen iz tičoče strežnikov.
+Druga stvar, ki dela sisteme v oblaku zanimive za napadalce, je koncentracija podatkov. V primeru vdora v klasični strežnik, napadalec dobi dostop do veliko manjše količine podatkov kot ob vdoru v oblačni sistem. Razlog je preprost, saj na en sam strežnik fizično ni mogoče shraniti toliko podatkov, kot na sistem, ki je sestavljen iz tisočih strežnikov.
 
-Ranljivost računalniškega sistema je lastnost, zaradi katere je ogroženo njegovo delovanje in varnost podatkov, ki jih vsebuje. Storitve, ki delujejo v oblaku tako podedujejo vse ranljivosti, ki jih imajo klasični računalniški sistemi, zaradi posebnih lastnosti oblaka, pa obstaja se nekaj groženj, specifičnih za storitve v oblaku:
-
-
+Ranljivost računalniškega sistema je lastnost, zaradi katere je ogroženo njegovo delovanje in varnost podatkov, ki jih vsebuje. Storitve, ki delujejo v oblaku,  podedujejo vse ranljivosti, ki jih imajo klasični računalniški sistemi, zaradi posebnih lastnosti oblaka, pa obstaja se nekaj groženj, specifičnih za storitve v oblaku:
 
 \begin{description}[style=nextline]
 
-\item[Nedovoljen dostop do upraviteljskega in programskega vmesnika] Narava storitev v oblaku zahteva da so upraviteljski vmesniki dostopni preko Interneta široki množici uporabnikov, kar posledično pomeni da so ti vmesniki izpostavljeni napadom preko Interneta.
+\item[Nedovoljen dostop do upraviteljskega in programskega vmesnika] narava storitev v oblaku zahteva da so upraviteljski vmesniki dostopni preko interneta široki množici uporabnikov, kar posledično pomeni da so ti vmesniki izpostavljeni napadom preko interneta.
 
-\item[Ranljivosti internetnega protokola] Ena ključnih lastnosti oblaka je tudi široka dostopnost preko standardiziranih protokolov kot je Internetni protokol, zato je potrebno ko govorimo o varnosti v oblaku upoštevati tudi vse ranljivosti Internetnega protokola, kot je recimo \gls{MITM}.
+\item[Ranljivosti Internetnega protokola] Ena ključnih lastnosti oblaka je tudi široka dostopnost preko standardiziranih protokolov, zato je potrebno ko govorimo o varnosti v oblaku upoštevati tudi vse ranljivosti uporabljenih protokolov, kot je recimo \gls{MITM}.
 
-\item[Ranljivosti obnovitve podatkov] Zaradi uporabe skupnih virov, ki je ena ključnih lastnosti oblaka, se lahko en fizični nosilec podatkov, ki je prej pripadal enemu uporabniku kasneje dodeli drugemu uporabniku. Če pred tem ne poskrbimo za varen izbris podatkov, lahko drugi uporabnik obnovi izbrisane podatke z nosilca in tako pride do razkritja podatkov.
+\item[Ranljivosti obnovitve podatkov] Zaradi uporabe skupnih virov, ki je ena ključnih lastnosti oblaka, se lahko en fizični nosilec podatkov, ki je prej pripadal enemu uporabniku, kasneje dodeli drugemu uporabniku. Če pred tem ne poskrbimo za varen izbris podatkov, lahko drug uporabnik obnovi izbrisane podatke z nosilca in tako pride do razkritja podatkov.
 
-\item[Izogibanje merjenju in plačilu] Storitve v oblaku se običajno plačujejo po porabi. Prav tako, da pričnemo uporabljati storitev praviloma potrebujemo vnesti samo nekaj osnovnih podatkov in številko kreditne kartice. Napadalec nam lahko predloži ukradene podatke ali manipulira podatke o porabi, tako da se izogne plačilu.
+\item[Izogibanje merjenju in plačilu] Storitve v oblaku se običajno plačujejo po porabi. Prav tako za začetek uporabe storitve praviloma vnesemo samo nekaj osnovnih podatkov in številko kreditne kartice. Napadalec nam lahko predloži ukradene podatke ali spreminja podatke o porabi, da se izogne plačilu.
 
 \end{description}
 
 \section{Izzivi na področju varnosti v oblaku}
 \label{sec:Izzivi na področju varnosti v oblaku}
 
-
 \subsection{Razkritje podatkov}
 \label{sub:Razkritje podatkov}
 
-O razkritju podatkov govorimo v primeru, da se občutljivi in zaupni podatki znajdejo na očeh nepooblaščenih oseb ali javnosti.  To se lahko zgodi kot posledica usmerjenega napada ali preprosto zaradi človeške napake, napake v aplikaciji ali slabih varnostnih mehanizmov aplikacije. Primeri zaupnih podatkov, ki so pogosto tarča napadov so: zdravstveni podatki, finančni podatki, osebno določljivi podatki, poslovne skrivnosti in intelektualna lastnina.
+O razkritju podatkov govorimo v primeru, da se občutljivi in zaupni podatki znajdejo na očeh nepooblaščenih oseb.  To se lahko zgodi kot posledica usmerjenega napada ali zaradi človeške napake, napake v aplikaciji ali slabih varnostnih mehanizmov aplikacije. Primeri zaupnih podatkov, ki so pogosto tarča napadov so: zdravstveni podatki, finančni podatki, osebno določljivi podatki, poslovne skrivnosti in intelektualna lastnina.
 
-Razkritje podatkov je stara in vseprisotna grožnja v vseh računalniških sistemih, vendar zaradi prej omenjene koncentracije podatkov je ta grožnja v oblačnih sistemih še večja.
+Razkritje podatkov je stara in vseprisotna grožnja v vseh računalniških sistemih, vendar je zaradi prej omenjene koncentracije podatkov ta grožnja v oblačnih sistemih še večja.
 
-Obseg škode, ki ga povzroči razkritje podatkov je odvisen od občutljivosti podatkov, ki so bili odtujeni. V veliko državah po svetu obstajajo zakoni in predpisi, ki podjetja ki hranijo določene tipe občutljivih podatkov obvezuje k določenim standardom zaščite. V primeru, da pride do razkritja podatkov, lahko odgovorno podjetje doleti denarna kazen ali celo kazenska ovadba. Poleg škode, ki je bila povzročena z razkritjem podatkov in morebitno denarno kaznijo so tu še stroški preiskave incidenta, obveščanja uporabnikov in izguba ugleda podjetja.
+Obseg škode, ki ga povzroči razkritje podatkov, je odvisen od občutljivosti podatkov, ki so bili odtujeni. V veliko državah po svetu obstajajo zakoni in predpisi, ki podjetja ki hranijo določene tipe občutljivih podatkov, obvezuje k določenim standardom zaščite. V primeru, da pride do razkritja podatkov, lahko odgovorno podjetje doleti denarna kazen ali celo kazenska ovadba. Poleg škode, ki je bila povzročena z razkritjem podatkov in morebitno denarno kaznijo, so tu še stroški preiskave incidenta, obveščanja uporabnikov in izgube ugleda podjetja.
 
 \subsection{Pomanjkljivo upravljanje identitete, poverilnic in nadzora dostopa}
 \label{sub:Pomanjkljivo upravljanje identitete, poverilnic in nadzora dostopa}
 
-Površno upravljanje lahko pripelje do nenamernega razkritja uporabniških imen, gesel in ključev, ki se uporabljajo za dostop do storitev. Ponudniki storitev v oblaku upravljajo z identitetami milijonov uporabnikov in zaposlenimi, zato je potrebna velika skrb da se zagotovi pravilno upravljanje identitete skozi celoten cikel. Potrebno je poskrbeti za takojšno prekinitev veljavnosti identitete, v primeru da pride do odpovedi delovnega razmerja zaposlenega ali prekinitve pogodbe s stranko. Uporaba šibkih gesel in neuporaba dvostopenjske avtentikacije in neuporaba rotacije šifrirnih ključev, gesel in certifikatov so primeri slabe prakse, ki v primeru napada napadalcu olajšajo delo in povečajo razsežnosti škode, ki jo napadalec lahko povzroči.
+Površno upravljanje lahko pripelje do nenamernega razkritja uporabniških imen, gesel in ključev, ki se uporabljajo za dostop do storitev. Ponudniki storitev v oblaku upravljajo z identitetami milijonov uporabnikov in zaposlenih, zato je potrebna velika skrb, da se zagotovi pravilno upravljanje identitete skozi celoten cikel. Potrebno je poskrbeti za takojšno prekinitev veljavnosti identitete v primeru, da pride do odpovedi delovnega razmerja zaposlenega ali prekinitve pogodbe s stranko. Uporaba šibkih gesel in neuporaba dvostopenjske avtentikacije in neuporaba rotacije šifrirnih ključev, gesel in certifikatov so primeri slabe prakse, ki v primeru napada napadalcu olajšajo delo in povečajo razsežnosti škode, ki jo napadalec povzroči.
 
 \subsection{Nezaščiteni uporabniški in programski vmesniki}
 \label{sub:Nezaščiteni uporabniški in programski vmesniki}
 
-Ponudniki storitev v oblaku ponujajo nabor uporabniški in programskih vmesnikov, preko katerih uporabniki dostopajo do storitev ponudnika. So stična točka med uporabnikom in storitvijo in od varnosti in dostopnosti teh vmesnikov je odvisna varnost celotnega sistema. So prva linija obrambe sistema, zato je pri zasnovi teh vmesnikov potrebno misliti na varnost s pravilno implementacijo varnostnih mehanizmov kot so avtentikacija, nadzor dostopa in šifriranje. Vmesniki morajo biti zasnovani tako, da ščitijo pred namerno in nenamerno zlorabo sistema.
+Ponudniki storitev v oblaku ponujajo nabor uporabniških in programskih vmesnikov, preko katerih uporabniki dostopajo do storitev ponudnika. So stična točka med uporabnikom in storitvijo in od varnosti in dostopnosti teh vmesnikov je odvisna varnost celotnega sistema. So prva linija obrambe sistema, zato je pri zasnovi teh vmesnikov potrebno misliti na varnost s pravilno implementacijo varnostnih mehanizmov kot so avtentikacija, nadzor dostopa in šifriranje. Vmesniki morajo biti zasnovani tako, da ščitijo pred namerno in nenamerno zlorabo sistema.
 
 \subsection{Sistemske ranljivosti}
 \label{sub:Sistemske ranljivosti}
 
-Sistemske ranljivosti so preprosto povedano hrošči v uporabljeni programski opremi, katere je možno izkoristiti za napad na računalniški sistem. Ranljivosti, ki se nahajajo v jedru operacijskega sistema ali sistemskih knjižnicah predstavljajo grožnjo za celoten sistem.
+Sistemske ranljivosti so hrošči v uporabljeni programski opremi, ki jih je možno izkoristiti za napad na računalniški sistem. Ranljivosti, ki se nahajajo v jedru operacijskega sistema ali sistemskih knjižnicah predstavljajo grožnjo za celoten sistem.
 
-Tako kot večina ostalih predstavljenih groženj, tudi sistemske ranljivosti niso nič novega, vendar razsežnost oblačnih sistemov doda takim ranljivostim popolnoma nov pomen. Zaradi napredka tehnologije je možno na enem strežniku gostiti več virtualnih strežnikov različnih organizacij, kar pomeni da si ti virtualni strežniki delijo pomnilnik in ostale vire, kar omogoča nove načine izrabe sistemskih ranljivosti.
+Tako kot večina ostalih predstavljenih groženj, tudi sistemske ranljivosti niso nič novega, vendar razsežnost oblačnih sistemov doda takim ranljivostim popolnoma nov pomen. Zaradi napredka tehnologije je možno na enem strežniku gostiti več virtualnih strežnikov različnih organizacij, kar pomeni da si ti virtualni strežniki delijo pomnilnik in ostale vire, kar omogoča nove načine izrabe sistemskih ranljivosti, kot so pobeg iz \glslink{hypervisor}{hipernadzornika}~\cite{schwartz2012new} in vohljanje medpomnilnika~\cite{zhang2012cross}.
 
 \subsection{Ugrabitev uporabniškega računa}
 \label{sub:Ugrabitev uporabniškega računa}
 
-Ugrabitve uporabniških računov so posledica napadov ribarjenja, prevare ali izkoriščanja sistemskih pomanjkljivosti. V primeru, da ista uporabniška imena in gesla uporabljamo za več različnih storitev, to še dodatno poveča posledice napada. V primeru, da pride do ugrabitve uporabniškega računa za storitev v oblaku, lahko napadalec izkoristi to storitev kot odskočno desko za nove napade.
+Ugrabitve uporabniških računov so posledica napadov ribarjenja, prevare ali izkoriščanja sistemskih pomanjkljivosti. V primeru, ko ista uporabniška imena in gesla uporabljamo za več različnih storitev, to še dodatno poveča posledice napada. Če pride do ugrabitve uporabniškega računa za storitev v oblaku, lahko napadalec izkoristi to storitev kot odskočno desko za nove napade.
 
 \subsection{Notranje grožnje}
 \label{sub:Notranje grožnje}
@@ -586,29 +600,29 @@ Tveganje, ki ga predstavljajo notranje grožnje, kot so škodoželjni zaposleni,
 \subsection{Organizirana trajna grožnja}
 \label{sub:Organizirana trajna grožnja}
 
-Organiziranje trajne grožnje so ena najnaprednejših oblik grožnje računalniški varnosti. Za napadi te oblike so ponavadi skrivajo velike organizacije z državno podporo (tajne službe, vojska). Značilnost te oblike napada je, da napadalec temeljito preuči ciljni sistem, njegovo organizacijo in šibke točke. Ta oblika napada se pogosto začne z usmerjenim izvabljanjem, to je posebna tehnika ribarjenja, ki je usmerjena proti točno določenim osebam, v našem primeru zaposleni v ciljni organizaciji. S pomočjo usmerjenega izvabljanja napadalec poskuša pridobiti vstopno točko v ciljni sistem. Ko enkrat pridobi dostop do notranjega omrežja sistema, to uporabi kot odskočno desko za nadaljnje premike proti željenim tarčam. Cilj napada so podatki, ki se nahajajo v sistemu žrtve, pogosto so to poslovne skrivnosti ali državne tajne. Napadalec želi čimdlje ostati skrit, saj tako pridobi dostop do večjega števila računalnikov znotraj omrežja in s tem večje količine podatkov. V želji da ostane skrit, uporablja napredne tehnike brisanja sledov, zato je take tipe napada zelo težko zaznati, saj navzven sistem izgleda kot da deluje normalno.
+Organiziranje trajne grožnje so ena najnaprednejših oblik grožnje računalniški varnosti. Za napadi te oblike so ponavadi skrivajo velike organizacije z državno podporo (tajne službe, vojska). Značilnost te oblike napada je, da napadalec temeljito preuči ciljni sistem, njegovo organizacijo in šibke točke. Ta oblika napada se pogosto začne z usmerjenim izvabljanjem, to je posebna tehnika ribarjenja, ki je usmerjena proti točno določenim osebam, v našem primeru zaposleni v ciljni organizaciji. S pomočjo usmerjenega izvabljanja napadalec poskuša pridobiti vstopno točko v ciljni sistem. Ko enkrat pridobi dostop do notranjega omrežja sistema, to uporabi kot odskočno desko za nadaljnje premike proti želenim tarčam. Cilj napada so podatki, ki se nahajajo v sistemu žrtve, pogosto so to poslovne ali državne skrivnosti. Napadalec želi čimdlje ostati skrit, saj tako pridobi dostop do večjega števila računalnikov znotraj omrežja in s tem večje količine podatkov. V želji da ostane skrit, uporablja napredne tehnike brisanja sledov, zato je take tipe napada zelo težko zaznati, saj navzven sistem deluje normalno.
 
-Posebna oblika organiziranih trajnih groženj so kibernetska orožja. Verjetno najbolj znan med njimi je Stuxnet, ki je sabotiral Iranski jedrski program. Kibernetska orožja se od ostalih oblik napadov razlikujejo v tem, da žrtvi povzročijo dejansko fizično škodo v obliki uničene opreme.
+Posebna oblika organiziranih trajnih groženj so kibernetska orožja. Verjetno najbolj znan med njimi je Stuxnet, ki je sabotiral Iranski jedrski program. Kibernetska orožja se od ostalih oblik napadov razlikujejo v tem, da žrtvi povzročijo dejansko fizično škodo v obliki uničene opreme ali pa celo človeške žrtve.
 
 \subsection{Izguba podatkov}
 \label{sub:Izguba podatkov}
 
-Izguba podatkov predstavlja za večino uporabnikov in podjetji eno najhujših nočnih mor. Trajna izguba podatkov, shranjenih v oblaku ni nujno posledica napada tretje osebe, ampak je lahko tudi posledica malomarnosti, kot je recimo nenameren izbris podatkov s strani ponudnika storitve ali posledica naravne katastrofe kot je požar ali potres. V izogib trajni izgubi podatkov ponudniki storitev v oblaku uporabljajo različne mehanizme, kot so geografska redundanca in varnostno kopiranje na drugo lokacijo. Vendar v primeru, da uporabnik podatke šifrira še preden jih pošlje oblak in nato izgubi šifrirni ključ, noben od naštetih mehanizmov ne more preprečiti takojšne in trajne izgube podatkov.
+Izguba podatkov predstavlja za večino uporabnikov in podjetji eno najhujših nočnih mor. Trajna izguba podatkov, shranjenih v oblaku ni nujno posledica napada tretje osebe, ampak je lahko tudi posledica malomarnosti, kot je recimo nenameren izbris podatkov s strani ponudnika storitve ali posledica naravne katastrofe kot je požar ali potres. V izogib trajni izgubi podatkov ponudniki storitev v oblaku uporabljajo različne mehanizme, kot so geografska redundanca in varnostno kopiranje na drugo lokacijo. Vendar v primeru, ko uporabnik podatke šifrira še preden jih pošlje v oblak in nato izgubi šifrirni ključ, noben od naštetih mehanizmov ne more preprečiti takojšnje in trajne izgube podatkov.
 
 \subsection{Malomarnost}
 \label{sub:Malomarnost}
 
-Preden začnemo uporabljati storitve v oblaku, je potrebno preučiti vse aspekte, ki jih bo taka sprememba prinesla. Vodilni kadri v podjetjih pogosto nimajo dovolj poglobljenega poznavanja oblaka s tehnološkega vidika, kot tudi ne poznajo pravnih zank, ki jih vsebujejo “pogoji uporabe” določenih ponudnikov storitev v oblaku. V primeru, da pred uporabo storitev v oblaku ne naredimo temeljite analize, lahko pride do tehnoloških, pravnih, skladenjskih in poslovnih tveganj, ki ogrozijo uspeh podjetja.
+Preden začnemo uporabljati storitve v oblaku, moramo preučiti vse aspekte, ki jih bo taka sprememba prinesla. Vodilni kadri v podjetjih pogosto nimajo dovolj poglobljenega poznavanja oblaka s tehnološkega vidika, kot tudi ne pravnih zank, ki jih vsebujejo ``pogoji uporabe'' določenih ponudnikov storitev v oblaku. V primeru, da pred uporabo storitev v oblaku ne naredimo temeljite analize, lahko pride do tehnoloških, pravnih, skladenjskih in poslovnih tveganj, ki ogrozijo uspeh podjetja.
 
 \subsection{Zloraba in zlonamerna uporaba sistemov}
 \label{sub:Zloraba in zlonamerna uporaba sistemov}
 
-Pogosto ponudniki storitev v oblaku omogočajo brezplačne preizkusne račune za omejeno časovno obdobje, pa tudi če jih ne, lahko napadalec z ukradenimi bančnimi podatki ustvari večjo količino uporabniških računov, ki jih potem izkoristi za izvajanje različnih nelegalnih aktivnosti. Te lažni uporabniški računi napadalcu omogočajo pošiljanje nezaželene pošte, izvajanje napadov ribarjenja ali napadov zavrnitve storitve, ki so lahko usmerjeni k ponudniku storitve, njegovim strankam ali pa tretjim osebam.
+Pogosto ponudniki storitev v oblaku omogočajo brezplačne preizkusne račune za omejeno časovno obdobje, če pa jih ne, lahko napadalec z ukradenimi bančnimi podatki ustvari večjo količino uporabniških računov. Te potem izkoristi za izvajanje različnih nelegalnih aktivnosti. Lažni uporabniški računi napadalcu omogočajo pošiljanje neželene pošte, izvajanje napadov ribarjenja ali napadov zavrnitve storitve, ki so lahko usmerjeni k ponudniku storitve, njegovim strankam ali pa tretjim osebam.
 
 \subsection{Napadi zavrnitve storitve}
 \label{subs:Napadi zavrnitve storitve}
 
-Napad zavrnitve storitve je ena najpreprostejših in pogosto zelo učinkovitih oblik napada na računalniške sisteme. Cilj napada je uporabnikom preprečiti normalen dostop do storitve, kar napadalec doseže s tem da napaden sistem prisili v nerazumno veliko porabo različnih virov, kot so pasovna širina, procesorski čas ali podatkovni prostor. Najbolj osnovna oblika napada zavrnitve storitve se zanaša na dejstvo da napadalec razpolaga z večjo količino določenega vira (pasovna širina, procesorski čas …) kot napaden sistem. Obstajajo pa tudi bolj prefinjene oblike napada, kjer napadalec z veliko manjšo količino razpoložljivih virov, izrabi varnostno pomanjkljivosti v sistemu ali aplikaciji in onemogoči tarčo napada. Napadi zavrnitve storitve običajno ne pustijo trajnih posledic, vendar predstavljajo veliko neprijetnost za uporabnike, saj le ti za čas trajanja napada ne morejo uporabljati storitve, prav tako pa škodujejo ugledu ponudnika.
+Napad zavrnitve storitve je ena najpreprostejših in pogosto zelo učinkovitih oblik napada na računalniške sisteme. Cilj napada je uporabnikom preprečiti normalen dostop do storitve, kar napadalec doseže s tem, da napaden sistem prisili v nerazumno veliko porabo različnih virov, kot so pasovna širina, procesorski čas ali podatkovni prostor. Najbolj osnovna oblika napada zavrnitve storitve se zanaša na dejstvo da napadalec razpolaga z večjo količino določenega vira (pasovna širina, procesorski čas …) kot napaden sistem. Obstajajo pa tudi bolj prefinjene oblike napada, kjer napadalec z veliko manjšo količino razpoložljivih virov izrabi varnostno pomanjkljivosti v sistemu ali aplikaciji in onemogoči tarčo napada. Napadi zavrnitve storitve običajno ne pustijo trajnih posledic, vendar predstavljajo veliko neprijetnost za uporabnike, saj le ti za čas trajanja napada ne morejo uporabljati storitve, prav tako pa škodujejo ugledu ponudnika.
 
 \subsection{Ranljivosti zaradi uporabe skupnih virov}
 \label{sub:Ranljivosti zaradi uporabe skupnih virov}
@@ -875,7 +889,7 @@ Asimetrični kriptosistemi slonijo na predpostavki, da so nekatere matematični 
 Na žalost so asimetrični kriptosistemi, tudi zaradi svojega ozadja v netrivialnih matematičnih problemih, veliko počasnejši od simetričnih. V praksi se zato pogosto uporablja kombinacija obeh tipov sistemov. V prvi fazi se za dogovor o ključu uporabi asimetrični kriptosistem, ko pa se obe strani dogovorita o skupnem ključu, pa preklopita na simetrični kriptosistem.
 
 \subsection{Dogovor o ključu Diffe-Hellman}
-\label{subs:Dogovor o ključu Diffe-Hellman}
+\label{subs:Dogovor o kljucu Diffe-Hellman}
 
 Dogovor o ključu Diffe-Hellman je bil prvi javno objavljen algoritem, ki uporablja princip javnih in zasebnih ključev. V praksi omogoča, da se dva neznanca preko nezavarovanega kanala kot je Internet dogovorita za skupni ključ, ki ga bosta uporabljala za nadaljnjo komunikacijo. Prva sta ga objavila W. Diffe in M. Hellman leta 1976~\cite{diffie1976new}, vendar se je kasneje izkazalo, da je angleška tajna služba odkrila princip kriptografije javnih ključev že leto poprej, vendar to ostalo tajno do leta 1997.
 
@@ -1084,7 +1098,7 @@ Za podatke v gibanju veljajo vsi podatki, ki se preko interneta pretakajo od upo
 
 Omrežja po katerih podatki potujejo velikokrat uporabljajo dinamične usmerjevalne algoritme, ne moremo vnaprej vedeti po kateri poti bodo podatki potovali. Podatki v gibanju na svoji poti potujejo skozi veliko omrežnih naprav, katere imajo vse vpogled v podatke, prav tako pa jim ne moremo zaupati. Dodatno nevarnost predstavlja še napad \gls{MITM}, kjer napadalec izkoristi dinamičnost omrežja in se vrine na pot podatkov med uporabnika in oblačni sistem.
 
-Podatki so v gibanju praviloma malo časa, zato ni potrebe po kompleksnem upravljanju ključev. S pomočjo algoritmov za varno izmenjavo ključev, kot je recimo Diffe-Hellman algoritem opisan v poglavju~\ref{sec:Izmenjava ključa Diffe-Hellman}, je možno da se za vsako sejo uporabi nov, naključno generiran ključ.
+Podatki so v gibanju praviloma malo časa, zato ni potrebe po kompleksnem upravljanju ključev. S pomočjo algoritmov za varno izmenjavo ključev, kot je recimo Diffe-Hellman algoritem opisan v poglavju~\ref{sec:Dogovor o kljucu Diffe-Hellman}, je možno da se za vsako sejo uporabi nov, naključno generiran ključ.
 
 Najbolj razširjen protokol za zaščito podatkov med tem ko so v gibanju je \gls{SSL} in njegov naslednik \gls{TLS}. Poleg njega se predvsem za statične povezave med dvema omrežjema uporabljajo še protokoli iz družine VPN. Znotraj omrežja ponudnika pa se lahko uporabijo tudi tehnologije kot je VLAN. VLAN ne zagotavlja varnosti s pomočjo šifriranja, ampak deluje na principu omejevanja dostopa do prometa na skupnem mediju. Tak način pristopa sicer ščiti pred napadalci, ki imajo ustrezno malo pooblastil, recimo drugi uporabniki sistema, ne more pa nas zaščititi pred notranjimi napadalci, kot so zaposleni pri ponudniku storitve.
 
