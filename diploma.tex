@@ -631,13 +631,13 @@ Zadnji sklop varnostnih groženj v oblaku predstavljajo ranljivosti, ki so posle
 
 \chapter{Osnove kriptografije}
 
-Kriptografija omogoča doseganje informacijske varnosti s pomočjo matematičnih postopkov. Verjetno najbolj poznan tak postopek je šifriranje, ki zagotavlja zaupnost podatkov, pogled tega v področje kriptografije spadajo tudi digitalni podpisi, avtentikacijske kode MAC in zgoščevalne funkcije, ki nam pomagajo pri ohranjanju celovitosti in overjanju identitete podatkov.\todo{dodaj se RNG}
+Kriptografija omogoča doseganje informacijske varnosti s pomočjo matematičnih postopkov. Verjetno najbolj znan tak postopek je šifriranje, ki zagotavlja zaupnost podatkov, pogled tega v področje kriptografije spadajo tudi digitalni podpisi, avtentikacijske kode MAC in zgoščevalne funkcije, ki nam pomagajo pri ohranjanju celovitosti in overjanju identitete podatkov. Poleg tega se kriptografija ukvarja tudi z razvojem varnih generatorjev nakljčnih števil, ki so pomembna osnova za generiranje ključev in varno implementacijo kriptosistemov.
 
-Šifriranje je način, kako skriti vsebino sporočila (\gls{plaintext}a) pred nepooblaščenimi očmi. To se doseže z uporabo algoritma, ki mu kot vhodni podatek damo \gls{plaintext} in \gls{enckey}, le-ta pa nam vrne \gls{tajnopis}. \Gls{tajnopis} vsebuje enake informacije kot \gls{plaintext}, vendar ima to lastnost, da ga je mogoče prebrati le v primeru, da posedujete ključ za dešifriranje. Brez takega ključa je iz \gls{tajnopis}a praktično nemogoče razbrati vsebino originalnega sporočila.\footnote{Težanost je odvisna od moči kriptografske sheme in pravilnosti implementacije}
+Šifriranje je način, kako skriti vsebino sporočila (\gls{plaintext}) pred nepooblaščenimi očmi. To dosežemo z uporabo algoritma, ki mu kot vhodni podatek damo \gls{plaintext} in \gls{enckey}, le-ta pa nam vrne \gls{tajnopis}. \Gls{tajnopis} vsebuje enake informacije kot \gls{plaintext}, vendar ima to lastnost, da ga je mogoče prebrati le v primeru, da posedujete ključ za dešifriranje. Brez ključa je iz \gls{tajnopis}a praktično nemogoče razbrati vsebino originalnega sporočila.\footnote{Težanost je odvisna od moči kriptografske sheme in pravilnosti implementacije}
 
-To pomeni, da lahko tajnopis javno objavimo, varovati je potrebno samo šifrirni ključ. Ta lastnost nam omogoča, da varno poslujemo s svojo banko, pošiljamo e-pošto, ki jo lahko prebere samo prejemnik navkljub temu, da Internet ni varen komunikacijski kanal in na njemu mrgoli zlobnežev, ki želijo priti do naših zaupnih podatkov.
+To pomeni, da lahko tajnopis javno objavimo, varovati je potrebno samo šifrirni ključ. Ta lastnost nam omogoča, da varno poslujemo s svojo banko, pošiljamo e-pošto, ki jo lahko prebere samo prejemnik, navkljub temu, da internet ni varen komunikacijski kanal in da na njem mrgoli zlobnežev, ki želijo priti do naših zaupnih podatkov.
 
-Potrebno se je zavedati, da so formalne zahteve za popolno varnost zelo visoke, zato se v praksi največkrat uporabi princip računske varnosti, ker pomeni, da varnost kriptosistema sloni na predpostavki, da so računske zahteve za razbitje kriptografske sheme veliko višje od tistih, ki jih ima na voljo potencialni napadalec. Najbolj znana implementacija popolne varnosti je sicer \gls{otp}, ki ga je leta 1918 patentiral Gilbert S. Vernam~\cite{vernam1919secret}. Claude Shannon v leta 1949 objavljenem poročilu~\cite{shannon1949communication} dokazal, da le-ta zagotavlja popolno varnost. Kot zanimivost lahko povemo, da je domnevno do enakih zaključkov še nekaj let prej, prišel tudi ruski znanstvenik Vladimir Kotelnikov~\cite{molotkov2006quantum}, vendar njegovo poročilo še vedno ostaja zaupno. Problem \glslink{otp}{enkratnega ščita} je v tem, da zahteva ključ enake dolžine kot sporočilo, ki ga želimo šifrirati. Prav tako lahko vsak ključ uporabimo samo enkrat, v nasprotnem primeru pa sistem ne zagotavlja več popolne varnosti.
+Potrebno se je zavedati, da so formalne zahteve za popolno varnost zelo visoke, zato se v praksi največkrat uporabi princip računske varnosti, kar pomeni, da varnost kriptosistema sloni na predpostavki, da so računske zahteve za razbitje kriptografske sheme veliko višje od tistih, ki jih ima na voljo potencialni napadalec. Najbolj znana implementacija popolne varnosti je sicer \gls{otp}, ki ga je leta 1918 patentiral Gilbert S. Vernam~\cite{vernam1919secret}. Claude Shannon je v leta 1949 objavljenem poročilu~\cite{shannon1949communication} dokazal, da le-ta zagotavlja popolno varnost. Kot zanimivost lahko povemo, da je domnevno do enakih zaključkov nekaj let prej prišel tudi ruski znanstvenik Vladimir Kotelnikov~\cite{molotkov2006quantum}, vendar njegovo poročilo še vedno ostaja zaupno. Problem \glslink{otp}{enkratnega ščita} je v tem, da zahteva ključ enake dolžine kot sporočilo, ki ga želimo šifrirati. Prav tako lahko vsak ključ uporabimo samo enkrat, v nasprotnem primeru pa sistem ne zagotavlja več popolne varnosti.
 
 \
 
@@ -649,13 +649,13 @@ Kriptografska shema je peterka  $(\mathcal{P}, \mathcal{C}, \mathcal{K},  \mathc
 		\item $\mathcal{P}$ je končna množica možnih čistopisov
 		\item $\mathcal{C}$ je končna množica možnih tajnopisov
 		\item $\mathcal{K}$ je končna množica možnih ključev
-		\item Ta vsak $K \in \mathcal{K}$ obstaja šifrirni postopek $e_K \in \mathcal{E}$ in pripadajoč dešifrirni postopek $d_K \in \mathcal{D}$. Za funkciji $e_K: \mathcal{P} \rightarrow \mathcal{C}$ in $d_K: \mathcal{C} \rightarrow \mathcal{P}$ velja $d_k(e_k(x)) = x$ za vsak $x \in \mathcal{P}$.
+		\item Ta vsak $k \in \mathcal{K}$ obstaja šifrirni postopek $e_K \in \mathcal{E}$ in pripadajoč dešifrirni postopek $d_K \in \mathcal{D}$. Za funkciji $e_K: \mathcal{P} \rightarrow \mathcal{C}$ in $d_K: \mathcal{C} \rightarrow \mathcal{P}$ velja $d_k(e_k(x)) = x$ za vsak $x \in \mathcal{P}$.
 	\end{enumerate}
 \end{mdframed}
 
-Zgornjo matematično definicijo lahko povzamemo z naslednjimi besedami. Kriptografsko shemo sestavlja pet sestavin. Čistopisi, tajnopisi, ključi, šifrirni in dešifrirni postopek. Pomembno je, da ob danem ključu in šifrirnem postopku, obstaja dešifrirni postopek, ki nam vsak tajnopis, ki je bil šifriran z izbranim šifrirnim postopkom nedvoumno pretvori nazaj v čistopis.
+Zgornjo matematično definicijo lahko povzamemo z naslednjimi besedami. Kriptografsko shemo sestavlja pet sestavin. Čistopisi, tajnopisi, ključi, šifrirni in dešifrirni postopek. Pomembno je, da ob danem ključu in šifrirnem postopku, obstaja dešifrirni postopek, ki nam vsak tajnopis, ki je bil šifriran z izbranim šifrirnim postopkom, nedvoumno pretvori nazaj v čistopis.
 
-Skozi zgodovino človeštva se je že zelo zgodaj pojavila želja po skrivanju sporočil in s tem so se razvile tudi prve metode šifriranja, vendar nobena od njih ni prestala preizkusa časa.
+Skozi zgodovino človeštva se je zelo zgodaj pojavila želja po skrivanju sporočil in s tem so se razvile tudi prve metode šifriranja, vendar nobena od njih ni prestala preizkusa časa.
 
 \
 
@@ -667,7 +667,7 @@ Skozi zgodovino človeštva se je že zelo zgodaj pojavila želja po skrivanju s
 
 \end{enumerate}
 
-Simetrične šifre so najstarejša in najbolj razširjena vrsta šifriranja, kamor spadajo tudi vse zgodovinske šifre, ki se ne uporabljajo več. Poglavitna lastnost simetričnih šifer je, da se za šifriranje in dešifriranje uporablja enak ključ. Take šifre so lahko zelo preproste in hitre, vendar se pojavi problem distribucije ključev. Tajnopise lahko prenašamo po nezavarovanih kanalih, kar pa ne velja za ključe. To pomeni da si mora vsak par uporabnikov, če želi med sabo komunicirati v šifrirani obliki, najprej preko varnega kanala izmenjati šifrirni ključ. Število potrebnih izmenjav raste~$O(n^2)$ glede na število uporabnikov sistema, in na sliki~\ref{fig:symmetricproblem} vidimo, da je že pri dvajsetih uporabnikih število potrebnih izmenjav zelo veliko.
+Simetrične šifre so najstarejša in najbolj razširjena vrsta šifriranja, kamor spadajo tudi vse zgodovinske šifre, ki se ne uporabljajo več. Poglavitna lastnost simetričnih šifer je, da se za šifriranje in dešifriranje uporablja enak ključ. Take šifre so lahko zelo preproste in hitre, vendar se pojavi problem distribucije ključev. Tajnopise lahko prenašamo po nezavarovanih kanalih, kar pa ne velja za ključe. Zato si mora vsak par uporabnikov, če želi med sabo komunicirati v šifrirani obliki, najprej po varnem kanalu izmenjati šifrirni ključ. Število potrebnih izmenjav raste~$O(n^2)$ glede na število uporabnikov sistema, in na sliki~\ref{fig:symmetricproblem} vidimo, da je že pri dvajsetih uporabnikih število potrebnih izmenjav zelo veliko.
 
 \begin{figure}[ht!]
   \centering
@@ -678,47 +678,46 @@ Simetrične šifre so najstarejša in najbolj razširjena vrsta šifriranja, kam
 \label{fig:symmetricproblem}
 \end{figure}
 
-Ta problem lahko rešijo asimetrične šifre, ki uporabljajo en ključ za šifriranje, drug ključ pa dešifriranje. Tak par ključev imenujemo javni in zasebni ključ. Kot že ime pove, javni ključ ni nobena skrivnost in ga lahko brez skrbi objavimo na javnem mestu, obratno pa velja za zasebni ključ. Sporočilo, šifrirano z javnim ključem je možno dešifrirati samo s pripadajočim zasebnim ključem. Slabost asimetričnih šifer je njihova hitrost, saj z njimi ni praktično šifrirati večjih količin podatkov. Zato se v praksi največkrat uporabljajo protokoli, ki uporabljajo obe družini šifer, kot bomo videli kasneje.
+Ta problem rešijo asimetrične šifre, ki uporabljajo en ključ za šifriranje, drug ključ pa za dešifriranje. Tak par ključev imenujemo javni in zasebni ključ. Kot že ime pove, javni ključ ni nobena skrivnost in ga lahko brez skrbi objavimo na javnem mestu, obratno pa velja za zasebni ključ. Sporočilo, šifrirano z javnim ključem je možno dešifrirati samo s pripadajočim zasebnim ključem. Slabost asimetričnih šifer je njihova hitrost, saj z njimi ni praktično šifrirati večjih količin podatkov. Zato se v praksi največkrat uporabljajo protokoli, ki uporabljajo obe družini šifer, kot bomo videli kasneje.
 
 
 \section{Simetrične šifre}
 
-V kategorijo simetričnih šifer spadajo vse šifre, pri katerih se za šifriranje in dešifriranje uporablja enak ključ ali pa obstaja bijektivna preslikava, ki nam šifrirni ključ preslika v de-šifrirni in obratno. Simetrične šifre še naprej delimo na tokovne in bločne šifre. Poglavitna razlika med tokovnimi in bločnimi šiframi je v načinu šifriranja podatkov.
+V kategorijo simetričnih šifer spadajo vse šifre, pri katerih se za šifriranje in dešifriranje uporablja enak ključ ali pa obstaja bijektivna preslikava, ki nam šifrirni ključ preslika v dešifrirni in obratno. Simetrične šifre še naprej delimo na tokovne in bločne šifre. Poglavitna razlika med tokovnimi in bločnimi šiframi je v načinu šifriranja podatkov.
 
-Naj bo dano sporočilo $X$ velikosti $n$ ($|X|=n$), ki je sestavljeno iz $n$ osnovnih nosilcev informacij (to so lahko biti, bajti ali kaj čisto tretjega). Simbol $\|$ predstavlja združevanje (lepljenje) dveh nizov.
+Naj bo dano sporočilo $X$ dolžine $l$ ($|X|=l$), in bločna šifra z velikostjo bloka $w$. Sporočilo lahko razdelimo na $n=l/w$ blokov, kjer simbol $\|$ predstavlja združevanje (lepljenje) dveh nizov.
 
 $$
 X=x_0 \| x_1 \| x_2 \| \dotsc \| x_{n-1}
 $$
 
-Bločna šifra vzame blok (del sporočila) velikosti $m$; $n=im, i\in\mathbb{N} $ in ga šifrira s ključem $K$. Tajnopis $Y$ tako pridobimo po naslednjem postopku:
+Bločna šifra vzame blok $x_i \in \mathcal{P}$ in ga šifrira s šifrirnim postopkom $e_k \in \mathcal{E}$, kjer $k \in \mathcal{K}$ predstavlja skrivni ključ. Rezultat te operacije je tajnopis bloka $x_i$, ki ga označimo kot $y_i \in \mathcal{C}$. Tajnopis celotnega sporočila $X$ je $Y$ in pridobimo ga po naslednjem postopku:
 
 \begin{gather*}
-	y_j = e_K(e_{j} \| e_{j+1} \| \dotsc \| e_{j+m-1})  \quad j=0,1,\dotsc,i\\
-	Y = y_0 \| y_1 \| \dotsc \| y_i
+  y_j = e_k(x_j) \quad j=0,1,\dotsc,n-1\\
+  Y = y_0 \| y_1 \| \dotsc \| y_n
 \end{gather*}
 
 Bločne šifre delujejo na bloku podatkov fiksne velikosti (običajno velikost ključa določi velikost bloka) in v kolikor dolžina sporočila ni deljiva z $m$, je potrebno sporočilo dopolniti s posebnim zaporedjem znakov, dokler dolžina ni večkratnik števila $m$.
 
-Drugačen pristop pa uporabljajo tokovne šifre, ki iz ključa $K$ ustvarijo neskončno zaporedje ključev $z$, ki ga nato uporabijo za šifriranje sporočila.
+Drugačen pristop pa uporabljajo tokovne šifre, ki iz ključa $k \in \mathcal{K}$ ustvarijo naključno zaporedje bitov $Z$, enake dolžine kot je sporočilo. Ključ nato zmešajo s čistopisom, tipično s pomočjo operacije $XOR$ (ekskluzivni ali, predstavljen s simbolom $\oplus$). $XOR$ deluje na nivoju bitov, zato take šifre lahko šifrirajo čistopis bit po bit in tako ni potrebe po dopolnjevanju.
 
 \begin{gather*}
-z=z_0 \| z_1 \| z_2 \| \dotsc \| z_n \\
-y_j=e_{z_j}(x_j) \quad j=0,1,\dotsc,n\\
-Y = y_0 \| y_1 \| \dotsc \| y_n \\
+Z=z_0 \| z_1 \| z_2 \| \dotsc \| z_{l-1} \\
+Y=e_Z(X)= X \oplus Z \\
 \end{gather*}
 
-Tak način šifriranja lahko uporabimo za poljubno dolga sporočila, brez potrebe po dopolnjevanju.
+\subsubsection{DES in 3DES}
+\label{subs:DES in 3DES}
 
-\subsection{DES in 3DES}
 
 \gls{DES} je bil eden prvih modernih šifrirnih algoritmov. Originalna implementacija je nosila ime Lucifer in bila razvita v sedemdesetih letih v laboratorijih podjetja IBM.\  Kasneje je bila rahlo modificirana različica tega algoritma sprejeta s strani \acrshort{NIST}-a (takrat se je imenoval še \acrshort{NBS}) kot standard \gls{DES}.
 
 \gls{DES} je simetrična bločna šifra, ki deluje na blokih velikosti 64 bitov in uporablja 64 bitni ključ, vendar je v ključu možno poljubno izbrati le 56 bitov, preostalih 8 pa se uporablja samo za odkrivanje napak v ključu.
 
-Algoritem je sestavljen iz 16 identičnih korakov oziroma krogov, nekaj pre- in post-procesiranja vhodnih podatkov, Feistelove F-funkcije ter funkcije, ki iz glavnega ključa ustvari zaporedje podključev. Na začetku se 64-bitni blok razdeli na dve 32-bitni polovici, levo in desno, ki se po vsakem končanem krogu algoritma zamenjata. Taka shema delovanja je znana tudi kot \gls{feistelovasifra}. V vsakem krogu se leva polovica bloka z operacijo $XOR$ zmeša z rezultatom Feistelove F-funkcije, ki kot vhodne parametre dobi pod-ključ trenutnega kroga in desno polovico bloka. Po koncu vsakega kroga se leva in desna polovica zamenjata.
+Algoritem je sestavljen iz 16 identičnih korakov oziroma krogov, nekaj pred- in po-procesiranja vhodnih podatkov, Feistelove F-funkcije ter funkcije, ki iz glavnega ključa ustvari zaporedje podključev. Na začetku se 64-bitni blok razdeli na dve 32-bitni polovici, levo in desno, ki se po vsakem končanem krogu algoritma zamenjata. Taka shema delovanja je znana tudi kot \gls{feistelovasifra}. V vsakem krogu se leva polovica bloka z operacijo $XOR$ zmeša z rezultatom Feistelove F-funkcije, ki kot vhodne parametre dobi pod-ključ trenutnega kroga in desno polovico bloka. Po koncu vsakega kroga se leva in desna polovica zamenjata.
 
-Ob prelomu tisočletja se je izkazalo da je \gls{DES}-ov 64-bitni o. 56-bitni ključ prešibak, da bi zadržal napade s surovo silo. Zato se je pojavila varianta algoritma imenovana 3DES.\ 3DES uporablja 3 ključe, pri čemer imamo na voljo 3 opcije za izbiro ključev.
+Ob prelomu tisočletja se je izkazalo, da je \gls{DES}-ov 64-bitni o. 56-bitni ključ prešibak, da bi zadržal napade s surovo silo. Zato se je pojavila varianta algoritma imenovana 3DES.\ 3DES uporablja 3 ključe, pri čemer imamo na voljo 3 opcije za izbiro ključev.
 
 \begin{enumerate}
 \item Vse tri ključe izberemo neodvisno
@@ -735,18 +734,16 @@ P=D_{K_1}(E_{K_2}(D_{K_3}(C)))
 
 Kjer je $C$ tajnopis in $P$ čistopis.
 
+\subsubsection{AES}
+\label{subs:AES}
 
-
-\subsection{AES}
 
 \gls{AES} je bil leta 2001 izbran kot naslednik standarda \gls{DES}. Med 15 prijavljenimi algoritmi je \gls{NIST} izbral družino algoritmov Rijndael. Kot standard \gls{AES} so bile sprejete tri različice algoritma. Vse tri uporabljajo 128-bitne bloke, razlikujejo pa se v velikosti ključa. Na voljo so 3 opcije: 128, 192 ali 256-bitni ključ.
 
-\gls{AES} se po strukturi algoritma razlikuje od \gls{DES}-a, saj namesto Feistelove šifre uporablja substitucijsko-permutacijsko omrežje.  Algoritem iz ptičje perspektive izgleda tako:
+\gls{AES} se po strukturi algoritma razlikuje od \gls{DES}-a, saj namesto Feistelove šifre uporablja substitucijsko-permutacijsko omrežje.
 
-
-\subsection{Načini delovanja}
-\label{sub:Nacini delovanja}
-
+\subsection{Načini delovanja bločnih šifer}
+\label{sub:Nacini delovanja blocnih sifer}
 
 Bločna šifra sama po sebi kot vhodni podatek lahko sprejme samo blok točno določene dolžine, kar ni najbolj praktično, saj so sporočila pogosto različnih in predvsem nepredvidljivih velikosti. Poleg tega če isti blok čistopisa večkrat šifriramo z enakim ključem, dobimo kot rezultat vsakič isti tajnopis, kar je nezaželjen rezultat, saj morebitni napadalec lahko zazna vzorce v tajnopisu in iz tega poskuša razbrati pomen. Ta problem lahko rešimo tako, da uporabimo bločno šifro v enem od načinov delovanja.
 
