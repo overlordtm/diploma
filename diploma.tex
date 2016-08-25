@@ -82,6 +82,7 @@
 \newacronym{CP-ABE}{CP-ABE}{Ciphertext-policy attribute based encryption}
 \newacronym{SSL}{SSL}{Secure Sockets Layer}
 \newacronym{TLS}{TLS}{Transport Layer Security}
+\newacronym{HTTPS}{HTTPS}{HTTP over TLS}
 
 
 \newglossaryentry{MITM}
@@ -172,7 +173,7 @@
   name=upravnik,
   description={angl.\ authority},
 }
-\newglossaryentry{ciphertext indistinguishability}
+\newglossaryentry{ciphertextindistinguishability}
 {
   name=ciphertext indistinguishability,
   description={angl.\ ciphertext indistinguishability},
@@ -194,6 +195,11 @@
 {
   name=gnetljiv,
   description={angl. malleable},
+}
+\newglossaryentry{bootstrappable}
+{
+  name=samozagonska,
+  description={angl. bootstrappable},
 }
 
 %********************************************
@@ -433,8 +439,7 @@ Ključne besede v angleškem jeziku.
 \pagenumbering{arabic}
 \chapter{Uvod}
 
-V zadnjih letih smo priča bliskovitemu porastu popularnosti tako imenovanega računalništva v oblaku. Gartner je v začetku leta 2015 uvrstil računalništvo v oblaku med 10 strateško najpomembnejših tehnoloških trendov, ki bodo krojili prihodnost. Oblak nam omogoča udobno, cenovno ugodno delo, kadarkoli in kjerkoli, tudi zunaj pisarne, saj je vse kar potrebujemo internetni dostop in računalnik ali telefon. Računalništvo v oblaku je posledica razvoja več različnih tehnologij, ki so skupaj omogočile cenovno učinkovite rešitve, ki so hkrati preproste za uporabo. Končni uporabniki uporabljajo oblak, ker je preprosto za uporabo, omogoča dostop do podatkov kjerkoli in kadarkoli. Na drugi strani vedno več podjetji v žeji, da znižajo stroške poslovanja in povečajo sposobnost prilagajanja zahtevam trga, seli svoje poslovanje v oblak. Posledica tega premika je selitev podatkov iz fizičnih nosilcev, ki so bili tradicionalno v lasti iste osebe kot podatki, v oblak. To pomeni da varnost hrambe svojih podatkov zaupamo tretjim osebam, kar niti ni nujno tako slabo, kot se sliši. Za veliko ljudi in manjših podjetji je skrb za varnost podatkov velik zalogaj, ki zahteva ustrezno tehnično izobrazbo, strojno opremo in prostor. Kadar hranimo podatke v oblaku, nič od tega ni potrebno, saj nam vse to zagotavlja ponudnik storitev v oblaku v zameno za mesečno naročnino. V nadaljevanju tega dela, bomo najprej pregledali kaj je oblak, kakšne oblike oblaka poznamo. Ko bomo opremljeni z osnovnim poznavanjem oblaka, si bomo pogledali še formalno definicijo varnosti nato pa bomo preučili kako vpeljava in vsesplošna uporaba oblaka vpliva na varnost naših podatkov.
-
+V zadnjih letih smo priča bliskovitemu porastu popularnosti tako imenovanega računalništva v oblaku. Gartner je v začetku leta 2015 uvrstil računalništvo v oblaku med 10 strateško najpomembnejših tehnoloških trendov, ki bodo krojili prihodnost. Oblak nam omogoča udobno, cenovno ugodno delo, kadarkoli in kjerkoli, tudi zunaj pisarne, saj je vse kar potrebujemo internetni dostop in računalnik ali telefon. Računalništvo v oblaku je posledica razvoja več različnih tehnologij, ki so skupaj omogočile cenovno učinkovite rešitve, ki so hkrati preproste za uporabo. Končni uporabniki uporabljajo oblak, ker je preprosto za uporabo, omogoča dostop do podatkov kjerkoli in kadarkoli. Na drugi strani vedno več podjetji v žeji, da znižajo stroške poslovanja in povečajo sposobnost prilagajanja zahtevam trga, seli svoje poslovanje v oblak. Posledica tega premika je selitev podatkov iz fizičnih nosilcev, ki so bili tradicionalno v lasti iste osebe kot podatki, v oblak. To pomeni, da varnost hrambe svojih podatkov zaupamo tretjim osebam, kar niti ni nujno tako slabo, kot se sliši. Za veliko ljudi in manjših podjetji je skrb za varnost podatkov velik zalogaj, ki zahteva ustrezno tehnično izobrazbo, strojno opremo in prostor. Kadar hranimo podatke v oblaku, nič od tega ni potrebno, saj nam vse to zagotavlja ponudnik storitev v oblaku v zameno za mesečno naročnino. V kolikor vseeno ne želimo vseh svojih podatkov zaupati ponudniku storitve, pa nam kriptografija ponuja nekaj rešitev, kako zavarovati podatke pred nepooblaščenimi očmi. Posebej zanimive so metode šifriranja podatkov, saj zagotavlja zaščito pred širokom naborom groženj, ki jih bomo spoznali kasneje.  V nadaljevanju bomo najprej pogledali, kaj se skriva pod pojmoma ``oblak'' in ``varnost'', nato pa se posvetili kriptografskim metodam varovanja podatkov.
 
 \section{Kaj je oblak?}
 \label{sec:Kaj je oblak?}
@@ -453,7 +458,7 @@ NIST opredeli oblak kot: ``Računalništvo v oblaku je model, ki omogoča vsepri
 
    \item[Bliskovita prožnost] Uporabnik lahko preprosto poveča ali zmanjša zmogljivosti virov, ki jih potrebuje glede na potrebe. Uporabnik ima pogosto občutek da so mu na voljo neomejene zmogljivosti.
 
-   \item[Merjenje porabe in obračun glede na porabo virov]  Oblačni sistemi samodejno nadzirajo in optimizirajo porabo virov s pomočjo metrik (poraba prostora, pasovne širine, procesorskega časa~\ldots). Poraba virov se nadzira, kontrolira in poroča, kar omogoča transparentnost za ponudnika in uporabnika.
+   \item[Merjenje porabe in obračun glede na porabo virov]  Oblačni sistemi samodejno nadzirajo in optimizirajo porabo virov z metrikami (poraba prostora, pasovne širine, procesorskega časa~\ldots). Poraba virov se nadzira, kontrolira in poroča, kar omogoča transparentnost za ponudnika in uporabnika.
 \end{description}
 
 
@@ -598,17 +603,17 @@ Preden začnemo uporabljati storitve v oblaku, je potrebno preučiti vse aspekte
 \subsection{Zloraba in zlonamerna uporaba sistemov}
 \label{sub:Zloraba in zlonamerna uporaba sistemov}
 
-Pogosto ponudniki storitev v oblaku omogočajo brezplačne preizkusne račune za omejeno časovno obdobje, pa tudi če jih ne, lahko napadalec s pomočjo ukradenih bančnih podatkov ustvari veliko količino uporabniških računov, ki jih potem izkoristi za izvajanje različnih nelegalnih aktivnosti. Te lažni uporabniški računi napadalcu omogočajo pošiljanje nezaželene pošte, izvajanje napadov ribarjenja ali napadov zavrnitve storitve, ki so lahko usmerjeni k ponudniku storitve, njegovim strankam ali pa tretjim osebam.
+Pogosto ponudniki storitev v oblaku omogočajo brezplačne preizkusne račune za omejeno časovno obdobje, pa tudi če jih ne, lahko napadalec z ukradenimi bančnimi podatki ustvari večjo količino uporabniških računov, ki jih potem izkoristi za izvajanje različnih nelegalnih aktivnosti. Te lažni uporabniški računi napadalcu omogočajo pošiljanje nezaželene pošte, izvajanje napadov ribarjenja ali napadov zavrnitve storitve, ki so lahko usmerjeni k ponudniku storitve, njegovim strankam ali pa tretjim osebam.
 
 \subsection{Napadi zavrnitve storitve}
 \label{subs:Napadi zavrnitve storitve}
 
-Napad zavrnitve storitve je ena najpreprostejših in pogosto zelo učinkovitih oblik napada na računalniške sisteme. Cilj napada je uporabnikom preprečiti normalen dostop do storitve, kar napadalec doseže s tem da napaden sistem prisili v nerazumno veliko porabo različnih virov, kot so pasovna širina, procesorski čas ali podatkovni prostor. Najbolj osnovna oblika napada zavrnitve storitve se zanaša na dejstvo da napadalec razpolaga z večjo količino določenega vira (pasovna širina, procesorski čas …) kot napaden sistem. Obstajajo pa tudi bolj prefinjene asimetrične oblike napada, kjer napadalec z veliko manjšo količino virov kot tarča, s pomočjo izrabe varnostne pomanjkljivosti v sistemu ali aplikaciji onemogoči tarčo napada. Napadi zavrnitve storitve običajno ne pustijo trajnih posledic, vendar predstavljajo veliko neprijetnost za uporabnike, saj le ti za čas trajanja napada ne morejo uporabljati storitve, prav tako pa škodujejo ugledu ponudnika.
+Napad zavrnitve storitve je ena najpreprostejših in pogosto zelo učinkovitih oblik napada na računalniške sisteme. Cilj napada je uporabnikom preprečiti normalen dostop do storitve, kar napadalec doseže s tem da napaden sistem prisili v nerazumno veliko porabo različnih virov, kot so pasovna širina, procesorski čas ali podatkovni prostor. Najbolj osnovna oblika napada zavrnitve storitve se zanaša na dejstvo da napadalec razpolaga z večjo količino določenega vira (pasovna širina, procesorski čas …) kot napaden sistem. Obstajajo pa tudi bolj prefinjene oblike napada, kjer napadalec z veliko manjšo količino razpoložljivih virov, izrabi varnostno pomanjkljivosti v sistemu ali aplikaciji in onemogoči tarčo napada. Napadi zavrnitve storitve običajno ne pustijo trajnih posledic, vendar predstavljajo veliko neprijetnost za uporabnike, saj le ti za čas trajanja napada ne morejo uporabljati storitve, prav tako pa škodujejo ugledu ponudnika.
 
 \subsection{Ranljivosti zaradi uporabe skupnih virov}
 \label{sub:Ranljivosti zaradi uporabe skupnih virov}
 
-Zadnji sklop varnostnih groženj v oblaku predstavljajo ranljivosti, ki so posledica ene od ključnih lastnosti oblaka, to je uporaba skupnih virov. Ponudniki storitev v oblaku zagotavljajo navidezno neomejene vire končnemu uporabniku s pomočjo tehnologij virtualizacije in skupne uporabe. Pri tem uporabljajo klasično strojno opremo, ki sicer s pomočjo posebne programske opreme omogoča delitev virov, vendar ni bila zasnovana, da bi omogočala varno skupno uporabo. Tak tip napadov izkorišča dejstvo, da si različni virtualni strežniki delijo fizično strojno opremo, zato je možno s posebno obliko napada, ki se imenuje napad preko stranskega kanala pridobiti informacije iz žrtvinega strežnika, brez da bi dejansko prišlo do vdora. V času pisanja še ni prišlo do takega tipa vdora v praksi, vendar obstajajo primeri takih napadov, ki so jih demonstrirali pod laboratorijskimi pogoji.
+Zadnji sklop varnostnih groženj v oblaku predstavljajo ranljivosti, ki so posledica ene od ključnih lastnosti oblaka, to je uporaba skupnih virov. Ponudniki storitev v oblaku zagotavljajo navidezno ``neomejene'' vire končnemu uporabniku z uporabo virtualizacije in skupne rabe virov. Pri tem uporabljajo klasično strojno opremo, ki sicer s pomočjo posebne programske opreme omogoča delitev virov, vendar ni bila zasnovana, da bi omogočala varno skupno uporabo. Tak tip napadov izkorišča dejstvo, da si različni virtualni strežniki delijo fizično strojno opremo, zato je možno s posebno obliko napada, ki se imenuje napad preko stranskega kanala pridobiti informacije iz žrtvinega strežnika, brez da bi dejansko prišlo do vdora. V času pisanja še ni prišlo do takega tipa vdora v praksi, vendar obstajajo primeri takih napadov, ki so jih demonstrirali pod laboratorijskimi pogoji.
 
 \chapter{Osnove kriptografije}
 
@@ -618,7 +623,7 @@ Kriptografija omogoča doseganje informacijske varnosti s pomočjo matematičnih
 
 To pomeni, da lahko tajnopis javno objavimo, varovati je potrebno samo šifrirni ključ. Ta lastnost nam omogoča, da varno poslujemo s svojo banko, pošiljamo e-pošto, ki jo lahko prebere samo prejemnik navkljub temu, da Internet ni varen komunikacijski kanal in na njemu mrgoli zlobnežev, ki želijo priti do naših zaupnih podatkov.
 
-Potrebno se je zavedati, da so formalne zahteve za popolno varnost zelo visoke, zato se v praksi največkrat uporabi princip računske varnosti, ker pomeni, da varnost kriptosistema sloni na predpostavki, da so računske zahteve za razbitje kriptografske sheme veliko višje od tistih, ki jih ima na voljo potencialni napadalec. Najbolj znana implementacija popolne varnosti je sicer \gls{otp}, ki ga je leta 1918 patentiral Gilbert S. Vernam~\cite{vernam1919secret}. Claude Shannon v leta 1949 objavljenem poročilu~\cite{shannon1949communication} dokazal, da le-ta zagotavlja popolno varnost. Kot zanimivost lahko povemo, da je domnevno do enakih zaključkov še nekaj let prej, prišel tudi ruski znanstvenik Vladimir Kotelnikov, vendar njegovo poročilo še vedno ostaja zaupno. Problem \glslink{otp}{enkratnega ščita} je v tem, da zahteva ključ enake dolžine kot sporočilo, ki ga želimo šifrirati. Prav tako lahko vsak ključ uporabimo samo enkrat, v nasprotnem primeru pa sistem ne zagotavlja več popolne varnosti.
+Potrebno se je zavedati, da so formalne zahteve za popolno varnost zelo visoke, zato se v praksi največkrat uporabi princip računske varnosti, ker pomeni, da varnost kriptosistema sloni na predpostavki, da so računske zahteve za razbitje kriptografske sheme veliko višje od tistih, ki jih ima na voljo potencialni napadalec. Najbolj znana implementacija popolne varnosti je sicer \gls{otp}, ki ga je leta 1918 patentiral Gilbert S. Vernam~\cite{vernam1919secret}. Claude Shannon v leta 1949 objavljenem poročilu~\cite{shannon1949communication} dokazal, da le-ta zagotavlja popolno varnost. Kot zanimivost lahko povemo, da je domnevno do enakih zaključkov še nekaj let prej, prišel tudi ruski znanstvenik Vladimir Kotelnikov~\cite{molotkov2006quantum}, vendar njegovo poročilo še vedno ostaja zaupno. Problem \glslink{otp}{enkratnega ščita} je v tem, da zahteva ključ enake dolžine kot sporočilo, ki ga želimo šifrirati. Prav tako lahko vsak ključ uporabimo samo enkrat, v nasprotnem primeru pa sistem ne zagotavlja več popolne varnosti.
 
 \
 
@@ -725,9 +730,9 @@ Kjer je $C$ tajnopis in $P$ čistopis.
 \gls{AES} se po strukturi algoritma razlikuje od \gls{DES}-a, saj namesto Feistelove šifre uporablja substitucijsko-permutacijsko omrežje.  Algoritem iz ptičje perspektive izgleda tako:
 
 
+\subsection{Načini delovanja}
+\label{sub:Nacini delovanja}
 
-
-\subsection{Načini delovanja bločnih šifer}
 
 Bločna šifra sama po sebi kot vhodni podatek lahko sprejme samo blok točno določene dolžine, kar ni najbolj praktično, saj so sporočila pogosto različnih in predvsem nepredvidljivih velikosti. Poleg tega če isti blok čistopisa večkrat šifriramo z enakim ključem, dobimo kot rezultat vsakič isti tajnopis, kar je nezaželjen rezultat, saj morebitni napadalec lahko zazna vzorce v tajnopisu in iz tega poskuša razbrati pomen. Ta problem lahko rešimo tako, da uporabimo bločno šifro v enem od načinov delovanja.
 
@@ -789,7 +794,7 @@ Slika~\ref{fig:ecbbad} prikazuje uporabo 128 bitne AES šifre v načinu ECB.\@ N
 \subsubsection{CBC}
 \label{subs:CBC}
 
-V načinu \Gls{CBC} se vsak blok čistopisa pred šifriranjem s pomočjo operacije $XOR$ zmeša z tajnopisom prejšnjega bloka. Tak pristop naredi vsak naslednji blok odvisen od vseh prejšnjih blokov. S tem se rešimo problema ponavljajočih se vzorcev v tajnopisu, kot smo jih videli v načinu \acrshort{ECB} (slika~\ref{fig:ecbbad}). Posebni primer je prvi blok, saj tu nimamo na voljo tajnopisa prejšnjega bloka, s katerim bi izvedli operacijo $XOR$, zato namesto tajnopisa prejšnjega bloka uporabimo \acrfull{IV}. Dodatno nam naključni \gls{IV} doda tudi element naključnosti v tajnopis, kar pomeni da tudi če šifriramo enako sporočilo z enakim ključem, tajnopis ne bo enak, saj smo uporabili drugačen \gls{IV}.
+V načinu \Gls{CBC} se vsak blok čistopisa pred šifriranjem z operacijo $XOR$ zmeša z tajnopisom prejšnjega bloka. Tak pristop naredi vsak naslednji blok odvisen od vseh prejšnjih blokov. S tem se rešimo problema ponavljajočih se vzorcev v tajnopisu, kot smo jih videli v načinu \acrshort{ECB} (slika~\ref{fig:ecbbad}). Posebni primer je prvi blok, saj tu nimamo na voljo tajnopisa prejšnjega bloka, s katerim bi izvedli operacijo $XOR$, zato namesto tajnopisa prejšnjega bloka uporabimo \acrfull{IV}. Dodatno nam naključni \gls{IV} doda tudi element naključnosti v tajnopis, kar pomeni da tudi če šifriramo enako sporočilo z enakim ključem, tajnopis ne bo enak, saj smo uporabili drugačen \gls{IV}.
 
 Slabost takega pristopa pa je da je operacija šifriranja strogo zaporedna, saj naslednjega bloka ne moremo šifrirati dokler ne končamo šifriranja trenutnega bloka.
 
@@ -838,7 +843,7 @@ Kot se vidi na sliki~\ref{fig:cfbmode}, se v tem načinu delovanja bločna šifr
 \subsubsection{OFB}
 \label{subs:OFB}
 
-V \gls{OFB} je podoben načinu \gls{CFB}, s to razliko, da se za generiranje naključnega zaporedja uporablja samo \gls{IV}. Prav to je lahko problematična lastnost, v primeru da šifriramo daljša sporočila, saj se lahko naredi cikel v naključnem zaporedju. To se lahko zgodi v primeru, da se v naključnem zaporedju pojavi blok, katerega tajnopis je enak IV.\@
+\gls{OFB} je podoben načinu \gls{CFB}, s to razliko, da se za ustvarjanje naključnega zaporedja uporablja samo \gls{IV}. V primeru, da šifriramo daljša sporočila, je to lahko problematično, saj lahko pride do cikla v naključnem zaporedju. To se zgodi v primeru, da se v naključnem zaporedju pojavi blok, katerega tajnopis je enak IV.\@
 
 \begin{figure}[ht!]
   \centering
@@ -992,58 +997,84 @@ Možnost dešifriranja določajo pravila, ki so predstavljena z drevesi, kjer so
 
 Poznamo dve vrsti šifriranja na osnovi parametrov. V prvem je drevo, ki določa pravila shranjeno v ključu  (angl. \acrlong{KP-ABE}), v drugem primeru pa je shranjeno v tajnopisu (angl. \acrlong{CP-ABE}).
 
-\section{Homomorfne šifre}
-\label{sec:Homomorfne šifre}
+\section{Homomorfni kriptosistemi}
+\label{sec:Homomorfni kriptosistemi}
 
-Homomorfne šifre gredo še korak dlje, saj dovoljujejo, da nad tajnopisom izvajamo poljubne operacije in kot rezultat ponovno dobimo tajnopis. Take sheme omogočajo povsem varno računanje v oblaku, saj je možno vse operacije izvajati nad tajnopisi, tako da ni potrebe da oblačni sistem kadarkoli pride v stik s čistopisom podatkov.
+Homomorfizem je lastnost, da je določena algebraična operacija nad dvema čistopisoma ekvivalentna neki drugi operaciji nad pripadajočima tajnopisoma. To pomeni, da namesto da naredimo neko operacijo nad čistopisom, lahko izvedemo homomorfno operacijo nad tajnopisom in končni rezultat bo isti. Take kriptosistemi bi v teoriji lahko omogočili varno računanje v oblaku, saj je možno vse operacije izvajati nad tajnopisi, tako da ni potrebe, da oblačni sistem kadarkoli pride v stik s čistopisom podatkov.
 
-Potrebna lastnost homomorfne šifre je \glslink{malleable}{gnetljivost}, ki je sicer v večini ostalih shem nezaželjena lastnost. Gnetljivost omogoča spremembo tajnopisa na tak način, da se ta dešifrira v čistopis, ki je na nek način povezan z originalnim čistopisom. Če imamo dan tajnopis za $m$, to pomeni da je možno izračunati nov tajnopis, ki se bo dešifriral v vrednost $f(m)$ za neko funkcijo $f$, brez da bi sploh vedeli vrednost $m$.
+Potrebna lastnost homomorfne šifre je \glslink{malleable}{gnetljivost}, ki je sicer v večini ostalih shem nezaželena lastnost. Gnetljivost omogoča spremembo tajnopisa na tak način, da se ta dešifrira v čistopis, ki je na nek način povezan z originalnim čistopisom. Če imamo dan tajnopis za $m$, to pomeni da je možno izračunati nov tajnopis, ki se bo dešifriral v vrednost $f(m)$ za neko funkcijo $f$, brez da bi sploh vedeli vrednost $m$.
 
-Ločimo dva tipa homomorfnih šifer, glede na to, katere operacije lahko opravimo nad tajnopisi. V prvo skupino spadajo delno homomorfni sistemi, kot so RSA brez dopolnjevanja, ElGamal in drugi. Taki sistemi so homomorfni samo za eno operacijo, ponavadi je to množenje. Veliko bolj zanimivi pa so popolnoma homomorfni sistemi, kjer je nad tajnopisi možno izvesti poljubno operacijo.
+Ločimo dva tipa homomorfnih šifer, glede na to, katere operacije lahko opravimo nad tajnopisi. V prvo skupino spadajo delno homomorfni sistemi, kot so RSA brez dopolnjevanja, ElGamal in drugi. Taki sistemi so homomorfni samo za eno operacijo, in kot taki ne prav zanimivi za splošno uporabo, je pa z njimi možno implementirati rešitev, kot so recimo varne e-volitve. Veliko bolj zanimivi pa so popolnoma homomorfni sistemi, kjer je nad tajnopisi možno izvesti poljubno operacijo. Prvi popolnoma homomorfni kriptosistem je v svoji doktorski disertaciji predstavil C. Gentry \cite{gentry2009fully}, vendar se njegova implementacija ni izkazala za najbolj praktično. Prvi problem predstavlja velikost javnega ključa, ki sega od 70 MB do 2,3 GB, odvisno od stopnje varnosti, ki jo želimo. Prav tako je problematična hitrost take sheme, saj obdelava enega bita informacije traja nekje med 30 sekundami in 30 minutami.
 
+Za občutek lahko predstavimo nekoliko homomorfno šifrirno shemo, kot je bila predstavljena v \cite{gentry2010computing}. Shema je veliko preprostejša od prve sheme v doktorski disetraciji C. Gentry-a, saj uporablja preprosto številsko aritmetiko, vendar ima problem, da omogoča samo omejeno število evalvacij funkcije, preden rezultat postane neuporaben.
+
+\begin{description}
+  \item[KeyGen]: za ključ izberemo naključno liho P-bitno celo število
+  \item[$e_k(m)$]: Šifriranje $m \in \{0,1\}$ poteka tako, da najprej izberemo naključno N-bitno število $m'$, da velja $m' = m \mod 2$. Tajnopis je $c=m'+pq$, kjer je $q$ naključno $Q$-bitno celo število.
+  \item[$d_k(m)$]: Rezultat dešifriranja je $(c \mod p) \mod 2$, kjer velja $c'=c \mod p$ in $-p/2 < c' < p/2$ in $p$ deli $c-c'$.
+\end{description}
+
+V taki shemi je možno tajnopise seštevati, odštevati in množiti po modulu 2. Ker seštevanje in množenje po modulu 2 hkrati predstavlja tudi logična vrata $AND$ in $XOR$, lahko v takem sistemu ovrednotimo poljubno funkcijo, ki jo je možno predstaviti digitalno vezje. Problem nastane, ker vsaka od teh operacij poveča količino ``šuma'', ki smo ga dodali pri šifriranju, in če ta naraste preko neke meje, sporočila ni več možno dešifrirati.
+
+Problem šuma je mogoče rešiti, tako da podatke dešifriramo. Če nam uspe dešifrino funkcijo predstaviti kot logično vezje, ki ga je možno ovrednotiti v dani shemi, smo na dobri poti da zmanjšamo šum. Kriptosistemom, ki so sposobni te operacije rečemo da so \glslink{bootstrappable}{\textit{samozagonski}} (angl. bootstrappable) in možno je pokazati, da je iz takega sistema lahko sestavimo popolnoma homomorfen kriptosistem. Kljub temu, da ta postopek omogoča, da pridemo do popolnoma homomorfnega kriptosistema, pa je daleč od idealnega. Ovrednotenje dešifrirne funkcije, predstavljene kot digitalno vezje je računsko zahteven postopek, prav tako pa tajnopis enega samega bita informacije zasede precej več prostora kot pripadajoč čistopis. Zato se v zadnjem času veliko raziskav usmerja v kriptosisteme, kjer \textit{bootstraping} ni potreben.
 
 
 \section{Varovanje podatkov v mirovanju}
 \label{sec:Varovanje podatkov v mirovanju}
 
-Podatke v mirovanju predstavljajo vsi podatki na trajnem pomnilniku, izključujoč podatke ki so trenutno v gibanju in podatke, ki so trenutno v delovnem pomnilniku računalnika. Praviloma so to podatki ki se ne spreminjajo pogosto oziroma arhivski podatki, ki se sploh ne spreminjajo. Količinsko predstavljajo glavnino vseh podatkov, kar pomeni da morajo biti kriptografski algoritmi, ki delujejo na temi podatki hitri. Zato se za varovanje takih podatkov zelo primerne simetrične šifre.
+Podatke v mirovanju predstavljajo vsi podatki na trajnem pomnilniku, izključujoč podatke, ki so trenutno v gibanju in podatke, ki so trenutno v delovnem pomnilniku računalnika. Praviloma so to podatki, ki se ne spreminjajo pogosto oziroma arhivski podatki, ki se sploh ne spreminjajo. Količinsko predstavljajo glavnino vseh podatkov, kar pomeni, da morajo biti kriptografski algoritmi, ki delujejo na temi podatki hitri. Zato se za varovanje takih podatkov zelo primerni simetrični kriptosistemi.
 
 Podatki v mirovanju so dolgotrajne narave, kar pomeni da je dolgotrajna tudi skrb za varnost šifrirnih ključev, ki nam zagotavljajo dostop do teh podatkov. V preteklosti so bili ključi ``shranjeni'' kar v uporabnikovi glavi, vendar ob količini podatkov s katerimi operiramo danes, je to žal postala misija nemogoče. Dodaten problem predstavlja dejstvo, da je do podatkov pogosto potreben povsem avtomatski dostop, brez posredovanja človeka.
 
-V kontekstu oblačnih sistemov je pri zagotavljanju varnosti podatkov v mirovanju najbolj problematičen del prav upravljanje s ključi, saj je potrebno poskrbeti za ključe velikega števila uporabnikov. Prav tako je s stališča varnosti neodgovorno, da zaupamo ustvarjanje in upravljanje šifrirnih ključev tretji osebi, v našem primeru ponudniku storitve v oblaku. Zato je v primeru, da je potrebno zagotoviti visoko stopnjo varnosti, kljub temu pa želimo podatke hraniti v oblaku, najbolj primerna šifriranje podatkov še preden jih pošljemo v oblak, tako imenovano client-side šifriranje. Prednosti so očitne, saj šifrirni ključ nikoli ne rabi zapustiti našega računalnika, tako da smo lahko prepričani, da do naših podatkov shranjenih v oblaku, ne more dostopati nihče.
+V kontekstu oblačnih sistemov je pri zagotavljanju varnosti podatkov v mirovanju najbolj problematičen del prav upravljanje s ključi, saj je potrebno poskrbeti za ključe velikega števila uporabnikov. Prav tako je s stališča varnosti neodgovorno, da ustvarjanje in upravljanje šifrirnih ključev zaupamo tretji osebi (ponudniku storitve). Zato je v primeru, da je potrebno zagotoviti visoko stopnjo varnosti, kljub temu pa želimo podatke hraniti v oblaku, najbolj primerno šifriranje podatkov še preden jih pošljemo v oblak, tako imenovano \textit{client-side} šifriranje. Prednosti so očitne, saj šifrirni ključ nikoli ne zapusti našega računalnika, tako da smo lahko prepričani, da do naših podatkov ne more dostopati nihče.
 
-V primeru oblačnih storitev, ki ponujajo hrambo velikih količin podatkov v oblaku (storitve, kot so Dropbox) pa je zaželena lastnost tudi sposobnost \glslink{deduplication}{izločanja dvojnic}. Kot smo omenili v poglavju~\ref{sec:Kaj je oblak?}, oblačni sistemi izkoriščajo skupno rabo sredstev, kar pomeni da so datoteke večjega števila uporabnikov shranjene na skupnem pomnilniku. Pogosto se namreč zgodi, da več uporabnikov želi shraniti identično datoteko v oblak in v takem primeru je najbolj optimalna rešitev da se taka datoteka shrani samo enkrat, saj bi v nasprotnem primeru samo tratili razpoložljiv prostor z podvojenimi kopijami datotek. Vendar v primeru uporabe šifriranja se bo ista datoteka, šifrirana s ključi dveh različnih uporabnikov zelo verjetno zašifrirala v dva popolnoma različna tajnopisa.
+Kot smo že omenili, so za šifriranje takih podatkov najprimernejše simetrične šifre. Predvsem se priporoča uporaba modernih kriptosistemov, ki poleg zasebnosti zagotavljajo tudi istovetnost podatkov. Primeri takih sistemov so \textit{Salsa20-Poly1305}, \textit{Chacha20-Poly1305} in \textit{AES-GCM}. \textit{Salsa20}~\cite{bernstein2008salsa20} in \textit{Chacha20}~\cite{bernstein2008chacha} sta si si zelo podobni tokovni šifri (razlikujeta se le v krožni funkciji). Na drugi strani pa je bločna šifra \textit{AES} v načinu delovanja \textit{GCM}. \textit{AES} je industrijski standard za šifriranje podatkov, kar se pozna tudi v dobri strojni podpori za pohitritev šifriranja. Večina sodobnih procesorjev na arhitekturi \textit{x86} podpira nabor ukazov \textit{AES-NI}, ki znatno pohitrijo postopke šifriranja, kot je razvidno v tabeli~\ref{symmspeed}.
 
-% \begin{mdframed}[frametitle={Semantična varnost}]
-% Kriptosistem je semantično varen, če iz tajnopisa ni mogoče na praktičen način\footnote{v polinomskem času na verjetnostnem Turingovem stroju} pridobiti nobene informacije o čistopisu.
-% \end{mdframed}
+\begin{table}[]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+                  & hitrost (GB/s) \\ \hline
+AES-128-GCM       & 1,09           \\ \hline
+CHACHA20-POLY1305 & 0,34           \\ \hline
+CHACHA20-POLY1305 & 0,23           \\ \hline
+\end{tabular}
+\caption{Primerjava hitrosti treh priporočenih algoritmov. Test je bil izveden na procesorju Intel Core i5-2430M, ki podpira strojno pospešen AES}
+\label{symmspeed}
+\end{table}
 
-\subsubsection{Šifrirni algoritmi}
-\label{subs:Šifrirni algoritmi}
-\todo{}
+Pri uporabi bločnih v kombinaciji z načinom delovanja (kar velja v $99\%$ primerov) se je potrebno zavedati, posledic rojstnodnevnega paradoksa~\cite{wiki:bdayparadox}. Glede na velikost bloka, obstaja zgornja meja za količino podatkov, ki jih je še varno šifrirati z istim ključem. V kolikor to mejo presežemo, obstaja možnost, da napadalcu s pomočjo rojstnodnevnega napada uspe dešifrirati delčke tajnopisa. Problem je še posebaj pereč pri bločnih šifrah ki uporabljajo 64 bitne bloke, saj je v tem primeru zgornja meja 32 GB, kar je v današnjih časih vse prej kot nedosegljiva količina podatkov. V primeru uporabe šifre z 128 bitnim blokom, se ta meja dvigne na 256 EB. Za šifro, ki uporablja n-bitne bloke, pa velja da je z njo varno šifrirati do $n*2^{n/2}$ bitov.
 
 
-\subsubsection{Konvergentne kriptografske sheme}
-\label{subs:Konvergentne kriptografske sheme}
+\begin{mdframed}[frametitle={Rojstvodnevni napad na način delovanja CBC}]
+V načinu delovanja CBC šifriranje poteka tako: $$c_i = e_k(m_i \oplus c_{i-1})$$ kjer za $c_{-1}$ uporabimo \gls{IV}.
 
+Po tem isti ključ uporabimo za šifriranje več kot $2^{n/2}$ blokov, kjer je $n$ velikost bloka v bitih, obstaja velika verjetnost da pride do trka. Trk je dogodek, kjer napadalec v tajnopisu opazi dva enaka bloka ($c_i = c_j$). Ker šifrirna funkcija $e_k$ samo permutira vhodne podatke, lahko sklepamo, da je bil vhodni podatek $e_k$ za oba bloka enak ($m_i \oplus c_{i-1} = m_j \oplus c_{j-1}$). Iz tega sledi: $$m_i \oplus m_j = c_{i-1} \oplus c_{j-1}$$
 
-\begin{mdframed}[frametitle={Polinomska varnost}]
-\label{def:polysec}
-Za dano šifrirno funkcijo $e$ in poljubna dva čistopisa $p_1$ in $p_2$ iz katerih pridobimo tajnopisa $c=e(p_1)$ in $c=e(p_1)$ velja: Sistem je polinomsko varen, če velja da v polinomskem času ne moremo ugotoviti kateri $c$ pripada kateremu čistopisu z verjetnostjo občutno večjo kot $0.5$.
+Napadalcu sta že znana oba tajnopisa $c_{i-1}$ in $c_{j-1}$, zato če ugane bodisi vrednost $m_j$, bodisi vrednost $m_i$, lahko preko zgornje formule izračuna mankajočo vrednost in tako dešifrira delček sporočila.
 \end{mdframed}
 
-Kasneje sta~\cite{Goldwasser1984} Goldwasser in Micali pokazala, da je problem semantične varnosti enakovreden problemu \gls{ciphertext indistinguishability}, ki zahteva, da napadalec ne more razločiti poljubnih dveh tajnopisov glede na njun čistopis.
 
-The primary security disadvantage of this approach, as identified
-in its original description [10], is that it leaks some information. In
-particular, convergent encryption reveals if two ciphertext strings
-decrypt to the same plaintext value. However, this behavior is nec-
-essary in systems that use deduplication, since it allows a system
-to remove duplicate plaintext data chunks while only observing the
-ciphertext; information leakage is part of the compromise needed
-to achieve space-efficiency through deduplication.
+\subsection{Konvergentne šifrirne sheme}
+\label{sub:Konvergentne šifrirne sheme}
 
-Problem izločanja dvojnic in zagotavljanja (semantične) varnosti
+
+V primeru oblačnih storitev, ki ponujajo hrambo podatkov v oblaku, pa je zaželena tudi sposobnost \glslink{deduplication}{izločanja dvojnic (angl. deduplication)}, saj ta ponudniku storitve omogoča prihranke pri količini pomnilnika, porabljenega za hrambo datotek. Deduplikacija lahko deluje na nivoju datoteke ali pa na nivoju blokov. Najpreprostejša implementacija je na nivoju datoteke. Ob nalaganju datoteke v sistem se preveri zgoščena vrednost (hash) te datoteke, in v kolikor sistem ugotovi, da je datoteka z enako zgoščeno vrednostjo že shranjena v sistemu, samo poveča vrednost števca, ki kaže koliko kopij te datoteke že obstaja. Z uporabo tega principa lahko v sistemu obstaja praktično neomejeno število kopij iste datoteke, brez potrebe po neomejenih pomnilniških kapacitetah. Naprednejši načini deduplikacije datoteko najprej razbijejo na bloke konstantne ali spremenljive dolžine, in nato uporabijo isti postopek na blokih datoteke. Tako je možno dosečti še večje prihranke prostora na diskih.
+
+Problem pa nastane, ko želimo deduplikacijo uporabiti skupaj s šifriranjem. Praviloma želimo, da tajnopis izda karseda malo informacij o čistopisu, kateremu pripada. V praksi to pomeni, da za dva tajnopisa ne moremo ugotoviti, ali pripadata istemu čistopisu (isti datoteki), saj se v postopku šifriranja pogosto doda nek naključni element (recimo \gls{IV} v poglavju \ref{sec:Nacini delovanja}). Tak pristop sicer omogoča doseganje \textit{semantične varnosti}, vendar onemogoči znatne prihranke pomnilniškega prostora ob poskusu deduplikacije. V kolikor želimo imeti oboje, je potrebno znižati varnostne zahteve. Če teoretičnemu napadalcu dovolimo, da ugotovi da dva tajnopisa pripadata istemu čistopisu (torej tak kriptosistem ni \textit{semantično varen}) je deduplikacija možna.
+
+\begin{mdframed}[frametitle={Semantična varnost}]
+\begin{defn}
+Kriptosistem je semantično varen, če iz tajnopisa ni mogoče na praktičen način pridobiti nobene informacije o čistopisu.
+\end{defn}
+\end{mdframed}
+
+V principu je potrebno poskrbeti, da šifriranje enakega čistopisa vsakič da enak tajnopis. To pomeni, da moramo vsakič uporabiti enak šifrirni ključ in tudi \gls{IV}, v kolikor ga dani kriptosistem zahteva. Lahko bi za vse datoteke vseh uporabnikov uporabili isti ključ in isti \gls{IV}, vendar taka implementacija nebi zagotavljala prav visoke varnosti. V veliko primerih ima šifriranje različnih čistopisov z enakim ključem in IV katastrofalne posledice za varnost. To nam pridejo na pomoč konvergentne kriptografske sheme. Prva taka shemo je podjetje Stac, Inc. patentiralo že leta 1995, v zadnjih letih pa so predvsem zaradi vse večje uporabe oblačnih shramb podatkov te sheme deležne veliko pozornosti. Osnovna ideja sheme je, da se šifrirni ključ izračuna iz čistopisa. Ponavadi se izračuna zgoščena vrednost čistopisa s pomočjo enosmerne zgoščevalne funkcije, nato pa se iz te vrednosti na determinističen način ustvari šifrirni ključ. Ker je zgoščena vrednost dveh enakih datotek tudi enaka, in postopek za izračun ključa determinističen, smo tako dosegli cilj, da se dve isti datoteki vedno zašifrirata v isti tajnopis.
+
+Vendar pa imajo zaradi znižanih varnostnih zahtev taki sistemi tudi svoje ranljivosti. Ker je postopek šifriranja determinističen, tako lahko napadalec, ki si lasti enako datoteko, ugotovi ali ima to datoteko tudi kateri drug uporabnik. Na prvi pogled to sicer sicer ne izgleda tako problematično, vendar je na tak način mogoče ugotoviti, ali je uporabnik v sistem naložil piratsko vsebino ali pa prepovedano literaturo. V praksi se velikokrat uporabi deduplikacija na nivoju blokov, kar pa omogoča se bolj zvito izvedbo napada. V kolikor obstajajo datoteke, katerih vsebina je pretežno statična (recimo bančni izpiski), bodo tudi tajnopisi teh blokov v veliki meri enaki. Če ima napadalec dostop do podobnega bančnega izpiska, je obstaja verjetnost da se tajnopis napadalčevega in žrtvinega dokumenta razlikujeta samo v parih blokih. Napadalec lahko uporabi surovo silo in ustvari vse možne bloke, nato pa s pomočjo prvega napada ugotovi, kateri bloki pripadajo dokumentu žrtve napada. Takim napadom se je možno izogniti z uporabo ustreznega nadzora dostopa, kot je recimo opisano v članku \cite{keelveedhi2013dupless}.
+
+\subsection{Šifriranje in deljenje podatkov}
+\label{sub:Šifriranje in deljenje podatkov}
 
 
 \section{Varovanje podatkov v gibanju}
@@ -1055,14 +1086,27 @@ Omrežja po katerih podatki potujejo velikokrat uporabljajo dinamične usmerjeva
 
 Podatki so v gibanju praviloma malo časa, zato ni potrebe po kompleksnem upravljanju ključev. S pomočjo algoritmov za varno izmenjavo ključev, kot je recimo Diffe-Hellman algoritem opisan v poglavju~\ref{sec:Izmenjava ključa Diffe-Hellman}, je možno da se za vsako sejo uporabi nov, naključno generiran ključ.
 
-% Najbolj razširjen protokol za zaščito podatkov med tem ko so v gibanju je \gls{SSL} in njegov naslednik \gls{TLS}. Poleg njega se predvsem za statične povezave med dvema omrežjema uporabljajo še protokoli iz družine VPN. Znotraj omrežja ponudnika pa se lahko uporabijo tudi tehnologije kot je VLAN. VLAN ne zagotavlja varnosti s pomočjo šifriranja, ampak deluje na principu omejevanja dostopa do prometa, ki sicer poteka po skupnem mediju. Tak način pristopa sicer ščiti pred napadalci, ki imajo ustrezno malo pooblastil, recimo drugi uporabniki sistema, ne more pa nas začititi pred napadalci notranjimi napadalci, kot so zaposleni pri ponudniku storitve.
+Najbolj razširjen protokol za zaščito podatkov med tem ko so v gibanju je \gls{SSL} in njegov naslednik \gls{TLS}. Poleg njega se predvsem za statične povezave med dvema omrežjema uporabljajo še protokoli iz družine VPN. Znotraj omrežja ponudnika pa se lahko uporabijo tudi tehnologije kot je VLAN. VLAN ne zagotavlja varnosti s pomočjo šifriranja, ampak deluje na principu omejevanja dostopa do prometa na skupnem mediju. Tak način pristopa sicer ščiti pred napadalci, ki imajo ustrezno malo pooblastil, recimo drugi uporabniki sistema, ne more pa nas začititi pred notranjimi napadalci, kot so zaposleni pri ponudniku storitve.
 
-\subsection{SSL in TLS}
-\label{sub:SSL in TLS}
-\todo[inline]{Opis protokola, opis napadov}
+Ker do storitev v oblaku praviloma dostopamo s spletnim brskalnikom preko Interneta, je standardna praksa uporaba protokola \gls{HTTPS}. \Gls{HTTPS} je implementacija HTTP protokola na povezavi, šifrirani s protokolom \gls{SSL} ali \gls{TLS}. Predvsem se priporoča uporabla slednjega, saj od leta 2014 naprej obstajajo učinkoviti napadi na vse različice protokola \gls{SSL}, zato se ta ne smatra več za varnega.
 
-\subsubsection{Prihodnja varnost}
-\label{subs:Prihodnja varnost}
+Protokol \gls{TLS} uporablja simetrične kriptosisteme za zagotavljanje zasebnosti, kriptografijo javnih ključev za ugotavljanje istovestnosti strežnika s katerim komuniciramo in za dogovor o ključu ter kode za overjanje, s katerimi zagotavljanje celovitosti podatkov. Točne detajle implementacije je možno najti v literaturi, kot je knjiga \textit{Cryptography and network security} avtorja W. Stallings \cite{stallings2006cryptography}. Ker protokol ne predpisuje točno določenih algoritmov, ampak prepušča izbor le teh uporabniku, je pomembno, da namenimo nekaj časa pravilni konfiguraciji protokola.
+
+\Gls{TLS} se uporablja za zaščito občutljivih podatkov v transportu praktično na vsakem kotičku Interneta, od varovanja gesel za prijavo na socialna omrežja, varovanja e-poštnih sporočil med transportom do varovanja elektronskih plačil. Prav zato v zadnjih letih skorajda ne mine mesec, ko ni bil predstavljen nov napad na \gls{TLS}, kljub temu pa se \gls{TLS} ob pravilni konfiguraciji še vedno smatra kot varen.
+
+\begin{description}[style=nextline]
+  \item[DROWN] Napad napadalcu omogoča dešifriranje celotne komunikacije, zaščitene s (sicer pravilno konfiguriranim) TLS. Za uspešen napad je potreben strežnik, ki uporablja zastarel protokol SSL v2 in isti zasebni ključ kot žrtvin strežnik~\cite{aviramdrown}.
+  \item[BEAST]
+  \item[CRIME in BREACH]
+  \item[POODLE]
+  \item[Shellshock]
+  \item[Heartbleed]
+  \item[Unholy PAC]
+  \item[Sweet32]
+\end{description}
+
+Splošni nasveti za varno uporabo TLS protokola so naslednji:
+
 
 
 \section{Varovanje podatkov v uporabi}
@@ -1081,8 +1125,6 @@ Varno večstransko računanje je področje kriptografije, ki se ukvarja z razvoj
 
 
 \todo[inline]{Šifriranje delovnega pomnilnika, homomorfna enkricpija, secure MPC, ...}
-
-
 
 \newpage
 
