@@ -1006,7 +1006,7 @@ Potrebna lastnost homomorfne šifre je \glslink{malleable}{gnetljivost}, ki je s
 
 Ločimo dva tipa homomorfnih šifer, glede na to, katere operacije lahko opravimo nad tajnopisi. V prvo skupino spadajo delno homomorfni sistemi, kot so RSA brez dopolnjevanja, ElGamal in drugi. Taki sistemi so homomorfni samo za eno operacijo, in kot taki ne prav zanimivi za splošno uporabo, je pa z njimi možno implementirati rešitev, kot so recimo varne e-volitve. Veliko bolj zanimivi pa so popolnoma homomorfni sistemi, kjer je nad tajnopisi možno izvesti poljubno operacijo. Prvi popolnoma homomorfni kriptosistem je v svoji doktorski disertaciji predstavil C. Gentry \cite{gentry2009fully}, vendar se njegova implementacija ni izkazala za najbolj praktično. Prvi problem predstavlja velikost javnega ključa, ki sega od 70 MB do 2,3 GB, odvisno od stopnje varnosti, ki jo želimo. Prav tako je problematična hitrost take sheme, saj obdelava enega bita informacije traja nekje med 30 sekundami in 30 minutami.
 
-Za občutek lahko predstavimo nekoliko homomorfno šifrirno shemo, kot je bila predstavljena v \cite{gentry2010computing}. Shema je veliko preprostejša od prve sheme v doktorski disetraciji C. Gentry-a, saj uporablja preprosto številsko aritmetiko, vendar ima problem, da omogoča samo omejeno število evalvacij funkcije, preden rezultat postane neuporaben.
+Za občutek lahko predstavimo nekoliko homomorfno šifrirno shemo, kot je bila predstavljena v \cite{gentry2010computing}. Shema je veliko preprostejša od prve sheme v doktorski disertaciji C. Gentry-a, saj uporablja preprosto številsko aritmetiko, vendar ima problem, da omogoča samo omejeno število evalvacij funkcije, preden rezultat postane neuporaben.
 
 \begin{description}
   \item[KeyGen]: za ključ izberemo naključno liho P-bitno celo število
@@ -1043,15 +1043,15 @@ CHACHA20-POLY1305 & 0,23           \\ \hline
 \label{symmspeed}
 \end{table}
 
-Pri uporabi bločnih v kombinaciji z načinom delovanja (kar velja v $99\%$ primerov) se je potrebno zavedati, posledic rojstnodnevnega paradoksa~\cite{wiki:bdayparadox}. Glede na velikost bloka, obstaja zgornja meja za količino podatkov, ki jih je še varno šifrirati z istim ključem. V kolikor to mejo presežemo, obstaja možnost, da napadalcu s pomočjo rojstnodnevnega napada uspe dešifrirati delčke tajnopisa. Problem je še posebaj pereč pri bločnih šifrah ki uporabljajo 64 bitne bloke, saj je v tem primeru zgornja meja 32 GB, kar je v današnjih časih vse prej kot nedosegljiva količina podatkov. V primeru uporabe šifre z 128 bitnim blokom, se ta meja dvigne na 256 EB. Za šifro, ki uporablja n-bitne bloke, pa velja da je z njo varno šifrirati do $n*2^{n/2}$ bitov.
+Pri uporabi bločnih v kombinaciji z načinom delovanja (kar velja v $99\%$ primerov) se je potrebno zavedati, posledic rojstnodnevnega paradoksa~\cite{wiki:bdayparadox}. Glede na velikost bloka, obstaja zgornja meja za količino podatkov, ki jih je še varno šifrirati z istim ključem. V kolikor to mejo presežemo, obstaja možnost, da napadalcu s pomočjo rojstnodnevnega napada uspe dešifrirati delčke tajnopisa. Problem je še posebej pereč pri bločnih šifrah, ki uporabljajo 64 bitne bloke, saj je v tem primeru zgornja meja 32 GB, kar je v današnjih časih vse prej kot nedosegljiva količina podatkov. V primeru uporabe šifre z 128 bitnim blokom, se ta meja dvigne na 256 EB. Za šifro, ki uporablja n-bitne bloke, pa velja da je z njo varno šifrirati do $n*2^{n/2}$ bitov.
 
 
-\begin{mdframed}[frametitle={Rojstvodnevni napad na način delovanja CBC}]
+\begin{mdframed}[frametitle={Rojstnodnevni napad na način delovanja CBC}]
 V načinu delovanja CBC šifriranje poteka tako: $$c_i = e_k(m_i \oplus c_{i-1})$$ kjer za $c_{-1}$ uporabimo \gls{IV}.
 
-Po tem isti ključ uporabimo za šifriranje več kot $2^{n/2}$ blokov, kjer je $n$ velikost bloka v bitih, obstaja velika verjetnost da pride do trka. Trk je dogodek, kjer napadalec v tajnopisu opazi dva enaka bloka ($c_i = c_j$). Ker šifrirna funkcija $e_k$ samo permutira vhodne podatke, lahko sklepamo, da je bil vhodni podatek $e_k$ za oba bloka enak ($m_i \oplus c_{i-1} = m_j \oplus c_{j-1}$). Iz tega sledi: $$m_i \oplus m_j = c_{i-1} \oplus c_{j-1}$$
+Po tem isti ključ uporabimo za šifriranje več kot $2^{n/2}$ blokov, kjer je $n$ velikost bloka v bitih, obstaja velika verjetnost da pride do trka. Trk je dogodek, kjer napadalec v tajnopisu opazi dva enaka bloka ($c_i = c_j$). Ker šifrirna funkcija $e_k$ izvede samo permutacijo nad vhodnimi, lahko sklepamo, da je bil vhodni podatek $e_k$ za oba bloka enak ($m_i \oplus c_{i-1} = m_j \oplus c_{j-1}$). Iz tega sledi: $$m_i \oplus m_j = c_{i-1} \oplus c_{j-1}$$
 
-Napadalcu sta že znana oba tajnopisa $c_{i-1}$ in $c_{j-1}$, zato če ugane bodisi vrednost $m_j$, bodisi vrednost $m_i$, lahko preko zgornje formule izračuna mankajočo vrednost in tako dešifrira delček sporočila.
+Napadalcu sta že znana oba tajnopisa $c_{i-1}$ in $c_{j-1}$, zato če ugane bodisi vrednost $m_j$, bodisi vrednost $m_i$, lahko preko zgornje formule izračuna manjkajočo vrednost in tako dešifrira delček sporočila.
 \end{mdframed}
 
 
@@ -1086,16 +1086,16 @@ Omrežja po katerih podatki potujejo velikokrat uporabljajo dinamične usmerjeva
 
 Podatki so v gibanju praviloma malo časa, zato ni potrebe po kompleksnem upravljanju ključev. S pomočjo algoritmov za varno izmenjavo ključev, kot je recimo Diffe-Hellman algoritem opisan v poglavju~\ref{sec:Izmenjava ključa Diffe-Hellman}, je možno da se za vsako sejo uporabi nov, naključno generiran ključ.
 
-Najbolj razširjen protokol za zaščito podatkov med tem ko so v gibanju je \gls{SSL} in njegov naslednik \gls{TLS}. Poleg njega se predvsem za statične povezave med dvema omrežjema uporabljajo še protokoli iz družine VPN. Znotraj omrežja ponudnika pa se lahko uporabijo tudi tehnologije kot je VLAN. VLAN ne zagotavlja varnosti s pomočjo šifriranja, ampak deluje na principu omejevanja dostopa do prometa na skupnem mediju. Tak način pristopa sicer ščiti pred napadalci, ki imajo ustrezno malo pooblastil, recimo drugi uporabniki sistema, ne more pa nas začititi pred notranjimi napadalci, kot so zaposleni pri ponudniku storitve.
+Najbolj razširjen protokol za zaščito podatkov med tem ko so v gibanju je \gls{SSL} in njegov naslednik \gls{TLS}. Poleg njega se predvsem za statične povezave med dvema omrežjema uporabljajo še protokoli iz družine VPN. Znotraj omrežja ponudnika pa se lahko uporabijo tudi tehnologije kot je VLAN. VLAN ne zagotavlja varnosti s pomočjo šifriranja, ampak deluje na principu omejevanja dostopa do prometa na skupnem mediju. Tak način pristopa sicer ščiti pred napadalci, ki imajo ustrezno malo pooblastil, recimo drugi uporabniki sistema, ne more pa nas zaščititi pred notranjimi napadalci, kot so zaposleni pri ponudniku storitve.
 
-Ker do storitev v oblaku praviloma dostopamo s spletnim brskalnikom preko Interneta, je standardna praksa uporaba protokola \gls{HTTPS}. \Gls{HTTPS} je implementacija HTTP protokola na povezavi, šifrirani s protokolom \gls{SSL} ali \gls{TLS}. Predvsem se priporoča uporabla slednjega, saj od leta 2014 naprej obstajajo učinkoviti napadi na vse različice protokola \gls{SSL}, zato se ta ne smatra več za varnega.
+Ker do storitev v oblaku praviloma dostopamo s spletnim brskalnikom preko Interneta, je standardna praksa uporaba protokola \gls{HTTPS}. \Gls{HTTPS} je implementacija HTTP protokola na povezavi, šifrirani s protokolom \gls{SSL} ali \gls{TLS}. Predvsem se priporoča uporaba slednjega, saj od leta 2014 naprej obstajajo učinkoviti napadi na vse različice protokola \gls{SSL}, zato se ta ne smatra več za varnega.
 
-Protokol \gls{TLS} uporablja simetrične kriptosisteme za zagotavljanje zasebnosti, kriptografijo javnih ključev za ugotavljanje istovestnosti strežnika s katerim komuniciramo in za dogovor o ključu ter kode za overjanje, s katerimi zagotavljanje celovitosti podatkov. Točne detajle implementacije je možno najti v literaturi, kot je knjiga \textit{Cryptography and network security} avtorja W. Stallings \cite{stallings2006cryptography}. Ker protokol ne predpisuje točno določenih algoritmov, ampak prepušča izbor le teh uporabniku, je pomembno, da namenimo nekaj časa pravilni konfiguraciji protokola.
+Protokol \gls{TLS} uporablja simetrične kriptosisteme za zagotavljanje zasebnosti, kriptografijo javnih ključev za ugotavljanje istovetnosti strežnika s katerim komuniciramo in za dogovor o ključu ter kode za overjanje, s katerimi zagotavljanje celovitosti podatkov. Točne detajle implementacije je možno najti v literaturi, kot je knjiga \textit{Cryptography and network security} avtorja W. Stallings \cite{stallings2006cryptography}. Ker protokol ne predpisuje točno določenih algoritmov, ampak prepušča izbor le teh uporabniku, je pomembno, da namenimo nekaj časa pravilni nastavitvi protokola.
 
-\Gls{TLS} se uporablja za zaščito občutljivih podatkov v transportu praktično na vsakem kotičku Interneta, od varovanja gesel za prijavo na socialna omrežja, varovanja e-poštnih sporočil med transportom do varovanja elektronskih plačil. Prav zato v zadnjih letih skorajda ne mine mesec, ko ni bil predstavljen nov napad na \gls{TLS}, kljub temu pa se \gls{TLS} ob pravilni konfiguraciji še vedno smatra kot varen.
+\Gls{TLS} se uporablja za zaščito občutljivih podatkov v transportu praktično na vsakem kotičku Interneta, od varovanja gesel za prijavo na socialna omrežja, varovanja e-poštnih sporočil med transportom do varovanja elektronskih plačil. Prav zato v zadnjih letih skorajda ne mine mesec, ko ni bil predstavljen nov napad na \gls{TLS}, kljub temu pa se \gls{TLS} ob pravilnih nastavitvah še vedno smatra kot varen.
 
 \begin{description}[style=nextline]
-  \item[DROWN] Napad napadalcu omogoča dešifriranje celotne komunikacije, zaščitene s (sicer pravilno konfiguriranim) TLS. Za uspešen napad je potreben strežnik, ki uporablja zastarel protokol SSL v2 in isti zasebni ključ kot žrtvin strežnik~\cite{aviramdrown}.
+  \item[DROWN] Napad napadalcu omogoča dešifriranje celotne komunikacije, zaščitene s (sicer pravilno nastavljen) TLS. Za uspešen napad je potreben strežnik, ki uporablja zastarel protokol SSL v2 in isti zasebni ključ kot žrtvin strežnik~\cite{aviramdrown}.
   \item[BEAST]
   \item[CRIME in BREACH]
   \item[POODLE]
@@ -1122,9 +1122,6 @@ V nadaljevanju bomo predstavili tri možnih načinov, kako zagotoviti različne 
 \label{subs:Varno večstransko računanje}
 
 Varno večstransko računanje je področje kriptografije, ki se ukvarja z razvojem algoritmov, ki omogočajo, da več udeležencev skupaj izračuna rezultat neke funkcije, ne da bi kdorkoli poznal vse vhodne parametre funkcije.
-
-
-\todo[inline]{Šifriranje delovnega pomnilnika, homomorfna enkricpija, secure MPC, ...}
 
 \newpage
 
