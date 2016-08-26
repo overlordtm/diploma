@@ -948,8 +948,8 @@ Na začetku obdobja računalništva se je največ pozornosti posvečalo predvsem
 
 To se odraža tudi v pristopih k varovanju podatkov v različnih stanjih. Dočim za varovanje podatkov v mirovanju obstajajo ustaljene prakse, pa za ostali dve področji velja, da se nenehno spreminjata. Na področju varovanja podatkov v gibanju, ki ga v primeru oblačnih sistemov večinoma pokrivata kriptografska protokola \acrfull{SSL} in njegov naslednik \acrfull{TLS}, je v zadnjih letih prišlo do odkritji različnih napadov in posledično opustitve določenih verzij protokolov, ker te niso več zagotavljale zadovoljivega nivoja varnosti. Drugačna pa je situacija na področju varovanja podatkov v uporabi, saj v preteklosti ni bilo velike potrebe po praktični implementaciji takih kriptografskih protokolov, vendar se je s prihodom oblačnih storitev tudi to področje začelo pospešeno razvijati.
 
-\section{Funkcionalne šifrirne sheme}
-\label{sec:Funkcionalne šifrirne sheme}
+\section{Funkcionalni kriptosistemi}
+\label{sec:Funkcionalni kriptosistemi}
 
 Pred iznajdbo asimetričnih šifrirnih shem, je veljalo prepričanje, da če želimo vzpostaviti šifrirano komunikacijo, si morata najprej obe strani izmenjati skrivni ključ. V sedemdesetih letih sta Diffe in Hellman~\cite{diffie1976new} to prepričanje postavila na glavo in predstavila algoritem za izmenjavo ključa, kjer ni potrebe po varnem kanalu.
 Podobno je še do pred kratkim veljalo prepričanje: \textit{(1) Šifrirano sporočilo je mogoče poslati samo eni osebi (prejemniku), ki si lasti pripadajoč dešifrirni ključ.} in  \textit{(2) Dešifriranje je možno samo na principu vse ali nič. Torej ali je prejemnik sposoben dešifrirati sporočilo v celoti (poseduje dešifrirni ključ), ali pa ga sploh ne more dešifrirati.}
@@ -961,23 +961,27 @@ Izkaže se, da take šifrirne sheme res obstajajo, vendar je to področje kripto
 \begin{mdframed}[frametitle={Funkcionalnost}]
 \begin{defn}
 Funkcionalnost $F$, definirana na $(K, X)$ je funkcija $$F: K \times X \rightarrow {\{}0,1{\}}^*$$ predstavljena kot determinističen Turingov stroj. Množica $K$ je prostor vseh ključev in množica $X$ je prostor vseh čistopisov. Zahtevamo tudi, da množica $K$ vsebuje prazen ključ $\epsilon$.
+\label{def:fun}
 \end{defn}
 \end{mdframed}
 
 
-\begin{mdframed}[frametitle={Funkcionalna šifrirna shema}]
+\begin{mdframed}[frametitle={Funkcionalni kriptosistem}]
 \begin{defn}
-Funkcionalna šifrirna shema za funkcionalnost~$F: K \times X \rightarrow {\{}0,1{\}}^*$ je četvorka algoritmov:
+Funkcionalni kriptosistem za funkcionalnost~$F: K \times X \rightarrow {\{}0,1{\}}^*$ je četvorka algoritmov:
 \begin{align*}
-  (pp, mk) \leftarrow setup(1^\lambda) & \qquad \text{(generiranje para javnega in zasebnega ključa)} \\
-  sk \leftarrow keygen(mk, k) & \qquad \text{(generiranje skrivnega ključa za k)} \\
-  c \leftarrow enc(pp, x) & \qquad \text{(šifriranje sporočila)} \\
-  y \leftarrow dec(sk, c) & \qquad \text{(dešifriranje sporočila - izračun vrednosti F(k,x))} \\
+  (pp, mk) \leftarrow setup(1^\lambda) \\
+  sk \leftarrow keygen(mk, k) \\
+  c \leftarrow enc(pp, x)  \\
+  y \leftarrow dec(sk, c)  \\
 \end{align*}
+kjer zahtevamo, da velja: $y=F(k, x)$.
+\textit{Setup} predstavlja postopek za generiranje javnega ($pk$) in glavnega zasebnega ključa ($mk$), $\lambda$ pa je varnostni parameter. Postopek \textit{kygen} iz glavnega zasebnega ključa $mk$ in ključa $k$ ustvari skrivni ključ $sk$. Postopek \textit{enc} je šifrirni postopek, ki sporočilo $x$ šifrira z javnim ključem $pp$. Dešifriranje je postopek \textit{dec}, ki kot vhod vzame skrivni ključ $sk$ in tajnopis $c$, kot rezultat pa vrne $y$, ki je pravzaprav rezultat funkcionalnosti $F$.
+\label{def:funcs}
 \end{defn}
 \end{mdframed}
 
-V funkcionalni šifrirni shemi za funkcionalnost~$F(\cdot, \cdot)$ lahko \gls{authority}, ki si lasti glavni skrivni ključ, ustvari ključ~$sk_k$, s katerim uporabnik izračuna vrednost funkcije~$F(k, x)$ iz tajnopisa za~$x$. Recimo, da je možno, da za $F$ vzamemo katerokoli funkcijo, ki jo je možno opisati z determinističnim Turingovim strojem. To nam odpre možnost, da v šifrirno shemo vgradimo ``program'' za nadzor dostopa. S tem lahko zaobidemo omejitve, omenjene v prvem odstavku.
+V funkcionalni šifrirni shemi za funkcionalnost~$F(\cdot, \cdot)$ lahko \gls{authority}, ki si lasti glavni skrivni ključ, ustvari ključ~$sk_k$, s katerim uporabnik izračuna vrednost funkcije~$F(k, x)$ iz tajnopisa za~$x$. Recimo, da je možno, da za $F$ vzamemo katerokoli funkcijo, ki jo je možno opisati z determinističnim turingovim strojem. To nam odpre možnost, da v šifrirno shemo vgradimo ``program'' za nadzor dostopa in s tem zaobidemo omejitve, omenjene v prvem odstavku.
 
 Izkaže se, da je možno tudi povsem klasične asimetrične šifrirne sheme predstaviti v obliki funkcionalne šifrirne sheme, vendar so veliko bolj zanimive sheme, ki za ključe uporabljajo kar uporabnikovo identiteto - \gls{IBE} in njihova nadgradnja, ki je predstavljena v naslednjem poglavju.
 
@@ -1105,7 +1109,10 @@ Družina protokolov SSL/TLS je sestavljena iz 5 različic protokolov: SSL v2, SS
   \item[TLS v1.2] Protokol se prav tako smatra za varnega, poleg tega pa ponuja še možnost uporabe overjenih šifrirnih postopkov, ki ponujajo višjo stopnjo varnosti.
 \end{description}
 
-Protokol SSL/TLS uporabniku omogoča izbor nabora kriptosistemov, ki se uporabljajo za doseganje zaupnosti, istovetnosti in celovitosti komunikacije. Žal nekateri kriptosistemi, ki jih protokol podpira, niso več varni za uporabo. Za dogovor o ključu je priporočena uporaba sistemov, ki zagotavljajo prihodnjo varnost. Prihodnja varnost zagotavlja, da tudi če je napadalec posnel šifriran promet, v upanju, da bo enkrat v prihodnosti zmogel razbiti zasebni ključ strežnika, s tem ključem ne bo zmogel dešifrirati pretekle komunikacije. To se doseže tako, da se za vsako sejo uporabi začasni sejni ključ, neodvisen od zasebnega ključa strežnika.
+Protokol SSL/TLS uporabniku omogoča izbor nabora kriptosistemov, ki se uporabljajo za doseganje zaupnosti, istovetnosti in celovitosti komunikacije. Žal nekateri kriptosistemi, ki jih protokol podpira, niso več varni za uporabo. Za dogovor o ključu je priporočena uporaba sistemov, ki zagotavljajo prihodnjo varnost (angl.\ forward secrecy). Uporaba prihodnje varnosti pomeni, da se za šifriranje prometa uporabljajo kratkoživi ključi, ki niso povezani z zasebnim ključem strežnika. Tako tudi v primeru, da pride do razkritja zasebnega ključa strežnika, napadalec ne more dešifrirati prometa. Priporoča se uporaba algoritmov na osnovi dogovora o ključu Diffie-Hellman, ponavadi jih najdemo pod kraticami \textit{DHE} in \textit{ECDHE}. Slednji algoritem namesto celoštevilskih obsegov
+
+
+da tudi če je napadalec posnel šifriran promet, v upanju, da bo enkrat v prihodnosti zmogel razbiti zasebni ključ strežnika, s tem ključem ne bo zmogel dešifrirati pretekle komunikacije. To se doseže tako, da se za vsako sejo uporabi začasni sejni ključ, neodvisen od zasebnega ključa strežnika.
 
 
 \section{Varovanje podatkov v uporabi}
