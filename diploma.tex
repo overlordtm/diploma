@@ -83,6 +83,7 @@
 \newacronym{SSL}{SSL}{Secure Sockets Layer}
 \newacronym{TLS}{TLS}{Transport Layer Security}
 \newacronym{HTTPS}{HTTPS}{HTTP over TLS}
+\newacronym{LWE}{LEW}{Learning with Errors}
 
 
 \newglossaryentry{MITM}
@@ -885,10 +886,10 @@ Originalna različica algoritma uporablja multiplikativno grupo števil po modul
 
 Recimo, da se želita Anita in Bojan preko interneta dogovoriti o skupnem ključu, ki ga bosta uporabljala za nadaljnjo komunikacijo. To lahko storita po postopku, ki je opisan v definiciji~\ref{def:dhprob}.
 
-\begin{mdframed}[frametitle={Izmenjava ključa Diffe-Hellman}]
+\begin{mdframed}[frametitle={Dogovor o ključu Diffe-Hellman}]
 \begin{minipage}{\textwidth}
 \begin{defn}
-
+  \newline
 \begin{enumerate}
 	\item Anita in Bojan se dogovorita o skupnih parametrih, ki jih bosta uporabljala v algoritmu. To je praštevilo $p$ in primitivni koren praštevila~$g$.
 	\item Anita si izbere skrivno število $a$, izračuna $A=g^a \mod p$ in pošlje $A$ Bojanu.
@@ -897,9 +898,6 @@ Recimo, da se želita Anita in Bojan preko interneta dogovoriti o skupnem ključ
 	\item Bojan izračuna $s=A^b \mod p$.
 	\item Anita in Bojan sta dobila enak rezultat $s$, ki ga sedaj lahko uporabita kot skupni ključ za nadaljnjo komunikacijo.
 \end{enumerate}
-
-\vspace{0.5cm}
-
 Oba sta izračunala enak rezultat, ker velja:
 $$
 A^b \equiv g^{ab} \equiv g^{ba} \equiv B^a \mod p
@@ -1088,18 +1086,34 @@ Potrebna lastnost homomorfne šifre je \glslink{malleable}{gnetljivost} (angl.\ 
 
 Ločimo dva tipa homomorfnih šifer, glede na to, katere operacije lahko opravimo nad tajnopisi. V prvo skupino spadajo delno homomorfni sistemi, kot so RSA brez dopolnjevanja, ElGamal in drugi. Taki sistemi so homomorfni samo za eno operacijo in kot taki ne prav zanimivi za splošno uporabo, je pa z njimi možno implementirati rešitev kot so recimo varne e-volitve. Veliko bolj zanimivi pa so popolnoma homomorfni sistemi, kjer je nad tajnopisi možno izvesti poljubno operacijo. Prvi popolnoma homomorfni kriptosistem je v svoji doktorski disertaciji predstavil C. Gentry~\cite{gentry2009fully}, vendar se njegova implementacija ni izkazala za najbolj praktično. Prvi problem predstavlja velikost javnega ključa, ki sega od 70 MB do 2,3 GB, odvisno od stopnje varnosti, ki jo želimo. Prav tako je problematična hitrost take sheme, saj obdelava enega bita informacije traja nekje med 30 sekundami in 30 minutami.
 
-Za občutek lahko predstavimo nekoliko homomorfno šifrirno shemo, ki je bila predstavljena v~\cite{gentry2010computing}. Shema je veliko preprostejša od prve sheme v doktorski disertaciji C. Gentry-a, saj uporablja preprosto številsko aritmetiko, vendar ima problem, da omogoča samo omejeno število evalvacij funkcije, preden rezultat postane neuporaben.
+Za občutek lahko predstavimo nekoliko homomorfno šifrirno shemo, ki je bila predstavljena v~\cite{gentry2010computing}. Shema je veliko preprostejša od prve sheme v doktorski disertaciji C. Gentry-a, saj uporablja preprosto številsko aritmetiko, vendar ima problem, da omogoča samo omejeno število ovrednotenj, preden rezultat postane neuporaben.
 
-\begin{description}
-  \item[KeyGen]: za ključ izberemo naključno liho P-bitno celo število
-  \item[$e_k(m)$]: Šifriranje $m \in \{0,1\}$ poteka tako, da najprej izberemo naključno N-bitno število $m'$, da velja $m' = m \mod 2$. Tajnopis je $c=m'+pq$, kjer je $q$ naključno $Q$-bitno celo število.
-  \item[$d_k(m)$]: Rezultat dešifriranja je $(c \mod p) \mod 2$, kjer velja $c'=c \mod p$ in $-p/2 < c' < p/2$ in $p$ deli $c-c'$.
-\end{description}
+\begin{mdframed}[frametitle=Nekoliko homomorfen kriptosistem]
+  \begin{defn} Za izbran varnostni parameter $\lambda$, naj bo $N=\lambda$, $P=\lambda^2$ in $Q=\lambda^5$.
+    \begin{description}[style=nextline]
+      \item[Generiranje ključa - $KeyGen$]Za ključ $p$ izberemo naključno liho $P$-bitno celo število.
+      \item[Šifriranje - $e_k(m)$]Šifriranje $m \in {\{}0,1{\}}$ poteka tako, da najprej izberemo naključno $N$-bitno število $m'$, da velja $m' = m \mod 2$. Tajnopis je $$c=m'+pq$$ kjer je $q$ naključno $Q$-bitno celo število.
+      \item[Dešifriranje - $d_k(m)$]Rezultat dešifriranja je $$(c \mod p) \mod 2$$ kjer velja $c'=(c \mod p)$, $$-p/2 < c' < p/2$$ in $p$ deli $c-c'$.
+    \end{description}
+    \label{def:swhe}
+  \end{defn}
+\end{mdframed}
 
-V taki shemi je možno tajnopise seštevati, odštevati in množiti po modulu 2. Ker seštevanje in množenje po modulu 2 hkrati predstavlja tudi logična vrata $AND$ in $XOR$, lahko v takem sistemu ovrednotimo poljubno funkcijo, ki jo je možno predstaviti digitalno vezje. Problem nastane, ker vsaka od teh operacij poveča količino ``šuma'', ki smo ga dodali pri šifriranju, in če ta naraste preko neke meje, sporočila ni več možno dešifrirati.\todo{napisi se vec}
+Tajnopisi v shemi, podani v definiciji~\ref{def:swhe}, so \textit{skorajšni večkratniki} števila $p$. Ostanek pri deljenju tajnopisa $c$ s številom $p$, $(c \mod p)$, imenujemo \textit{šum}.
 
-Problem šuma je mogoče rešiti tako, da podatke dešifriramo. Če nam uspe dešifrirno funkcijo predstaviti kot logično vezje, ki ga je možno ovrednotiti v dani shemi, smo na dobri poti da zmanjšamo šum. Kriptosistemom, ki so sposobni te operacije rečemo, da so \glslink{bootstrappable}{\textit{samozagonski}} (angl.\ bootstrappable), in možno je pokazati, da iz takega sistema lahko sestavimo popolnoma homomorfen kriptosistem. Kljub temu, da ta postopek omogoča, da pridemo do popolnoma homomorfnega kriptosistema, pa je daleč od idealnega. Ovrednotenje dešifrirne funkcije, predstavljene kot digitalno vezje je računsko zahteven postopek, prav tako pa tajnopis enega samega bita informacije zasede precej več prostora kot pripadajoč čistopis. Zato se v zadnjem času veliko raziskav usmerja v kriptosisteme, kjer \textit{bootstraping} ni potreben.\todo{Learning with errors}
+V taki shemi je možno tajnopise seštevati, odštevati in množiti po modulu 2. Ker seštevanje in množenje po modulu 2 hkrati predstavlja tudi logična vrata $AND$ in $XOR$, lahko v takem sistemu ovrednotimo poljubno funkcijo, ki jo je možno predstaviti digitalno vezje. Problem nastane, ker vsaka od teh operacij poveča količino ``šuma'', ki smo ga dodali pri šifriranju, in če ta naraste preko neke meje, sporočila ni več možno dešifrirati.
 
+\begin{mdframed}[frametitle=Homomorfne operacije]
+  \begin{defn} V nekoliko homomorfnem kriptosistemu, podanem v definiciji~\ref{def:swhe}, je možno izvesti naslednje operacije nad tajnopis:
+    \begin{description}[style=nextline]
+      \item[Add($c_1$, $c_2$), Sub($c_1$, $c_2$), Mult($c_1$, $c_2$)]Seštevanje, odštevanje im množenje lahko izvedemo tako, kot smo navajeni. Torej $c_1+c_2$, $c_1-c_2$ in $c_1 \cdot c_2$.
+      \item[Ovrednotenje - $Evaluate(f, c_1, \ldots, c_t)$] Funkcijo $f$ predstavimo kot logično vezje, sestavljeno samo iz vrat $XOR$ in $AND$. V atritmetiki modulo 2 logična vrata $XOR$ predstavljajo seštevanje, logična vrata $AND$ pa množenje, kar pa so ravno homomorfne operacije, definirane v prejšni alineji.
+    \end{description}
+    \label{def:swheops}
+  \end{defn}
+\end{mdframed}
+
+Problem šuma je mogoče rešiti tako, da podatke dešifriramo. Če nam uspe dešifrirno funkcijo predstaviti kot logično vezje, ki ga je možno ovrednotiti v dani shemi, smo na dobri poti da zmanjšamo šum. Kriptosistemom, ki so sposobni te operacije rečemo, da so \glslink{bootstrappable}{\textit{samozagonski}} (angl.\ bootstrappable), in možno je pokazati, da iz takega sistema lahko sestavimo popolnoma homomorfen kriptosistem. Kljub temu, da ta postopek omogoča, da pridemo do popolnoma homomorfnega kriptosistema, pa je daleč od idealnega. Ovrednotenje dešifrirne funkcije, predstavljene kot digitalno vezje je računsko zahteven postopek, prav tako pa tajnopis enega samega bita informacije zasede precej več prostora kot pripadajoč čistopis. Zato se v zadnjem času veliko raziskav usmerja v kriptosisteme, kjer \textit{bootstraping} ni potreben. Predvsem se veliko pozornosti usmerja v problem \textit{učenja z napakami} - \acrfull{LWE}. Problem je prvič predstavil O. Regev~\cite{regev2009lattices} in izkazalo se je, da ta problem lahko predstavlja koristno osnovo za mnoge kriptografske konstrukcije. Čeprav problem šuma obstaja tudi v kriptosistemih, osnovanih na problemu \arc{LWE}, pa je le tega možno zmanjšati na veliko hitrejši način kot je \textit{samozagon}.
 
 \section{Varovanje podatkov v mirovanju}
 \label{sec:Varovanje podatkov v mirovanju}
