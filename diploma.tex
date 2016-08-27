@@ -888,7 +888,7 @@ Recimo, da se želita Anita in Bojan preko interneta dogovoriti o skupnem ključ
 
 \begin{mdframed}[frametitle={Dogovor o ključu Diffe-Hellman}]
 \begin{minipage}{\textwidth}
-\begin{defn} Predstavimo nekaj preprostih korakov, kako se lahko Antia in Bojan dogovorita o skupnem ključu, brez da, bi ga razkrila komurkoli.
+\begin{defn} Predstavimo nekaj preprostih korakov, kako se lahko Anita in Bojan dogovorita o skupnem ključu, brez da, bi ga razkrila komurkoli.
 \begin{enumerate}
 	\item Anita in Bojan se dogovorita o skupnih parametrih, ki jih bosta uporabljala v algoritmu. To je praštevilo $p$ in primitivni koren praštevila~$g$.
 	\item Anita si izbere skrivno število $a$, izračuna $A=g^a \mod p$ in pošlje $A$ Bojanu.
@@ -940,7 +940,7 @@ $$
 e(m)*t^e \mod n = m^et^e \mod n = (mt)^e \mod n = e(mt)
 $$
 
-Tej lastnosti rečemo gnetljivost (angl.\ malleability), saj napadalec lahko samo s poznavanjem javnih parametrov kriptosistema in tajnopisa $c$, skonstruira nov tajnopis $c'$, ki se dešifrira v čistopis, ki je na nek način povezan s čistopisom, ki pripada $c$. V splošnem velja, da je to neželjena lastnost varnega kriptosistema, vendar bomo v poglavju \ref{sec:Homomorfni kriptosistemi} spoznali, da s tem, ko dovolimo gnetljivost kriptosistema, odpremo vrata popolnoma novim načinom uporabe kriptografije v oblaku.
+Tej lastnosti rečemo gnetljivost (angl.\ malleability), saj napadalec lahko samo s poznavanjem javnih parametrov kriptosistema in tajnopisa $c$, skonstruira nov tajnopis $c'$, ki se dešifrira v čistopis, ki je na nek način povezan s čistopisom, ki pripada $c$. V splošnem velja, da je to neželena lastnost varnega kriptosistema, vendar bomo v poglavju \ref{sec:Homomorfni kriptosistemi} spoznali, da s tem, ko dovolimo gnetljivost kriptosistema, odpremo vrata popolnoma novim načinom uporabe kriptografije v oblaku.
 
 
 \chapter{Uporaba kriptografije v oblaku}
@@ -1001,7 +1001,7 @@ kjer zahtevamo, da velja: $y=F(k, x)$.
 \end{defn}
 \end{mdframed}
 
-V funkcionalni šifrirni shemi za funkcionalnost~$F(\cdot, \cdot)$ lahko \gls{authority}, ki si lasti glavni skrivni ključ, ustvari ključ~$sk_k$, s katerim uporabnik izračuna vrednost funkcije~$F(k, x)$ iz tajnopisa za~$x$. Recimo, da je možno, da za $F$ vzamemo katerokoli funkcijo, ki jo je možno opisati z determinističnim turingovim strojem. To nam odpre možnost, da v šifrirno shemo vgradimo ``program'' za nadzor dostopa in s tem zaobidemo omejitve, omenjene v prvem odstavku.
+V funkcionalni šifrirni shemi za funkcionalnost~$F(\cdot, \cdot)$ lahko \gls{authority}, ki si lasti glavni skrivni ključ, ustvari ključ~$sk_k$, s katerim uporabnik izračuna vrednost funkcije~$F(k, x)$ iz tajnopisa za~$x$. Recimo, da je možno, da za $F$ vzamemo katerokoli funkcijo, ki jo je možno opisati z determinističnim Turingovim strojem. To nam odpre možnost, da v šifrirno shemo vgradimo ``program'' za nadzor dostopa in s tem zaobidemo omejitve, omenjene v prvem odstavku.
 
 Izkaže se, da je možno tudi povsem klasične asimetrične šifrirne sheme predstaviti v obliki funkcionalne šifrirne sheme, vendar so veliko bolj zanimive sheme, ki za ključe uporabljajo kar uporabnikovo identiteto - \gls{IBE} in njihova nadgradnja, ki je predstavljena v poglavju \ref{sub:Sifriranje na osnovi atributov in predikatov}.
 
@@ -1022,7 +1022,7 @@ Poznamo dve vrsti šifriranja na osnovi parametrov. V prvem je drevo, ki določa
 \begin{defn}
 Velikokrat ima čistopis $x \in X$, določeno strukturo, recimo da je v obliki para $(\texttt{ind}, m) \in I \times M$, kjer imenujemo \texttt{ind} indeks in $m$ koristni tovor. Primer je lahko e-poštni sistem, kjer je indeks identiteta pošiljatelja, koristni tovor pa e-sporočilo.
 
-Definirajmo predikat $P: K \times I \rightarrow {\{}0, 1{\}}$ in funcionalnost $F: K \times X \rightarrow X \cup \bot$:
+Definirajmo predikat $P: K \times I \rightarrow {\{}0, 1{\}}$ in funkcionalnost $F: K \times X \rightarrow X \cup \bot$:
 
 \begin{gather*}
 F(k, (\texttt{ind}, m)) = \begin{cases}
@@ -1098,7 +1098,7 @@ Za občutek lahko predstavimo nekoliko homomorfno šifrirno shemo, ki je bila pr
   \end{defn}
 \end{mdframed}
 
-Tajnopisi v shemi, podani v definiciji~\ref{def:swhe}, so \textit{skorajšni večkratniki} števila $p$. Ostanek pri deljenju tajnopisa $c$ s številom $p$, $(c \mod p)$, imenujemo \textit{šum}.
+Tajnopisi v shemi, podani v definiciji~\ref{def:swhe}, so \textit{skorajšnji večkratniki} števila $p$. Ostanek pri deljenju tajnopisa $c$ s številom $p$, $(c \mod p)$, imenujemo \textit{šum}.
 
 V taki shemi je možno tajnopise seštevati, odštevati in množiti po modulu 2. Ker seštevanje in množenje po modulu 2 hkrati predstavlja tudi logična vrata $AND$ in $XOR$, lahko v takem sistemu ovrednotimo poljubno funkcijo, ki jo je možno predstaviti digitalno vezje. Problem nastane, ker vsaka od teh operacij poveča količino ``šuma'', ki smo ga dodali pri šifriranju, in če ta naraste preko neke meje, sporočila ni več možno dešifrirati.\todo{napisa zakaj}
 
@@ -1106,7 +1106,7 @@ V taki shemi je možno tajnopise seštevati, odštevati in množiti po modulu 2.
   \begin{defn} V nekoliko homomorfnem kriptosistemu, podanem v definiciji~\ref{def:swhe}, je možno izvesti naslednje operacije nad tajnopis:
     \begin{description}[style=nextline]
       \item[Add($c_1$, $c_2$), Sub($c_1$, $c_2$), Mult($c_1$, $c_2$)]Seštevanje, odštevanje im množenje lahko izvedemo tako, kot smo navajeni. Torej $c_1+c_2$, $c_1-c_2$ in $c_1 \cdot c_2$.
-      \item[Ovrednotenje - $Evaluate(f, c_1, \ldots, c_t)$] Funkcijo $f$ predstavimo kot logično vezje, sestavljeno samo iz vrat $XOR$ in $AND$. V atritmetiki modulo 2 logična vrata $XOR$ predstavljajo seštevanje, logična vrata $AND$ pa množenje, kar pa so ravno homomorfne operacije, definirane v prejšni alineji.
+      \item[Ovrednotenje - $Evaluate(f, c_1, \ldots, c_t)$] Funkcijo $f$ predstavimo kot logično vezje, sestavljeno samo iz vrat $XOR$ in $AND$. V aritmetiki modulo 2 logična vrata $XOR$ predstavljajo seštevanje, logična vrata $AND$ pa množenje, kar pa so ravno homomorfne operacije, definirane v prejšnji alineji.
     \end{description}
     \label{def:swheops}
   \end{defn}
@@ -1161,7 +1161,7 @@ Pri uporabi bločnih kriptosistemov v kombinaciji z enim od načinom delovanja (
 
 V primeru oblačnih storitev, ki ponujajo hrambo podatkov v oblaku, pa je zaželena tudi sposobnost \glslink{deduplication}{izločanja dvojnikov (angl.\ deduplication)}, saj ta ponudniku storitve omogoča prihranke pri količini pomnilnika, porabljenega za hrambo datotek. Izločanje dvojnikov lahko deluje na nivoju datoteke ali pa na nivoju blokov. Najpreprostejša implementacija je na nivoju datoteke. Ob nalaganju datoteke v sistem se preveri zgoščena vrednost (hash) te datoteke, in v kolikor sistem ugotovi, da je datoteka z enako zgoščeno vrednostjo že shranjena v sistemu, samo poveča vrednost števca, ki kaže koliko kopij te datoteke že obstaja. Z uporabo tega principa lahko v sistemu obstaja praktično neomejeno število kopij iste datoteke, brez potrebe po neomejenih pomnilniških kapacitetah. Naprednejši načini izločanja dvojnikov datoteko najprej razbijejo na bloke konstantne ali spremenljive dolžine, in nato uporabijo isti postopek na blokih datoteke. Tako je možno dosečti še večje prihranke prostora na diskih.
 
-Problem pa nastane, ko želimo izločanje dvojnikov uporabiti skupaj s šifriranjem. Praviloma želimo, da tajnopis izda karseda malo informacij o čistopisu, ki mu pripada. V praksi to pomeni, da za dva tajnopisa ne moremo ugotoviti, ali pripadata istemu čistopisu (isti datoteki), saj se v postopku šifriranja pogosto doda nek naključni element (recimo \gls{IV} v poglavju~\ref{sub:Nacini delovanja blocnih sifer}). Tak pristop sicer omogoča doseganje \textit{semantične varnosti}, definirane v definciji \ref{def:semsec}, vendar onemogoči znatne prihranke pomnilniškega prostora ob poskusu izločanja dvojnikov. V kolikor želimo imeti oboje, je potrebno znižati varnostne zahteve. Če teoretičnemu napadalcu dovolimo, da ugotovi, da dva tajnopisa pripadata istemu čistopisu (torej tak kriptosistem ni \textit{semantično varen}) je izločanje dvojnikov možno.
+Problem pa nastane, ko želimo izločanje dvojnikov uporabiti skupaj s šifriranjem. Praviloma želimo, da tajnopis izda karseda malo informacij o čistopisu, ki mu pripada. V praksi to pomeni, da za dva tajnopisa ne moremo ugotoviti, ali pripadata istemu čistopisu (isti datoteki), saj se v postopku šifriranja pogosto doda nek naključni element (recimo \gls{IV} v poglavju~\ref{sub:Nacini delovanja blocnih sifer}). Tak pristop sicer omogoča doseganje \textit{semantične varnosti}, definirane v definiciji \ref{def:semsec}, vendar onemogoči znatne prihranke pomnilniškega prostora ob poskusu izločanja dvojnikov. V kolikor želimo imeti oboje, je potrebno znižati varnostne zahteve. Če teoretičnemu napadalcu dovolimo, da ugotovi, da dva tajnopisa pripadata istemu čistopisu (torej tak kriptosistem ni \textit{semantično varen}) je izločanje dvojnikov možno.
 
 \begin{mdframed}[frametitle={Semantična varnost}]
   \begin{defn}
@@ -1215,7 +1215,7 @@ Protokol SSL/TLS uporabniku omogoča izbor nabora kriptosistemov, ki se uporablj
 
 Za dogovor o ključu je priporočena uporaba sistemov, ki zagotavljajo prihodnjo varnost (angl.\ forward secrecy). Uporaba prihodnje varnosti pomeni, da se za šifriranje prometa uporabljajo kratkoživi ključi, ki niso povezani z zasebnim ključem strežnika. Tako tudi v primeru, da pride do razkritja zasebnega ključa strežnika, napadalec ne more dešifrirati prometa. Priporoča se uporaba algoritmov na osnovi dogovora o ključu Diffie-Hellman, ponavadi jih najdemo pod kraticami \textit{DHE} in \textit{ECDHE}. Slednji algoritem namesto celoštevilskih obsegov uporablja aritmetiko na eliptičnih krivuljah, kar mu omogoča, da zagotovi isto stopnjo varnosti, ob uporabi krajših ključev kot \textit{DHE}.
 
-Pri izboru kriptosistema za šifriranje prometa se priporoča uporaba \textit{AES}, v načinu delovanja \textit{GCM}. Način delovanja \textit{GCM} je podoben načinu delovanja \textit{CTR}, predtsavljenem v poglavju~\ref{sub:Nacini delovanja blocnih sifer}, s to razliko, da hkrati zagotavlja tudi istovetnost šifriranih podatkov. Izogniti se velja vsem bločnim kriptosistemom, ki uporabljajo bloke, krajše od $128$ bitov, da se izognemo rojstnodnevnim napadom (opisani v definiciji~\ref{def:bdayattack}), kot je \textit{SWEET32}~\cite{sweet32}.
+Pri izboru kriptosistema za šifriranje prometa se priporoča uporaba \textit{AES}, v načinu delovanja \textit{GCM}. Način delovanja \textit{GCM} je podoben načinu delovanja \textit{CTR}, predstavljenem v poglavju~\ref{sub:Nacini delovanja blocnih sifer}, s to razliko, da hkrati zagotavlja tudi istovetnost šifriranih podatkov. Izogniti se velja vsem bločnim kriptosistemom, ki uporabljajo bloke, krajše od $128$ bitov, da se izognemo rojstnodnevnim napadom (opisani v definiciji~\ref{def:bdayattack}), kot je \textit{SWEET32}~\cite{sweet32}.
 
 Prav tako se je potrebno izogniti kriptosistemu \textit{RC4}, ki ne velja več za varnega in vsem tako imenovanim ``izvoznim'' kriptosistemom (angl.\ export ciphers). Te kriptosistemi izvirajo še iz časov hladne vojne, ko so v Združenih Državah veljali strogi izvozni zakoni za kriptografske sisteme, saj je vlada na njih gledala kot na orožje. Vlada se je bala, da bi močna kriptografija lahko prišla v neprave roke, zato je bilo potrebno kriptosisteme, ki so jih želeli izvoziti izven Združenih Držav Amerike, oslabiti.
 
@@ -1229,12 +1229,11 @@ Kljub temu pa tveganje za hladni napad ni veliko, saj z napadalčeve strani zaht
 
 Vsem tem problemom se lahko izognemo, če podatki v obliki čistopisa, sploh nikoli ne pridejo v oblačni sistem. To lahko zagotovimo tako, da podatke šifriramo preden jih pošljemo v oblak. Vendar šifrirani podatki so po definiciji neločljivi od naključnega šuma. Dokler uporabljamo oblak samo kot priročno shrambo velikih količin podatkov, to ne predstavlja problema. Podatke šifriramo preden jih pošljemo v oblak. Kadar želimo do njih dostopati, pretočimo tajnopise nazaj iz oblaka na svoj, zaupanja vreden, računalnik, kjer jih dešifriramo. Na tak način smo preložili problem hrambe podatkov v oblak, vendar ostane nam še problem obdelave podatkov. V idealnem svetu bi želeli, da bi obstajal način, da pošljemo šifrirane podatke v oblak, ta pa bi nad njimi izvedel poljubno operacijo, brez da bi jih dešifriral.
 
-V poglavju~\ref{sec:Homomorfni kriptosistemi} smo spoznali homomorfne kriptosisteme, ki nam omogočajo prav to. Žal pa je to še precej novo področje kriptografije in taki krptosistemi še niso primerni za splošno uporabo. Največji problem predstavlja hitrost izvajanja operacij nad šifriranimi podatki, pa tudi velikost tajnopisov. Nič čudnega ni, če v homomorfnem kriptosistemu iz 1 MB čistopisa dobite 10 GB tajnopisa. Seštevanje nad tajnopisi je sicer dokaj hitra operacija (manj kot milisekunda), vendar že preprosto množenje dveh bitov podatkov lahko vzame več sekund. Kljub temu, pa je možno homorfne sisteme uporabiti za preprosto aritmetiko nad tajnopisi, kot so na primer \textit{e-volitve} in v določenih drugih dobro določenih problemih. Omeniti velja ekipo raziskovalcev iz Microsofta, ki je v začetku leta 2016 predstavila nevronsko mrežo, ki zmore več deset tisoč optičnih prepoznav znakov (OCR) na uro, kljub temu, da operira s homomorfno šifriranimi podatki.
+V poglavju~\ref{sec:Homomorfni kriptosistemi} smo spoznali homomorfne kriptosisteme, ki nam omogočajo prav to. Žal pa je to še precej novo področje kriptografije in taki kriptosistemi še niso primerni za splošno uporabo. Največji problem predstavlja hitrost izvajanja operacij nad šifriranimi podatki, pa tudi velikost tajnopisov. Nič čudnega ni, če v homomorfnem kriptosistemu iz 1 MB čistopisa dobite 10 GB tajnopisa. Seštevanje nad tajnopisi je sicer dokaj hitra operacija (manj kot milisekunda), vendar že preprosto množenje dveh bitov podatkov lahko vzame več sekund. Kljub temu, pa je možno homomorfne sisteme uporabiti za preprosto aritmetiko nad tajnopisi, kot so na primer \textit{e-volitve} in v določenih drugih dobro določenih problemih. Omeniti velja ekipo raziskovalcev iz Microsofta, ki je v začetku leta 2016 predstavila nevronsko mrežo, ki zmore več deset tisoč optičnih prepoznav znakov (OCR) na uro, kljub temu, da operira s homomorfno šifriranimi podatki.
 
 \chapter{Zaključek}
 \label{chap:Zakljucek}
 
-haha
 \newpage
 
 %********************************************

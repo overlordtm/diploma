@@ -104,6 +104,7 @@ homomorfno
 homomorfizem
 homomorfen
 homomorfnega
+homomorfnem
 karseda
 rojstnodnevnega
 rojstnodnevni
@@ -120,3 +121,13 @@ deduplikacijo
 Stac
 SHA
 hipernadzornika
+Mult
+Regev
+LWE
+Diffie
+dec
+kezgen
+auth
+cryptosystem
+DHE
+ECDHE
