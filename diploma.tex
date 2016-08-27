@@ -888,8 +888,7 @@ Recimo, da se želita Anita in Bojan preko interneta dogovoriti o skupnem ključ
 
 \begin{mdframed}[frametitle={Dogovor o ključu Diffe-Hellman}]
 \begin{minipage}{\textwidth}
-\begin{defn}
-  \newline
+\begin{defn} Predstavimo nekaj preprostih korakov, kako se lahko Antia in Bojan dogovorita o skupnem ključu, brez da, bi ga razkrila komurkoli.
 \begin{enumerate}
 	\item Anita in Bojan se dogovorita o skupnih parametrih, ki jih bosta uporabljala v algoritmu. To je praštevilo $p$ in primitivni koren praštevila~$g$.
 	\item Anita si izbere skrivno število $a$, izračuna $A=g^a \mod p$ in pošlje $A$ Bojanu.
@@ -1113,7 +1112,7 @@ V taki shemi je možno tajnopise seštevati, odštevati in množiti po modulu 2.
   \end{defn}
 \end{mdframed}
 
-Problem šuma je mogoče rešiti tako, da podatke dešifriramo. Če nam uspe dešifrirno funkcijo predstaviti kot logično vezje, ki ga je možno ovrednotiti v dani shemi, smo na dobri poti da zmanjšamo šum. Kriptosistemom, ki so sposobni te operacije rečemo, da so \glslink{bootstrappable}{\textit{samozagonski}} (angl.\ bootstrappable), in možno je pokazati, da iz takega sistema lahko sestavimo popolnoma homomorfen kriptosistem. Kljub temu, da ta postopek omogoča, da pridemo do popolnoma homomorfnega kriptosistema, pa je daleč od idealnega. Ovrednotenje dešifrirne funkcije, predstavljene kot digitalno vezje je računsko zahteven postopek, prav tako pa tajnopis enega samega bita informacije zasede precej več prostora kot pripadajoč čistopis. Zato se v zadnjem času veliko raziskav usmerja v kriptosisteme, kjer \textit{bootstraping} ni potreben. Predvsem se veliko pozornosti usmerja v problem \textit{učenja z napakami} - \acrfull{LWE}. Problem je prvič predstavil O. Regev~\cite{regev2009lattices} in izkazalo se je, da ta problem lahko predstavlja koristno osnovo za mnoge kriptografske konstrukcije. Čeprav problem šuma obstaja tudi v kriptosistemih, osnovanih na problemu \arc{LWE}, pa je le tega možno zmanjšati na veliko hitrejši način kot je \textit{samozagon}.
+Problem šuma je mogoče rešiti tako, da podatke dešifriramo. Če nam uspe dešifrirno funkcijo predstaviti kot logično vezje, ki ga je možno ovrednotiti v dani shemi, smo na dobri poti da zmanjšamo šum. Kriptosistemom, ki so sposobni te operacije rečemo, da so \glslink{bootstrappable}{\textit{samozagonski}} (angl.\ bootstrappable), in možno je pokazati, da iz takega sistema lahko sestavimo popolnoma homomorfen kriptosistem. Kljub temu, da ta postopek omogoča, da pridemo do popolnoma homomorfnega kriptosistema, pa je daleč od idealnega. Ovrednotenje dešifrirne funkcije, predstavljene kot digitalno vezje je računsko zahteven postopek, prav tako pa tajnopis enega samega bita informacije zasede precej več prostora kot pripadajoč čistopis. Zato se v zadnjem času veliko raziskav usmerja v kriptosisteme, kjer \textit{bootstraping} ni potreben. Predvsem se veliko pozornosti usmerja v problem \textit{učenja z napakami} - \acrfull{LWE}. Problem je prvič predstavil O. Regev~\cite{regev2009lattices} in izkazalo se je, da ta problem lahko predstavlja koristno osnovo za mnoge kriptografske konstrukcije. Čeprav problem šuma obstaja tudi v kriptosistemih, osnovanih na problemu \acrshort{LWE}, pa je le tega možno zmanjšati na veliko hitrejši način kot je \textit{samozagon}.
 
 \section{Varovanje podatkov v mirovanju}
 \label{sec:Varovanje podatkov v mirovanju}
@@ -1171,10 +1170,6 @@ V principu je potrebno poskrbeti, da šifriranje enakega čistopisa vsakič da e
 
 Vendar pa imajo zaradi znižanih varnostnih zahtev taki sistemi tudi svoje ranljivosti. Ker je postopek šifriranja determinističen, tako lahko napadalec, ki si lasti enako datoteko, ugotovi ali ima to datoteko tudi kateri drug uporabnik. Na prvi pogled to sicer sicer ne izgleda tako problematično, vendar je na tak način mogoče ugotoviti, ali je uporabnik v sistem naložil piratsko vsebino ali pa prepovedano literaturo. V praksi se velikokrat uporabi izločanje dvojnikov na nivoju blokov, kar pa omogoča se bolj zvito izvedbo napada. V kolikor obstajajo datoteke, katerih vsebina je pretežno statična (recimo bančni izpiski), bodo tudi tajnopisi teh blokov v veliki meri enaki. Če ima napadalec dostop do podobnega bančnega izpiska, je obstaja verjetnost da se tajnopis napadalčevega in žrtvinega dokumenta razlikujeta samo v parih blokih. Napadalec lahko uporabi surovo silo in ustvari vse možne bloke, nato pa s pomočjo prvega napada ugotovi, kateri bloki pripadajo dokumentu žrtve napada. Takim napadom se je možno izogniti z uporabo ustreznega nadzora dostopa, kot je recimo opisano v članku~\cite{keelveedhi2013dupless}.
 
-\subsection{Šifriranje in deljenje podatkov}
-\label{sub:Šifriranje in deljenje podatkov}
-
-
 \section{Varovanje podatkov v gibanju}
 \label{sec:Varovanje podatkov v gibanju}
 
@@ -1230,13 +1225,12 @@ Kljub temu pa tveganje za hladni napad ni veliko, saj z napadalčeve strani zaht
 
 Vsem tem problemom se lahko izognemo, če podatki v obliki čistopisa, sploh nikoli ne pridejo v oblačni sistem. To lahko zagotovimo tako, da podatke šifriramo preden jih pošljemo v oblak. Vendar šifrirani podatki so po definiciji neločljivi od naključnega šuma. Dokler uporabljamo oblak samo kot priročno shrambo velikih količin podatkov, to ne predstavlja problema. Podatke šifriramo preden jih pošljemo v oblak. Kadar želimo do njih dostopati, pretočimo tajnopise nazaj iz oblaka na svoj, zaupanja vreden, računalnik, kjer jih dešifriramo. Na tak način smo preložili problem hrambe podatkov v oblak, vendar ostane nam še problem obdelave podatkov. V idealnem svetu bi želeli, da bi obstajal način, da pošljemo šifrirane podatke v oblak, ta pa bi nad njimi izvedel poljubno operacijo, brez da bi jih dešifriral.
 
-V poglavju~\ref{sec:Homomorfni kriptosistemi} smo spoznali homomorfne kriptosisteme, ki nam omogočajo prav to. Žal pa je to še precej novo področje kriptografije in taki krptosistemi še niso primerni za splošno uporabo. Največji problem predstavlja hitrost izvajanja operacij nad šifriranimi podatki, pa tudi šibka varnostna zagotovila določenih sistemov. Kljub temu, pa je možno homorfne sisteme uporabiti za preprosto aritmetiko nad tajnopisi, ter iskanje in urejanje šifriranih podatkov.
+V poglavju~\ref{sec:Homomorfni kriptosistemi} smo spoznali homomorfne kriptosisteme, ki nam omogočajo prav to. Žal pa je to še precej novo področje kriptografije in taki krptosistemi še niso primerni za splošno uporabo. Največji problem predstavlja hitrost izvajanja operacij nad šifriranimi podatki, pa tudi velikost tajnopisov. Nič čudnega ni, če v homomorfnem kriptosistemu iz 1 MB čistopisa dobite 10 GB tajnopisa. Seštevanje nad tajnopisi je sicer dokaj hitra operacija (manj kot milisekunda), vendar že preprosto množenje dveh bitov podatkov lahko vzame več sekund. Kljub temu, pa je možno homorfne sisteme uporabiti za preprosto aritmetiko nad tajnopisi, kot so na primer \textit{e-volitve} in v določenih drugih dobro določenih problemih. Omeniti velja ekipo raziskovalcev iz Microsofta, ki je v začetku leta 2016 predstavila nevronsko mrežo, ki zmore več deset tisoč optičnih prepoznav znakov (OCR) na uro, kljub temu, da operira s homomorfno šifriranimi podatki.
 
-\subsubsection{Varno večstransko računanje}
-\label{subs:Varno večstransko računanje}
+\chapter{Zaključek}
+\label{chap:Zakljucek}
 
-Varno večstransko računanje je področje kriptografije, ki se ukvarja z razvojem algoritmov, ki omogočajo, da več udeležencev skupaj izračuna rezultat neke funkcije, ne da bi kdorkoli poznal vse vhodne parametre funkcije.
-
+haha
 \newpage
 
 %********************************************
