@@ -1122,7 +1122,7 @@ Protokol SSL/TLS uporablja simetrične kriptosisteme za zagotavljanje zasebnosti
 
 \Gls{TLS} se uporablja za zaščito občutljivih podatkov v transportu praktično na vsakem kotičku interneta, od varovanja gesel za prijavo na družabna omrežja, varovanja e-poštnih sporočil med transportom do varovanja elektronskih plačil. Prav zato v zadnjih letih skorajda ne mine mesec, ko ni predstavljen nov napad na \gls{TLS}, kljub temu pa \gls{TLS} ob pravilnih nastavitvah še vedno velja za varnega.
 
-\subsection{Priporočila za varno uporabo protokola SSL/TLS}
+\subsection*{Priporočila za varno uporabo protokola SSL/TLS}
 \label{sub:Priporočila za varno uporabo protokola SSL/TLS}
 
 Vsaka povezava, zaščitena s protokolom TLS najprej poizkusi overiti identiteto strežnika/osebe na drugi strani, saj se tako prepričamo, da res komuniciramo s tistim, s komer želimo. Če ne preverimo identitete druge strani, napadalcu omogočimo MITM napad, saj se lahko postavi med nas in strežnik, in tako prestreza komunikacijo. Za overjanje identitete se uporablja kriptografija javnih ključev, najpogosteje kar protokol RSA. Pomembno je, da uporabimo varne zasebne ključe ter tudi poskrbimo za varno hrambo le teh. Za večino primerov uporabe se priporočajo 2048 bitni RSA ključi, ki zagotavljajo stopnjo varnosti, primerljivo s 112 bitnim simetričnim ključem. V kolikor obstaja zahteva po višji stopnji varnosti, se lahko uporabijo 3072 bitni ključi, ki zagotavljajo približno 128 bitov varnosti. Vse te primerjave so zgolj informativne narave, saj se z napredkom napadov na RSA, stopnja varnosti, ki jo nudi določena dolžina ključa, vztrajno niža.
