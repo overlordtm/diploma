@@ -89,25 +89,25 @@
 \newglossaryentry{MITM}
 {
   name={napad vrinjenega napadalca},
-  description={angl.\ man-in-the-middle/MITM attack}
+  description={(angl.\ man-in-the-middle/MITM attack)}
 }
 
 \newglossaryentry{plaintext}
 {
   name=čistopis,
-  description={plaintext},
+  description={(angl.\ plaintext)},
 }
 
 \newglossaryentry{tajnopis}
 {
   name=tajnopis,
-  description={ciphertext},
+  description={(angl .ciphertext)},
 }
 
 \newglossaryentry{enckey}
 {
   name=šifrirni ključ,
-  description={encryption key},
+  description={(angl. encryption key)},
 }
 
 \newglossaryentry{otp}
@@ -119,37 +119,37 @@
 \newglossaryentry{neizpodbitnost}
 {
   name=preprečevanje tajenja,
-  description={non-repudiation},
+  description={(angl.\ non-repudiation)},
 }
 
 \newglossaryentry{zaupnost}
 {
   name=zaupnost,
-  description={Confidentiality},
+  description={(angl.\ confidentiality)},
 }
 
 \newglossaryentry{celovitost}
 {
   name=celovitost,
-  description={Integrity},
+  description={(angl.\ integrity)},
 }
 
 \newglossaryentry{availability}
 {
   name=razpoložljivost,
-  description={Availability},
+  description={(angl. availability)},
 }
 
 \newglossaryentry{overjanje}
 {
   name=overjanje,
-  description={Authentication},
+  description={(angl.\ authentication)},
 }
 
 \newglossaryentry{avtorizacija}
 {
   name=avtorizacija,
-  description={Authorization},
+  description={(angl.\ authorization)},
 }
 
 \newglossaryentry{feistelovasifra}
@@ -160,52 +160,46 @@
 \newglossaryentry{cold-boot-attack}
 {
   name=Cold boot attack,
-  description={Cold boot attack},
+  description={(angl. cold boot attack)},
 }
 
 \newglossaryentry{deduplication}
 {
   name=izločanje dvojnic,
-  description={angl.\ deduplication},
+  description={(angl.\ deduplication)},
 }
 
 \newglossaryentry{authority}
 {
   name=upravnik,
-  description={angl.\ authority},
+  description={(angl.\ authority)},
 }
 \newglossaryentry{ciphertextindistinguishability}
 {
   name=ciphertext indistinguishability,
-  description={angl.\ ciphertext indistinguishability},
+  description={(angl.\ ciphertext indistinguishability)},
 }
 
 \newglossaryentry{rootkit}
 {
   name=korenski komplet,
-  description={angl.\ rootkit},
-}
-
-\newglossaryentry{secMPC}
-{
-  name=varno večstransko računanje,
-  description={angl.\ secure multi-party computation},
+  description={(angl.\ rootkit)},
 }
 
 \newglossaryentry{malleable}
 {
   name=gnetljiv,
-  description={angl.\ malleable},
+  description={(angl.\ malleable)},
 }
 \newglossaryentry{bootstrappable}
 {
   name=samozagonska,
-  description={angl.\ bootstrappable},
+  description={(angl.\ bootstrappable)},
 }
 \newglossaryentry{hypervisor}
 {
   name=hipernadzornik,
-  description={angl.\ hypervisor},
+  description={(angl.\ hypervisor)},
 }
 
 \pagenumbering{gobble}
@@ -330,7 +324,7 @@ Zahvaljujem se mentorju, za vso potrpežjivost in nasvete, sodelavcu Jaki Močni
 
 {\let\cleardoublepage\clearpage
 \setcounter{page}{1}
-\frontmatter
+% \frontmatter
 \glsaddall{}
 \printglossary[title=Slovarček]{}
 \printglossary[type=\acronymtype,title=Seznam kratic in okrajšav]{}
@@ -352,12 +346,12 @@ Cilj te diplomske naloge je predstaviti pregled nad varnostjo podatkov, ki jih z
 
 \vspace{0.5cm}
 \noindent
-diploma, oblak, varnost, kriptografija, kriptosistemi, funkcionalni kriptosistemi, homomorfni kriptosistemi, šifriranje na osnovi atributov in predikatov
+oblak, varnost, kriptografija, kriptosistemi, funkcionalni kriptosistemi, homomorfni kriptosistemi, šifriranje na osnovi atributov in predikatov
 
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
 
-The goal of this diploma thesis is to present an overview of security of data that resides in cloud systems. First part covers the basic definitions of cloud and security and identifies some risks arising from use of cloud computing. Second part is focused on cryptography, especially on ciphers, as a tool for mitigation of those risks. We try to convey some recent ideas from the cryptographic world, that are especially interesting in context of cloud computing, to the reader in an easy manner. At the end, we give some tips on how to ensure security of data.
+The goal of this diploma thesis is to present an overview of data security in cloud systems. The first part covers basics of cloud and security. Additionaly it identifies some risks arising from use of cloud computing. The second part is focused on cryptography, especially on ciphers, as a tool for mitigation of those risks. We try to convey some recent ideas from the cryptographic world, that are especially interesting in the context of cloud computing, to the reader in an easy manner. At the end, we give some tips on how to ensure security of data.
 
 \vspace{1.3cm}
 \noindent
@@ -365,7 +359,7 @@ The goal of this diploma thesis is to present an overview of security of data th
 
 \vspace{0.5cm}
 \noindent
-diploma, cloud, security, cryptography, cryptosystem, functional encryption, homomorphic encryption, attribute based encryption
+cloud, security, cryptography, cryptosystem, functional encryption, homomorphic encryption, attribute based encryption
 
 
 %********************************************
@@ -389,7 +383,7 @@ V kolikor vseeno ne želimo vseh svojih podatkov zaupati ponudniku storitve, pa 
 
 Priljubljen internetni rek gre nekako takole: “there is no cloud, just someone else's computer”. Oblak ni nič drugega kot skupek velikega števila računalnikov, ki niso v lasti uporabnika storitve v oblaku, morda niso niti v lasti ponudnika storitve, ampak jih ta najema pri tretjem ponudniku. Pojem oblak je le krovni izraz za nove načine ponudbe in uporabe storitev, zato ga moramo podrobneje razdelati in razložiti.
 
-NIST opredeli oblak kot: ``Računalništvo v oblaku je model, ki omogoča vseprisoten preprost dostop na zahtevo do skupnih računalniških virov (omrežja, strežniki, pomnilniški mediji, aplikacije in storitve), ki so lahko hitro pridobljeni ali sproščeni z minimalnim trudom in popolnoma samodejno, brez posredovanja ponudnika storitve. Model oblaka sestavlja pet ključnih lastnosti, trije nivoji storitve in štirje tipi oblakov.''~\cite{mell2011nist}
+\gls{NIST} opredeli oblak kot: ``Računalništvo v oblaku je model, ki omogoča vseprisoten preprost dostop na zahtevo do skupnih računalniških virov (omrežja, strežniki, pomnilniški mediji, aplikacije in storitve), ki so lahko hitro pridobljeni ali sproščeni z minimalnim trudom in popolnoma samodejno, brez posredovanja ponudnika storitve. Model oblaka sestavlja pet ključnih lastnosti, trije nivoji storitve in štirje tipi oblakov.''~\cite{mell2011nist}
 
 \subsection*{Lastnosti oblaka}
 \label{sub:Lastnosti oblaka}
@@ -433,14 +427,14 @@ NIST opredeli oblak kot: ``Računalništvo v oblaku je model, ki omogoča vsepri
 \label{sec:Kaj je varnost?}
 
 
-Varnost je širok pojem, ki ga v kontekstu računalništva lahko razdelimo na tri dele. Računalniško varnost (computer security), informacijsko varnost (information security) in varovanje podatkov (information assurance).
+Varnost je širok pojem, ki ga v kontekstu računalništva lahko razdelimo na tri dele. Računalniško varnost, informacijsko varnost in varovanje podatkov.
 
 \begin{description}
-	\item[Računalniška varnost] se ukvarja z varovanjem računalniških sistemov, od strojne opreme preko programske opreme do podatkov, ki se procesirajo na tej strojni opremi. Naloga računalniške varnosti je zagotoviti integriteto, dostopnost in zaupnost vseh sestavnih delov računalniškega sistema.
+	\item[Računalniška varnost (angl. computer security)] se ukvarja z varovanjem računalniških sistemov, od strojne opreme preko programske opreme do podatkov, ki se procesirajo na tej strojni opremi. Naloga računalniške varnosti je zagotoviti integriteto, dostopnost in zaupnost vseh sestavnih delov računalniškega sistema.
 
-  \item[Informacijska varnost] se ukvarja z varovanjem podatkov, ki se obdelujejo in shranjujejo v informacijskih sistemih. Njena naloga je zaščititi podatke pred nepooblaščenim dostopom, uporabo, spreminjanjem in uničenjem z ciljem zagotavljanja integritete, dostopnosti in zaupnosti podatkov.
+  \item[Informacijska varnost (angl. information security)] se ukvarja z varovanjem podatkov, ki se obdelujejo in shranjujejo v informacijskih sistemih. Njena naloga je zaščititi podatke pred nepooblaščenim dostopom, uporabo, spreminjanjem in uničenjem z ciljem zagotavljanja integritete, dostopnosti in zaupnosti podatkov.
 
-  \item[Varovanje podatkov] se ukvarja z varovanjem podatkov in upravljanjem tveganj povezanih z uporabo, prenosom in procesiranjem podatkov s ciljem zagotavljanja integritete, dostopnosti, zaupnosti in neizpodbitnosti podatkov.
+  \item[Varovanje podatkov (angl. information assurance)] se ukvarja z varovanjem podatkov in upravljanjem tveganj povezanih z uporabo, prenosom in procesiranjem podatkov s ciljem zagotavljanja integritete, dostopnosti, zaupnosti in neizpodbitnosti podatkov.
 \end{description}
 
 Iz teh opisov lahko razberemo ključne lastnosti varnega računalniškega sistema. V literaturi se te ključne tri lastnosti imenujemo CIA triad, kjer je CIA angleška kratica za ključne 3 lastnosti:
@@ -448,11 +442,11 @@ Iz teh opisov lahko razberemo ključne lastnosti varnega računalniškega sistem
 
 
 \begin{description}
-\item[\Gls{zaupnost} (confidentiality)] pomeni zasebnost podatkov. Ukrepi, ki zagotavljajo zaupnost podatkov so usmerjeni k preprečevanju dostopa nepooblaščenih oseb. Pogosti mehanizmi, ki se uporabljajo za zagotavljanje zaupnosti podatkov so: zaščita z uporabniškim imenom in geslom, dvostopenjska overitev (two-factor auth), biometrična overitev in šifriranje podatkov.
+\item[\Gls{zaupnost} (angl. confidentiality)] pomeni zasebnost podatkov. Ukrepi, ki zagotavljajo zaupnost podatkov so usmerjeni k preprečevanju dostopa nepooblaščenih oseb. Pogosti mehanizmi, ki se uporabljajo za zagotavljanje zaupnosti podatkov so: zaščita z uporabniškim imenom in geslom, dvostopenjska overitev (two-factor auth), biometrična overitev in šifriranje podatkov.
 
-\item[\Gls{celovitost} (integrity)] pomeni ohranjanje točnosti in pravilnosti podatkov. Ukrepi, ki zagotavljajo celovitost podatkov, preprečujejo nepooblaščenim osebam spreminjanje podatkov med prenosom ali v mirovanju. Omogočajo sledenje spremembam podatkov skozi zgodovino (revizijska sled), obnovitev podatkov iz varnostne kopije, v primeru, da pride do nepooblaščene spremembe. Mehanizmi, ki zagotavljajo celovitost podatkov so: nadzor dostopa in zgoščevalne funkcije ter digitalni podpisi.
+\item[\Gls{celovitost} (angl. integrity)] pomeni zagotavljanje pravilnosti podatkov. Ukrepi, ki zagotavljajo celovitost podatkov, preprečujejo nepooblaščenim osebam spreminjanje podatkov med prenosom ali v mirovanju. Omogočajo sledenje spremembam podatkov skozi zgodovino (revizijska sled), obnovitev podatkov iz varnostne kopije, v primeru, da pride do nepooblaščene spremembe. Mehanizmi, ki zagotavljajo celovitost podatkov so: nadzor dostopa in zgoščevalne funkcije ter digitalni podpisi.
 
-\item[\Gls{availability} (availability)] pomeni, da so podatki vedno na voljo pooblaščenim osebam. Glavni vzrok nerazpoložljivosti so programske in strojne napake ter napadi zavrnitve storitve (denial of service). Razpoložljivost podatkov se zagotavlja z rednim vzdrževanjem strojne in programske opreme in s posebnimi ukrepi za preprečevanje napadov zavrnitve storitve.
+\item[\Gls{availability} (angl. availability)] pomeni, da so podatki vedno na voljo pooblaščenim osebam. Glavni vzrok nerazpoložljivosti so programske in strojne napake ter napadi zavrnitve storitve (denial of service). Razpoložljivost podatkov se zagotavlja z rednim vzdrževanjem strojne in programske opreme in s posebnimi ukrepi za preprečevanje napadov zavrnitve storitve.
 
 \end{description}
 
@@ -620,7 +614,7 @@ Ta problem rešijo asimetrične šifre, ki uporabljajo en ključ za šifriranje,
 
 V kategorijo simetričnih šifer spadajo vse šifre, pri katerih se za šifriranje in dešifriranje uporablja enak ključ ali pa obstaja bijektivna preslikava, ki nam šifrirni ključ preslika v dešifrirni in obratno. Simetrične šifre še naprej delimo na tokovne in bločne šifre. Poglavitna razlika med tokovnimi in bločnimi šiframi je v načinu šifriranja podatkov.
 
-Naj bo dano sporočilo $X$ dolžine $l$ ($|X|=l$), in bločna šifra z velikostjo bloka $w$. Sporočilo lahko razdelimo na $n=l/w$ blokov, kjer simbol $\|$ predstavlja združevanje (lepljenje) dveh nizov.
+Naj bo dano sporočilo $X$ dolžine $\ell$ ($|X|=\ell$), in bločna šifra z velikostjo bloka $w$. Sporočilo lahko razdelimo na $n=\ell/w$ blokov, kjer simbol $\|$ predstavlja združevanje (lepljenje) dveh nizov.
 
 $$
 X=x_0 \| x_1 \| x_2 \| \dotsc \| x_{n-1}
@@ -646,13 +640,13 @@ Y=e_Z(X)= X \oplus Z \\
 \label{subs:DES in 3DES}
 
 
-\gls{DES} je bil eden prvih modernih šifrirnih algoritmov. Originalna implementacija je nosila ime Lucifer in bila razvita v sedemdesetih letih v laboratorijih podjetja IBM.\  Kasneje je bila rahlo modificirana različica tega algoritma sprejeta s strani \acrshort{NIST}-a (takrat se je imenoval še \acrshort{NBS}) kot standard \gls{DES}.
+\gls{DES} je bil eden prvih modernih šifrirnih algoritmov. Originalna implementacija je nosila ime Lucifer in bila razvita v sedemdesetih letih v laboratorijih podjetja IBM.\  Kasneje je bila rahlo modificirana različica tega algoritma sprejeta s strani \acrshort{NIST} (takrat se je imenoval še \acrshort{NBS}) kot standard \gls{DES}.
 
 \gls{DES} je simetrična bločna šifra, ki deluje na blokih velikosti 64 bitov in uporablja 64 bitni ključ, vendar je v ključu možno poljubno izbrati le 56 bitov, preostalih 8 pa se uporablja samo za odkrivanje napak v ključu.
 
 Algoritem je sestavljen iz 16 identičnih korakov oziroma krogov, nekaj pred- in po-procesiranja vhodnih podatkov, Feistelove F-funkcije ter funkcije, ki iz glavnega ključa ustvari zaporedje podključev. Na začetku se 64-bitni blok razdeli na dve 32-bitni polovici, levo in desno, ki se po vsakem končanem krogu algoritma zamenjata. Taka shema delovanja je znana tudi kot \gls{feistelovasifra}. V vsakem krogu se leva polovica bloka z operacijo $XOR$ zmeša z rezultatom Feistelove F-funkcije, ki kot vhodne parametre dobi pod-ključ trenutnega kroga in desno polovico bloka. Po koncu vsakega kroga se leva in desna polovica zamenjata.
 
-Ob prelomu tisočletja se je izkazalo, da je \gls{DES}-ov 64-bitni o. 56-bitni ključ prešibak, da bi zadržal napade s surovo silo. Zato se je pojavila varianta algoritma imenovana 3DES.\ 3DES uporablja 3 ključe, pri čemer imamo na voljo 3 opcije za izbiro ključev.
+Ob prelomu tisočletja se je izkazalo, da je \gls{DES}-ov 64-bitni ključ prešibak, da bi zadržal napade s surovo silo. Zato se je pojavila varianta algoritma imenovana 3DES.\ 3DES uporablja 3 ključe, pri čemer imamo na voljo 3 opcije za izbiro ključev.
 
 \begin{enumerate}
 \item Vse tri ključe izberemo neodvisno
@@ -673,7 +667,7 @@ Kjer je $C$ tajnopis in $P$ čistopis.
 \label{subs:AES}
 
 
-\gls{AES} je bil leta 2001 izbran kot naslednik standarda \gls{DES}. Med 15 prijavljenimi algoritmi je \gls{NIST} izbral družino algoritmov Rijndael. Kot standard \gls{AES} so bile sprejete tri različice algoritma. Vse tri uporabljajo 128-bitne bloke, razlikujejo pa se v velikosti ključa. Na voljo so 3 opcije: 128, 192 ali 256-bitni ključ.
+\gls{AES} je bil leta 2001 izbran kot naslednik standarda \gls{DES}. Med 15 prijavljenimi algoritmi je \acrshort{NIST} izbral družino algoritmov Rijndael. Kot standard \gls{AES} so bile sprejete tri različice algoritma. Vse tri uporabljajo 128-bitne bloke, razlikujejo pa se v velikosti ključa. Na voljo so 3 opcije: 128, 192 ali 256-bitni ključ.
 
 \gls{AES} se po strukturi algoritma razlikuje od \gls{DES}-a, saj namesto Feistelove šifre uporablja substitucijsko-permutacijsko omrežje.
 
@@ -932,7 +926,7 @@ kjer zahtevamo, da velja: $y=F(k, x)$.
 \end{defn}
 \end{mdframed}
 
-V funkcionalni šifrirni shemi za funkcionalnost~$F(\cdot, \cdot)$ lahko \gls{authority}, ki si lasti glavni skrivni ključ, ustvari ključ~$sk_k$, s katerim uporabnik izračuna vrednost funkcije~$F(k, x)$ iz tajnopisa za~$x$. Recimo, da je možno, da za $F$ vzamemo katerokoli funkcijo, ki jo je možno opisati z determinističnim Turingovim strojem. To nam odpre možnost, da v šifrirno shemo vgradimo ``program'' za nadzor dostopa in s tem zaobidemo omejitve, omenjene v prvem odstavku.
+V funkcionalni šifrirni shemi za funkcionalnost~$F(\cdot, \cdot)$ lahko \gls{authority} sistema, ki si lasti glavni skrivni ključ, ustvari ključ~$sk_k$, s katerim uporabnik izračuna vrednost funkcije~$F(k, x)$ iz tajnopisa za~$x$. Recimo, da je možno, da za $F$ vzamemo katerokoli funkcijo, ki jo je možno opisati z determinističnim Turingovim strojem. To nam odpre možnost, da v šifrirno shemo vgradimo ``program'' za nadzor dostopa in s tem zaobidemo omejitve, omenjene v prvem odstavku.
 
 Izkaže se, da je možno tudi povsem klasične asimetrične šifrirne sheme predstaviti v obliki funkcionalne šifrirne sheme, vendar so veliko bolj zanimive sheme, ki za ključe uporabljajo kar uporabnikovo identiteto - \gls{IBE} in njihova nadgradnja, ki je predstavljena v poglavju \ref{sub:Sifriranje na osnovi atributov in predikatov}.
 
@@ -1090,7 +1084,7 @@ Pri uporabi bločnih kriptosistemov v kombinaciji z enim od načinom delovanja (
 \subsection*{Konvergentne šifrirne sheme}
 \label{sub:Konvergentne šifrirne sheme}
 
-V primeru oblačnih storitev, ki ponujajo hrambo podatkov v oblaku, pa je zaželena tudi sposobnost \glslink{deduplication}{izločanja dvojnikov (angl.\ deduplication)}, saj ta ponudniku storitve omogoča prihranke pri količini pomnilnika, porabljenega za hrambo datotek. Izločanje dvojnikov lahko deluje na nivoju datoteke ali pa na nivoju blokov. Najpreprostejša implementacija je na nivoju datoteke. Ob nalaganju datoteke v sistem se preveri zgoščena vrednost (hash) te datoteke, in v kolikor sistem ugotovi, da je datoteka z enako zgoščeno vrednostjo že shranjena v sistemu, samo poveča vrednost števca, ki kaže koliko kopij te datoteke že obstaja. Z uporabo tega principa lahko v sistemu obstaja praktično neomejeno število kopij iste datoteke, brez potrebe po neomejenih pomnilniških kapacitetah. Naprednejši načini izločanja dvojnikov datoteko najprej razbijejo na bloke konstantne ali spremenljive dolžine, in nato uporabijo isti postopek na blokih datoteke. Tako je možno dosečti še večje prihranke prostora na diskih.
+V primeru oblačnih storitev, ki ponujajo hrambo podatkov v oblaku, pa je zaželena tudi sposobnost \glslink{deduplication}{izločanja dvojnikov (angl.\ deduplication)}, saj ta ponudniku storitve omogoča prihranke pri količini pomnilnika, porabljenega za hrambo datotek. Izločanje dvojnikov lahko deluje na nivoju datoteke ali pa na nivoju blokov. Najpreprostejša implementacija je na nivoju datoteke. Ob nalaganju datoteke v sistem se preveri zgoščena vrednost (hash) te datoteke, in v kolikor sistem ugotovi, da je datoteka z enako zgoščeno vrednostjo že shranjena v sistemu, samo poveča vrednost števca, ki kaže koliko kopij te datoteke že obstaja. Z uporabo tega principa lahko v sistemu obstaja praktično neomejeno število kopij iste datoteke, brez potrebe po neomejenih pomnilniških kapacitetah. Naprednejši načini izločanja dvojnikov datoteko najprej razbijejo na bloke konstantne ali spremenljive dolžine, in nato uporabijo isti postopek na blokih datoteke. Tako je možno doseči še večje prihranke prostora na diskih.
 
 Problem pa nastane, ko želimo izločanje dvojnikov uporabiti skupaj s šifriranjem. Praviloma želimo, da tajnopis izda karseda malo informacij o čistopisu, ki mu pripada. V praksi to pomeni, da za dva tajnopisa ne moremo ugotoviti, ali pripadata istemu čistopisu (isti datoteki), saj se v postopku šifriranja pogosto doda nek naključni element (recimo \gls{IV} v poglavju~\ref{sub:Nacini delovanja blocnih sifer}). Tak pristop sicer omogoča doseganje \textit{semantične varnosti}, definirane v definiciji \ref{def:semsec}, vendar onemogoči znatne prihranke pomnilniškega prostora ob poskusu izločanja dvojnikov. V kolikor želimo imeti oboje, je potrebno znižati varnostne zahteve. Če teoretičnemu napadalcu dovolimo, da ugotovi, da dva tajnopisa pripadata istemu čistopisu (torej tak kriptosistem ni \textit{semantično varen}) je izločanje dvojnikov možno.
 
