@@ -391,7 +391,7 @@ Priljubljen internetni rek gre nekako takole: “there is no cloud, just someone
 
 NIST opredeli oblak kot: ``Računalništvo v oblaku je model, ki omogoča vseprisoten preprost dostop na zahtevo do skupnih računalniških virov (omrežja, strežniki, pomnilniški mediji, aplikacije in storitve), ki so lahko hitro pridobljeni ali sproščeni z minimalnim trudom in popolnoma samodejno, brez posredovanja ponudnika storitve. Model oblaka sestavlja pet ključnih lastnosti, trije nivoji storitve in štirje tipi oblakov.''~\cite{mell2011nist}
 
-\subsection{Lastnosti oblaka}
+\subsection*{Lastnosti oblaka}
 \label{sub:Lastnosti oblaka}
 
 \begin{description}[style=nextline]
@@ -406,7 +406,7 @@ NIST opredeli oblak kot: ``Računalništvo v oblaku je model, ki omogoča vsepri
    \item[Merjenje porabe in obračun glede na porabo virov]  Oblačni sistemi samodejno nadzirajo in optimizirajo porabo virov z metrikami (poraba prostora, pasovne širine, procesorskega časa~\ldots). Poraba virov se nadzira, kontrolira in poroča, kar omogoča transparentnost za ponudnika in uporabnika.
 \end{description}
 
-\subsection{Nivoji storitve}
+\subsection*{Nivoji storitve}
 \label{sub:Nivoji storitve}
 
 \begin{description}[style=nextline]
@@ -417,7 +417,7 @@ NIST opredeli oblak kot: ``Računalništvo v oblaku je model, ki omogoča vsepri
 	\item[\gls{IaaS}] Ponudnik uporabniku omogoča postavitev osnovnih gradnikov računalniškega sistema (procesiranje, hramba podatkov, omrežje …) iz katerih lahko uporabnik sestavi kar želi. Uporabnik sicer nima nadzora nad spodaj ležečo fizično infrastrukturo, vendar ima ves nadzor nad virtualiziranimi viri ki jih pridobi.
 \end{description}
 
-\subsection{Tipi oblakov}
+\subsection*{Tipi oblakov}
 \label{sub:Tipi oblakov}
 \begin{description}[style=nextline]
 	\item[Zasebni oblak] Vsa infrastruktura je namenjena uporabi znotraj ene organizacije, ki je sestavljena iz več delov. Upravljanje, vzdrževanje in lastništvo so lahko v domeni iste organizacije, tretje osebe ali kombinacije obojega. Lokacija sistema je lahko v prostorih organizacije ali pa izven njih.
@@ -490,10 +490,10 @@ Ranljivost računalniškega sistema je lastnost, zaradi katere je ogroženo njeg
 
 \end{description}
 
-\section{Izzivi na področju varnosti v oblaku}
-\label{sec:Izzivi na področju varnosti v oblaku}
+% \section{Izzivi na področju varnosti v oblaku}
+% \label{sec:Izzivi na področju varnosti v oblaku}
 
-\subsection{Razkritje podatkov}
+\section{Razkritje podatkov}
 \label{sub:Razkritje podatkov}
 
 O razkritju podatkov govorimo v primeru, da se občutljivi in zaupni podatki znajdejo na očeh nepooblaščenih oseb.  To se lahko zgodi kot posledica usmerjenega napada ali zaradi človeške napake, napake v aplikaciji ali slabih varnostnih mehanizmov aplikacije. Primeri zaupnih podatkov, ki so pogosto tarča napadov so: zdravstveni podatki, finančni podatki, osebno določljivi podatki, poslovne skrivnosti in intelektualna lastnina.
@@ -502,61 +502,61 @@ Razkritje podatkov je stara in vseprisotna grožnja v vseh računalniških siste
 
 Obseg škode, ki ga povzroči razkritje podatkov, je odvisen od občutljivosti podatkov, ki so bili odtujeni. V veliko državah po svetu obstajajo zakoni in predpisi, ki podjetja ki hranijo določene tipe občutljivih podatkov, obvezuje k določenim standardom zaščite. V primeru, da pride do razkritja podatkov, lahko odgovorno podjetje doleti denarna kazen ali celo kazenska ovadba. Poleg škode, ki je bila povzročena z razkritjem podatkov in morebitno denarno kaznijo, so tu še stroški preiskave incidenta, obveščanja uporabnikov in izgube ugleda podjetja.
 
-\subsection{Pomanjkljivo upravljanje identitete, poverilnic in nadzora dostopa}
-\label{sub:Pomanjkljivo upravljanje identitete, poverilnic in nadzora dostopa}
+\section{Pomanjkljivo upravljanje identitete za dostop}
+\label{sub:Pomanjkljivo upravljanje identitete za dostop}
 
 Površno upravljanje lahko pripelje do nenamernega razkritja uporabniških imen, gesel in ključev, ki se uporabljajo za dostop do storitev. Ponudniki storitev v oblaku upravljajo z identitetami milijonov uporabnikov in zaposlenih, zato je potrebna velika skrb, da se zagotovi pravilno upravljanje identitete skozi celoten cikel. Potrebno je poskrbeti za takojšno prekinitev veljavnosti identitete v primeru, da pride do odpovedi delovnega razmerja zaposlenega ali prekinitve pogodbe s stranko. Uporaba šibkih gesel in neuporaba dvostopenjske avtentikacije in neuporaba rotacije šifrirnih ključev, gesel in certifikatov so primeri slabe prakse, ki v primeru napada napadalcu olajšajo delo in povečajo razsežnosti škode, ki jo napadalec povzroči.
 
-\subsection{Nezaščiteni uporabniški in programski vmesniki}
+\section{Nezaščiteni uporabniški in programski vmesniki}
 \label{sub:Nezaščiteni uporabniški in programski vmesniki}
 
 Ponudniki storitev v oblaku ponujajo nabor uporabniških in programskih vmesnikov, preko katerih uporabniki dostopajo do storitev ponudnika. So stična točka med uporabnikom in storitvijo in od varnosti in dostopnosti teh vmesnikov je odvisna varnost celotnega sistema. So prva linija obrambe sistema, zato je pri zasnovi teh vmesnikov potrebno misliti na varnost s pravilno implementacijo varnostnih mehanizmov kot so avtentikacija, nadzor dostopa in šifriranje. Vmesniki morajo biti zasnovani tako, da ščitijo pred namerno in nenamerno zlorabo sistema.
 
-\subsection{Sistemske ranljivosti}
+\section{Sistemske ranljivosti}
 \label{sub:Sistemske ranljivosti}
 
 Sistemske ranljivosti so hrošči v uporabljeni programski opremi, ki jih je možno izkoristiti za napad na računalniški sistem. Ranljivosti, ki se nahajajo v jedru operacijskega sistema ali sistemskih knjižnicah predstavljajo grožnjo za celoten sistem.
 
 Tako kot večina ostalih predstavljenih groženj, tudi sistemske ranljivosti niso nič novega, vendar razsežnost oblačnih sistemov doda takim ranljivostim popolnoma nov pomen. Zaradi napredka tehnologije je možno na enem strežniku gostiti več virtualnih strežnikov različnih organizacij, kar pomeni da si ti virtualni strežniki delijo pomnilnik in ostale vire, kar omogoča nove načine izrabe sistemskih ranljivosti, kot so pobeg iz \glslink{hypervisor}{hipernadzornika}~\cite{schwartz2012new} in vohljanje medpomnilnika~\cite{zhang2012cross}.
 
-\subsection{Ugrabitev uporabniškega računa}
+\section{Ugrabitev uporabniškega računa}
 \label{sub:Ugrabitev uporabniškega računa}
 
 Ugrabitve uporabniških računov so posledica napadov ribarjenja, prevare ali izkoriščanja sistemskih pomanjkljivosti. V primeru, ko ista uporabniška imena in gesla uporabljamo za več različnih storitev, to še dodatno poveča posledice napada. Če pride do ugrabitve uporabniškega računa za storitev v oblaku, lahko napadalec izkoristi to storitev kot odskočno desko za nove napade.
 
-\subsection{Notranje grožnje}
+\section{Notranje grožnje}
 \label{sub:Notranje grožnje}
 
 Tveganje, ki ga predstavljajo notranje grožnje, kot so škodoželjni zaposleni, je dokaj novo in še vedno predmet debate v industriji računalniške varnosti. Dejstvo je da tako tveganje obstaja, predvsem pri uporabi javnega oblaka, saj v tem primeru z infrastrukturo in podatki razpolaga tretja oseba. V tem primeru uporabnik storitve nima nikakršnega mehanizma, s katerim bi lahko nadziral zaposlene pri ponudniku storitve.
 
-\subsection{Organizirana trajna grožnja}
+\section{Organizirana trajna grožnja}
 \label{sub:Organizirana trajna grožnja}
 
 Organiziranje trajne grožnje so ena najnaprednejših oblik grožnje računalniški varnosti. Za napadi te oblike so ponavadi skrivajo velike organizacije z državno podporo (tajne službe, vojska). Značilnost te oblike napada je, da napadalec temeljito preuči ciljni sistem, njegovo organizacijo in šibke točke. Ta oblika napada se pogosto začne z usmerjenim izvabljanjem, to je posebna tehnika ribarjenja, ki je usmerjena proti točno določenim osebam, v našem primeru zaposleni v ciljni organizaciji. S pomočjo usmerjenega izvabljanja napadalec poskuša pridobiti vstopno točko v ciljni sistem. Ko enkrat pridobi dostop do notranjega omrežja sistema, to uporabi kot odskočno desko za nadaljnje premike proti želenim tarčam. Cilj napada so podatki, ki se nahajajo v sistemu žrtve, pogosto so to poslovne ali državne skrivnosti. Napadalec želi čimdlje ostati skrit, saj tako pridobi dostop do večjega števila računalnikov znotraj omrežja in s tem večje količine podatkov. V želji da ostane skrit, uporablja napredne tehnike brisanja sledov, zato je take tipe napada zelo težko zaznati, saj navzven sistem deluje normalno.
 
 Posebna oblika organiziranih trajnih groženj so kibernetska orožja. Verjetno najbolj znan med njimi je Stuxnet, ki je sabotiral Iranski jedrski program. Kibernetska orožja se od ostalih oblik napadov razlikujejo v tem, da žrtvi povzročijo dejansko fizično škodo v obliki uničene opreme ali pa celo človeške žrtve.
 
-\subsection{Izguba podatkov}
+\section{Izguba podatkov}
 \label{sub:Izguba podatkov}
 
 Izguba podatkov predstavlja za večino uporabnikov in podjetji eno najhujših nočnih mor. Trajna izguba podatkov, shranjenih v oblaku ni nujno posledica napada tretje osebe, ampak je lahko tudi posledica malomarnosti, kot je recimo nenameren izbris podatkov s strani ponudnika storitve ali posledica naravne katastrofe kot je požar ali potres. V izogib trajni izgubi podatkov ponudniki storitev v oblaku uporabljajo različne mehanizme, kot so geografska redundanca in varnostno kopiranje na drugo lokacijo. Vendar v primeru, ko uporabnik podatke šifrira še preden jih pošlje v oblak in nato izgubi šifrirni ključ, noben od naštetih mehanizmov ne more preprečiti takojšnje in trajne izgube podatkov.
 
-\subsection{Malomarnost}
+\section{Malomarnost}
 \label{sub:Malomarnost}
 
 Preden začnemo uporabljati storitve v oblaku, moramo preučiti vse aspekte, ki jih bo taka sprememba prinesla. Vodilni kadri v podjetjih pogosto nimajo dovolj poglobljenega poznavanja oblaka s tehnološkega vidika, kot tudi ne pravnih zank, ki jih vsebujejo ``pogoji uporabe'' določenih ponudnikov storitev v oblaku. V primeru, da pred uporabo storitev v oblaku ne naredimo temeljite analize, lahko pride do tehnoloških, pravnih, skladenjskih in poslovnih tveganj, ki ogrozijo uspeh podjetja.
 
-\subsection{Zloraba in zlonamerna uporaba sistemov}
+\section{Zloraba in zlonamerna uporaba sistemov}
 \label{sub:Zloraba in zlonamerna uporaba sistemov}
 
 Pogosto ponudniki storitev v oblaku omogočajo brezplačne preizkusne račune za omejeno časovno obdobje, če pa jih ne, lahko napadalec z ukradenimi bančnimi podatki ustvari večjo količino uporabniških računov. Te potem izkoristi za izvajanje različnih nelegalnih aktivnosti. Lažni uporabniški računi napadalcu omogočajo pošiljanje neželene pošte, izvajanje napadov ribarjenja ali napadov zavrnitve storitve, ki so lahko usmerjeni k ponudniku storitve, njegovim strankam ali pa tretjim osebam.
 
-\subsection{Napadi zavrnitve storitve}
+\section{Napadi zavrnitve storitve}
 \label{subs:Napadi zavrnitve storitve}
 
 Napad zavrnitve storitve je ena najpreprostejših in pogosto zelo učinkovitih oblik napada na računalniške sisteme. Cilj napada je uporabnikom preprečiti normalen dostop do storitve, kar napadalec doseže s tem, da napaden sistem prisili v nerazumno veliko porabo različnih virov, kot so pasovna širina, procesorski čas ali podatkovni prostor. Najbolj osnovna oblika napada zavrnitve storitve se zanaša na dejstvo da napadalec razpolaga z večjo količino določenega vira (pasovna širina, procesorski čas …) kot napaden sistem. Obstajajo pa tudi bolj prefinjene oblike napada, kjer napadalec z veliko manjšo količino razpoložljivih virov izrabi varnostno pomanjkljivosti v sistemu ali aplikaciji in onemogoči tarčo napada. Napadi zavrnitve storitve običajno ne pustijo trajnih posledic, vendar predstavljajo veliko neprijetnost za uporabnike, saj le ti za čas trajanja napada ne morejo uporabljati storitve, prav tako pa škodujejo ugledu ponudnika.
 
-\subsection{Ranljivosti zaradi uporabe skupnih virov}
+\section{Ranljivosti zaradi uporabe skupnih virov}
 \label{sub:Ranljivosti zaradi uporabe skupnih virov}
 
 Zadnji sklop varnostnih groženj v oblaku predstavljajo ranljivosti, ki so posledica ene od ključnih lastnosti oblaka, to je uporaba skupnih virov. Ponudniki storitev v oblaku zagotavljajo navidezno ``neomejene'' vire končnemu uporabniku z uporabo virtualizacije in skupne rabe virov. Pri tem uporabljajo klasično strojno opremo, ki sicer s pomočjo posebne programske opreme omogoča delitev virov, vendar ni bila zasnovana, da bi omogočala varno skupno uporabo. Tak tip napadov izkorišča dejstvo, da si različni virtualni strežniki delijo fizično strojno opremo, zato je možno s posebno obliko napada, ki se imenuje napad preko stranskega kanala pridobiti informacije iz žrtvinega strežnika, brez da bi dejansko prišlo do vdora. V času pisanja še ni prišlo do takega tipa vdora v praksi, vendar obstajajo primeri takih napadov, ki so jih demonstrirali pod laboratorijskimi pogoji.
@@ -677,7 +677,7 @@ Kjer je $C$ tajnopis in $P$ čistopis.
 
 \gls{AES} se po strukturi algoritma razlikuje od \gls{DES}-a, saj namesto Feistelove šifre uporablja substitucijsko-permutacijsko omrežje.
 
-\subsection{Načini delovanja bločnih šifer}
+\subsection*{Načini delovanja bločnih šifer}
 \label{sub:Nacini delovanja blocnih sifer}
 
 Bločna šifra sama po sebi kot vhodni podatek lahko sprejme samo blok točno določene dolžine, kar ni najbolj praktično, saj so sporočila pogosto različnih in predvsem nepredvidljivih velikosti. Poleg tega, če isti blok čistopisa večkrat šifriramo z enakim ključem, dobimo vsakič isti tajnopis, kar je nezaželjen rezultat, saj morebitni napadalec lahko zazna vzorce v tajnopisu in iz tega poskuša razbrati pomen. Ta problem lahko rešimo tako, da uporabimo bločno šifro v enem od načinov delovanja.
@@ -806,7 +806,7 @@ Asimetrični kriptosistemi slonijo na predpostavki, da so nekateri matematični 
 
 Na žalost so asimetrični kriptosistemi, tudi zaradi svojega ozadja v netrivialnih matematičnih problemih, veliko počasnejši od simetričnih. V praksi se zato pogosto uporablja kombinacija obeh tipov sistemov. V prvi fazi se za dogovor o ključu uporabi asimetrični kriptosistem, ko pa se obe strani dogovorita o skupnem ključu, pa preklopita na simetrični kriptosistem.
 
-\subsection{Dogovor o ključu Diffe-Hellman}
+\subsection*{Dogovor o ključu Diffe-Hellman}
 \label{sub:Dogovor o kljucu Diffe-Hellman}
 
 Dogovor o ključu Diffe-Hellman je bil prvi javno objavljen algoritem, ki uporablja princip javnih in zasebnih ključev. V praksi omogoča, da se dva neznanca preko nezavarovanega kanala kot je internet dogovorita za skupni ključ, ki ga bosta uporabljala za nadaljnjo komunikacijo. Prva sta ga objavila W. Diffie in M. Hellman leta 1976~\cite{diffie1976new}, vendar se je kasneje izkazalo, da je angleška tajna služba odkrila princip kriptografije javnih ključev že leto poprej, a je to ostalo tajno do leta 1997.
@@ -838,7 +838,7 @@ $$
 \end{mdframed}
 
 
-\subsection{RSA}
+\subsection*{RSA}
 \label{sub:RSA}
 
 Medtem, ko prej opisana metoda omogoča samo dogovor o skupnem ključu, pa je bil \gls{RSA} prvi pravi kriptosistem, ki je uporabljal javne ključe. Varnost \gls{RSA} temelji na tem, da je faktorizacija produkta dveh velikih praštevil težko rešljiv problem za današnje računalnike.
@@ -936,7 +936,7 @@ V funkcionalni šifrirni shemi za funkcionalnost~$F(\cdot, \cdot)$ lahko \gls{au
 
 Izkaže se, da je možno tudi povsem klasične asimetrične šifrirne sheme predstaviti v obliki funkcionalne šifrirne sheme, vendar so veliko bolj zanimive sheme, ki za ključe uporabljajo kar uporabnikovo identiteto - \gls{IBE} in njihova nadgradnja, ki je predstavljena v poglavju \ref{sub:Sifriranje na osnovi atributov in predikatov}.
 
-\subsection{Šifriranje na osnovi atributov in predikatov}
+\subsection*{Šifriranje na osnovi atributov in predikatov}
 \label{sub:Sifriranje na osnovi atributov in predikatov}
 
 Šifriranje na osnovi atributov in predikatov je poseben primer funkcionalne šifrirne sheme z vgrajeno kontrolo dostopa. Za začetek si poglejmo naslednji primer:
@@ -1087,7 +1087,7 @@ Pri uporabi bločnih kriptosistemov v kombinaciji z enim od načinom delovanja (
 \end{mdframed}
 
 
-\subsection{Konvergentne šifrirne sheme}
+\subsection*{Konvergentne šifrirne sheme}
 \label{sub:Konvergentne šifrirne sheme}
 
 V primeru oblačnih storitev, ki ponujajo hrambo podatkov v oblaku, pa je zaželena tudi sposobnost \glslink{deduplication}{izločanja dvojnikov (angl.\ deduplication)}, saj ta ponudniku storitve omogoča prihranke pri količini pomnilnika, porabljenega za hrambo datotek. Izločanje dvojnikov lahko deluje na nivoju datoteke ali pa na nivoju blokov. Najpreprostejša implementacija je na nivoju datoteke. Ob nalaganju datoteke v sistem se preveri zgoščena vrednost (hash) te datoteke, in v kolikor sistem ugotovi, da je datoteka z enako zgoščeno vrednostjo že shranjena v sistemu, samo poveča vrednost števca, ki kaže koliko kopij te datoteke že obstaja. Z uporabo tega principa lahko v sistemu obstaja praktično neomejeno število kopij iste datoteke, brez potrebe po neomejenih pomnilniških kapacitetah. Naprednejši načini izločanja dvojnikov datoteko najprej razbijejo na bloke konstantne ali spremenljive dolžine, in nato uporabijo isti postopek na blokih datoteke. Tako je možno dosečti še večje prihranke prostora na diskih.
