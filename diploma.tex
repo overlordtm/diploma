@@ -89,95 +89,66 @@
 \newglossaryentry{MITM}
 {
   name={napad vrinjenega napadalca},
-  description={(angl.\ man-in-the-middle/MITM attack)}
+  description={(angl.\ man-in-the-middle/MITM attack) Način napada, kjer napadalec aktivno prestreza komunikacijo med žrtvijo in strežnikom.}
 }
 
 \newglossaryentry{plaintext}
 {
   name=čistopis,
-  description={(angl.\ plaintext)},
+  description={(angl.\ plaintext) Izvorno sporočilo, preden ga šifriramo.},
 }
 
 \newglossaryentry{tajnopis}
 {
   name=tajnopis,
-  description={(angl .ciphertext)},
-}
-
-\newglossaryentry{enckey}
-{
-  name=šifrirni ključ,
-  description={(angl. encryption key)},
+  description={(angl.\ ciphertext) Šifrirana oblika čistopisa.},
 }
 
 \newglossaryentry{otp}
 {
   name=enkratni ščit,
-  description={(angl.\ one time pad)},
+  description={(angl.\ one time pad) Edini dokazano kriptosistem, vendar zahteva, da je dožina ključa enaka dolžini sporočila.},
 }
 
 \newglossaryentry{neizpodbitnost}
 {
   name=preprečevanje tajenja,
-  description={(angl.\ non-repudiation)},
+  description={(angl.\ non-repudiation) Preprečitev, da nekdo zanika storjeno dejanje.},
 }
 
 \newglossaryentry{zaupnost}
 {
   name=zaupnost,
-  description={(angl.\ confidentiality)},
+  description={(angl.\ confidentiality) Eden od ciljev šifriranja. Dostop do zaupnih podatkov je omogočen pooblaščenim osebam.},
 }
 
 \newglossaryentry{celovitost}
 {
   name=celovitost,
-  description={(angl.\ integrity)},
+  description={(angl.\ integrity) Neokrnjenost sporočila.},
 }
 
 \newglossaryentry{availability}
 {
   name=razpoložljivost,
-  description={(angl. availability)},
+  description={(angl. availability) Zagotavljanje dostopnosti storitve.},
 }
 
 \newglossaryentry{overjanje}
 {
   name=overjanje,
-  description={(angl.\ authentication)},
+  description={(angl.\ authentication) Ugotavljanje pristnosti sporočila ali osebe s katero komuniciramo.},
 }
 
 \newglossaryentry{avtorizacija}
 {
   name=avtorizacija,
-  description={(angl.\ authorization)},
+  description={(angl.\ authorization) Postopek preverjanja pravic za izvedbo določene akcije.},
 }
-
-\newglossaryentry{feistelovasifra}
-{
-  name=Feistlova šifra,
-  description={encryption key},
-}
-\newglossaryentry{cold-boot-attack}
-{
-  name=Cold boot attack,
-  description={(angl. cold boot attack)},
-}
-
 \newglossaryentry{deduplication}
 {
   name=izločanje dvojnic,
-  description={(angl.\ deduplication)},
-}
-
-\newglossaryentry{authority}
-{
-  name=upravnik,
-  description={(angl.\ authority)},
-}
-\newglossaryentry{ciphertextindistinguishability}
-{
-  name=ciphertext indistinguishability,
-  description={(angl.\ ciphertext indistinguishability)},
+  description={(angl.\ deduplication) Postopek optimizacije porabe pomnilnika s shranjevanjem samo ene unikatne kopije vsakega podatka.},
 }
 
 \newglossaryentry{rootkit}
@@ -185,21 +156,10 @@
   name=korenski komplet,
   description={(angl.\ rootkit)},
 }
-
-\newglossaryentry{malleable}
-{
-  name=gnetljiv,
-  description={(angl.\ malleable)},
-}
-\newglossaryentry{bootstrappable}
-{
-  name=samozagonska,
-  description={(angl.\ bootstrappable)},
-}
 \newglossaryentry{hypervisor}
 {
   name=hipernadzornik,
-  description={(angl.\ hypervisor)},
+  description={(angl.\ hypervisor) Program, ki nadzira izvajanje virtualnih strojev},
 }
 
 \pagenumbering{gobble}
@@ -273,7 +233,7 @@ Tematika naloge:
 \
 
 Oblačne storitve so postale del vsakdanjika in njihova uporaba pa je v strmem porastu. Oblačni sistemi hranijo ogromne količine podatkov, zato so zanimiva tarča za kriminalne združbe, saj je dovolj že en sam uspešen vdor v sistem. Za mnoge poslovne uporabnike je prav varnost podatkov eden ključnih faktorjev, ki odloča kateri deli poslovanja se smejo opravljati v oblaku in kateri ne.
-V diplomski nalogi tako raziščite, kakšna varnostna tveganja obstajajo pri uporabi oblaka in kako jih lahko omilimo s pomočjo kriptografskih mehanizmov.
+V diplomski nalogi tako raziščite, kakšna varnostna tveganja obstajajo pri uporabi oblaka in kako jih lahko omilimo z uporabo kriptografije.
 
 %********************************************
 % stran 5 med uvodnimi listi
@@ -569,7 +529,7 @@ Zadnji sklop varnostnih groženj v oblaku predstavljajo ranljivosti, ki so posle
 
 Kriptografija omogoča doseganje informacijske varnosti s pomočjo matematičnih postopkov. Verjetno najbolj znan tak postopek je šifriranje, ki zagotavlja zaupnost podatkov, pogled tega v področje kriptografije spadajo tudi digitalni podpisi, avtentikacijske kode MAC in zgoščevalne funkcije, ki nam pomagajo pri ohranjanju celovitosti in overjanju identitete podatkov. Poleg tega se kriptografija ukvarja tudi z razvojem varnih generatorjev naključnih števil, ki so pomembna osnova za generiranje ključev in varno implementacijo kriptosistemov.
 
-Šifriranje je način, kako skriti vsebino sporočila (\gls{plaintext}) pred nepooblaščenimi očmi. To dosežemo z uporabo algoritma, ki mu kot vhodni podatek damo \gls{plaintext} in \gls{enckey}, le-ta pa nam vrne \gls{tajnopis}. \Gls{tajnopis} vsebuje enake informacije kot \gls{plaintext}, vendar ima to lastnost, da ga je mogoče prebrati le v primeru, da posedujete ključ za dešifriranje. Brez ključa je iz \gls{tajnopis}a praktično nemogoče razbrati vsebino originalnega sporočila.\footnote{Težanost je odvisna od moči kriptografske sheme in pravilnosti implementacije}
+Šifriranje je način, kako skriti vsebino sporočila (\gls{plaintext}) pred nepooblaščenimi očmi. To dosežemo z uporabo algoritma, ki mu kot vhodni podatek damo \gls{plaintext} in šifrirni ključ, le-ta pa nam vrne \gls{tajnopis}. \Gls{tajnopis} vsebuje enake informacije kot \gls{plaintext}, vendar ima to lastnost, da ga je mogoče prebrati le v primeru, da posedujete ključ za dešifriranje. Brez ključa je iz \gls{tajnopis}a praktično nemogoče razbrati vsebino originalnega sporočila.\footnote{Težanost je odvisna od moči kriptografske sheme in pravilnosti implementacije}
 
 To pomeni, da lahko tajnopis javno objavimo, varovati je potrebno samo šifrirni ključ. Ta lastnost nam omogoča, da varno poslujemo s svojo banko, pošiljamo e-pošto, ki jo lahko prebere samo prejemnik, navkljub temu, da internet ni varen komunikacijski kanal in da na njem mrgoli zlobnežev, ki želijo priti do naših zaupnih podatkov.
 
@@ -654,7 +614,7 @@ Y=e_Z(X)= X \oplus Z.
 
 \gls{DES} je simetrična bločna šifra, ki deluje na blokih velikosti 64 bitov in uporablja 64 bitni ključ, vendar je v ključu možno poljubno izbrati le 56 bitov, preostalih 8 pa se uporablja samo za odkrivanje napak v ključu.
 
-Algoritem je sestavljen iz 16 identičnih korakov oziroma krogov, nekaj pred- in po-procesiranja vhodnih podatkov, Feistelove F-funkcije ter funkcije, ki iz glavnega ključa ustvari zaporedje podključev. Na začetku se 64-bitni blok razdeli na dve 32-bitni polovici, levo in desno, ki se po vsakem končanem krogu algoritma zamenjata. Taka shema delovanja je znana tudi kot \gls{feistelovasifra}. V vsakem krogu se leva polovica bloka z operacijo \rm{XOR} zmeša z rezultatom Feistelove F-funkcije, ki kot vhodne parametre dobi podključ trenutnega kroga in desno polovico bloka. Po koncu vsakega kroga se leva in desna polovica zamenjata.
+Algoritem je sestavljen iz 16 identičnih korakov oziroma krogov, nekaj pred- in po-procesiranja vhodnih podatkov, Feistelove F-funkcije ter funkcije, ki iz glavnega ključa ustvari zaporedje podključev. Na začetku se 64-bitni blok razdeli na dve 32-bitni polovici, levo in desno, ki se po vsakem končanem krogu algoritma zamenjata. Taka shema delovanja je znana tudi kot Feistlova šifra. V vsakem krogu se leva polovica bloka z operacijo \rm{XOR} zmeša z rezultatom Feistelove F-funkcije, ki kot vhodne parametre dobi podključ trenutnega kroga in desno polovico bloka. Po koncu vsakega kroga se leva in desna polovica zamenjata.
 
 Ob prelomu tisočletja se je izkazalo, da je 64-bitni ključ prešibak, da bi zadržal napade s surovo silo. Zato se je pojavila varianta algoritma imenovana 3DES. Slednji uporablja 3 ključe, pri čemer imamo na voljo 3 opcije za izbiro ključev.
 
@@ -941,7 +901,7 @@ kjer zahtevamo, da velja: $y=F(k, x)$.
 \end{defn}
 \end{mdframed}
 
-V funkcionalni šifrirni shemi za funkcionalnost~$F(\cdot, \cdot)$, lahko \gls{authority} sistema, ki si lasti glavni skrivni ključ, ustvari ključ \texttt{sk}, s katerim uporabnik izračuna vrednost funkcije~$F(k, x)$ iz tajnopisa za~$x$. Recimo, da je možno, da za $F$ vzamemo katerokoli funkcijo, ki jo je možno opisati z determinističnim Turingovim strojem. To nam odpre možnost, da v šifrirno shemo vgradimo ``program'' za nadzor dostopa in s tem zaobidemo omejitve, omenjene v prvem odstavku.
+V funkcionalni šifrirni shemi za funkcionalnost~$F(\cdot, \cdot)$, lahko upravnik sistema, ki si lasti glavni skrivni ključ, ustvari ključ \texttt{sk}, s katerim uporabnik izračuna vrednost funkcije~$F(k, x)$ iz tajnopisa za~$x$. Recimo, da je možno, da za $F$ vzamemo katerokoli funkcijo, ki jo je možno opisati z determinističnim Turingovim strojem. To nam odpre možnost, da v šifrirno shemo vgradimo ``program'' za nadzor dostopa in s tem zaobidemo omejitve, omenjene v prvem odstavku.
 
 Izkaže se, da je možno tudi povsem klasične asimetrične šifrirne sheme predstaviti v obliki funkcionalne šifrirne sheme, vendar so veliko bolj zanimive sheme, ki za ključe uporabljajo kar uporabnikovo identiteto - \gls{IBE} in njihova nadgradnja, ki je predstavljena v poglavju \ref{sub:Sifriranje na osnovi atributov in predikatov}.
 
@@ -1022,7 +982,7 @@ CP-ABE kriptosistem v $n$ spremenljivkah (atributih) je funkcionalni kriptosiste
 
 Homomorfizem je lastnost, da je določena algebraična operacija nad dvema čistopisoma ekvivalentna neki drugi operaciji nad pripadajočima tajnopisoma. To pomeni, da namesto, da naredimo neko operacijo nad čistopisom, lahko izvedemo homomorfno operacijo nad tajnopisom in končni rezultat bo isti. Taki kriptosistemi bi v teoriji lahko omogočili varno računanje v oblaku, saj je možno vse operacije izvajati nad tajnopisi, tako da ni potrebe, da oblačni sistem kadarkoli pride v stik s čistopisom podatkov.
 
-Potrebna lastnost homomorfne šifre je \glslink{malleable}{gnetljivost} (angl.\ malleability), ki je sicer v večini ostalih shem nezaželena lastnost. Gnetljivost omogoča spremembo tajnopisa na tak način, da se ta dešifrira v čistopis, ki je na nek način povezan z originalnim čistopisom. Če imamo dan tajnopis za $m$, to pomeni, da je možno izračunati nov tajnopis, ki se bo dešifriral v vrednost $f(m)$ za neko funkcijo $f$, brez da bi sploh vedeli vrednost $m$.
+Potrebna lastnost homomorfne šifre je gnetljivost (angl.\ malleability), ki je sicer v večini ostalih shem nezaželena lastnost. Gnetljivost omogoča spremembo tajnopisa na tak način, da se ta dešifrira v čistopis, ki je na nek način povezan z originalnim čistopisom. Če imamo dan tajnopis za $m$, to pomeni, da je možno izračunati nov tajnopis, ki se bo dešifriral v vrednost $f(m)$ za neko funkcijo $f$, brez da bi sploh vedeli vrednost $m$.
 
 Ločimo dva tipa homomorfnih šifer, glede na to, katere operacije lahko opravimo nad tajnopisi. V prvo skupino spadajo delno homomorfni sistemi, kot so RSA brez dopolnjevanja, ElGamal in drugi. Taki sistemi so homomorfni samo za eno operacijo in kot taki ne prav zanimivi za splošno uporabo, je pa z njimi možno implementirati rešitev kot so varne e-volitve. Veliko bolj zanimivi pa so popolnoma homomorfni sistemi, kjer je nad tajnopisi možno izvesti poljubno operacijo. Prvi popolnoma homomorfni kriptosistem je v svoji doktorski disertaciji predstavil C. Gentry~\cite{gentry2009fully}, vendar se njegova implementacija ni izkazala za najbolj praktično. Prvi problem predstavlja velikost javnega ključa, ki sega od 70 MB do 2,3 GB, odvisno od stopnje varnosti, ki jo želimo. Prav tako je problematična hitrost take sheme, saj obdelava enega bita informacije traja nekje med 30 sekundami in 30 minutami.
 
@@ -1053,7 +1013,7 @@ V taki shemi je možno tajnopise seštevati, odštevati in množiti po modulu 2.
   \end{defn}
 \end{mdframed}
 
-Problem šuma je mogoče rešiti tako, da podatke dešifriramo. Če nam uspe dešifrirno funkcijo predstaviti kot logično vezje, ki ga je možno ovrednotiti v dani shemi, smo na dobri poti da zmanjšamo šum. Kriptosistemom, ki so sposobni te operacije rečemo, da so \glslink{bootstrappable}{\textit{samozagonski}} (angl.\ bootstrappable), in možno je pokazati, da iz takega sistema lahko sestavimo popolnoma homomorfen kriptosistem. Kljub temu, da ta postopek omogoča, da pridemo do popolnoma homomorfnega kriptosistema, pa je daleč od idealnega. Ovrednotenje dešifrirne funkcije, predstavljene kot digitalno vezje je računsko zahteven postopek, prav tako pa tajnopis enega samega bita informacije zasede precej več prostora kot pripadajoč čistopis. Zato se v zadnjem času veliko raziskav usmerja v kriptosisteme, kjer \textit{bootstraping} ni potreben. Predvsem se veliko pozornosti usmerja v problem \textit{učenja z napakami} - \acrfull{LWE}. Problem je prvič predstavil O. Regev~\cite{regev2009lattices} in izkazalo se je, da ta problem lahko predstavlja koristno osnovo za mnoge kriptografske konstrukcije. Čeprav problem šuma obstaja tudi v kriptosistemih, osnovanih na problemu \acrshort{LWE}, pa je le tega možno zmanjšati na veliko hitrejši način kot je \textit{samozagon}.
+Problem šuma je mogoče rešiti tako, da podatke dešifriramo. Če nam uspe dešifrirno funkcijo predstaviti kot logično vezje, ki ga je možno ovrednotiti v dani shemi, smo na dobri poti da zmanjšamo šum. Kriptosistemom, ki so sposobni te operacije rečemo, da so \textit{samozagonski} (angl.\ bootstrappable), in možno je pokazati, da iz takega sistema lahko sestavimo popolnoma homomorfen kriptosistem. Kljub temu, da ta postopek omogoča, da pridemo do popolnoma homomorfnega kriptosistema, pa je daleč od idealnega. Ovrednotenje dešifrirne funkcije, predstavljene kot digitalno vezje je računsko zahteven postopek, prav tako pa tajnopis enega samega bita informacije zasede precej več prostora kot pripadajoč čistopis. Zato se v zadnjem času veliko raziskav usmerja v kriptosisteme, kjer \textit{bootstraping} ni potreben. Predvsem se veliko pozornosti usmerja v problem \textit{učenja z napakami} - \acrfull{LWE}. Problem je prvič predstavil O. Regev~\cite{regev2009lattices} in izkazalo se je, da ta problem lahko predstavlja koristno osnovo za mnoge kriptografske konstrukcije. Čeprav problem šuma obstaja tudi v kriptosistemih, osnovanih na problemu \acrshort{LWE}, pa je le tega možno zmanjšati na veliko hitrejši način kot je \textit{samozagon}.
 
 \section{Varovanje podatkov v mirovanju}
 \label{sec:Varovanje podatkov v mirovanju}
@@ -1164,7 +1124,7 @@ Prav tako se je potrebno izogniti kriptosistemu \texttt{RC4}, ki ne velja več z
 \section{Varovanje podatkov v uporabi}
 \label{sec:Varovanje podatkov v uporabi}
 
-Podatki v uporabi so zelo kratkotrajne narave, vendar jih je kljub temu zelo težko zaščititi. Problem izhaja iz same definicije podatkov v uporabi, saj so to podatki, nad katerimi računalniški sistem želi izvesti neko operacijo oziroma jih prikazati uporabniku. Podatki v uporabi se nahajajo v delovnem pomnilniku računalnika, in so zato izpostavljeni tako imenovanemu \glslink{cold-boot-attack}{hladnemu napadu (angl.\ cold-boot attack)}, kjer napadalec dobesedno zamrzne stanje pomnilnika ob delujočem računalniku in nato poskuša iz njega izvleči vsebino, predvsem šifrirne ključe, saj lahko z njihovo pomočjo dešifrira veliko večjo količino podatkov, ki so trenutno v mirovanju ali gibanju.
+Podatki v uporabi so zelo kratkotrajne narave, vendar jih je kljub temu zelo težko zaščititi. Problem izhaja iz same definicije podatkov v uporabi, saj so to podatki, nad katerimi računalniški sistem želi izvesti neko operacijo oziroma jih prikazati uporabniku. Podatki v uporabi se nahajajo v delovnem pomnilniku računalnika, in so zato izpostavljeni tako imenovanemu hladnemu napadu (angl.\ cold-boot attack), kjer napadalec dobesedno zamrzne stanje pomnilnika ob delujočem računalniku in nato poskuša iz njega izvleči vsebino, predvsem šifrirne ključe, saj lahko z njihovo pomočjo dešifrira veliko večjo količino podatkov, ki so trenutno v mirovanju ali gibanju.
 
 Kljub temu pa tveganje za hladni napad ni veliko, saj z napadalčeve strani zahteva fizičen dostop do sistema in kar nekaj tehnologije. Večji problem predstavlja morebitna okužba sistema s \glslink{rootkit}{korenskim kompletom}, ki napadalcu omogoča dostop do celotnega pomnilnika sistema.
 
