@@ -89,72 +89,72 @@
 \newglossaryentry{MITM}
 {
   name={napad vrinjenega napadalca},
-  description={(angl.\ man-in-the-middle/MITM attack) Način napada, kjer napadalec aktivno prestreza komunikacijo med žrtvijo in strežnikom.}
+  description={(angl.\ man-in-the-middle/MITM attack) Način napada, kjer napadalec aktivno prestreza komunikacijo med žrtvijo in strežnikom}
 }
 
 \newglossaryentry{plaintext}
 {
   name=čistopis,
-  description={(angl.\ plaintext) Izvorno sporočilo, preden ga šifriramo.},
+  description={(angl.\ plaintext) Izvorno sporočilo, preden ga šifriramo},
 }
 
 \newglossaryentry{tajnopis}
 {
   name=tajnopis,
-  description={(angl.\ ciphertext) Šifrirana oblika čistopisa.},
+  description={(angl.\ ciphertext) Šifrirana oblika čistopisa},
 }
 
 \newglossaryentry{otp}
 {
   name=enkratni ščit,
-  description={(angl.\ one time pad) Edini dokazano kriptosistem, vendar zahteva, da je dožina ključa enaka dolžini sporočila.},
+  description={(angl.\ one time pad) Edini dokazano kriptosistem, vendar zahteva, da je dožina ključa enaka dolžini sporočila},
 }
 
 \newglossaryentry{neizpodbitnost}
 {
   name=preprečevanje tajenja,
-  description={(angl.\ non-repudiation) Preprečitev, da nekdo zanika storjeno dejanje.},
+  description={(angl.\ non-repudiation) Preprečitev, da nekdo zanika storjeno dejanje},
 }
 
 \newglossaryentry{zaupnost}
 {
   name=zaupnost,
-  description={(angl.\ confidentiality) Eden od ciljev šifriranja. Dostop do zaupnih podatkov je omogočen pooblaščenim osebam.},
+  description={(angl.\ confidentiality) Eden od ciljev šifriranja. Dostop do zaupnih podatkov je omogočen pooblaščenim osebam},
 }
 
 \newglossaryentry{celovitost}
 {
   name=celovitost,
-  description={(angl.\ integrity) Neokrnjenost sporočila.},
+  description={(angl.\ integrity) Neokrnjenost sporočila},
 }
 
 \newglossaryentry{availability}
 {
   name=razpoložljivost,
-  description={(angl. availability) Zagotavljanje dostopnosti storitve.},
+  description={(angl. availability) Zagotavljanje dostopnosti storitve},
 }
 
 \newglossaryentry{overjanje}
 {
   name=overjanje,
-  description={(angl.\ authentication) Ugotavljanje pristnosti sporočila ali osebe s katero komuniciramo.},
+  description={(angl.\ authentication) Ugotavljanje pristnosti sporočila ali osebe s katero komuniciramo},
 }
 
 \newglossaryentry{avtorizacija}
 {
   name=avtorizacija,
-  description={(angl.\ authorization) Postopek preverjanja pravic za izvedbo določene akcije.},
+  description={(angl.\ authorization) Postopek preverjanja pravic za izvedbo določene akcije},
 }
 \newglossaryentry{deduplication}
 {
   name=izločanje dvojnic,
-  description={(angl.\ deduplication) Postopek optimizacije porabe pomnilnika s shranjevanjem samo ene unikatne kopije vsakega podatka.},
+  description={(angl.\ deduplication) Postopek optimizacije porabe pomnilnika s shranjevanjem samo ene unikatne kopije vsakega podatka},
 }
 
 \newglossaryentry{rootkit}
 {
   name=korenski komplet,
-  description={(angl.\ rootkit)},
+  description={(angl.\ rootkit) Program, ki napadalcu omogoča prikrito izvajanje dejavnosti na računalniku žrtve},
 }
 \newglossaryentry{hypervisor}
 {
@@ -282,7 +282,7 @@ V Ljubljani, dne \today \hspace{1cm} Podpis avtorja:
 \cleardoublepage
 \chapter*{Zahvala}
 
-Zahvaljujem se mentorju, za vso potrpežjivost in nasvete, sodelavcu Jaki Močniku za vsebinske in slovnične nasvete, ter staršem, za podporo tekom študija.
+Zahvaljujem se mentorju, za vso potrpežljivost in nasvete, sodelavcu Jaki Močniku za vsebinske in slovnične nasvete, ter staršem, za podporo tekom študija.
 
 %********************************************
 % kazalo
@@ -318,7 +318,7 @@ oblak, varnost, kriptografija, kriptosistemi, funkcionalni kriptosistemi, homomo
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
 
-The goal of this diploma thesis is to give an overview of data security in cloud systems. The first part covers basics of cloud and security. Additionaly it identifies some risks arising from the use of cloud computing. The second part focuses on cryptography, especially on ciphers, as a tool for mitigation of those risks. We try to convey some recent ideas (especially those interesting in the context of cloud computing) from the cryptographic world to the reader in an easy manner. We conclude with some tips on how to ensure security of data.
+The goal of this diploma thesis is to give an overview of data security in cloud systems. The first part covers basics of cloud and security. Additionally it identifies some risks arising from the use of cloud computing. The second part focuses on cryptography, especially on ciphers, as a tool for mitigation of those risks. We try to convey some recent ideas (especially those interesting in the context of cloud computing) from the cryptographic world to the reader in an easy manner. We conclude with some tips on how to ensure security of data.
 
 \vspace{1.3cm}
 \noindent
@@ -1136,9 +1136,11 @@ V poglavju~\ref{sec:Homomorfni kriptosistemi} smo spoznali homomorfne kriptosist
 Računalništvo v oblaku vsekakor ni več stvar prihodnosti, ampak je že tu. Lahko trdimo, da večina uporabnikov storitve v oblaku uporablja, brez da bi poznala varnostna tveganja povezana z njihovo uporabo. Bolj zadržani so tehnično bolje podkovani uporabniki in podjetja, ki se zavedajo večine tveganj, ki jih prinese uporaba oblačnih storitev. Kot je bilo omenjeno, ``100\% varnost'' sicer obstaja v teoriji, vendar jo je v praksi praktično nemogoče implementirati, zato kot uporabnik oblačnih storitev ne smemo nasedati foskulam, kot so \textit{``Secured by AES''} ali pa \textit{``Secured by RSA''}, saj nam te trditve brez točnih tehničnih podrobnosti implementacije ne zagotavljajo ničesar. Varnost je širok pojem, obstaja veliko načinov, kako jo zagotoviti, in še več načinov, kako jo zaobiti ali izničiti. Na tem mestu velja opomniti, da nikoli, ampak res nikoli ne poskušajte izumiti svojega šifrirnega postopka. Mnogi so poizkusili in le redkim je uspelo. Varnost mora sloneti na rigoroznih matematičnih dokazih, ne na občutku, da nekaj izgleda varno. Predvsem je potrebno upoštevati Kerckhoffovo načelo, da mora biti sistem varen, če sovražnik pozna vse njegove podrobnosti, le ključa ne.
 
 %********************************************
-
+\clearpage
+\pagenumbering{gobble}
 \addcontentsline{toc}{chapter}{Seznam slik}
 \addtocontents{toc}{\protect\vspace{-2ex}}
+
 \listoffigures
 
 \clearpage
