@@ -30,6 +30,15 @@
 \usepackage[acronym,toc,xindy]{glossaries}
 \usepackage{tikz}
 
+%Velikost strani - dvostransko
+\oddsidemargin 1.4cm
+\evensidemargin 0.35cm
+\textwidth 14cm
+\topmargin 0.26cm
+\headheight 0.6cm
+\headsep 1.5cm
+\textheight 20cm
+
 
 \theoremstyle{plain}
 \newtheorem{thm}{Theorem}[chapter] % reset theorem numbering for each chapter
@@ -432,6 +441,7 @@ Poleg treh ključnih lastnosti, ki jih najdemo zgoraj, je Meier~\cite{meier2003i
 \noindent
 Vse zgoraj naštete lastnosti so splošne lastnosti varnosti in zato seveda tičejo tudi računalništva v oblaku. Pri uporabi storitev v oblaku, bi morali najbolj izpostaviti vprašanje varnosti podatkov, saj le te zaupamo v hrambo ponudniku storitve.
 
+\cleardoublepage
 \chapter{Varnostna tveganja v oblaku}
 
 Zaradi vse večje priljubljenosti storitev v oblaku in posledično ogromne količine podatkov, s katerimi razpolagajo ponudniki storitev v oblaku, so ti vedno pogosteje tarča napadov kriminalnih združb. Za sisteme, ki tečejo “v oblaku”, je značilno, da navzven delujejo kot en strežnik, v resnici pa tečejo na velikem številu strežnikov, ki so med seboj povezani. To pomeni da morebitni vdor v samo en strežnik napadalcu omogoča dostop na ostale strežnike, ki tečejo znotraj istega sistema. Če si sistem predstavljamo kot trdnjavo, to pomeni, da je večina zaščitnih mehanizmov skoncentrirana na obrobju, na obzidju trdnjave. Če uspemo to obzidje predreti na samo enem delčku, se lahko več ali manj prosto sprehajamo znotraj trdnjave. Pred pojavom storitev v oblaku je bilo znotraj enega obzidja le nekaj strežnikov, zato je bilo obzidje majhno in ga je bilo lažje vzdrževati. Sistem, na katerem teče storitev v oblaku pa je lahko sestavljen iz več tisoč strežnikov, kar pomeni, da se velikost obzidja močno poveča, veliko obzidje pa je tudi težko vzdrževati, zato se v njem hitro pojavijo razpoke.
@@ -523,6 +533,7 @@ Napad zavrnitve storitve je ena najpreprostejših in pogosto zelo učinkovitih o
 
 Zadnji sklop varnostnih groženj v oblaku predstavljajo ranljivosti, ki so posledica ene od ključnih lastnosti oblaka, to je uporaba skupnih virov. Ponudniki storitev v oblaku zagotavljajo navidezno ``neomejene'' vire končnemu uporabniku z uporabo virtualizacije in skupne rabe virov. Pri tem uporabljajo klasično strojno opremo, ki sicer s pomočjo posebne programske opreme omogoča delitev virov, vendar ni bila zasnovana, da bi omogočala varno skupno uporabo. Tak tip napadov izkorišča dejstvo, da si različni virtualni strežniki delijo fizično strojno opremo, zato je možno s posebno obliko napada, ki se imenuje napad preko stranskega kanala pridobiti informacije iz žrtvinega strežnika, brez da bi dejansko prišlo do vdora. V času pisanja še ni prišlo do takega tipa vdora v praksi, vendar obstajajo primeri takih napadov, ki so jih demonstrirali pod laboratorijskimi pogoji.
 
+\cleardoublepage
 \chapter{Osnove kriptografije}
 
 Kriptografija omogoča doseganje informacijske varnosti s pomočjo matematičnih postopkov. Verjetno najbolj znan tak postopek je šifriranje, ki zagotavlja zaupnost podatkov, pogled tega v področje kriptografije spadajo tudi digitalni podpisi, avtentikacijske kode MAC in zgoščevalne funkcije, ki nam pomagajo pri ohranjanju celovitosti in overjanju identitete podatkov. Poleg tega se kriptografija ukvarja tudi z razvojem varnih generatorjev naključnih števil, ki so pomembna osnova za generiranje ključev in varno implementacijo kriptosistemov.
@@ -835,7 +846,7 @@ $$
 
 Tej lastnosti rečemo gnetljivost (angl.\ malleability), saj napadalec lahko samo s poznavanjem javnih parametrov kriptosistema in tajnopisa $c$, skonstruira nov tajnopis $c'$, ki se dešifrira v čistopis, ki je na nek način povezan s čistopisom, ki pripada $c$. V splošnem velja, da je to neželena lastnost varnega kriptosistema, vendar bomo v poglavju \ref{sec:Homomorfni kriptosistemi} spoznali, da s tem, ko dovolimo gnetljivost kriptosistema, odpremo vrata popolnoma novim načinom uporabe kriptografije v oblaku.
 
-
+\cleardoublepage
 \chapter{Uporaba kriptografije v oblaku}
 \label{chap:Uporaba kriptografije v oblaku}
 
@@ -1130,6 +1141,7 @@ Vsem tem problemom se lahko izognemo, če podatki v obliki čistopisa, sploh nik
 
 V poglavju~\ref{sec:Homomorfni kriptosistemi} smo spoznali homomorfne kriptosisteme, ki nam omogočajo prav to. Žal pa je to še precej novo področje kriptografije in taki kriptosistemi še niso primerni za splošno uporabo. Največji problem predstavlja hitrost izvajanja operacij nad šifriranimi podatki, pa tudi velikost tajnopisov. Nič čudnega ni, če v homomorfnem kriptosistemu iz 1 MB čistopisa dobite 10 GB tajnopisa. Seštevanje nad tajnopisi je sicer dokaj hitra operacija (manj kot milisekunda), vendar že preprosto množenje dveh bitov podatkov lahko vzame več sekund. Kljub temu, pa je možno homomorfne sisteme uporabiti za preprosto aritmetiko nad tajnopisi, kot so na primer \textit{e-volitve} in v določenih drugih dobro določenih problemih. Omeniti velja ekipo raziskovalcev iz Microsofta, ki je v začetku leta 2016 predstavila nevronsko mrežo, ki zmore več deset tisoč optičnih prepoznav znakov (OCR) na uro, kljub temu, da operira s homomorfno šifriranimi podatki.
 
+\cleardoublepage
 \chapter{Zaključek}
 \label{chap:Zakljucek}
 
