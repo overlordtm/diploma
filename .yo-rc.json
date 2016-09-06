@@ -1,0 +1,11 @@
+{
+  "generator-reveal": {
+    "presentationTitle": "Varnost podatkov v oblaku",
+    "packageVersion": "0.0.1",
+    "revealTheme": "league",
+    "useSass": false,
+    "deployToGithubPages": true,
+    "githubUsername": "overlordtm",
+    "githubRepository": "diploma"
+  }
+}
