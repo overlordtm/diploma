@@ -1,10 +1,6 @@
 
 # Varnost podatkov v oblaku
 
-From the terminal, pop in:
+Andraž Vrhovec
 
-  ```yo reveal:slide "Slide Title"```
-
-Available options:
-
- ```--markdown --attributes --notes```
+Mentor: prof. dr. Aleksandar Jurišić
