@@ -1,6 +1,8 @@
 
 # Varnost podatkov v oblaku
 
-Andraž Vrhovec
+### Andraž Vrhovec
 
 Mentor: prof. dr. Aleksandar Jurišić
+
+Ljubljana, 2016
