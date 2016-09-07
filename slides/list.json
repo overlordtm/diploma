@@ -1,5 +1,25 @@
 [
     "index.md",
-    "oblak.html",
-    "varnost.html"
+    [
+        "oblak.md",
+        "oblak-nivoji.md",
+        "oblak-tipi.md"
+    ],
+    [
+        "varnost.md",
+        "varnost-2.md"
+    ],
+    [
+        "tveganja.md",
+        "tveganja-2.md"
+    ],
+    [
+        "crypto-classic.md",
+        "crypto-classic-problem.md"
+    ],
+    [
+        "crypto-cloud.md",
+        "crypto-cloud-fhe.md",
+        "crypto-cloud-fe.md"
+    ]
 ]

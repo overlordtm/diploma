@@ -12,9 +12,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
         <link rel="stylesheet" href="bower_components/reveal.js/css/reveal.css">
-    
-        <link rel="stylesheet" href="bower_components/reveal.js/css/theme/league.css" id="theme">
-    
+
+        <link rel="stylesheet" href="bower_components/reveal.js/css/theme/solarized.css" id="theme">
+
 
         <!-- For syntax highlighting -->
         <link rel="stylesheet" href="bower_components/highlightjs/styles/zenburn.css">
@@ -67,7 +67,15 @@
             history: true,
             center: true,
 
+            parallaxBackgroundImage: "./resources/cloud-bg.jpg",
+            parallaxBackgroundSize: "1900px 900px",
+
             transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+            math: {
+                mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
+                config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+            },
 
             // Optional reveal.js plugins
             dependencies: [
@@ -77,7 +85,8 @@
               { src: 'bower_components/reveal.js/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( '[data-html]' ) || !!document.querySelector( 'pre code' ) || !!document.querySelector( '[data-markdown]' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
               { src: 'bower_components/reveal.js/plugin/zoom-js/zoom.js', async: true },
               { src: 'bower_components/reveal.js/plugin/notes/notes.js', async: true },
-              { src: 'js/loadhtmlslides.js', condition: function() { return !!document.querySelector( '[data-html]' ); } }
+              { src: 'js/loadhtmlslides.js', condition: function() { return !!document.querySelector( '[data-html]' ); } },
+              { src: 'plugin/math/math.js', async: true }
             ]
           });
 
