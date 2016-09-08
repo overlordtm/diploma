@@ -14,12 +14,33 @@
         "tveganja-2.md"
     ],
     [
+        "crypto.md",
         "crypto-classic.md",
-        "crypto-classic-problem.md"
+        "crypto-classic-problem.md",
+        "crypto-classic-problem-pic.md"
     ],
     [
-        "crypto-cloud.md",
+        "crypto-cloud.md"
+    ],
+    [
         "crypto-cloud-fhe.md",
-        "crypto-cloud-fe.md"
-    ]
+        {
+        "attr": {
+            "data-background": "resources/fhe-scheme.png"
+            }
+        }
+    ],
+    [
+        "crypto-cloud-fe.md",
+        "crypto-cloud-fe-2.md",
+        "crypto-cloud-abe.md",
+        "crypto-cloud-abe-2.md"
+    ],
+    [
+        "podatki.md",
+        "podatki-mirovanje.md",
+        "podatki-gibanje.md",
+        "podatki-uporaba.md"
+    ],
+    "end.md"
 ]
