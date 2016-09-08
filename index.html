@@ -109,12 +109,22 @@
                         <section>
                             
                                 
+    <section data-markdown="slides/crypto.md"></section>
+
+
+                            
+                                
     <section data-markdown="slides/crypto-classic.md"></section>
 
 
                             
                                 
     <section data-markdown="slides/crypto-classic-problem.md"></section>
+
+
+                            
+                                
+    <section data-markdown="slides/crypto-classic-problem-pic.md"></section>
 
 
                             
@@ -130,17 +140,86 @@
 
 
                             
+                        </section>
+                    
+                
+                    
+                    
+                        <section>
+                            
                                 
     <section data-markdown="slides/crypto-cloud-fhe.md"></section>
 
 
                             
                                 
-    <section data-markdown="slides/crypto-cloud-fe.md"></section>
+    <section data-background="resources/fhe-scheme.png" ></section>
 
 
                             
                         </section>
+                    
+                
+                    
+                    
+                        <section>
+                            
+                                
+    <section data-markdown="slides/crypto-cloud-fe.md"></section>
+
+
+                            
+                                
+    <section data-markdown="slides/crypto-cloud-fe-2.md"></section>
+
+
+                            
+                                
+    <section data-markdown="slides/crypto-cloud-abe.md"></section>
+
+
+                            
+                                
+    <section data-markdown="slides/crypto-cloud-abe-2.md"></section>
+
+
+                            
+                        </section>
+                    
+                
+                    
+                    
+                        <section>
+                            
+                                
+    <section data-markdown="slides/podatki.md"></section>
+
+
+                            
+                                
+    <section data-markdown="slides/podatki-mirovanje.md"></section>
+
+
+                            
+                                
+    <section data-markdown="slides/podatki-gibanje.md"></section>
+
+
+                            
+                                
+    <section data-markdown="slides/podatki-uporaba.md"></section>
+
+
+                            
+                        </section>
+                    
+                
+                    
+                        
+    <section data-markdown="slides/end.md"></section>
+
+
+                    
                     
                 
             </div>
@@ -164,10 +243,10 @@
 
             transition: 'slide', // none/fade/slide/convex/concave/zoom
 
-            math: {
-                mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
-                config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
-            },
+            // math: {
+            //     mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
+            //     config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+            // },
 
             // Optional reveal.js plugins
             dependencies: [
@@ -178,7 +257,8 @@
               { src: 'bower_components/reveal.js/plugin/zoom-js/zoom.js', async: true },
               { src: 'bower_components/reveal.js/plugin/notes/notes.js', async: true },
               { src: 'js/loadhtmlslides.js', condition: function() { return !!document.querySelector( '[data-html]' ); } },
-              { src: 'plugin/math/math.js', async: true }
+            //   { src: 'plugin/math/math.js', async: true },
+              { src: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML', async: true }
             ]
           });
 

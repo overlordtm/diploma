@@ -1,8 +1,8 @@
-## Tveganja v oblaku
+## Vanostna tveganja v oblaku
 
-* Razkritje podatkov
-* Pomankljivo upravljanje identitete za dostop
-* Nezaščiteni uporabnški in programski vmesniki
-* Sistemske ranljivosti
-* Ugrabitev uporabniškega računa
-* Notranje grožnje
+* razkritje podatkov
+* pomankljivo upravljanje identitete za dostop
+* nezaščiteni uporabnški in programski vmesniki
+* sistemske ranljivosti
+* ugrabitev uporabniškega računa
+* notranje grožnje

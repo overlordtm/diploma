@@ -1,8 +1,12 @@
 ## Tveganja v oblaku
 
-* Organizirana trajna grožnja
-* Izguba podatkov
-* Malomarnost
-* Zloraba in zlonamerna uporaba sistemov
-* Napadi zavrnitve storitve
-* Ranljivosti zaradi uporabe skupnih virov
+* organizirana trajna grožnja
+* izguba podatkov
+* malomarnost
+* zloraba in zlonamerna uporaba sistemov
+* napadi zavrnitve storitve
+* ranljivosti zaradi uporabe skupnih virov
+
+note:
+
+flip feng shui

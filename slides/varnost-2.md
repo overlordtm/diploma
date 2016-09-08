@@ -1,5 +1,5 @@
 ## Varnost
 
-* Overjanje
-* Avtorizacija
-* Preprečevanje tajenja
+* overjanje
+* avtorizacija
+* preprečevanje tajenja

@@ -1,3 +1,11 @@
 ## Varnost
 
-![cia-triad](resources/cia-triad.png "CIA")
+* zaupnost
+* celovitost
+* razpoložljivost
+
+note:
+
+zaupnost je zaščita podatkov pred nepooblaščenim dostopom
+
+celovitos je zagotavlanje pravilnosti podatkov, preprecevanje spreminjanja
