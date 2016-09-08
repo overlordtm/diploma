@@ -1,13 +1,10 @@
 [
     "index.md",
     [
-        "oblak.md",
-        "oblak-nivoji.md",
-        "oblak-tipi.md"
+        "oblak.md"
     ],
     [
-        "varnost.md",
-        "varnost-2.md"
+        "varnost.md"
     ],
     [
         "tveganja.md",
@@ -34,12 +31,14 @@
         "crypto-cloud-fe.md",
         "crypto-cloud-fe-2.md",
         "crypto-cloud-abe.md",
-        "crypto-cloud-abe-2.md"
+        "crypto-cloud-abe-2.md",
+        "crypto-cloud-abe-3.md"
     ],
     [
         "podatki.md",
         "podatki-mirovanje.md",
         "podatki-gibanje.md",
+        "podatki-gibanje-2.md",
         "podatki-uporaba.md"
     ],
     "end.md"
