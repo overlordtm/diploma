@@ -1,4 +1,4 @@
-## Tveganja v oblaku
+## Varnostna tveganja v oblaku
 
 * organizirana trajna grožnja
 * izguba podatkov
@@ -9,4 +9,9 @@
 
 note:
 
-flip feng shui
+ranvosti zaradi uporabe skupnih virov: filp feng shui
+
+napadi zavrnotve storitve
+
+organizirana trajna groznja, vlade, struxnet, kibernetska orozja
+
