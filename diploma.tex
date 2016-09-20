@@ -73,26 +73,26 @@
 \newacronym{SaaS}{SaaS}{Software as a Service}
 \newacronym{PaaS}{PaaS}{Platform as a Service}
 \newacronym{IaaS}{IaaS}{Infrastructure as a Service}
-\newacronym{API}{API}{Application programming interface}
-\newacronym{DES}{DES}{Data encryption standard}
+\newacronym{API}{API}{Application Programming Interface}
+\newacronym{DES}{DES}{Data Encryption Standard}
 \newacronym{NIST}{NIST}{National Institute of Standards and Technology}
 \newacronym{NBS}{NBS}{National Bureau of Standards}
-\newacronym{AES}{AES}{Advanced encryption standard}
+\newacronym{AES}{AES}{Advanced Encryption Standard}
 \newacronym{IV}{IV}{Inicializacijski vektor}
 \newacronym{ECB}{ECB}{Electronic Codebook}
 \newacronym{CBC}{CBC}{Cipher Block Chaining}
 \newacronym{CFB}{CFB}{Cipher Feedback}
 \newacronym{OFB}{OFB}{Output Feedback}
-\newacronym{RSA}{RSA}{Rivest-Shamir-Adleman}
+\newacronym{RSA}{RSA}{Rivest-Shamir-Adleman Cryptosystem}
 \newacronym{IBE}{IBE}{Identity Based Encryption}
-\newacronym{FE}{FE}{Functional encryption}
+\newacronym{FE}{FE}{Functional Encryption}
 \newacronym{ABE}{ABE}{Attribute Based Encryption}
-\newacronym{KP-ABE}{KP-ABE}{Key-policy attribute based encryption}
-\newacronym{CP-ABE}{CP-ABE}{Ciphertext-policy attribute based encryption}
+\newacronym{KP-ABE}{KP-ABE}{Key-Policy Attribute Based Encryption}
+\newacronym{CP-ABE}{CP-ABE}{Ciphertext-Policy Attribute Based Encryption}
 \newacronym{SSL}{SSL}{Secure Sockets Layer}
 \newacronym{TLS}{TLS}{Transport Layer Security}
 \newacronym{HTTPS}{HTTPS}{HTTP over TLS}
-\newacronym{LWE}{LEW}{Learning with Errors}
+\newacronym{LWE}{LWE}{Learning with Errors}
 
 
 \newglossaryentry{MITM}
@@ -116,19 +116,19 @@
 \newglossaryentry{otp}
 {
   name=enkratni ščit,
-  description={(angl.\ one time pad) Edini dokazano kriptosistem, vendar zahteva, da je dožina ključa enaka dolžini sporočila},
+  description={(angl.\ one time pad) Edini dokazano varen kriptosistem, vendar zahteva, da je dožina ključa enaka dolžini sporočila},
 }
 
 \newglossaryentry{neizpodbitnost}
 {
   name=preprečevanje tajenja,
-  description={(angl.\ non-repudiation) Preprečitev, da nekdo zanika storjeno dejanje},
+  description={(angl.\ non-repudiation) Preprečitev, da nekdo uspešno zanika storjeno dejanje},
 }
 
 \newglossaryentry{zaupnost}
 {
   name=zaupnost,
-  description={(angl.\ confidentiality) Eden od ciljev šifriranja. Dostop do zaupnih podatkov je omogočen pooblaščenim osebam},
+  description={(angl.\ confidentiality) Eden od ciljev šifriranja. Dostop do zaupnih podatkov je omogočen le pooblaščenim osebam},
 }
 
 \newglossaryentry{celovitost}
@@ -241,7 +241,7 @@ Tematika naloge:
 
 \
 
-Oblačne storitve so postale del vsakdanjika in njihova uporaba pa je v strmem porastu. Oblačni sistemi hranijo ogromne količine podatkov, zato so zanimiva tarča za kriminalne združbe, saj je dovolj že en sam uspešen vdor v sistem. Za mnoge poslovne uporabnike je prav varnost podatkov eden ključnih faktorjev, ki odloča kateri deli poslovanja se smejo opravljati v oblaku in kateri ne.
+Oblačne storitve so postale del vsakdanjika, njihova uporaba pa je v strmem porastu. Oblačni sistemi hranijo ogromne količine podatkov, zato so zanimiva tarča za kriminalne združbe, saj je dovolj že en sam uspešen vdor v sistem. Za mnoge poslovne uporabnike je prav varnost podatkov eden ključnih faktorjev, ki odloča kateri deli poslovanja se smejo opravljati v oblaku in kateri ne.
 V diplomski nalogi tako raziščite, kakšna varnostna tveganja obstajajo pri uporabi oblaka in kako jih lahko omilimo z uporabo kriptografije.
 
 %********************************************
@@ -369,9 +369,9 @@ Priljubljen internetni rek gre nekako takole: “there is no cloud, just someone
 
    \item[Širok dostop preko omrežja] Zmogljivosti oblaka so na voljo preko omrežja in do njih lahko dostopamo preko standardnih mehanizmov, kar omogoča dostop praktično katerekoli naprave, ki se je zmožna povezati v omrežje (telefoni, tablice, računalniki,~\ldots).
 
-   \item[Uporaba skupnih virov] Ponudnikovi fizični viri so združeni v bazen virov iz katerega stranke dobijo virtualizirane vire. Virtualizirani vir lahko prosto prehaja med fizičnimi gostitelji, zato težko govorimo o točni lokaciji vira.
+   \item[Uporaba skupnih virov] Ponudnikovi fizični viri so združeni v bazen virov, iz katerega stranke dobijo virtualizirane vire. Virtualizirani vir lahko prosto prehaja med fizičnimi gostitelji, zato težko govorimo o točni lokaciji vira.
 
-   \item[Bliskovita prožnost] Uporabnik lahko preprosto poveča ali zmanjša zmogljivosti virov, ki jih uporablja, glede na potrebe. Uporabnik ima pogosto občutek, da so mu na voljo neomejene zmogljivosti.
+   \item[Bliskovita prožnost] Uporabnik lahko preprosto poveča ali zmanjša zmogljivosti virov, ki jih uporablja, glede na potrebe. Pogosto ima občutek, da so mu na voljo neomejene zmogljivosti.
 
    \item[Merjenje porabe in obračun glede na porabo virov]  Oblačni sistemi samodejno nadzirajo in optimizirajo porabo virov z metrikami (poraba prostora, pasovne širine, procesorskega časa~\ldots). Poraba virov se nadzira, kontrolira in poroča, kar omogoča transparentnost za ponudnika in uporabnika.
 \end{description}
@@ -417,7 +417,7 @@ Varnost je širok pojem, ki ga v kontekstu računalništva lahko razdelimo na tr
 Iz teh opisov razberemo ključne lastnosti varnega računalniškega sistema. V literaturi te ključne lastnosti imenujemo CIA triad, po začetnicah angleških besed za naslednje tri lastnosti:
 
 \begin{description}
-\item[\Gls{zaupnost} (angl. confidentiality)] zajema zaščito podatkov pred nepooblaščenim dostopom. Pogosti mehanizmi, ki se uporabljajo za zagotavljanje zaupnosti podatkov so: zaščita z uporabniškim imenom in geslom, dvostopenjska overitev (two-factor auth), biometrična overitev in šifriranje podatkov.
+\item[\Gls{zaupnost} (angl. confidentiality)] zajema zaščito podatkov pred nepooblaščenim dostopom. Pogosti mehanizmi, ki se uporabljajo za zagotavljanje zaupnosti podatkov so: zaščita dostopa z uporabniškim imenom in geslom, dvostopenjska overitev (two-factor auth), biometrična overitev in šifriranje podatkov.
 
 \item[\Gls{celovitost} (angl. integrity)] pomeni zagotavljanje pravilnosti podatkov. Ukrepi, ki zagotavljajo celovitost podatkov, preprečujejo nepooblaščenim osebam spreminjanje podatkov med prenosom ali v mirovanju. Omogočajo sledenje spremembam podatkov skozi zgodovino (revizijska sled), obnovitev podatkov iz varnostne kopije, v primeru, da pride do nepooblaščene spremembe. Mehanizmi, ki zagotavljajo celovitost podatkov so: nadzor dostopa in zgoščevalne funkcije ter digitalni podpisi.
 
@@ -430,35 +430,35 @@ Poleg treh ključnih lastnosti, ki jih najdemo zgoraj, je Meier~\cite{meier2003i
 
 \begin{description}
 
-\item[\Gls{overjanje}] identificira vir podatka oziroma izvor operacije, ki je lahko človek ali računalnik, in zagotovi, da je res tisti, za katerega se izdaja.
+\item[\Gls{overjanje}] identificira vir podatka oziroma izvor operacije, ki je lahko človek, podatek ali računalnik, in zagotovi, da je res tisti, za katerega se izdaja.
 
 \item[\Gls{avtorizacija}] nadzira dostop do virov glede na pravila sistema in dodeljene pravice. Avtorizacijski mehanizmi uporabnikom preprečujejo, da bi presegli svoja pooblastila.
 
-\item[\Gls{neizpodbitnost}] onemogoča uporabniku, da izpodbija oziroma zanika neko dejanje ali veljavnost pogodbe.
+\item[\Gls{neizpodbitnost}] onemogoča uporabniku, da izpodbija oziroma zanika neko dejanje ali veljavnost svoje obveze pri pogodbi.
 
 \end{description}
 
 \noindent
-Vse zgoraj naštete lastnosti so splošne lastnosti varnosti in zato seveda tičejo tudi računalništva v oblaku. Pri uporabi storitev v oblaku, bi morali najbolj izpostaviti vprašanje varnosti podatkov, saj le te zaupamo v hrambo ponudniku storitve.
+Vse zgoraj naštete lastnosti so splošne lastnosti varnosti in zato seveda dotaknejo tudi računalništva v oblaku. Pri uporabi storitev v oblaku, bi morali najbolj izpostaviti vprašanje varnosti podatkov, saj le te zaupamo v hrambo ponudniku storitve.
 
 \cleardoublepage
 \chapter{Varnostna tveganja v oblaku}
 
-Zaradi vse večje priljubljenosti storitev v oblaku in posledično ogromne količine podatkov, s katerimi razpolagajo ponudniki storitev v oblaku, so ti vedno pogosteje tarča napadov kriminalnih združb. Za sisteme, ki tečejo “v oblaku”, je značilno, da navzven delujejo kot en strežnik, v resnici pa tečejo na velikem številu strežnikov, ki so med seboj povezani. To pomeni da morebitni vdor v samo en strežnik napadalcu omogoča dostop na ostale strežnike, ki tečejo znotraj istega sistema. Če si sistem predstavljamo kot trdnjavo, to pomeni, da je večina zaščitnih mehanizmov skoncentrirana na obrobju, na obzidju trdnjave. Če uspemo to obzidje predreti na samo enem delčku, se lahko več ali manj prosto sprehajamo znotraj trdnjave. Pred pojavom storitev v oblaku je bilo znotraj enega obzidja le nekaj strežnikov, zato je bilo obzidje majhno in ga je bilo lažje vzdrževati. Sistem, na katerem teče storitev v oblaku pa je lahko sestavljen iz več tisoč strežnikov, kar pomeni, da se velikost obzidja močno poveča, veliko obzidje pa je tudi težko vzdrževati, zato se v njem hitro pojavijo razpoke.
+Zaradi vse večje priljubljenosti storitev v oblaku in posledično ogromne količine podatkov, s katerimi razpolagajo ponudniki storitev v oblaku, so ti vedno pogosteje tarča napadov kriminalnih združb. Za sisteme, ki tečejo “v oblaku”, je značilno, da navzven delujejo kot en strežnik, v resnici pa tečejo na velikem številu strežnikov, ki so med seboj povezani. To pomeni da morebitni vdor v samo en strežnik napadalcu omogoča dostop na ostale strežnike, ki delujejo znotraj istega sistema. Če si sistem predstavljamo kot trdnjavo, to pomeni, da je večina zaščitnih mehanizmov skoncentrirana na obrobju, na obzidju trdnjave. Če uspemo to obzidje predreti na samo enem delčku, se lahko več ali manj prosto sprehajamo znotraj trdnjave. Pred pojavom storitev v oblaku je bilo znotraj enega obzidja le nekaj strežnikov, zato je bilo obzidje majhno in ga je bilo lažje vzdrževati. Sistem, na katerem teče storitev v oblaku pa je lahko sestavljen iz več tisoč strežnikov, kar pomeni, da se velikost obzidja močno poveča, veliko obzidje pa je tudi težko vzdrževati, zato se v njem hitro pojavijo razpoke.
 
 Druga stvar, ki dela sisteme v oblaku zanimive za napadalce, je koncentracija podatkov. V primeru vdora v klasični strežnik, napadalec dobi dostop do veliko manjše količine podatkov kot ob vdoru v oblačni sistem. Razlog je preprost, saj na en sam strežnik fizično ni mogoče shraniti toliko podatkov, kot na sistem, ki je sestavljen iz tisočih strežnikov.
 
-Ranljivost računalniškega sistema je lastnost, zaradi katere je ogroženo njegovo delovanje in varnost podatkov, ki jih vsebuje. Storitve, ki delujejo v oblaku,  podedujejo vse ranljivosti, ki jih imajo klasični računalniški sistemi, zaradi posebnih lastnosti oblaka, pa obstaja se nekaj groženj, specifičnih za storitve v oblaku:
+Ranljivost računalniškega sistema je lastnost, zaradi katere je ogroženo njegovo delovanje in varnost podatkov, ki jih vsebuje. Storitve, ki delujejo v oblaku,  podedujejo vse ranljivosti, ki jih imajo klasični računalniški sistemi, zaradi posebnih lastnosti oblaka, pa obstaja še nekaj groženj, specifičnih za storitve v oblaku:
 
 \begin{description}[style=nextline]
 
-\item[Nedovoljen dostop do upraviteljskega in programskega vmesnika] narava storitev v oblaku zahteva da so upraviteljski vmesniki dostopni preko interneta široki množici uporabnikov, kar posledično pomeni da so ti vmesniki izpostavljeni napadom preko interneta.
+\item[Nedovoljen dostop do upraviteljskega in programskega vmesnika] Narava storitev v oblaku zahteva da so upraviteljski vmesniki dostopni preko interneta široki množici uporabnikov, kar posledično pomeni, da so ti vmesniki izpostavljeni napadom preko interneta.
 
-\item[Ranljivosti Internetnega protokola] Ena ključnih lastnosti oblaka je tudi široka dostopnost preko standardiziranih protokolov, zato je potrebno ko govorimo o varnosti v oblaku upoštevati tudi vse ranljivosti uporabljenih protokolov, kot je recimo \gls{MITM}.
+\item[Ranljivosti Internetnega protokola] Ena ključnih lastnosti oblaka je tudi široka dostopnost preko standardiziranih protokolov, zato je potrebno, ko govorimo o varnosti v oblaku, upoštevati tudi vse ranljivosti uporabljenih protokolov, kot je recimo \gls{MITM}.
 
 \item[Ranljivosti obnovitve podatkov] Zaradi uporabe skupnih virov, ki je ena ključnih lastnosti oblaka, se lahko en fizični nosilec podatkov, ki je prej pripadal enemu uporabniku, kasneje dodeli drugemu uporabniku. Če pred tem ne poskrbimo za varen izbris podatkov, lahko drug uporabnik obnovi izbrisane podatke z nosilca in tako pride do razkritja podatkov.
 
-\item[Izogibanje merjenju in plačilu] Storitve v oblaku se običajno plačujejo po porabi. Prav tako za začetek uporabe storitve praviloma vnesemo samo nekaj osnovnih podatkov in številko kreditne kartice. Napadalec nam lahko predloži ukradene podatke ali spreminja podatke o porabi, da se izogne plačilu.
+\item[Izogibanje merjenju in plačilu] Storitve v oblaku se običajno plačujejo po porabi. Prav tako za začetek uporabe storitve praviloma vnesemo samo nekaj osnovnih podatkov in številko kreditne kartice. Napadalec nam lahko predloži ukradene podatke ali spreminja podatke o porabi, da se sam izogne plačilu.
 
 \end{description}
 
@@ -472,12 +472,12 @@ O razkritju podatkov govorimo v primeru, da se občutljivi in zaupni podatki zna
 
 Razkritje podatkov je stara in vseprisotna grožnja v vseh računalniških sistemih, vendar je zaradi prej omenjene koncentracije podatkov ta grožnja v oblačnih sistemih še večja.
 
-Obseg škode, ki ga povzroči razkritje podatkov, je odvisen od občutljivosti podatkov, ki so bili odtujeni. V veliko državah po svetu obstajajo zakoni in predpisi, ki podjetja ki hranijo določene tipe občutljivih podatkov, obvezuje k določenim standardom zaščite. V primeru, da pride do razkritja podatkov, lahko odgovorno podjetje doleti denarna kazen ali celo kazenska ovadba. Poleg škode, ki je bila povzročena z razkritjem podatkov in morebitno denarno kaznijo, so tu še stroški preiskave incidenta, obveščanja uporabnikov in izgube ugleda podjetja.
+Obseg škode, ki ga povzroči razkritje podatkov, je odvisen od občutljivosti podatkov, ki so bili odtujeni. V veliko državah po svetu obstajajo zakoni in predpisi, ki podjetja, ki hranijo določene tipe občutljivih podatkov, obvezuje k določenim standardom zaščite. V primeru, da pride do razkritja podatkov, lahko odgovorno podjetje doleti denarna kazen ali celo kazenska ovadba. Poleg škode, ki je bila povzročena z razkritjem podatkov in morebitno denarno kaznijo, so tu še stroški preiskave incidenta, obveščanja uporabnikov in izgube ugleda podjetja.
 
 \section{Pomanjkljivo upravljanje identitete za dostop}
 \label{sub:Pomanjkljivo upravljanje identitete za dostop}
 
-Površno upravljanje lahko pripelje do nenamernega razkritja uporabniških imen, gesel in ključev, ki se uporabljajo za dostop do storitev. Ponudniki storitev v oblaku upravljajo z identitetami milijonov uporabnikov in zaposlenih, zato je potrebna velika skrb, da se zagotovi pravilno upravljanje identitete skozi celoten cikel. Potrebno je poskrbeti za takojšno prekinitev veljavnosti identitete v primeru, da pride do odpovedi delovnega razmerja zaposlenega ali prekinitve pogodbe s stranko. Uporaba šibkih gesel in neuporaba dvostopenjske avtentikacije in neuporaba rotacije šifrirnih ključev, gesel in certifikatov so primeri slabe prakse, ki v primeru napada napadalcu olajšajo delo in povečajo razsežnosti škode, ki jo napadalec povzroči.
+Površno upravljanje lahko pripelje do nenamernega razkritja uporabniških imen, gesel in ključev, ki se uporabljajo za dostop do storitev. Ponudniki storitev v oblaku upravljajo z identitetami milijonov uporabnikov in zaposlenih, zato je potrebna velika skrb, da se zagotovi pravilno upravljanje identitete skozi celoten cikel. Potrebno je poskrbeti za takojšno prekinitev veljavnosti identitete v primeru, da pride do odpovedi delovnega razmerja zaposlenega ali prekinitve pogodbe s stranko. Uporaba šibkih gesel in neuporaba dvostopenjske avtentikacije in neuporaba rotacije šifrirnih ključev, gesel in digitalnih portdil so primeri slabe prakse, ki v primeru napada napadalcu olajšajo delo in povečajo razsežnosti škode, ki jo napadalec povzroči.
 
 \section{Nezaščiteni uporabniški in programski vmesniki}
 \label{sub:Nezaščiteni uporabniški in programski vmesniki}
@@ -487,7 +487,7 @@ Ponudniki storitev v oblaku ponujajo nabor uporabniških in programskih vmesniko
 \section{Sistemske ranljivosti}
 \label{sub:Sistemske ranljivosti}
 
-Sistemske ranljivosti so hrošči v uporabljeni programski opremi, ki jih je možno izkoristiti za napad na računalniški sistem. Ranljivosti, ki se nahajajo v jedru operacijskega sistema ali sistemskih knjižnicah predstavljajo grožnjo za celoten sistem.
+Sistemske ranljivosti so hrošči v uporabljeni programski opremi, ki jih je možno izkoristiti za napad na računalniški sistem. Ranljivosti, ki se nahajajo v jedru operacijskega sistema ali sistemskih knjižnicah, predstavljajo grožnjo za celoten sistem.
 
 Tako kot večina ostalih predstavljenih groženj, tudi sistemske ranljivosti niso nič novega, vendar razsežnost oblačnih sistemov doda takim ranljivostim popolnoma nov pomen. Zaradi napredka tehnologije je možno na enem strežniku gostiti več virtualnih strežnikov različnih organizacij, kar pomeni da si ti virtualni strežniki delijo pomnilnik in ostale vire, kar omogoča nove načine izrabe sistemskih ranljivosti, kot so pobeg iz \glslink{hypervisor}{hipernadzornika}~\cite{schwartz2012new} in vohljanje medpomnilnika~\cite{zhang2012cross}.
 
@@ -504,7 +504,7 @@ Tveganje, ki ga predstavljajo notranje grožnje, kot so škodoželjni zaposleni,
 \section{Organizirana trajna grožnja}
 \label{sub:Organizirana trajna grožnja}
 
-Organiziranje trajne grožnje so ena najnaprednejših oblik grožnje računalniški varnosti. Za napadi te oblike so ponavadi skrivajo velike organizacije z državno podporo (tajne službe, vojska). Značilnost te oblike napada je, da napadalec temeljito preuči ciljni sistem, njegovo organizacijo in šibke točke. Ta oblika napada se pogosto začne z usmerjenim izvabljanjem, to je posebna tehnika ribarjenja, ki je usmerjena proti točno določenim osebam, v našem primeru zaposleni v ciljni organizaciji. S pomočjo usmerjenega izvabljanja napadalec poskuša pridobiti vstopno točko v ciljni sistem. Ko enkrat pridobi dostop do notranjega omrežja sistema, to uporabi kot odskočno desko za nadaljnje premike proti želenim tarčam. Cilj napada so podatki, ki se nahajajo v sistemu žrtve, pogosto so to poslovne ali državne skrivnosti. Napadalec želi čimdlje ostati skrit, saj tako pridobi dostop do večjega števila računalnikov znotraj omrežja in s tem večje količine podatkov. V želji da ostane skrit, uporablja napredne tehnike brisanja sledov, zato je take tipe napada zelo težko zaznati, saj navzven sistem deluje normalno.
+Organiziranje trajne grožnje so ena najnaprednejših oblik grožnje računalniški varnosti. Za napadi te oblike so ponavadi skrivajo velike organizacije z državno podporo (tajne službe, vojska). Značilnost te oblike napada je, da napadalec temeljito preuči ciljni sistem, njegovo organizacijo in šibke točke. Ta oblika napada se pogosto začne z usmerjenim izvabljanjem, to je posebna tehnika ribarjenja, ki je usmerjena proti točno določenim osebam, v našem primeru zaposleni v ciljni organizaciji. Z usmerjenim izvabljanjem napadalec poskuša pridobiti vstopno točko v ciljni sistem. Ko enkrat pridobi dostop do notranjega omrežja sistema, to uporabi kot odskočno desko za nadaljnje premike proti želenim tarčam. Cilj napada so podatki, ki se nahajajo v sistemu žrtve, pogosto so to poslovne ali državne skrivnosti. Napadalec želi čimdlje ostati skrit, saj tako pridobi dostop do večjega števila računalnikov znotraj omrežja in s tem večje količine podatkov. V želji da ostane skrit, uporablja napredne tehnike brisanja sledov, zato je take tipe napada zelo težko zaznati, saj navzven sistem deluje normalno.
 
 Posebna oblika organiziranih trajnih groženj so kibernetska orožja. Verjetno najbolj znan med njimi je Stuxnet, ki je sabotiral Iranski jedrski program. Kibernetska orožja se od ostalih oblik napadov razlikujejo v tem, da žrtvi povzročijo dejansko fizično škodo v obliki uničene opreme ali pa celo človeške žrtve.
 
@@ -516,7 +516,7 @@ Izguba podatkov predstavlja za večino uporabnikov in podjetji eno najhujših no
 \section{Malomarnost}
 \label{sub:Malomarnost}
 
-Preden začnemo uporabljati storitve v oblaku, moramo preučiti vse aspekte, ki jih bo taka sprememba prinesla. Vodilni kadri v podjetjih pogosto nimajo dovolj poglobljenega poznavanja oblaka s tehnološkega vidika, kot tudi ne pravnih zank, ki jih vsebujejo ``pogoji uporabe'' določenih ponudnikov storitev v oblaku. V primeru, da pred uporabo storitev v oblaku ne naredimo temeljite analize, lahko pride do tehnoloških, pravnih, skladenjskih in poslovnih tveganj, ki ogrozijo uspeh podjetja.
+Preden začnemo uporabljati storitve v oblaku, moramo preučiti vse vidike, ki jih bo taka sprememba prinesla. Vodilni kadri v podjetjih pogosto nimajo dovolj poglobljenega poznavanja oblaka s tehnološkega vidika, kot tudi ne pravnih zank, ki jih vsebujejo ``pogoji uporabe'' določenih ponudnikov storitev v oblaku. V primeru, da pred uporabo storitev v oblaku ne naredimo temeljite analize, lahko pride do tehnoloških, pravnih, skladenjskih in poslovnih tveganj, ki ogrozijo uspeh podjetja.
 
 \section{Zloraba in zlonamerna uporaba sistemov}
 \label{sub:Zloraba in zlonamerna uporaba sistemov}
@@ -608,7 +608,7 @@ Bločna šifra vzame blok $x_i \in \mathcal{P}$ in ga šifrira s šifrirnim post
 
 Bločne šifre delujejo na bloku podatkov fiksne velikosti (običajno velikost ključa določi velikost bloka) in v kolikor dolžina sporočila ni deljiva z $m$, je potrebno sporočilo dopolniti s posebnim zaporedjem znakov, dokler dolžina ni večkratnik števila $m$.
 
-Drugačen pristop pa uporabljajo tokovne šifre, ki iz ključa $k \in \mathcal{K}$ ustvarijo naključno zaporedje bitov $Z$, enake dolžine kot je sporočilo. Ključ nato zmešajo s čistopisom, tipično s pomočjo operacije \rm{XOR} (ekskluzivni ali, predstavljen s simbolom $\oplus$). \rm{XOR} deluje na nivoju bitov, zato take šifre lahko šifrirajo čistopis bit po bit in tako ni potrebe po dopolnjevanju.
+Drugačen pristop pa uporabljajo tokovne šifre, ki iz ključa $k \in \mathcal{K}$ ustvarijo naključno zaporedje bitov $Z$, enake dolžine kot je sporočilo. Ključ nato zmešajo s čistopisom, tipično z operacijo \rm{XOR} (ekskluzivni ali, predstavljen s simbolom $\oplus$). \rm{XOR} deluje na nivoju bitov, zato take šifre lahko šifrirajo čistopis bit po bit in tako ni potrebe po dopolnjevanju.
 
 \begin{gather*}
 Z=z_0 \| z_1 \| z_2 \| \dotsc \| z_{l-1} \\
@@ -1080,7 +1080,7 @@ Težava pa nastane, ko želimo izločanje dvojnikov uporabiti skupaj s šifriran
   \end{defn}
 \end{mdframed}
 
-V principu je treba poskrbeti, da šifriranje enakega čistopisa vsakič da enak tajnopis. To pomeni, da moramo vsakič uporabiti enak šifrirni ključ in tudi \gls{IV}, v kolikor ga dani kriptosistem zahteva. Lahko bi za vse datoteke vseh uporabnikov uporabili isti ključ in isti \gls{IV}, vendar taka implementacija ne bi zagotavljala prav visoke varnosti. V veliko primerih ima šifriranje različnih čistopisov z enakim ključem in IV katastrofalne posledice za varnost. To nam pridejo na pomoč konvergentne kriptografske sheme. Prvo tako shemo je podjetje Stac, Inc.\ patentiralo že leta 1995, v zadnjih letih pa so predvsem zaradi vse večje uporabe oblačnih shramb podatkov te sheme deležne veliko pozornosti. Osnovna ideja sheme je, da se šifrirni ključ izračuna iz čistopisa. Ponavadi se izračuna zgoščena vrednost čistopisa s pomočjo enosmerne zgoščevalne funkcije, nato pa se iz te vrednosti na determinističen način ustvari šifrirni ključ. Ker je zgoščena vrednost dveh enakih datotek tudi enaka, in postopek za izračun ključa determinističen, smo tako dosegli cilj, da se dve isti datoteki vedno zašifrirata v isti tajnopis.
+V principu je treba poskrbeti, da šifriranje enakega čistopisa vsakič da enak tajnopis. To pomeni, da moramo vsakič uporabiti enak šifrirni ključ in tudi \gls{IV}, v kolikor ga dani kriptosistem zahteva. Lahko bi za vse datoteke vseh uporabnikov uporabili isti ključ in isti \gls{IV}, vendar taka implementacija ne bi zagotavljala prav visoke varnosti. V veliko primerih ima šifriranje različnih čistopisov z enakim ključem in IV katastrofalne posledice za varnost. To nam pridejo na pomoč konvergentne kriptografske sheme. Prvo tako shemo je podjetje Stac, Inc.\ patentiralo že leta 1995, v zadnjih letih pa so predvsem zaradi vse večje uporabe oblačnih shramb podatkov te sheme deležne veliko pozornosti. Osnovna ideja sheme je, da se šifrirni ključ izračuna iz čistopisa. Ponavadi se izračuna zgoščena vrednost čistopisa, nato pa se iz te vrednosti na determinističen način ustvari šifrirni ključ. Ker je zgoščena vrednost dveh enakih datotek tudi enaka, in postopek za izračun ključa determinističen, smo tako dosegli cilj, da se dve isti datoteki vedno zašifrirata v isti tajnopis.
 
 Vendar pa imajo zaradi znižanih varnostnih zahtev taki sistemi tudi svoje ranljivosti. Ker je postopek šifriranja determinističen, tako lahko napadalec, ki si lasti enako datoteko, ugotovi ali ima to datoteko tudi kateri drug uporabnik. Na prvi pogled to sicer ni videti tako problematično, vendar je na tak način mogoče ugotoviti, ali je uporabnik v sistem naložil piratsko vsebino ali pa prepovedano literaturo. V praksi se velikokrat uporabi izločanje dvojnikov na nivoju blokov, kar pa omogoča se bolj zvito izvedbo napada. V kolikor obstajajo datoteke, katerih vsebina je pretežno statična (recimo bančni izpiski), bodo tudi tajnopisi teh blokov v veliki meri enaki. Če ima napadalec dostop do podobnega bančnega izpiska, obstaja verjetnost da se tajnopis napadalčevega in žrtvinega dokumenta razlikujeta samo v parih blokih. Napadalec lahko uporabi surovo silo in ustvari vse možne bloke, nato pa s pomočjo prvega napada ugotovi, kateri bloki pripadajo dokumentu žrtve napada. Takim napadom se je možno izogniti z uporabo ustreznega nadzora dostopa, kot je opisano v članku~\cite{keelveedhi2013dupless}.
 
@@ -1106,7 +1106,7 @@ Protokol SSL/TLS uporablja simetrične kriptosisteme za zagotavljanje zasebnosti
 
 Vsaka povezava, zaščitena s protokolom TLS najprej poizkusi overiti identiteto strežnika/osebe na drugi strani, saj se tako prepričamo, da res komuniciramo s tistim, s komer želimo. Če ne preverimo identitete druge strani, napadalcu omogočimo MITM napad, saj se lahko postavi med nas in strežnik, in tako prestreza komunikacijo. Za overjanje identitete se uporablja kriptografija javnih ključev, najpogosteje kar protokol RSA. Pomembno je, da uporabimo varne zasebne ključe ter tudi poskrbimo za varno hrambo le teh. Za večino primerov uporabe se priporočajo 2048 bitni RSA ključi, ki zagotavljajo stopnjo varnosti, primerljivo s 112 bitnim simetričnim ključem. V kolikor obstaja zahteva po višji stopnji varnosti, se lahko uporabijo 3072 bitni ključi, ki zagotavljajo približno 128 bitov varnosti. Vse te primerjave so zgolj informativne narave, saj se z napredkom napadov na RSA, stopnja varnosti, ki jo nudi določena dolžina ključa, vztrajno niža.
 
-Poleg dolžine ključa je potrebno poskrbeti, da se za podpis certifikata uporablja kriptografsko varna zgoščevalna funkcija. Od začetka leta 2016 \texttt{SHA1} ne smatra več za varno zgoščevalno funkcijo, zato je priporočena uporaba \textit{SHA256}.
+Poleg dolžine ključa je potrebno poskrbeti, da se za podpis digitalnega potrdila uporablja kriptografsko varna zgoščevalna funkcija. Od začetka leta 2016 \texttt{SHA1} ne smatra več za varno zgoščevalno funkcijo, zato je priporočena uporaba \textit{SHA256}.
 
 Družina protokolov \texttt{SSL/TLS} je sestavljena iz 5 različic protokolov: SSL v2, SSL v3, TLS v1.0, TLS v1.1 in TLS v1.2. Priporoča se uporaba najnovejše različice TLS v1.2, v kolikor pa je pa je potrebno zagotoviti podporo tudi za stranke, ki uporabljajo starejšo programsko opremo, pa je možna tudi uporaba TLS v1.0 in TLS v1.1.
 
